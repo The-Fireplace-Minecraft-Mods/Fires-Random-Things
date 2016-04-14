@@ -95,9 +95,8 @@ public class BlockBlazeCake extends ULBlock {
 				worldIn.setBlockToAir(pos);
 			}
 			player.addPotionEffect(new PotionEffect(MobEffects.fireResistance, 1800));
-		}
-		if(player.canEat(true)){
-			player.getFoodStats().addStats(-6, 0.0F);
+		}else if(player.canEat(true)){
+			player.getFoodStats().addStats(0, -0.1F);
 			int i = state.getValue(BITES);
 
 			if (i < 6)
