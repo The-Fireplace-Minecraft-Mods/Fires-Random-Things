@@ -80,6 +80,7 @@ cfg.potion_switch.tooltip=The amount of time it takes for the hallucination to s
 pop_furnace.redstone_tooltip=To use, pulse redstone power
 info.coal_type=Coal Type
 potion.hallucination=Hallucination
+potion.prefix.grenade=Splash
 item.hallucination_potion.name=Potion of Hallucination
 item.wax.name=Wax
 tile.candle.name=Candle
