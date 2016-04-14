@@ -2,13 +2,11 @@ package the_fireplace.frt.proxy;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import the_fireplace.frt.entity.EntityHallucinationPotion;
 import the_fireplace.frt.entity.coal.*;
 import the_fireplace.frt.enums.EnumAmmo;
-import the_fireplace.frt.handlers.UnLogicIIKeyHandler;
 import the_fireplace.frt.renderers.RenderCoal;
 import the_fireplace.frt.renderers.RenderHallucinationPotion;
 
@@ -38,7 +36,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerClient() {
-        MinecraftForge.EVENT_BUS.register(new UnLogicIIKeyHandler());
+
     }
 
     @Override
