@@ -1,0 +1,18 @@
+[
+{
+  "modid": "frt",
+  "name": "Fire's Random Things",
+  "description": "A mod that adds lots of random and useful content.",
+  "version": "5.0.0.BUILDNUMBER",
+  "mcversion": "1.9",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["The_Fireplace"],
+  "credits": "The_Fireplace for making the mod",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": [],
+  "requiredMods": ["Forge@[12.16.0.1805,)"],
+  "useDependencyInformation": true
+}
+]

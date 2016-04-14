@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "normal": { "model": "frt:restabilized_coal_block" }
+    }
+}

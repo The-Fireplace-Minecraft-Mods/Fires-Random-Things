@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "normal": { "model": "frt:charged_coal_block" }
+    }
+}

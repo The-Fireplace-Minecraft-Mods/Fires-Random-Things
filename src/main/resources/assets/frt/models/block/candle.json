@@ -1,0 +1,36 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+    "textures": {
+        "0": "blocks/wool_colored_black",
+        "1": "frt:blocks/wax_block"
+    },
+    "elements": [
+        {
+            "name": "Wick",
+            "from": [ 7.500000007450581, 7.0, 7.500000007450581 ], 
+            "to": [ 8.50000000745058, 8.49999999254942, 8.50000000745058 ], 
+            "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "y", "angle": -45.0 },
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.0, 0.0, 2.0, 9.0 ] },
+                "east": { "texture": "#0", "uv": [ 0.0, 0.0, 2.0, 9.0 ] },
+                "south": { "texture": "#0", "uv": [ 0.0, 0.0, 2.0, 9.0 ] },
+                "west": { "texture": "#0", "uv": [ 0.0, 0.0, 2.0, 9.0 ] },
+                "up": { "texture": "#0", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+                "down": { "texture": "#0", "uv": [ 0.0, 0.0, 2.0, 2.0 ], "cullface": "down" }
+            }
+        },
+        {
+            "name": "Wax",
+            "from": [ 7.0, 0.0, 7.0 ], 
+            "to": [ 9.0, 7.0, 9.0 ], 
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 11.0, 8.0, 15.0, 15.0 ] },
+                "east": { "texture": "#1", "uv": [ 11.0, 8.0, 15.0, 15.0 ] },
+                "south": { "texture": "#1", "uv": [ 11.0, 8.0, 15.0, 15.0 ] },
+                "west": { "texture": "#1", "uv": [ 11.0, 8.0, 15.0, 15.0 ] },
+                "up": { "texture": "#1", "uv": [ 10.0, 10.0, 14.0, 14.0 ] },
+                "down": { "texture": "#1", "uv": [ 10.0, 10.0, 14.0, 14.0 ] }
+            }
+        }
+    ]
+}

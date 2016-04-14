@@ -1,0 +1,9 @@
+{
+    "variants": {
+        "facing=up": { "model": "frt:charged_torch" },
+        "facing=east": { "model": "frt:charged_torch_wall" },
+        "facing=south": { "model": "frt:charged_torch_wall", "y": 90 },
+        "facing=west": { "model": "frt:charged_torch_wall", "y": 180 },
+        "facing=north": { "model": "frt:charged_torch_wall", "y": 270 }
+    }
+}
