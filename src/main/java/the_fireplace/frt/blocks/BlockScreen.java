@@ -1,5 +1,6 @@
 package the_fireplace.frt.blocks;
 
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -15,6 +16,7 @@ public class BlockScreen extends ULBlock {
 		super(Material.cloth);
 		setHardness(0.4F);
 		setUnlocalizedName(color+"_screen");
+		setStepSound(SoundType.CLOTH);
 	}
 	@Override
 	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face)

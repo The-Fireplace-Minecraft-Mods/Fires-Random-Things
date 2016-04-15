@@ -2,6 +2,7 @@ package the_fireplace.frt.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
@@ -40,6 +41,7 @@ public class BlockPopFurnace extends BlockContainer {
 		setResistance(15F);
 		setHarvestLevel("pickaxe", 0);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		setStepSound(SoundType.METAL);
 	}
 	@Override
 	public boolean isOpaqueCube(IBlockState state){

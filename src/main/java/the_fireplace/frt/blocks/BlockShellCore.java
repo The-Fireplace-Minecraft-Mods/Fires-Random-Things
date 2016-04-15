@@ -1,6 +1,7 @@
 package the_fireplace.frt.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -24,6 +25,7 @@ public class BlockShellCore extends ULBlock {
 		setLightLevel(10);
 		setResistance(131072);
 		setHardness(3.0F);
+		setStepSound(SoundType.METAL);
 	}
 
 	@Override

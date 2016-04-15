@@ -1,6 +1,7 @@
 package the_fireplace.frt.blocks;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -40,6 +41,7 @@ public class BlockBlazeCake extends ULBlock {
 		setUnlocalizedName("blaze_cake");
 		setHardness(0.5F);
 		disableStats();
+		setStepSound(SoundType.SNOW);
 	}
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
