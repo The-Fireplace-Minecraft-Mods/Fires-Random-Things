@@ -1,5 +1,6 @@
 package the_fireplace.frt.items;
 
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -44,5 +45,14 @@ public class ItemLeafcutter extends Item {
 	@Override
 	public int getItemEnchantability(){
 		return 5;
+	}
+
+	@Override
+	public float getStrVsBlock(ItemStack stack, IBlockState state)
+	{
+		if(state.getBlock() instanceof BlockLeaves){
+			return 5000;
+		}
+		return super.getStrVsBlock(stack, state);
 	}
 }

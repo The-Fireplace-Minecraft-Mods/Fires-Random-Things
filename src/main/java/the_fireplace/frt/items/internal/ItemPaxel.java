@@ -143,4 +143,12 @@ public class ItemPaxel extends ItemTool
 		par1ItemStack.damageItem(2, par3EntityLivingBase);
 		return true;
 	}
+
+	@Override
+	public float getStrVsBlock(ItemStack stack, IBlockState state)
+	{
+		if(state.getMaterial().isToolNotRequired() || state.getBlock().isToolEffective("pickaxe", state) || state.getBlock().isToolEffective("axe", state) || state.getBlock().isToolEffective("shovel", state))
+			return toolMaterial.getEfficiencyOnProperMaterial();
+		return super.getStrVsBlock(stack, state);
+	}
 }

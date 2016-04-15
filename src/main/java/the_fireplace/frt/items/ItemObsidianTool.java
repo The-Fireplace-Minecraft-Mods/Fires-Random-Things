@@ -32,7 +32,7 @@ public class ItemObsidianTool extends Item {
 		if(block.getBlockHardness(world, pos) != 0.0D){
 			is.damageItem(1, player);
 		}
-		if(block == Blocks.obsidian){
+		if(block.getBlock().equals(Blocks.obsidian)){
 			block.getBlock().dropBlockAsItem(world, pos, block, 0);
 		}
 		return true;
@@ -41,12 +41,13 @@ public class ItemObsidianTool extends Item {
 	public int getItemEnchantability(){
 		return 10;
 	}
-	/*@Override
-	public float getDigSpeed(ItemStack itemstack, IBlockState state)
+
+	@Override
+	public float getStrVsBlock(ItemStack stack, IBlockState state)
 	{
-		if(state.getBlock() == Blocks.obsidian || state.getBlock() == FRT.obsidian_farmland){
+		if(state.getBlock() == Blocks.obsidian){
 			return 5000;
 		}
-		return super.getDigSpeed(itemstack, state);
-	}*/
+		return super.getStrVsBlock(stack, state);
+	}
 }
