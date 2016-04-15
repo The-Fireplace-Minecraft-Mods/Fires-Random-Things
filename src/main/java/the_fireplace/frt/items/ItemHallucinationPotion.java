@@ -148,7 +148,7 @@ public class ItemHallucinationPotion extends Item {
 		else if(stack.getItemDamage() == 3)
 			s1 += " (6:00)";
 		else if(stack.getItemDamage() == 4)
-			s1 += " (2:00)";
+			s1 += " (0:25)";
 		tooltip.add(ChatFormatting.RED + s1);
 	}
 	@Override
