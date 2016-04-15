@@ -1,7 +1,10 @@
 package the_fireplace.frt.proxy;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import the_fireplace.frt.entity.EntityHallucinationPotion;
@@ -9,6 +12,10 @@ import the_fireplace.frt.entity.coal.*;
 import the_fireplace.frt.enums.EnumAmmo;
 import the_fireplace.frt.renderers.RenderCoal;
 import the_fireplace.frt.renderers.RenderHallucinationPotion;
+
+import java.util.Random;
+
+import static net.minecraft.client.renderer.EntityRenderer.shaderCount;
 
 /**
  * @author The_Fireplace
@@ -41,13 +48,14 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void tryRemoveShader() {
-        while (Minecraft.getMinecraft().entityRenderer.isShaderActive())
-            activateNextShader();
+        Minecraft.getMinecraft().entityRenderer.stopUseShader();
     }
+
+    private static final ResourceLocation[] shaderResourceLocations = new ResourceLocation[] {new ResourceLocation("shaders/post/notch.json"), new ResourceLocation("shaders/post/fxaa.json"), new ResourceLocation("shaders/post/art.json"), new ResourceLocation("shaders/post/bumpy.json"), new ResourceLocation("shaders/post/blobs2.json"), new ResourceLocation("shaders/post/pencil.json"), new ResourceLocation("shaders/post/color_convolve.json"), new ResourceLocation("shaders/post/deconverge.json"), new ResourceLocation("shaders/post/flip.json"), new ResourceLocation("shaders/post/invert.json"), new ResourceLocation("shaders/post/ntsc.json"), new ResourceLocation("shaders/post/outline.json"), new ResourceLocation("shaders/post/phosphor.json"), new ResourceLocation("shaders/post/scan_pincushion.json"), new ResourceLocation("shaders/post/sobel.json"), new ResourceLocation("shaders/post/bits.json"), new ResourceLocation("shaders/post/desaturate.json"), new ResourceLocation("shaders/post/green.json"), new ResourceLocation("shaders/post/blur.json"), new ResourceLocation("shaders/post/wobble.json"), new ResourceLocation("shaders/post/blobs.json"), new ResourceLocation("shaders/post/antialias.json"), new ResourceLocation("shaders/post/creeper.json"), new ResourceLocation("shaders/post/spider.json")};
 
     @Override
     public void activateNextShader() {//TODO: Finish
-        /*if (OpenGlHelper.shadersSupported) {
+        if (OpenGlHelper.shadersSupported) {
             EntityRenderer renderer = Minecraft.getMinecraft().entityRenderer;
 
             if (Minecraft.getMinecraft().getRenderViewEntity() instanceof EntityPlayer) {
@@ -55,14 +63,21 @@ public class ClientProxy extends CommonProxy {
                     renderer.getShaderGroup().deleteShaderGroup();
                 }
 
-                renderer.shaderIndex = (renderer.shaderIndex + 1) % (renderer.shaderResourceLocations.length + 1);
+                /*renderer.shaderIndex = (renderer.shaderIndex + 1) % (shaderResourceLocations.length + 1);
 
                 if (renderer.shaderIndex != shaderCount) {
-                    renderer.loadShader(renderer.shaderResourceLocations[renderer.shaderIndex]);
+                    renderer.loadShader(shaderResourceLocations[renderer.shaderIndex]);
                 } else {
                     renderer.theShaderGroup = null;
+                }*/
+                Random rand = new Random();
+                int index = rand.nextInt(shaderResourceLocations.length);
+                if (index != shaderCount) {
+                    renderer.loadShader(shaderResourceLocations[index]);
+                } else {
+                    renderer.stopUseShader();
                 }
             }
-        }*/
+        }
     }
 }

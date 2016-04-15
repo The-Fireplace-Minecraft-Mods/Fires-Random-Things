@@ -8,8 +8,6 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import the_fireplace.frt.FRT;
 
-import java.util.Random;
-
 /**
  * @author The_Fireplace
  */
@@ -31,10 +29,7 @@ public class ChangeShaderMessage implements IMessage {
 		public IMessage handleClientMessage(EntityPlayer player, ChangeShaderMessage message, MessageContext ctx) {
 			IThreadListener listener = Minecraft.getMinecraft();
 			listener.addScheduledTask(() -> {
-				Random rand = new Random();
-				for(int i=rand.nextInt(25);i>=0;i--) {
 					FRT.proxy.activateNextShader();
-				}
 			});
 			return null;
 		}
