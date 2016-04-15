@@ -1,6 +1,7 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
+        "particle": "frt:blocks/wax_block",
         "0": "blocks/wool_colored_black",
         "1": "frt:blocks/wax_block"
     },
