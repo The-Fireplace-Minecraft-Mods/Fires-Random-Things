@@ -50,7 +50,7 @@ public class EntityHallucinationPotion extends EntityThrowable {
 	}
 	@Override
 	protected void onImpact(RayTraceResult mop) {
-		if (!this.worldObj.isRemote) {
+		//if (!this.worldObj.isRemote) {
 			AxisAlignedBB axisalignedbb = this.getEntityBoundingBox().expand(4.0D, 2.0D, 4.0D);
 			List<EntityLivingBase> list1 = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb);
 
@@ -66,7 +66,7 @@ public class EntityHallucinationPotion extends EntityThrowable {
 					}
 				}
 			}
-		}
+		//}
 	}
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tagCompund)

@@ -41,7 +41,7 @@ public class ItemHallucinationPotion extends Item {
 		{
 			--stack.stackSize;
 		}
-		if (!worldIn.isRemote){
+		//if (!worldIn.isRemote){
 			switch(stack.getItemDamage()){
 				case 0:
 					entityLiving.addPotionEffect(new PotionEffect(FRT.hallucination, 3600));
@@ -50,7 +50,7 @@ public class ItemHallucinationPotion extends Item {
 				default:
 					break;
 			}
-		}
+		//}
 
 		if (entityplayer == null || !entityplayer.capabilities.isCreativeMode)
 		{
@@ -102,7 +102,7 @@ public class ItemHallucinationPotion extends Item {
 
 			return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
 		}else{
-			playerIn.setActiveHand(hand);
+			playerIn.setActiveHand(hand);//TODO: ?
 			return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
 		}
 	}
@@ -111,9 +111,11 @@ public class ItemHallucinationPotion extends Item {
 	{
 		String s = "";
 
-		if (stack.getItemDamage() > 1)
+		if (stack.getItemDamage() > 1 && stack.getItemDamage() < 4)
 		{
 			s = I18n.translateToLocal("potion.prefix.grenade").trim() + " ";
+		}else if (stack.getItemDamage() >= 4){
+			s = I18n.translateToLocal("potion.prefix.lingering").trim() + " ";
 		}
 
 		return s+I18n.translateToLocal("item.hallucination_potion.name");
@@ -131,6 +133,8 @@ public class ItemHallucinationPotion extends Item {
 			s1 += " (2:15)";
 		else if(stack.getItemDamage() == 3)
 			s1 += " (6:00)";
+		else if(stack.getItemDamage() == 4)
+			s1 += " (2:00)";
 		tooltip.add(ChatFormatting.RED + s1);
 	}
 	@Override
