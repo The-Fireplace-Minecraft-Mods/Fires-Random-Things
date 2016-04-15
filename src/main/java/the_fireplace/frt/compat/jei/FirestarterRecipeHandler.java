@@ -18,7 +18,7 @@ public class FirestarterRecipeHandler implements IRecipeHandler<FirestarterRecip
 	@Nonnull
 	@Override
 	public String getRecipeCategoryUid() {
-		return "unlogicii.pop_furnace.firestarter";
+		return "frt.pop_furnace.firestarter";
 	}
 
 	@Nonnull

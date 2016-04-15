@@ -8,7 +8,7 @@ import the_fireplace.frt.container.ContainerPopFurnace;
  * @author The_Fireplace
  */
 @JEIPlugin
-public class UnLogicIIJEIPlugin implements IModPlugin {
+public class FRTJEIPlugin implements IModPlugin {
 
 	@Override
 	public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {}
