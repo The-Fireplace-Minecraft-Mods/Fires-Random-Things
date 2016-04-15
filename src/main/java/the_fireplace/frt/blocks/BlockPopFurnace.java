@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.entity.tile.TileEntityPopFurnace;
-import the_fireplace.frt.libs.tools.MiscTools;
+import the_fireplace.frt.tools.MiscTools;
 
 import java.util.Random;
 /**

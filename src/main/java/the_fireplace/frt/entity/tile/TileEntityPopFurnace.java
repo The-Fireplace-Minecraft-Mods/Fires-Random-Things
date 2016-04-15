@@ -16,7 +16,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.WorldServer;
 import the_fireplace.frt.config.ConfigValues;
-import the_fireplace.frt.libs.tools.MiscTools;
+import the_fireplace.frt.tools.MiscTools;
 import the_fireplace.frt.recipes.PopFurnaceRecipes;
 
 import java.util.Iterator;

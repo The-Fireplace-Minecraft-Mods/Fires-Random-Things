@@ -2,7 +2,7 @@ package the_fireplace.frt.recipes;
 
 import com.google.common.collect.Maps;
 import net.minecraft.item.ItemStack;
-import the_fireplace.frt.libs.tools.MiscTools;
+import the_fireplace.frt.tools.MiscTools;
 
 import java.util.ArrayList;
 import java.util.Iterator;

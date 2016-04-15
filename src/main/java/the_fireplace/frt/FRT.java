@@ -38,12 +38,11 @@ import the_fireplace.frt.compat.basemetals.RegisterBaseMetals;
 import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.entity.EntityHallucinationPotion;
 import the_fireplace.frt.entity.coal.*;
-import the_fireplace.frt.events.ClientEvents;
 import the_fireplace.frt.events.CommonEvents;
 import the_fireplace.frt.handlers.*;
 import the_fireplace.frt.items.*;
 import the_fireplace.frt.items.internal.ItemPaxel;
-import the_fireplace.frt.libs.tools.MIDLib;
+import the_fireplace.frt.tools.MIDLib;
 import the_fireplace.frt.network.PacketDispatcher;
 import the_fireplace.frt.potion.HallucinationPotion;
 import the_fireplace.frt.proxy.CommonProxy;
@@ -168,8 +167,6 @@ public class FRT {
 
 		PacketDispatcher.registerPackets();
 		MinecraftForge.EVENT_BUS.register(new CommonEvents());
-		if(event.getSide().isClient())
-			MinecraftForge.EVENT_BUS.register(new ClientEvents());
 		proxy.registerClient();
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new UnLogicIIGuiHandler());
 		config = new Configuration(event.getSuggestedConfigurationFile());
@@ -371,8 +368,9 @@ public class FRT {
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(hallucination_potion, 1, new ModelResourceLocation(FRT.MODID+":"+hallucination_potion.getUnlocalizedName().substring(5), "inventory"));
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(hallucination_potion, 2, new ModelResourceLocation(FRT.MODID+":"+hallucination_potion.getUnlocalizedName().substring(5)+"_splash", "inventory"));
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(hallucination_potion, 3, new ModelResourceLocation(FRT.MODID+":"+hallucination_potion.getUnlocalizedName().substring(5)+"_splash", "inventory"));
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(hallucination_potion, 4, new ModelResourceLocation(FRT.MODID+":"+hallucination_potion.getUnlocalizedName().substring(5)+"_lingering", "inventory"));
 
-		ModelBakery.registerItemVariants(hallucination_potion, new ModelResourceLocation(FRT.MODID+":"+hallucination_potion.getUnlocalizedName().substring(5), "inventory"), new ModelResourceLocation(FRT.MODID+":"+hallucination_potion.getUnlocalizedName().substring(5)+"_splash", "inventory"));
+		ModelBakery.registerItemVariants(hallucination_potion, new ModelResourceLocation(FRT.MODID+":"+hallucination_potion.getUnlocalizedName().substring(5), "inventory"), new ModelResourceLocation(FRT.MODID+":"+hallucination_potion.getUnlocalizedName().substring(5)+"_splash", "inventory"), new ModelResourceLocation(FRT.MODID+":"+hallucination_potion.getUnlocalizedName().substring(5)+"_lingering", "inventory"));
 
 		IBaseMetalsRegister bm;
 		if(MIDLib.hasBaseMetals()){

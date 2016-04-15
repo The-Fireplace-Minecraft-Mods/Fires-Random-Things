@@ -6,7 +6,7 @@ import java.util.Map.Entry;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import the_fireplace.frt.libs.tools.MiscTools;
+import the_fireplace.frt.tools.MiscTools;
 import the_fireplace.frt.recipes.PopFurnaceRecipes;
 /**
  * 

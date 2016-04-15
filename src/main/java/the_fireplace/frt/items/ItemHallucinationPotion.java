@@ -86,7 +86,7 @@ public class ItemHallucinationPotion extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
 	{
-		if (itemStackIn.getMetadata() > 1)
+		if (itemStackIn.getMetadata() > 1 && itemStackIn.getItemDamage() < 4)
 		{
 			if (!playerIn.capabilities.isCreativeMode)
 			{
@@ -101,7 +101,21 @@ public class ItemHallucinationPotion extends Item {
 			}
 
 			return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
-		}else{
+		}else if(itemStackIn.getMetadata() >= 4){
+			if (!playerIn.capabilities.isCreativeMode)
+			{
+				--itemStackIn.stackSize;
+			}
+
+			worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.entity_lingeringpotion_throw, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+
+			if (!worldIn.isRemote)
+			{
+				worldIn.spawnEntityInWorld(new EntityHallucinationPotion(worldIn, playerIn, itemStackIn));
+			}
+
+			return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+		} else {
 			playerIn.setActiveHand(hand);//TODO: ?
 			return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
 		}
@@ -145,5 +159,6 @@ public class ItemHallucinationPotion extends Item {
 		subItems.add(new ItemStack(itemIn, 1, 1));
 		subItems.add(new ItemStack(itemIn, 1, 2));
 		subItems.add(new ItemStack(itemIn, 1, 3));
+		subItems.add(new ItemStack(itemIn, 1, 4));
 	}
 }

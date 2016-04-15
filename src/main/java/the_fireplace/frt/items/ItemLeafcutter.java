@@ -23,6 +23,7 @@ public class ItemLeafcutter extends Item {
 		setCreativeTab(FRT.TabFRT);
 		setMaxDamage(256);
 		setMaxStackSize(1);
+		setFull3D();
 	}
 	@Override
 	public boolean hitEntity(ItemStack is, EntityLivingBase entityHit, EntityLivingBase attacker){

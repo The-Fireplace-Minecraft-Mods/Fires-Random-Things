@@ -7,9 +7,9 @@ import the_fireplace.frt.recipes.PopFurnaceRecipes;
  * @author The_Fireplace
  *
  */
-public class PopFurnaceRegistry {
+public class ShattererRegistry {
 	/**
-	 * Adds a recipe to the Pop Furnace
+	 * Adds a recipe to the Shatterer
 	 * @param isIn
 	 * 		The itemstack of the input, containing the item and metadata
 	 * @param isOut
@@ -21,7 +21,7 @@ public class PopFurnaceRegistry {
 		PopFurnaceRecipes.instance().addPopFurnaceRecipe(isIn, isOut, resultCount);
 	}
 	/**
-	 * Adds a recipe to the Pop Furnace
+	 * Adds a recipe to the Shatterer
 	 * @param isIn
 	 * 		The itemstack of the input, containing the item and metadata
 	 * @param isOut
@@ -31,7 +31,7 @@ public class PopFurnaceRegistry {
 		registerPopFurnaceRecipe(isIn, isOut, isOut.stackSize);
 	}
 	/**
-	 * Registers items as "gunpowder" for the Pop Furnace
+	 * Registers items as "gunpowder" for the Shatterer
 	 * @param items
 	 * 		ItemStack(s) containing the item(s) to be registered
 	 */
@@ -39,7 +39,7 @@ public class PopFurnaceRegistry {
 		PopFurnaceRecipes.instance().addGunpowders(items);
 	}
 	/**
-	 * Registers items as firestarters for the Pop Furnace
+	 * Registers items as firestarters for the Shatterer
 	 * @param items
 	 * 		ItemStack(s) containing the item(s) to be registered
 	 */

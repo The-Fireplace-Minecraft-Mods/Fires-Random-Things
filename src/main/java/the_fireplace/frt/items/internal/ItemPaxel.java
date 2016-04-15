@@ -88,13 +88,8 @@ public class ItemPaxel extends ItemTool
 
 			}
 		});
+		setFull3D();
 	}
-
-	/*@Override
-	public float getDigSpeed(ItemStack stack, IBlockState state)
-	{
-		return state != Blocks.bedrock.getDefaultState() ? efficiencyOnProperMaterial : 1.0F;
-	}*/
 
 	@Override
 	public boolean canHarvestBlock(IBlockState blockIn, ItemStack stack) {
@@ -147,8 +142,6 @@ public class ItemPaxel extends ItemTool
 	@Override
 	public float getStrVsBlock(ItemStack stack, IBlockState state)
 	{
-		if(state.getMaterial().isToolNotRequired() || state.getBlock().isToolEffective("pickaxe", state) || state.getBlock().isToolEffective("axe", state) || state.getBlock().isToolEffective("shovel", state))
-			return toolMaterial.getEfficiencyOnProperMaterial();
-		return super.getStrVsBlock(stack, state);
+		return state != Blocks.bedrock.getDefaultState() ? efficiencyOnProperMaterial : 1.0F;
 	}
 }

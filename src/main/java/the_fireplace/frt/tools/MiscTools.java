@@ -1,4 +1,4 @@
-package the_fireplace.frt.libs.tools;
+package the_fireplace.frt.tools;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;

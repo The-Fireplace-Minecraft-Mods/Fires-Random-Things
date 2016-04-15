@@ -81,6 +81,7 @@ pop_furnace.redstone_tooltip=To use, pulse redstone power
 info.coal_type=Coal Type
 potion.hallucination=Hallucination
 potion.prefix.grenade=Splash
+potion.prefix.lingering=Lingering
 item.hallucination_potion.name=Potion of Hallucination
 item.wax.name=Wax
 tile.candle.name=Candle

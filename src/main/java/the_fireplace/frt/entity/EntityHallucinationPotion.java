@@ -1,10 +1,13 @@
 package the_fireplace.frt.entity;
 
+import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.PotionType;
+import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -61,11 +64,31 @@ public class EntityHallucinationPotion extends EntityThrowable {
 					if (d0 < 16.0D) {
 						if(potionDamage.getMetadata() == 2)
 							entitylivingbase.addPotionEffect(new PotionEffect(FRT.hallucination, 2700));
-						else
+						else if(potionDamage.getMetadata() == 3)
 							entitylivingbase.addPotionEffect(new PotionEffect(FRT.hallucination, 7200));
 					}
 				}
 			}
+		if(!worldObj.isRemote)
+		if(potionDamage.getMetadata() == 4){
+			ItemStack itemstack = potionDamage;
+			PotionType potiontype = PotionUtils.getPotionFromItem(itemstack);
+
+			EntityAreaEffectCloud entityareaeffectcloud = new EntityAreaEffectCloud(this.worldObj, this.posX, this.posY, this.posZ);
+			entityareaeffectcloud.setOwner(this.getThrower());
+			entityareaeffectcloud.setRadius(3.0F);
+			entityareaeffectcloud.setRadiusOnUse(-0.5F);
+			entityareaeffectcloud.setWaitTime(10);
+			entityareaeffectcloud.setRadiusPerTick(-entityareaeffectcloud.getRadius() / (float)entityareaeffectcloud.getDuration());
+			entityareaeffectcloud.setPotion(potiontype);
+
+			for (PotionEffect potioneffect : PotionUtils.getFullEffectsFromItem(itemstack))
+			{
+				entityareaeffectcloud.addEffect(new PotionEffect(potioneffect.getPotion(), potioneffect.getDuration(), potioneffect.getAmplifier()));
+			}
+
+			this.worldObj.spawnEntityInWorld(entityareaeffectcloud);
+		}
 		//}
 	}
 	@Override
