@@ -14,6 +14,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.WorldServer;
 import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.libs.tools.MiscTools;
 import the_fireplace.frt.recipes.PopFurnaceRecipes;
@@ -197,8 +198,9 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
 
 	public void addToGunpowder(int amount){
 		storedGunpowder += amount;
-		//this.worldObj.markBlockForUpdate(getPos());
-		this.worldObj.markChunkDirty(getPos(), this);//TODO: Verify that this is correct
+		for(WorldServer server:this.worldObj.getMinecraftServer().worldServers){
+			server.getPlayerChunkManager().markBlockForUpdate(getPos());
+		}
 	}
 
 	public void removeFromGunpowder(int amount){
@@ -206,14 +208,16 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
 		if(storedGunpowder < 0){
 			storedGunpowder = 0;
 		}
-		//this.worldObj.markBlockForUpdate(getPos());
-		this.worldObj.markChunkDirty(getPos(), this);//TODO: Verify that this is correct
+		for(WorldServer server:this.worldObj.getMinecraftServer().worldServers){
+			server.getPlayerChunkManager().markBlockForUpdate(getPos());
+		}
 	}
 
 	public void addToFireStarter(int amount){
 		storedFirestarter += amount;
-		//this.worldObj.markBlockForUpdate(getPos());
-		this.worldObj.markChunkDirty(getPos(), this);//TODO: Verify that this is correct
+		for(WorldServer server:this.worldObj.getMinecraftServer().worldServers){
+			server.getPlayerChunkManager().markBlockForUpdate(getPos());
+		}
 	}
 
 	public void removeFromFirestarter(int amount){
@@ -221,8 +225,9 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
 		if(storedFirestarter < 0){
 			storedFirestarter = 0;
 		}
-		//this.worldObj.markBlockForUpdate(getPos());
-		this.worldObj.markChunkDirty(getPos(), this);//TODO: Verify that this is correct
+		for(WorldServer server:this.worldObj.getMinecraftServer().worldServers){
+			server.getPlayerChunkManager().markBlockForUpdate(getPos());
+		}
 	}
 
 	public int getStoredGunpowder(){
