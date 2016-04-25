@@ -21,10 +21,14 @@ import java.util.List;
 public class EntityHallucinationPotion extends EntityThrowable {
 	private ItemStack potionDamage;
 
-	public EntityHallucinationPotion(World w){super(w);}
+	public EntityHallucinationPotion(World w){
+		super(w);
+		this.potionDamage = new ItemStack(FRT.hallucination_potion, 1, 0);//TODO: This should not be necessary, this constructor should not be used
+	}
 	public EntityHallucinationPotion(World worldIn, EntityLivingBase throwerIn)
 	{
 		super(worldIn, throwerIn);
+		this.potionDamage = new ItemStack(FRT.hallucination_potion, 1, 0);//TODO: This should not be necessary, this constructor should not be used
 	}
 	public EntityHallucinationPotion(World worldIn, double x, double y, double z, int d)
 	{
