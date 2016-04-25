@@ -9,7 +9,7 @@ import the_fireplace.frt.FRT;
  * @author The_Fireplace
  *
  */
-public class UnLogicIIFuelHandler implements IFuelHandler {
+public class FRTFuelHandler implements IFuelHandler {
 	private static final int charged_coal_rate = 12800;
 	private static final int destabilized_coal_rate = 13000;
 	private static final int restabilized_coal_rate = 13400;

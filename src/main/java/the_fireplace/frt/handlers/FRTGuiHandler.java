@@ -13,7 +13,7 @@ import the_fireplace.frt.gui.GuiPopFurnace;
  * @author The_Fireplace
  *
  */
-public class UnLogicIIGuiHandler implements IGuiHandler {
+public class FRTGuiHandler implements IGuiHandler {
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world,
