@@ -41,16 +41,6 @@ public class EntityHallucinationPotion extends EntityThrowable {
 	{
 		return 0.05F;
 	}
-	//@Override
-	protected float getVelocity()
-	{
-		return 0.5F;
-	}
-	//@Override
-	protected float getInaccuracy()
-	{
-		return -20.0F;
-	}
 	@Override
 	protected void onImpact(RayTraceResult mop) {
 		//if (!this.worldObj.isRemote) {

@@ -97,7 +97,9 @@ public class ItemHallucinationPotion extends Item {
 
 			if (!worldIn.isRemote)
 			{
-				worldIn.spawnEntityInWorld(new EntityHallucinationPotion(worldIn, playerIn, itemStackIn));
+				EntityHallucinationPotion entitypotion = new EntityHallucinationPotion(worldIn, playerIn, itemStackIn);
+				entitypotion.func_184538_a(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, -20.0F, 0.5F, 1.0F);
+				worldIn.spawnEntityInWorld(entitypotion);
 			}
 
 			return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
@@ -111,7 +113,9 @@ public class ItemHallucinationPotion extends Item {
 
 			if (!worldIn.isRemote)
 			{
-				worldIn.spawnEntityInWorld(new EntityHallucinationPotion(worldIn, playerIn, itemStackIn));
+				EntityHallucinationPotion entitypotion = new EntityHallucinationPotion(worldIn, playerIn, itemStackIn);
+				entitypotion.func_184538_a(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, -20.0F, 0.5F, 1.0F);
+				worldIn.spawnEntityInWorld(entitypotion);
 			}
 
 			return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
