@@ -41,7 +41,7 @@ public class ItemHallucinationPotion extends Item {
 		{
 			--stack.stackSize;
 		}
-		//if (!worldIn.isRemote){
+		if (!worldIn.isRemote){
 			switch(stack.getItemDamage()){
 				case 0:
 					entityLiving.addPotionEffect(new PotionEffect(FRT.hallucination, 3600));
@@ -50,7 +50,7 @@ public class ItemHallucinationPotion extends Item {
 				default:
 					break;
 			}
-		//}
+		}
 
 		if (entityplayer == null || !entityplayer.capabilities.isCreativeMode)
 		{

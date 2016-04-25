@@ -47,7 +47,7 @@ public class EntityHallucinationPotion extends EntityThrowable {
 	}
 	@Override
 	protected void onImpact(RayTraceResult mop) {
-		//if (!this.worldObj.isRemote) {
+		if (!this.worldObj.isRemote) {//TODO: Ensure that the potion effect gets sent to the client.
 			AxisAlignedBB axisalignedbb = this.getEntityBoundingBox().expand(4.0D, 2.0D, 4.0D);
 			List<EntityLivingBase> list1 = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb);
 
@@ -56,34 +56,32 @@ public class EntityHallucinationPotion extends EntityThrowable {
 					double d0 = this.getDistanceSqToEntity(entitylivingbase);
 
 					if (d0 < 16.0D) {
-						if(potionDamage.getMetadata() == 2)
+						if (potionDamage.getMetadata() == 2)
 							entitylivingbase.addPotionEffect(new PotionEffect(FRT.hallucination, 2700));
-						else if(potionDamage.getMetadata() == 3)
+						else if (potionDamage.getMetadata() == 3)
 							entitylivingbase.addPotionEffect(new PotionEffect(FRT.hallucination, 7200));
 					}
 				}
 			}
-		if(!worldObj.isRemote)
-		if(potionDamage.getMetadata() == 4){
-			ItemStack itemstack = potionDamage;
-			PotionType potiontype = PotionUtils.getPotionFromItem(itemstack);
+			if (potionDamage.getMetadata() == 4) {
+				ItemStack itemstack = potionDamage;
+				PotionType potiontype = PotionUtils.getPotionFromItem(itemstack);
 
-			EntityAreaEffectCloud entityareaeffectcloud = new EntityAreaEffectCloud(this.worldObj, this.posX, this.posY, this.posZ);
-			entityareaeffectcloud.setOwner(this.getThrower());
-			entityareaeffectcloud.setRadius(3.0F);
-			entityareaeffectcloud.setRadiusOnUse(-0.5F);
-			entityareaeffectcloud.setWaitTime(10);
-			entityareaeffectcloud.setRadiusPerTick(-entityareaeffectcloud.getRadius() / (float)entityareaeffectcloud.getDuration());
-			entityareaeffectcloud.setPotion(potiontype);
+				EntityAreaEffectCloud entityareaeffectcloud = new EntityAreaEffectCloud(this.worldObj, this.posX, this.posY, this.posZ);
+				entityareaeffectcloud.setOwner(this.getThrower());
+				entityareaeffectcloud.setRadius(3.0F);
+				entityareaeffectcloud.setRadiusOnUse(-0.5F);
+				entityareaeffectcloud.setWaitTime(10);
+				entityareaeffectcloud.setRadiusPerTick(-entityareaeffectcloud.getRadius() / (float) entityareaeffectcloud.getDuration());
+				entityareaeffectcloud.setPotion(potiontype);
 
-			for (PotionEffect potioneffect : PotionUtils.getFullEffectsFromItem(itemstack))
-			{
-				entityareaeffectcloud.addEffect(new PotionEffect(potioneffect.getPotion(), potioneffect.getDuration(), potioneffect.getAmplifier()));
+				for (PotionEffect potioneffect : PotionUtils.getFullEffectsFromItem(itemstack)) {
+					entityareaeffectcloud.addEffect(new PotionEffect(potioneffect.getPotion(), potioneffect.getDuration(), potioneffect.getAmplifier()));
+				}
+
+				this.worldObj.spawnEntityInWorld(entityareaeffectcloud);
 			}
-
-			this.worldObj.spawnEntityInWorld(entityareaeffectcloud);
 		}
-		//}
 	}
 	@Override
 	public void readEntityFromNBT(NBTTagCompound tagCompund)
