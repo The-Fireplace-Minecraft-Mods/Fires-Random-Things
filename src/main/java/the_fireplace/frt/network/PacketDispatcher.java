@@ -19,6 +19,7 @@ public class PacketDispatcher {
 
 	public static final void registerPackets(){
 		PacketDispatcher.registerMessage(ChangeShaderMessage.Handler.class, ChangeShaderMessage.class, Side.CLIENT);
+		PacketDispatcher.registerMessage(UpdatePotionMessage.Handler.class, UpdatePotionMessage.class, Side.CLIENT);
 	}
 
 	private static final void registerMessage(Class handlerClass, Class messageClass, Side side){

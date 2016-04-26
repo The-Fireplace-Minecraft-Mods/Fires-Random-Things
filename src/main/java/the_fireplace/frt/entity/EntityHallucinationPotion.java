@@ -2,6 +2,7 @@ package the_fireplace.frt.entity;
 
 import net.minecraft.entity.EntityAreaEffectCloud;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,6 +13,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import the_fireplace.frt.FRT;
+import the_fireplace.frt.network.PacketDispatcher;
+import the_fireplace.frt.network.UpdatePotionMessage;
 
 import java.util.List;
 
@@ -47,7 +50,7 @@ public class EntityHallucinationPotion extends EntityThrowable {
 	}
 	@Override
 	protected void onImpact(RayTraceResult mop) {
-		if (!this.worldObj.isRemote) {//TODO: Ensure that the potion effect gets sent to the client.
+		if (!this.worldObj.isRemote) {
 			AxisAlignedBB axisalignedbb = this.getEntityBoundingBox().expand(4.0D, 2.0D, 4.0D);
 			List<EntityLivingBase> list1 = this.worldObj.getEntitiesWithinAABB(EntityLivingBase.class, axisalignedbb);
 
@@ -56,10 +59,13 @@ public class EntityHallucinationPotion extends EntityThrowable {
 					double d0 = this.getDistanceSqToEntity(entitylivingbase);
 
 					if (d0 < 16.0D) {
-						if (potionDamage.getMetadata() == 2)
+						if (potionDamage.getMetadata() == 2) {
 							entitylivingbase.addPotionEffect(new PotionEffect(FRT.hallucination, 2700));
-						else if (potionDamage.getMetadata() == 3)
+							PacketDispatcher.sendTo(new UpdatePotionMessage(2700), (EntityPlayerMP)entitylivingbase);
+						}else if (potionDamage.getMetadata() == 3) {
 							entitylivingbase.addPotionEffect(new PotionEffect(FRT.hallucination, 7200));
+							PacketDispatcher.sendTo(new UpdatePotionMessage(7200), (EntityPlayerMP)entitylivingbase);
+						}
 					}
 				}
 			}
