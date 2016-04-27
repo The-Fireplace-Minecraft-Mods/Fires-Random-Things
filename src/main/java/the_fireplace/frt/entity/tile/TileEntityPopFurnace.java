@@ -198,6 +198,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
 
 	public void addToGunpowder(int amount){
 		storedGunpowder += amount;
+		if(this.worldObj.getMinecraftServer() != null)
 		for(WorldServer server:this.worldObj.getMinecraftServer().worldServers){
 			server.getPlayerChunkManager().markBlockForUpdate(getPos());
 		}
@@ -208,6 +209,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
 		if(storedGunpowder < 0){
 			storedGunpowder = 0;
 		}
+		if(this.worldObj.getMinecraftServer() != null)
 		for(WorldServer server:this.worldObj.getMinecraftServer().worldServers){
 			server.getPlayerChunkManager().markBlockForUpdate(getPos());
 		}
@@ -215,6 +217,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
 
 	public void addToFireStarter(int amount){
 		storedFirestarter += amount;
+		if(this.worldObj.getMinecraftServer() != null)
 		for(WorldServer server:this.worldObj.getMinecraftServer().worldServers){
 			server.getPlayerChunkManager().markBlockForUpdate(getPos());
 		}
@@ -225,6 +228,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
 		if(storedFirestarter < 0){
 			storedFirestarter = 0;
 		}
+		if(this.worldObj.getMinecraftServer() != null)
 		for(WorldServer server:this.worldObj.getMinecraftServer().worldServers){
 			server.getPlayerChunkManager().markBlockForUpdate(getPos());
 		}
