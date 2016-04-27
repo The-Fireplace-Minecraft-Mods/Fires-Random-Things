@@ -3,7 +3,6 @@ package the_fireplace.frt.recipes;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -137,10 +136,6 @@ public class VanillaStacks {
     static ItemStack goldPaxelStack = new ItemStack(FRT.gold_paxel);
     static ItemStack gunpowderSubstituteStack = new ItemStack(FRT.gunpowder_substitute);
     static ItemStack hallucinationGogglesStack = new ItemStack(FRT.hallucination_goggles);
-    static ItemStack hallucinationPotionStackS = new ItemStack(FRT.hallucination_potion);
-    static ItemStack hallucinationPotionStackL = new ItemStack(FRT.hallucination_potion, 1, 1);
-    static ItemStack hallucinationPotionStackSS = new ItemStack(FRT.hallucination_potion, 1, 2);
-    static ItemStack hallucinationPotionStackSL = new ItemStack(FRT.hallucination_potion, 1, 3);
     static ItemStack ironPaxelStack = new ItemStack(FRT.iron_paxel);
     static ItemStack leafcutterStack = new ItemStack(FRT.leafcutter);
     static ItemStack obsidianToolStack = new ItemStack(FRT.obsidian_tool);
@@ -184,12 +179,12 @@ public class VanillaStacks {
         shapeless(refinedCoalStack9, refinedCoalBlockStack);
         shapeless(stoneSlabStack2, polishedStoneStack);
         GameRegistry.addSmelting(restabilizedCoalStack, refinedCoalStack, 0.05F);
-        BrewingRecipeRegistry.addRecipe(awkwardPotionStack, redMushroomStack, hallucinationPotionStackS);
+        /*BrewingRecipeRegistry.addRecipe(awkwardPotionStack, redMushroomStack, hallucinationPotionStackS);
         BrewingRecipeRegistry.addRecipe(hallucinationPotionStackS, redstoneStack, hallucinationPotionStackL);
         BrewingRecipeRegistry.addRecipe(hallucinationPotionStackS, gunpowderStack, hallucinationPotionStackSS);
         BrewingRecipeRegistry.addRecipe(hallucinationPotionStackL, gunpowderStack, hallucinationPotionStackSL);
         BrewingRecipeRegistry.addRecipe(hallucinationPotionStackSS, redstoneStack, hallucinationPotionStackSL);
-        shaped(hallucinationGogglesStack, "l l", "gpg", 'l', leatherStack, 'g', "paneGlass", 'p', hallucinationPotionStackL);
+        shaped(hallucinationGogglesStack, "l l", "gpg", 'l', leatherStack, 'g', "paneGlass", 'p', hallucinationPotionStackL);*/
         shaped(woodPaxelStack, "www", " w ", " s ", 'w', "plankWood", 's', "stickWood");
         shaped(ironPaxelStack, "www", " w ", " s ", 'w', ironStack, 's', "stickWood");
         shaped(goldPaxelStack, "www", " w ", " s ", 'w', goldIngotStack, 's', "stickWood");

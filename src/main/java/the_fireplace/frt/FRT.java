@@ -3,7 +3,6 @@ package the_fireplace.frt;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -12,6 +11,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.PotionType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -36,7 +38,6 @@ import the_fireplace.frt.blocks.internal.DummyBlockCoalGun;
 import the_fireplace.frt.compat.basemetals.IBaseMetalsRegister;
 import the_fireplace.frt.compat.basemetals.RegisterBaseMetals;
 import the_fireplace.frt.config.ConfigValues;
-import the_fireplace.frt.entity.EntityHallucinationPotion;
 import the_fireplace.frt.entity.coal.*;
 import the_fireplace.frt.events.CommonEvents;
 import the_fireplace.frt.handlers.*;
@@ -132,7 +133,6 @@ public class FRT {
     public static final Item gunpowder_substitute = new Item().setUnlocalizedName("gunpowder_substitute").setCreativeTab(TabFRT);
     public static final Item firestarter_substitute = new Item().setUnlocalizedName("firestarter_substitute").setCreativeTab(TabFRT);
     public static final Item leafcutter = new ItemLeafcutter();
-    public static final Item hallucination_potion = new ItemHallucinationPotion();
     public static final Item wax = new Item().setUnlocalizedName("wax").setCreativeTab(TabFRT);
     public static final Item kinetic_absorber = new ItemKineticAbsorber();
 
@@ -235,7 +235,6 @@ public class FRT {
         registerItem(gunpowder_substitute);
         registerItem(firestarter_substitute);
         registerItem(leafcutter);
-        registerItem(hallucination_potion);
         registerItem(wax);
         registerItem(kinetic_absorber);
 
@@ -247,11 +246,13 @@ public class FRT {
         EntityRegistry.registerModEntity(EntityDestabilizedCoal.class, "ammo_destabilized_coal", ++eid, instance, 64, 10, true);
         EntityRegistry.registerModEntity(EntityRestabilizedCoal.class, "ammo_restabilized_coal", ++eid, instance, 64, 10, true);
         EntityRegistry.registerModEntity(EntityRefinedCoal.class, "ammo_refined_coal", ++eid, instance, 64, 10, true);
-        EntityRegistry.registerModEntity(EntityHallucinationPotion.class, "hallucination_potion", ++eid, instance, 64, 10, true);
         GameRegistry.registerFuelHandler(new FRTFuelHandler());
         proxy.registerEntityRenderers();
 
         hallucination = new HallucinationPotion().setPotionName("potion.hallucination");
+        Potion.potionRegistry.register(238, new ResourceLocation(MODID, "hallucination"), hallucination);
+        PotionType.potionTypeRegistry.register(238, new ResourceLocation(MODID, "hallucination"), new PotionType(new PotionEffect(hallucination, 3600)));
+        PotionType.potionTypeRegistry.register(239, new ResourceLocation(MODID, "long_hallucination"), new PotionType(new PotionEffect(hallucination, 9600)));
     }
 
     @EventHandler
@@ -302,7 +303,6 @@ public class FRT {
         BlockDispenser.dispenseBehaviorRegistry.putObject(destabilized_coal, new DispenseBehaviorDestabilizedCoal());
         BlockDispenser.dispenseBehaviorRegistry.putObject(restabilized_coal, new DispenseBehaviorRestabilizedCoal());
         BlockDispenser.dispenseBehaviorRegistry.putObject(refined_coal, new DispenseBehaviorRefinedCoal());
-        BlockDispenser.dispenseBehaviorRegistry.putObject(hallucination_potion, new DispenseBehaviorHallucinationPotion());
     }
 
     /**
@@ -365,14 +365,6 @@ public class FRT {
         rmm(leafcutter);
         rmm(hallucination_goggles);
         rmm(wax);
-
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(hallucination_potion, 0, new ModelResourceLocation(FRT.MODID + ":" + hallucination_potion.getUnlocalizedName().substring(5), "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(hallucination_potion, 1, new ModelResourceLocation(FRT.MODID + ":" + hallucination_potion.getUnlocalizedName().substring(5), "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(hallucination_potion, 2, new ModelResourceLocation(FRT.MODID + ":" + hallucination_potion.getUnlocalizedName().substring(5) + "_splash", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(hallucination_potion, 3, new ModelResourceLocation(FRT.MODID + ":" + hallucination_potion.getUnlocalizedName().substring(5) + "_splash", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(hallucination_potion, 4, new ModelResourceLocation(FRT.MODID + ":" + hallucination_potion.getUnlocalizedName().substring(5) + "_lingering", "inventory"));
-
-        ModelBakery.registerItemVariants(hallucination_potion, new ModelResourceLocation(FRT.MODID + ":" + hallucination_potion.getUnlocalizedName().substring(5), "inventory"), new ModelResourceLocation(FRT.MODID + ":" + hallucination_potion.getUnlocalizedName().substring(5) + "_splash", "inventory"), new ModelResourceLocation(FRT.MODID + ":" + hallucination_potion.getUnlocalizedName().substring(5) + "_lingering", "inventory"));
 
         IBaseMetalsRegister bm;
         if (MIDLib.hasBaseMetals()) {

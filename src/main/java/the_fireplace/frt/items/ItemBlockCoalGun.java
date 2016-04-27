@@ -26,6 +26,7 @@ public class ItemBlockCoalGun extends ItemBlock {
 	{
 		EnumAmmo ammo = EnumAmmo.fromPlayer(playerIn);
 
+		if(playerIn.inventory.offHandInventory[0] != null && ammo != null)
 		if(playerIn.inventory.offHandInventory[0].getItem().equals(ammo.toItem())){
 			if(!worldIn.isRemote){
 				worldIn.spawnEntityInWorld(ammo.makeEntity(worldIn, playerIn));
