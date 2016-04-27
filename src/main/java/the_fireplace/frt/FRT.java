@@ -178,7 +178,7 @@ public class FRT {
         ENABLEFOSSILGEN_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ENABLEFOSSILGEN_NAME, ConfigValues.ENABLEFOSSILGEN_DEFAULT, I18n.translateToLocal(ConfigValues.ENABLEFOSSILGEN_NAME + ".tooltip"));
         POTIONSWITCH_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.POTIONSWITCH_NAME, ConfigValues.POTIONSWITCH_DEFAULT, I18n.translateToLocal(ConfigValues.POTIONSWITCH_NAME + ".tooltip"));
         POTIONSWITCH_PROPERTY.setMinValue(1);
-        POTIONSWITCH_PROPERTY.setMaxValue(60);
+        POTIONSWITCH_PROPERTY.setMaxValue(10);
         if (event.getSide().isClient())
             POTIONSWITCH_PROPERTY.setConfigEntryClass(GuiConfigEntries.NumberSliderEntry.class);
         syncConfig();
@@ -250,9 +250,9 @@ public class FRT {
         proxy.registerEntityRenderers();
 
         hallucination = new HallucinationPotion().setPotionName("potion.hallucination");
-        Potion.potionRegistry.register(238, new ResourceLocation(MODID, "hallucination"), hallucination);
-        PotionType.potionTypeRegistry.register(238, new ResourceLocation(MODID, "hallucination"), new PotionType(new PotionEffect(hallucination, 3600)));
-        PotionType.potionTypeRegistry.register(239, new ResourceLocation(MODID, "long_hallucination"), new PotionType(new PotionEffect(hallucination, 9600)));
+        Potion.potionRegistry.register(Potion.potionRegistry.getKeys().size(), new ResourceLocation(MODID, "hallucination"), hallucination);
+        PotionType.potionTypeRegistry.register(PotionType.potionTypeRegistry.getKeys().size(), new ResourceLocation(MODID, "hallucination"), new PotionType(new PotionEffect(hallucination, 3600)));
+        PotionType.potionTypeRegistry.register(PotionType.potionTypeRegistry.getKeys().size(), new ResourceLocation(MODID, "long_hallucination"), new PotionType(new PotionEffect(hallucination, 9600)));
     }
 
     @EventHandler
