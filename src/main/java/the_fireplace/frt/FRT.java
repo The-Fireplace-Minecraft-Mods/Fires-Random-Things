@@ -134,7 +134,7 @@ public class FRT {
     public static final Item firestarter_substitute = new Item().setUnlocalizedName("firestarter_substitute").setCreativeTab(TabFRT);
     public static final Item leafcutter = new ItemLeafcutter();
     public static final Item wax = new Item().setUnlocalizedName("wax").setCreativeTab(TabFRT);
-    public static final Item kinetic_absorber = new ItemKineticAbsorber();
+    public static final Item kinetic_pearl = new ItemKineticPearl();
 
     public static final Item hallucination_goggles = new FRTArmor(ArmorMaterial.LEATHER, EntityEquipmentSlot.HEAD).setUnlocalizedName("hallucination_goggles").setCreativeTab(TabFRT);
 
@@ -236,7 +236,7 @@ public class FRT {
         registerItem(firestarter_substitute);
         registerItem(leafcutter);
         registerItem(wax);
-        registerItem(kinetic_absorber);
+        registerItem(kinetic_pearl);
 
         GameRegistry.registerBlock(coal_gun, ItemBlockCoalGun.class, "coal_gun");
 

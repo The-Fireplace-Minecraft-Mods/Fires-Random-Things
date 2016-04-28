@@ -14,20 +14,22 @@ import the_fireplace.frt.FRT;
 /**
  * @author The_Fireplace
  */
-public class ItemKineticAbsorber extends Item {
-    public ItemKineticAbsorber(){
-        setUnlocalizedName("kinetic_absorber");
+public class ItemKineticPearl extends Item {
+    public ItemKineticPearl(){
+        setUnlocalizedName("kinetic_pearl");
         setCreativeTab(FRT.TabFRT);
     }
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
-        AxisAlignedBB bb = playerIn.getEntityBoundingBox().expandXyz(4);
+        AxisAlignedBB bb = playerIn.getEntityBoundingBox().expandXyz(8);
         for(Entity entity:worldIn.getEntitiesWithinAABB(Entity.class, bb)) {
             playerIn.addVelocity(entity.motionX, entity.motionY, entity.motionZ);
             entity.addVelocity(-entity.motionX, -entity.motionY, -entity.motionZ);
         }
+        if(!playerIn.capabilities.isCreativeMode && (playerIn.motionX != 0 || playerIn.motionY != 0 || playerIn.motionZ != 0))
+            itemStackIn.stackSize--;
         return new ActionResult(EnumActionResult.PASS, itemStackIn);
     }
 }
