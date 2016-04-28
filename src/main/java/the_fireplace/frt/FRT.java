@@ -365,6 +365,7 @@ public class FRT {
         rmm(leafcutter);
         rmm(hallucination_goggles);
         rmm(wax);
+        rmm(kinetic_pearl);
 
         IBaseMetalsRegister bm;
         if (MIDLib.hasBaseMetals()) {

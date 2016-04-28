@@ -87,6 +87,7 @@ potion.effect.long_hallucination=Potion of Hallucination
 splash_potion.effect.long_hallucination=Splash Potion of Hallucination
 lingering_potion.effect.long_hallucination=Lingering Potion of Hallucination
 item.wax.name=Wax
+item.kinetic_pearl.name=Kinetic Pearl
 tile.candle.name=Candle
 tile.candle_with_plate.name=Candle w/ Plate
 jei.pop_furnace=Shatterer
