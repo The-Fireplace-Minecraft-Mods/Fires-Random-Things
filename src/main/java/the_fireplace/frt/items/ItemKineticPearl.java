@@ -35,11 +35,10 @@ public class ItemKineticPearl extends Item {
                 entity.addVelocity(-entity.motionX, -entity.motionY, -entity.motionZ);
             }
         }
-        //TODO: Ensure that the item is only consumed if the player actually moves. 0.09 is too low.
-        if(Math.abs(playerIn.motionX - prevX) > 0.09 || Math.abs(playerIn.motionY - prevY) > 0.09 || Math.abs(playerIn.motionZ - prevZ) > 0.09) {
+        if(Math.abs(playerIn.motionX - prevX) > 0.25 || Math.abs(playerIn.motionY - prevY) > 0.25 || Math.abs(playerIn.motionZ - prevZ) > 0.25) {
             if (!playerIn.capabilities.isCreativeMode)
                 itemStackIn.stackSize--;
-            worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.entity_bat_takeoff, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+            worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.entity_bat_takeoff, SoundCategory.NEUTRAL, 0.3F, 0.5F / (itemRand.nextFloat() * 0.4F + 0.8F));
         }
         return new ActionResult(EnumActionResult.PASS, itemStackIn);
     }
