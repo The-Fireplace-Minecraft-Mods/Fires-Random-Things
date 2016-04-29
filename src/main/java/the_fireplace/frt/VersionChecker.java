@@ -28,7 +28,6 @@ import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientConnectedToSe
 import net.minecraftforge.fml.relauncher.FMLInjectionData;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import the_fireplace.frt.FRT;
 
 import java.io.*;
 import java.net.URL;
@@ -48,7 +47,7 @@ public class VersionChecker {
 	private static String HostVERSION;
 	static final String MODID=HostMODID+"vc";
 	static final String MODNAME=HostMODNAME+" Version Checker";
-	static final String VERSION="2.1";
+	static final String VERSION="2.2";
 	private String curseCode, latest="0.0.0.0";
 
 	private static Configuration config;
@@ -237,8 +236,8 @@ public class VersionChecker {
 			if(file.exists()) {
 				BufferedReader in = new BufferedReader(new FileReader(file));
 				String contents = in.readLine();
-				int jarindex = contents.indexOf(HostMODNAME.replace(" ", "")+"-");
-				int versionindex = jarindex + HostMODNAME.replace(" ", "").length()+1;
+				int jarindex = contents.indexOf(HostMODNAME.replace(" ", "").replace("\\'", "")+"-");
+				int versionindex = jarindex + HostMODNAME.replace(" ", "").replace("\\'", "").length()+1;
 				int dotjarindex = contents.indexOf(".jar", versionindex);
 				String versionnumber = contents.substring(versionindex, dotjarindex);
 				in.close();

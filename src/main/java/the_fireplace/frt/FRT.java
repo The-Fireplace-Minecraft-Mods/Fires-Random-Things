@@ -67,7 +67,7 @@ public class FRT {
     public static final String MODID = "frt";
     public static final String MODNAME = "Fire's Random Things";
     public static String VERSION;
-    public static final String curseCode = "";//TODO
+    public static final String curseCode = "244507-fires-random-things";
 
     public static Configuration config;
     public static Property ENABLESHELL_PROPERTY;
