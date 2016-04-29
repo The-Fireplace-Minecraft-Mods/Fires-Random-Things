@@ -3,6 +3,8 @@ package the_fireplace.frt.recipes;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -36,6 +38,7 @@ public class VanillaStacks {
     static ItemStack pinkTulipStack = new ItemStack(Blocks.red_flower, 1, 7);
     static ItemStack poppyStack = new ItemStack(Blocks.red_flower, 1, 0);
     static ItemStack redTulipStack = new ItemStack(Blocks.red_flower, 1, 4);
+    static ItemStack redstoneBlockStack = new ItemStack(Blocks.redstone_block);
     static ItemStack roseBushStack = new ItemStack(Blocks.double_plant, 1, 4);
     static ItemStack sandStack = new ItemStack(Blocks.sand);
     static ItemStack stainedGlassStack = new ItemStack(Blocks.stained_glass, 1, OreDictionary.WILDCARD_VALUE);
@@ -46,7 +49,6 @@ public class VanillaStacks {
     static ItemStack whiteTulipStack = new ItemStack(Blocks.red_flower, 1, 6);
     static ItemStack woolStack = new ItemStack(Blocks.wool, 1, OreDictionary.WILDCARD_VALUE);
     //Vanilla Items
-    static ItemStack awkwardPotionStack = new ItemStack(Items.potionitem, 1, 16);
     static ItemStack blazePowderStack = new ItemStack(Items.blaze_powder);
     static ItemStack blazeRodStack = new ItemStack(Items.blaze_rod);
     static ItemStack boneStack = new ItemStack(Items.bone);
@@ -56,6 +58,8 @@ public class VanillaStacks {
     static ItemStack cakeStack = new ItemStack(Items.cake);
     static ItemStack coalStack = new ItemStack(Items.coal);
     static ItemStack diamondStack = new ItemStack(Items.diamond);
+    static ItemStack dragonBreathStack = new ItemStack(Items.dragon_breath);
+    static ItemStack enderPearlStack = new ItemStack(Items.ender_pearl);
     static ItemStack fireChargeStack = new ItemStack(Items.fire_charge);
     static ItemStack flintStack = new ItemStack(Items.flint);
     static ItemStack flintAndSteelStack = new ItemStack(Items.flint_and_steel);
@@ -119,6 +123,7 @@ public class VanillaStacks {
     static ItemStack shellCoreStack = new ItemStack(FRT.shell_core);
     static ItemStack silverScreenStack = new ItemStack(FRT.silver_screen);
     static ItemStack skyScreenStack = new ItemStack(FRT.sky_screen);
+    static ItemStack waxBlockStack = new ItemStack(FRT.wax_deposit);
     static ItemStack whiteScreenStack = new ItemStack(FRT.white_screen);
     static ItemStack yellowScreenStack = new ItemStack(FRT.yellow_screen);
     //Custom Items
@@ -137,6 +142,7 @@ public class VanillaStacks {
     static ItemStack gunpowderSubstituteStack = new ItemStack(FRT.gunpowder_substitute);
     static ItemStack hallucinationGogglesStack = new ItemStack(FRT.hallucination_goggles);
     static ItemStack ironPaxelStack = new ItemStack(FRT.iron_paxel);
+    static ItemStack kineticPearlStack = new ItemStack(FRT.kinetic_pearl);
     static ItemStack leafcutterStack = new ItemStack(FRT.leafcutter);
     static ItemStack obsidianToolStack = new ItemStack(FRT.obsidian_tool);
     static ItemStack refinedCoalStack = new ItemStack(FRT.refined_coal);
@@ -146,12 +152,14 @@ public class VanillaStacks {
     static ItemStack restabilizedCoalStack9 = new ItemStack(FRT.restabilized_coal, 9);
     static ItemStack stonePaxelStack = new ItemStack(FRT.stone_paxel);
     static ItemStack waxStack = new ItemStack(FRT.wax);
+    static ItemStack waxStack4 = new ItemStack(FRT.wax, 4);
     static ItemStack woodPaxelStack = new ItemStack(FRT.wood_paxel);
 
     /**
      * This is where recipes that, even if additional recipes are added, will not be removed. Call in all {@link IRecipeRegister#registerRecipes()}.
      */
     public static void registerConstantRecipes() {
+        shaped(waxBlockStack, "ww", "ww", 'w', waxStack);
         shaped(coalGunStack, "xxy", 'x', coalGunBarrelStack, 'y', coalGunStockStack);
         shaped(polishedStoneStack2, " s ", "s s", " s ", 's', stoneSlabStack);
         shaped(blazeCakeStack, "m", "c", 'm', magmaCreamStack, 'c', cakeStack);
@@ -171,7 +179,9 @@ public class VanillaStacks {
         shaped(candleStack, "s", "w", "w", 's', stringStack, 'w', waxStack);
         shaped(candlePlateStack, " c ", "nnn", 'c', candleStack, 'n', "nuggetGold");
         shaped(popFurnaceStack, "bib", "btb", "bib", 'b', "blockIron", 't', ironTrapdoorStack, 'i', "ingotIron");
-        shaped(obsidianToolStack, "dpd", "dsd", " s ", 'd', "gemDiamond", 'p', "gemPrismarine", 's', "stickWood");
+        shaped(obsidianToolStack, "dpd", "dsd", " s ", 'd', "gemDiamond", 'p', Items.prismarine_shard, 's', "stickWood");//TODO: Switch to "gemPrismarine" when Forge updates Oredict
+        shaped(shellCoreStack, "grg", "rer", "grg", 'g', "blockGold", 'r', redstoneBlockStack, 'e', enderPearlStack);
+        shapeless(waxStack4, waxBlockStack);
         shapeless(dirtStack9, compactDirtStack);
         shapeless(chargedCoalStack9, chargedCoalBlockStack);
         shapeless(destabilizedCoalStack9, destabilizedCoalBlockStack);
@@ -179,17 +189,47 @@ public class VanillaStacks {
         shapeless(refinedCoalStack9, refinedCoalBlockStack);
         shapeless(stoneSlabStack2, polishedStoneStack);
         GameRegistry.addSmelting(restabilizedCoalStack, refinedCoalStack, 0.05F);
-        /*BrewingRecipeRegistry.addRecipe(awkwardPotionStack, redMushroomStack, hallucinationPotionStackS);
+        NBTTagCompound potionS = new NBTTagCompound();
+        NBTTagCompound potionL = new NBTTagCompound();
+        NBTTagCompound potionA = new NBTTagCompound();
+        potionS.setString("Potion", "frt:hallucination");
+        potionL.setString("Potion", "frt:long_hallucination");
+        potionA.setString("Potion", "minecraft:awkward");
+        ItemStack hallucinationPotionStackS = new ItemStack(Items.potionitem);
+        hallucinationPotionStackS.setTagCompound(potionS);
+        ItemStack hallucinationPotionStackL = new ItemStack(Items.potionitem);
+        hallucinationPotionStackL.setTagCompound(potionL);
+        ItemStack hallucinationPotionStackSS = new ItemStack(Items.splash_potion);
+        hallucinationPotionStackSS.setTagCompound(potionS);
+        ItemStack hallucinationPotionStackSL = new ItemStack(Items.splash_potion);
+        hallucinationPotionStackSL.setTagCompound(potionL);
+        ItemStack hallucinationPotionStackLS = new ItemStack(Items.lingering_potion);
+        hallucinationPotionStackLS.setTagCompound(potionS);
+        ItemStack hallucinationPotionStackLL = new ItemStack(Items.lingering_potion);
+        hallucinationPotionStackLL.setTagCompound(potionL);
+        ItemStack awkwardPotionStack = new ItemStack(Items.potionitem);
+        awkwardPotionStack.setTagCompound(potionA);
+        ItemStack awkwardSplashPotionStack = new ItemStack(Items.splash_potion);
+        awkwardSplashPotionStack.setTagCompound(potionA);
+        ItemStack awkwardLingeringPotionStack = new ItemStack(Items.lingering_potion);
+        awkwardLingeringPotionStack.setTagCompound(potionA);
+        BrewingRecipeRegistry.addRecipe(awkwardPotionStack, redMushroomStack, hallucinationPotionStackS);
         BrewingRecipeRegistry.addRecipe(hallucinationPotionStackS, redstoneStack, hallucinationPotionStackL);
         BrewingRecipeRegistry.addRecipe(hallucinationPotionStackS, gunpowderStack, hallucinationPotionStackSS);
         BrewingRecipeRegistry.addRecipe(hallucinationPotionStackL, gunpowderStack, hallucinationPotionStackSL);
         BrewingRecipeRegistry.addRecipe(hallucinationPotionStackSS, redstoneStack, hallucinationPotionStackSL);
-        shaped(hallucinationGogglesStack, "l l", "gpg", 'l', leatherStack, 'g', "paneGlass", 'p', hallucinationPotionStackL);*/
+        BrewingRecipeRegistry.addRecipe(hallucinationPotionStackSS, dragonBreathStack, hallucinationPotionStackLS);
+        BrewingRecipeRegistry.addRecipe(hallucinationPotionStackSL, dragonBreathStack, hallucinationPotionStackLL);
+        BrewingRecipeRegistry.addRecipe(hallucinationPotionStackLS, redstoneStack, hallucinationPotionStackLL);
+        BrewingRecipeRegistry.addRecipe(awkwardLingeringPotionStack, redMushroomStack, hallucinationPotionStackLS);
+        BrewingRecipeRegistry.addRecipe(awkwardSplashPotionStack, redMushroomStack, hallucinationPotionStackSS);
+        shaped(hallucinationGogglesStack, "l l", "gpg", 'l', leatherStack, 'g', "paneGlass", 'p', hallucinationPotionStackS);
         shaped(woodPaxelStack, "www", " w ", " s ", 'w', "plankWood", 's', "stickWood");
         shaped(ironPaxelStack, "www", " w ", " s ", 'w', ironStack, 's', "stickWood");
         shaped(goldPaxelStack, "www", " w ", " s ", 'w', goldIngotStack, 's', "stickWood");
         shaped(diamondPaxelStack, "www", " w ", " s ", 'w', diamondStack, 's', "stickWood");
         shaped(leafcutterStack, " s ", "t t", "t t", 's', shearsStack, 't', "stickWood");
+        shaped(kineticPearlStack, " g ", "geg", " g ", 'g', "nuggetGold", 'e', enderPearlStack);
         shapeless(whiteScreenStack, "screen", "dyeWhite", "dyeWhite");
         shapeless(redScreenStack, "screen", "dyeRed", "dyeRed");
         shapeless(blueScreenStack, "screen", "dyeBlue", "dyeBlue");

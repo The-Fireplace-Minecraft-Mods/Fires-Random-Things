@@ -2,6 +2,8 @@ package the_fireplace.frt;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
@@ -52,6 +54,7 @@ import the_fireplace.frt.recipes.IRecipeRegister;
 import the_fireplace.frt.recipes.VanillaStacks;
 import the_fireplace.frt.tools.MIDLib;
 import the_fireplace.frt.worldgen.WorldGeneratorFossil;
+import the_fireplace.frt.worldgen.WorldGeneratorWax;
 
 /**
  * @author The_Fireplace
@@ -116,6 +119,7 @@ public class FRT {
     public static final Block insane_dispenser = new BlockInsaneDispenser();
     public static final Block candle = new BlockCandle().setUnlocalizedName("candle");
     public static final Block candle_with_base = new BlockCandle().setUnlocalizedName("candle_with_plate");
+    public static final Block wax_deposit = new ULBlock(Material.ground).setSoundType(SoundType.GROUND).setUnlocalizedName("wax_deposit").setHardness(3.0F);
 
     public static final Item charged_coal = new ItemChargedCoal();
     public static final Item coal_gun_barrel = new Item().setUnlocalizedName("coal_gun_barrel").setCreativeTab(TabFRT);
@@ -218,6 +222,7 @@ public class FRT {
         registerBlock(insane_dispenser);
         registerBlock(candle);
         registerBlock(candle_with_base);
+        registerBlock(wax_deposit);
 
         registerItem(charged_coal);
         registerItem(coal_gun_barrel);
@@ -269,9 +274,11 @@ public class FRT {
         proxy.registerTileEntities();
         if (ConfigValues.ENABLEFOSSILGEN)
             GameRegistry.registerWorldGenerator(new WorldGeneratorFossil(), 5);
+        GameRegistry.registerWorldGenerator(new WorldGeneratorWax(), 6);
         OreDictionary.registerOre("book", Items.book);
         OreDictionary.registerOre("book", Items.written_book);
         OreDictionary.registerOre("book", Items.writable_book);
+        OreDictionary.registerOre("book", Items.enchanted_book);
         OreDictionary.registerOre("screen", white_screen);
         OreDictionary.registerOre("screen", black_screen);
         OreDictionary.registerOre("screen", red_screen);
@@ -345,6 +352,7 @@ public class FRT {
         rmm(insane_dispenser);
         rmm(candle);
         rmm(candle_with_base);
+        rmm(wax_deposit);
 
         rmm(coal_gun);
 

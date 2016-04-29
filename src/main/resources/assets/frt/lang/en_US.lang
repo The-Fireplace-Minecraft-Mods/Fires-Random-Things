@@ -90,6 +90,7 @@ item.wax.name=Wax
 item.kinetic_pearl.name=Kinetic Pearl
 tile.candle.name=Candle
 tile.candle_with_plate.name=Candle w/ Plate
+tile.wax_deposit.name=Wax Block
 jei.pop_furnace=Shatterer
 jei.firestarter=Shatterer Firestarter
 jei.gunpowder=Shatterer Explosive
