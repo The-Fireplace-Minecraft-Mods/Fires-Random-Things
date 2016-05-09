@@ -84,7 +84,7 @@ public class FRT {
     public static Potion hallucination;
 
     public static final Block compact_bookshelf = new BlockCompactBookshelf();
-    public static final Block compact_dirt = new BlockCompactDirt();
+    public static final Block compact_dirt = new ULBlock(Material.ground).setSoundType(SoundType.GROUND).setHarvestTool("shovel", 1).setHardness(2.3F).setUnlocalizedName("compact_dirt");
     public static final Block fossil = new BlockFossil();
     public static final Block fireplace_bottom = new BlockFireplaceBottom();
     public static final Block charged_coal_block = new BlockChargedCoal();
@@ -111,7 +111,7 @@ public class FRT {
     public static final Block lime_screen = new BlockScreen("lime");
     public static final Block brown_screen = new BlockScreen("brown");
     public static final Block light_orange_screen = new BlockScreen("light_orange");
-    public static final Block polished_stone = new BlockPolishedStone();
+    public static final Block polished_stone = new ULBlock(Material.rock).setHarvestTool("pickaxe", 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("polished_stone");
     public static final Block shell_core = new BlockShellCore();
     public static final Block shell = new BlockShell();
     public static final Block pop_furnace = new BlockPopFurnace();

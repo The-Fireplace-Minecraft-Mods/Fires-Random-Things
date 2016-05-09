@@ -15,4 +15,9 @@ public class ULBlock extends Block {
 	public ULBlock setSoundType(SoundType sound){
 		return (ULBlock)super.setStepSound(sound);
 	}
+
+	public ULBlock setHarvestTool(String tool, int type){
+		this.setHarvestLevel(tool, type);
+		return this;
+	}
 }
