@@ -11,8 +11,8 @@ import the_fireplace.frt.entity.coal.EntityCoal;
  * @author The_Fireplace
  */
 public class DispenseBehaviorCoal extends BehaviorProjectileDispense {
-	@Override
-	protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stack){
-		return new EntityCoal(worldIn, position.getX(), position.getY(), position.getZ());
-	}
+    @Override
+    protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stack) {
+        return new EntityCoal(worldIn, position.getX(), position.getY(), position.getZ());
+    }
 }

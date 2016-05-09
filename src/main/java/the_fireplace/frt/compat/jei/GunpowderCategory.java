@@ -16,50 +16,50 @@ import javax.annotation.Nonnull;
  * @author The_Fireplace
  */
 public class GunpowderCategory implements IRecipeCategory {
-	@Nonnull
-	private final IDrawable background;
+    @Nonnull
+    private final IDrawable background;
 
-	public GunpowderCategory(IGuiHelper guiHelper) {
-		super();
-		ResourceLocation location = new ResourceLocation("frt", "textures/gui/nei_pop_furnace.png");
-		background = guiHelper.createDrawable(location, 3, 15, 169, 53);
-	}
+    public GunpowderCategory(IGuiHelper guiHelper) {
+        super();
+        ResourceLocation location = new ResourceLocation("frt", "textures/gui/nei_pop_furnace.png");
+        background = guiHelper.createDrawable(location, 3, 15, 169, 53);
+    }
 
-	@Nonnull
-	@Override
-	public String getUid() {
-		return "frt.pop_furnace.gunpowder";
-	}
+    @Nonnull
+    @Override
+    public String getUid() {
+        return "frt.pop_furnace.gunpowder";
+    }
 
-	@Nonnull
-	@Override
-	public String getTitle() {
-		return I18n.translateToLocal("jei.gunpowder");
-	}
+    @Nonnull
+    @Override
+    public String getTitle() {
+        return I18n.translateToLocal("jei.gunpowder");
+    }
 
-	@Nonnull
-	@Override
-	public IDrawable getBackground() {
-		return background;
-	}
+    @Nonnull
+    @Override
+    public IDrawable getBackground() {
+        return background;
+    }
 
-	@Override
-	public void drawExtras(Minecraft minecraft) {
+    @Override
+    public void drawExtras(Minecraft minecraft) {
 
-	}
+    }
 
-	@Override
-	public void drawAnimations(Minecraft minecraft) {
+    @Override
+    public void drawAnimations(Minecraft minecraft) {
 
-	}
+    }
 
-	@Override
-	public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull IRecipeWrapper recipeWrapper) {
-		IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
+    @Override
+    public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull IRecipeWrapper recipeWrapper) {
+        IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
 
-		int powderSlot = 10;
+        int powderSlot = 10;
 
-		guiItemStacks.init(powderSlot, true, 4, 7);
-		guiItemStacks.setFromRecipe(powderSlot, recipeWrapper.getInputs());
-	}
+        guiItemStacks.init(powderSlot, true, 4, 7);
+        guiItemStacks.setFromRecipe(powderSlot, recipeWrapper.getInputs());
+    }
 }

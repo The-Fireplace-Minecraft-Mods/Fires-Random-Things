@@ -37,9 +37,7 @@ public class UpdatePotionMessage implements IMessage {
         @Override
         public IMessage handleClientMessage(EntityPlayer player, UpdatePotionMessage message, MessageContext ctx) {
             IThreadListener listener = Minecraft.getMinecraft();
-            listener.addScheduledTask(() -> {
-                player.addPotionEffect(new PotionEffect(FRT.hallucination, message.duration));
-            });
+            listener.addScheduledTask(() -> player.addPotionEffect(new PotionEffect(FRT.hallucination, message.duration)));
             return null;
         }
     }

@@ -4,23 +4,21 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
 import java.util.Random;
+
 /**
- * 
  * @author The_Fireplace
- * 
  */
 public class BlockShell extends Block {
 
-	public BlockShell() {
-		super(Material.anvil);
-		setUnlocalizedName("shell");
-		setBlockUnbreakable();
-		setResistance(131072);
-	}
+    public BlockShell() {
+        super(Material.anvil);
+        setUnlocalizedName("shell");
+        setBlockUnbreakable();
+        setResistance(131072);
+    }
 
-	@Override
-	public int quantityDropped(Random random)
-	{
-		return 0;
-	}
+    @Override
+    public int quantityDropped(Random random) {
+        return 0;
+    }
 }

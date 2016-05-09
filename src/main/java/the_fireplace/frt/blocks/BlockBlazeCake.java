@@ -24,170 +24,143 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
 
 import java.util.Random;
+
 /**
- *
  * @author The_Fireplace
- *
  */
-public class BlockBlazeCake extends ULBlock {
-	public static final PropertyInteger BITES = PropertyInteger.create("bites", 0, 6);
-	protected static final AxisAlignedBB[] CAKE_AABB = new AxisAlignedBB[] {new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.1875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.3125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.4375D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.5625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.6875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.8125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D)};
+public class BlockBlazeCake extends FRTBlock {
+    public static final PropertyInteger BITES = PropertyInteger.create("bites", 0, 6);
+    protected static final AxisAlignedBB[] CAKE_AABB = new AxisAlignedBB[]{new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.1875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.3125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.4375D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.5625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.6875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.8125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D)};
 
-	public BlockBlazeCake()
-	{
-		super(Material.cake);
-		setDefaultState(this.blockState.getBaseState().withProperty(BITES, 0));
-		setTickRandomly(true);
-		setUnlocalizedName("blaze_cake");
-		setHardness(0.5F);
-		disableStats();
-		setStepSound(SoundType.SNOW);
-	}
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
-		return CAKE_AABB[state.getValue(BITES)];
-	}
+    public BlockBlazeCake() {
+        super(Material.cake);
+        setDefaultState(this.blockState.getBaseState().withProperty(BITES, 0));
+        setTickRandomly(true);
+        setUnlocalizedName("blaze_cake");
+        setHardness(0.5F);
+        disableStats();
+        setStepSound(SoundType.SNOW);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state)
-	{
-		return worldIn.getSelectedBoundingBox(pos, state);
-	}
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        return CAKE_AABB[state.getValue(BITES)];
+    }
 
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state) {
+        return worldIn.getSelectedBoundingBox(pos, state);
+    }
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
-		this.eatCake(worldIn, pos, state, playerIn);
-		return true;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
-	{
-		this.eatCake(worldIn, pos, worldIn.getBlockState(pos), playerIn);
-	}
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+        this.eatCake(worldIn, pos, state, playerIn);
+        return true;
+    }
 
-	private void eatCake(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
-	{
-		if (player.canEat(false))
-		{
-			player.getFoodStats().addStats(2, 0.1F);
-			int i = state.getValue(BITES);
+    @Override
+    public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn) {
+        this.eatCake(worldIn, pos, worldIn.getBlockState(pos), playerIn);
+    }
 
-			if (i < 6)
-			{
-				worldIn.setBlockState(pos, state.withProperty(BITES, i + 1), 3);
-			}
-			else
-			{
-				worldIn.setBlockToAir(pos);
-			}
-			player.addPotionEffect(new PotionEffect(MobEffects.fireResistance, 1800));
-		}else if(player.canEat(true)){
-			player.getFoodStats().addStats(0, -0.1F);
-			int i = state.getValue(BITES);
+    private void eatCake(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+        if (player.canEat(false)) {
+            player.getFoodStats().addStats(2, 0.1F);
+            int i = state.getValue(BITES);
 
-			if (i < 6)
-			{
-				worldIn.setBlockState(pos, state.withProperty(BITES, i + 1), 3);
-			}
-			else
-			{
-				worldIn.setBlockToAir(pos);
-			}
-			player.addPotionEffect(new PotionEffect(MobEffects.fireResistance, 4800));
-			player.setFire(240);
-		}
-	}
+            if (i < 6) {
+                worldIn.setBlockState(pos, state.withProperty(BITES, i + 1), 3);
+            } else {
+                worldIn.setBlockToAir(pos);
+            }
+            player.addPotionEffect(new PotionEffect(MobEffects.fireResistance, 1800));
+        } else if (player.canEat(true)) {
+            player.getFoodStats().addStats(0, -0.1F);
+            int i = state.getValue(BITES);
 
-	@Override
-	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
-	{
-		return super.canPlaceBlockAt(worldIn, pos) && this.canBlockStay(worldIn, pos);
-	}
+            if (i < 6) {
+                worldIn.setBlockState(pos, state.withProperty(BITES, i + 1), 3);
+            } else {
+                worldIn.setBlockToAir(pos);
+            }
+            player.addPotionEffect(new PotionEffect(MobEffects.fireResistance, 4800));
+            player.setFire(240);
+        }
+    }
 
-	@Override
-	public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
-	{
-		if (!this.canBlockStay(worldIn, pos))
-		{
-			worldIn.setBlockToAir(pos);
-		}
-	}
+    @Override
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+        return super.canPlaceBlockAt(worldIn, pos) && this.canBlockStay(worldIn, pos);
+    }
 
-	private boolean canBlockStay(World worldIn, BlockPos pos)
-	{
-		return worldIn.getBlockState(pos.down()).getMaterial().isSolid();
-	}
+    @Override
+    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock) {
+        if (!this.canBlockStay(worldIn, pos)) {
+            worldIn.setBlockToAir(pos);
+        }
+    }
 
-	@Override
-	public int quantityDropped(Random random)
-	{
-		return 1;
-	}
+    private boolean canBlockStay(World worldIn, BlockPos pos) {
+        return worldIn.getBlockState(pos.down()).getMaterial().isSolid();
+    }
 
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		if(state == this.getDefaultState()){
-			return Item.getItemFromBlock(FRT.blaze_cake);
-		}else if(state == this.blockState.getBaseState().withProperty(BITES, 1) || state == this.blockState.getBaseState().withProperty(BITES, 2)){
-			return Items.magma_cream;
-		}else if(state == this.blockState.getBaseState().withProperty(BITES, 3) || state == this.blockState.getBaseState().withProperty(BITES, 4)){
-			return Items.slime_ball;
-		}else{
-			return Items.sugar;
-		}
-	}
+    @Override
+    public int quantityDropped(Random random) {
+        return 1;
+    }
 
-	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
-		return this.getDefaultState().withProperty(BITES, meta);
-	}
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        if (state == this.getDefaultState()) {
+            return Item.getItemFromBlock(FRT.blaze_cake);
+        } else if (state == this.blockState.getBaseState().withProperty(BITES, 1) || state == this.blockState.getBaseState().withProperty(BITES, 2)) {
+            return Items.magma_cream;
+        } else if (state == this.blockState.getBaseState().withProperty(BITES, 3) || state == this.blockState.getBaseState().withProperty(BITES, 4)) {
+            return Items.slime_ball;
+        } else {
+            return Items.sugar;
+        }
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
-		return BlockRenderLayer.CUTOUT;
-	}
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        return this.getDefaultState().withProperty(BITES, meta);
+    }
 
-	@Override
-	public int getMetaFromState(IBlockState state)
-	{
-		return state.getValue(BITES);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
 
-	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, BITES);
-	}
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return state.getValue(BITES);
+    }
 
-	@Override
-	public int getComparatorInputOverride(IBlockState state, World worldIn, BlockPos pos)
-	{
-		return (7 - worldIn.getBlockState(pos).getValue(BITES)) * 2;
-	}
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, BITES);
+    }
 
-	@Override
-	public boolean hasComparatorInputOverride(IBlockState state)
-	{
-		return true;
-	}
+    @Override
+    public int getComparatorInputOverride(IBlockState state, World worldIn, BlockPos pos) {
+        return (7 - worldIn.getBlockState(pos).getValue(BITES)) * 2;
+    }
+
+    @Override
+    public boolean hasComparatorInputOverride(IBlockState state) {
+        return true;
+    }
 }

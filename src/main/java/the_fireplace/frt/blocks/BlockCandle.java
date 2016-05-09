@@ -17,7 +17,7 @@ import java.util.Random;
 /**
  * @author The_Fireplace
  */
-public class BlockCandle extends ULBlock {
+public class BlockCandle extends FRTBlock {
 
     public BlockCandle() {
         super(Material.circuits);

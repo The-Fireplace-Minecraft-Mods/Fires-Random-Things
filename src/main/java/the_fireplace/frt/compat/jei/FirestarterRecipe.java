@@ -14,27 +14,27 @@ import java.util.List;
  * @author The_Fireplace
  */
 public class FirestarterRecipe extends BlankRecipeWrapper {
-	@Nonnull
-	private final List<List<ItemStack>> inputs;
+    @Nonnull
+    private final List<List<ItemStack>> inputs;
 
-	public FirestarterRecipe(@Nonnull Collection<ItemStack> input) {
-		List<ItemStack> inputList = new ArrayList<>(input);
-		this.inputs = Collections.singletonList(inputList);
-	}
+    public FirestarterRecipe(@Nonnull Collection<ItemStack> input) {
+        List<ItemStack> inputList = new ArrayList<>(input);
+        this.inputs = Collections.singletonList(inputList);
+    }
 
-	@Nonnull
-	@Override
-	public List<List<ItemStack>> getInputs() {
-		return inputs;
-	}
+    @Nonnull
+    @Override
+    public List<List<ItemStack>> getInputs() {
+        return inputs;
+    }
 
-	@Override
-	public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
+    @Override
+    public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 
-	}
+    }
 
-	@Override
-	public void drawAnimations(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight) {
+    @Override
+    public void drawAnimations(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight) {
 
-	}
+    }
 }

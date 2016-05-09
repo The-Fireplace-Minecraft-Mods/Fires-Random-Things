@@ -12,26 +12,25 @@ import the_fireplace.frt.FRT;
  * @author The_Fireplace
  */
 public class ChangeShaderMessage implements IMessage {
-	public ChangeShaderMessage(){}
+    public ChangeShaderMessage() {
+    }
 
-	@Override
-	public void fromBytes(ByteBuf buf) {
+    @Override
+    public void fromBytes(ByteBuf buf) {
 
-	}
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf) {
+    @Override
+    public void toBytes(ByteBuf buf) {
 
-	}
+    }
 
-	public static class Handler extends AbstractClientMessageHandler<ChangeShaderMessage>{
-		@Override
-		public IMessage handleClientMessage(EntityPlayer player, ChangeShaderMessage message, MessageContext ctx) {
-			IThreadListener listener = Minecraft.getMinecraft();
-			listener.addScheduledTask(() -> {
-					FRT.proxy.activateNextShader();
-			});
-			return null;
-		}
-	}
+    public static class Handler extends AbstractClientMessageHandler<ChangeShaderMessage> {
+        @Override
+        public IMessage handleClientMessage(EntityPlayer player, ChangeShaderMessage message, MessageContext ctx) {
+            IThreadListener listener = Minecraft.getMinecraft();
+            listener.addScheduledTask(() -> FRT.proxy.activateNextShader());
+            return null;
+        }
+    }
 }

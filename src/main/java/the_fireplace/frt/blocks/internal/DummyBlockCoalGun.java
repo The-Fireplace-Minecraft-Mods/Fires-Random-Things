@@ -14,62 +14,56 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.entity.tile.TileEntityCoalGun;
+
 /**
- * 
  * @author The_Fireplace
- * 
  */
 public class DummyBlockCoalGun extends Block implements ITileEntityProvider {
-	public DummyBlockCoalGun(){
-		super(Material.clay);
-		setUnlocalizedName("coal_gun");
-		setCreativeTab(FRT.TabFRT);
-		disableStats();
-	}
+    public DummyBlockCoalGun() {
+        super(Material.clay);
+        setUnlocalizedName("coal_gun");
+        setCreativeTab(FRT.TabFRT);
+        disableStats();
+    }
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state) {
+        return false;
+    }
 
-	@Override
-	public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
-	{
-		return false;
-	}
+    @Override
+    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side) {
+        return false;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
-		return BlockRenderLayer.CUTOUT;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer() {
+        return BlockRenderLayer.CUTOUT;
+    }
 
-	@Override
-	public boolean hasTileEntity(IBlockState state)
-	{
-		return true;
-	}
+    @Override
+    public boolean hasTileEntity(IBlockState state) {
+        return true;
+    }
 
-	@Override
-	public TileEntity createTileEntity(World world, IBlockState state)
-	{
-		return new TileEntityCoalGun();
-	}
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state) {
+        return new TileEntityCoalGun();
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityCoalGun();
-	}
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileEntityCoalGun();
+    }
 
-	@Override
-	public boolean shouldSideBeRendered(IBlockState state, IBlockAccess a, BlockPos pos, EnumFacing side){
-		return false;
-	}
-	@Override
-	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
-	{
-		return false;
-	}
+    @Override
+    public boolean shouldSideBeRendered(IBlockState state, IBlockAccess a, BlockPos pos, EnumFacing side) {
+        return false;
+    }
+
+    @Override
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
+        return false;
+    }
 }

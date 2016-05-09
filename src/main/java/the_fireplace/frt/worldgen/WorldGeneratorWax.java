@@ -14,20 +14,22 @@ import java.util.Random;
 
 public class WorldGeneratorWax implements IWorldGenerator {
 
-	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-		switch(world.provider.getDimension()){
-		case 0: generateSurface(world, random, chunkX*16, chunkZ*16);
-		}
-	}
-	private void generateSurface(World world, Random random, int BlockX, int BlockZ){
-		int maxY = 80;
-		int minY = 60;
-		for(int i=minY;i<maxY;i++){
-			int Xcoord = BlockX + random.nextInt(16);
-			int Zcoord = BlockZ + random.nextInt(16);
-			int Ycoord = random.nextInt(maxY - minY)+minY;
-			(new WorldGenMinable(FRT.wax_deposit.getDefaultState(), 4, BlockMatcher.forBlock(Blocks.dirt))).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
-		}
-	}
+    @Override
+    public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+        switch (world.provider.getDimension()) {
+            case 0:
+                generateSurface(world, random, chunkX * 16, chunkZ * 16);
+        }
+    }
+
+    private void generateSurface(World world, Random random, int BlockX, int BlockZ) {
+        int maxY = 80;
+        int minY = 60;
+        for (int i = minY; i < maxY; i++) {
+            int Xcoord = BlockX + random.nextInt(16);
+            int Zcoord = BlockZ + random.nextInt(16);
+            int Ycoord = random.nextInt(maxY - minY) + minY;
+            (new WorldGenMinable(FRT.wax_deposit.getDefaultState(), 4, BlockMatcher.forBlock(Blocks.dirt))).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+        }
+    }
 }

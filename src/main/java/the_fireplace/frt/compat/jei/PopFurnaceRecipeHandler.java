@@ -9,26 +9,26 @@ import javax.annotation.Nonnull;
  * @author The_Fireplace
  */
 public class PopFurnaceRecipeHandler implements IRecipeHandler<PopFurnaceRecipe> {
-	@Override
-	@Nonnull
-	public Class<PopFurnaceRecipe> getRecipeClass() {
-		return PopFurnaceRecipe.class;
-	}
+    @Override
+    @Nonnull
+    public Class<PopFurnaceRecipe> getRecipeClass() {
+        return PopFurnaceRecipe.class;
+    }
 
-	@Nonnull
-	@Override
-	public String getRecipeCategoryUid() {
-		return "frt.pop_furnace";
-	}
+    @Nonnull
+    @Override
+    public String getRecipeCategoryUid() {
+        return "frt.pop_furnace";
+    }
 
-	@Override
-	@Nonnull
-	public IRecipeWrapper getRecipeWrapper(@Nonnull PopFurnaceRecipe recipe) {
-		return recipe;
-	}
+    @Override
+    @Nonnull
+    public IRecipeWrapper getRecipeWrapper(@Nonnull PopFurnaceRecipe recipe) {
+        return recipe;
+    }
 
-	@Override
-	public boolean isRecipeValid(@Nonnull PopFurnaceRecipe recipe) {
-		return recipe.getInputs().size() != 0 && recipe.getOutputs().size() > 0;
-	}
+    @Override
+    public boolean isRecipeValid(@Nonnull PopFurnaceRecipe recipe) {
+        return recipe.getInputs().size() != 0 && recipe.getOutputs().size() > 0;
+    }
 }

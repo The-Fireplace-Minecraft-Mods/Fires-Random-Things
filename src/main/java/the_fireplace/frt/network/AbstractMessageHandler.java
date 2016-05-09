@@ -9,15 +9,17 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
 
 public abstract class AbstractMessageHandler<T extends IMessage> implements IMessageHandler<T, IMessage> {
-	@SideOnly(Side.CLIENT)
-	public abstract IMessage handleClientMessage(EntityPlayer player, T message, MessageContext ctx);
-	public abstract IMessage handleServerMessage(EntityPlayer player, T message, MessageContext ctx);
-	@Override
-	public IMessage onMessage(T message, MessageContext ctx){
-		if(ctx.side.isClient()){
-			return handleClientMessage(FRT.proxy.getPlayerEntity(ctx), message, ctx);
-		}else{
-			return handleServerMessage(FRT.proxy.getPlayerEntity(ctx), message, ctx);
-		}
-	}
+    @SideOnly(Side.CLIENT)
+    public abstract IMessage handleClientMessage(EntityPlayer player, T message, MessageContext ctx);
+
+    public abstract IMessage handleServerMessage(EntityPlayer player, T message, MessageContext ctx);
+
+    @Override
+    public IMessage onMessage(T message, MessageContext ctx) {
+        if (ctx.side.isClient()) {
+            return handleClientMessage(FRT.proxy.getPlayerEntity(ctx), message, ctx);
+        } else {
+            return handleServerMessage(FRT.proxy.getPlayerEntity(ctx), message, ctx);
+        }
+    }
 }
