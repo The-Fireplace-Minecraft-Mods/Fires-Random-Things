@@ -59,7 +59,7 @@ import the_fireplace.frt.worldgen.WorldGeneratorWax;
 /**
  * @author The_Fireplace
  */
-@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.config.FRTGuiFactory")
+@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.config.FRTGuiFactory", updateJSON = "http://caterpillar.bitnamiapp.com/jsons/frt.json")
 public class FRT {
     @Instance(FRT.MODID)
     public static FRT instance;
