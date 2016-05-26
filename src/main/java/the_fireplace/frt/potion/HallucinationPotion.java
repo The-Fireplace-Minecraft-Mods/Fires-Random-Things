@@ -30,7 +30,7 @@ public class HallucinationPotion extends Potion {
         if (timer < ConfigValues.POTIONSWITCH * 20) {
             timer++;
         } else {
-            PacketDispatcher.sendTo(new ChangeShaderMessage(), (EntityPlayerMP) entityLivingBaseIn);
+            PacketDispatcher.sendTo(new ChangeShaderMessage(ConfigValues.POTIONSWITCH*20), (EntityPlayerMP) entityLivingBaseIn);
             timer = 0;
         }
     }

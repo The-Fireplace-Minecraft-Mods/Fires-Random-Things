@@ -83,6 +83,8 @@ public class FRT {
 
     public static Potion hallucination;
 
+    public int clientCooldownTicks;
+
     public static final Block compact_bookshelf = new BlockCompactBookshelf();
     public static final Block compact_dirt = new FRTBlock(Material.ground).setSoundType(SoundType.GROUND).setHarvestTool("shovel", 1).setHardness(2.3F).setUnlocalizedName("compact_dirt");
     public static final Block fossil = new BlockFossil();

@@ -28,7 +28,10 @@ public class CommonEvents {
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
         if (!(event.getEntityLiving() instanceof EntityPlayer) || event.getEntityLiving().worldObj.isRemote || !(event.getEntityLiving().isPotionActive(FRT.hallucination))) {
             if (event.getEntityLiving() instanceof EntityPlayer && !(event.getEntityLiving().isPotionActive(FRT.hallucination))) {
-                FRT.proxy.tryRemoveShader();
+                if(FRT.instance.clientCooldownTicks <= 0)
+                    FRT.proxy.tryRemoveShader();
+                else
+                    FRT.instance.clientCooldownTicks--;
             }
         } else {
             FRT.hallucination.performEffect(event.getEntityLiving(), 0);
