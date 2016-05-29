@@ -42,7 +42,7 @@ group= "the_fireplace.frt"
 archivesBaseName = "FiresRandomThings"
 
 minecraft {
-    version = "1.9-12.16.0.1864-1.9"
+    version = "1.9-12.16.1.1923"
     runDir = "run"
     mappings = "snapshot_20160312"
     useDepAts = true
