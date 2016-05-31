@@ -20,10 +20,10 @@ import java.util.Random;
 public class BlockCandle extends FRTBlock {
 
     public BlockCandle() {
-        super(Material.circuits);
+        super(Material.CIRCUITS);
         this.setTickRandomly(true);
         setLightLevel(0.65F);
-        setStepSound(SoundType.CLOTH);
+        setSoundType(SoundType.CLOTH);
     }
 
     @Override

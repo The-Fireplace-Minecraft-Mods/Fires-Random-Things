@@ -18,13 +18,13 @@ import java.util.Random;
 public class BlockShellCore extends FRTBlock {
 
     public BlockShellCore() {
-        super(Material.anvil);
+        super(Material.ANVIL);
         setUnlocalizedName("shell_core");
         setTickRandomly(true);
         setLightLevel(10);
         setResistance(131072);
         setHardness(3.0F);
-        setStepSound(SoundType.METAL);
+        setSoundType(SoundType.METAL);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class BlockShellCore extends FRTBlock {
     }
 
     @Override
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock) {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock) {
         if (ConfigValues.ENABLESHELL) {
             if (!worldIn.isRemote && worldIn.isBlockPowered(pos)) {
                 this.generateShell(pos, worldIn);
@@ -52,7 +52,7 @@ public class BlockShellCore extends FRTBlock {
     }
 
     private void createBlock(Block block, BlockPos pos, World world) {
-        if (world.getBlockState(pos).getBlock() != Blocks.air) {
+        if (world.getBlockState(pos).getBlock() != Blocks.AIR) {
         } else {
             world.setBlockState(pos, block.getDefaultState());
         }

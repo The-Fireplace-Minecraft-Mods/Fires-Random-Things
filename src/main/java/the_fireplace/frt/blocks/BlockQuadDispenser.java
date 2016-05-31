@@ -101,12 +101,12 @@ public class BlockQuadDispenser extends BlockDispenser {
             int i = tileentitydispenser.getDispenseSlot();
 
             if (i < 0) {
-                worldIn.playAuxSFX(1001, pos, 0);
+                worldIn.playBroadcastSound(1001, pos, 0);
             } else {
                 ItemStack itemstack = tileentitydispenser.getStackInSlot(i);
                 IBehaviorDispenseItem ibehaviordispenseitem = this.getBehavior(itemstack);
 
-                if (ibehaviordispenseitem != IBehaviorDispenseItem.itemDispenseBehaviorProvider) {
+                if (ibehaviordispenseitem != IBehaviorDispenseItem.DEFAULT_BEHAVIOR) {
                     ItemStack itemstack1 = ibehaviordispenseitem.dispense(blocksourceimpl, itemstack);
                     tileentitydispenser.setInventorySlotContents(i, itemstack1.stackSize <= 0 ? null : itemstack1);
                 }
@@ -116,14 +116,14 @@ public class BlockQuadDispenser extends BlockDispenser {
 
     @Override
     protected IBehaviorDispenseItem getBehavior(ItemStack stack) {
-        return dispenseBehaviorRegistry.getObject(stack == null ? null : stack.getItem());
+        return DISPENSE_BEHAVIOR_REGISTRY.getObject(stack == null ? null : stack.getItem());
     }
 
     /**
      * Called when a neighboring block changes.
      */
     @Override
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock) {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock) {
         boolean flag = worldIn.isBlockPowered(pos) || worldIn.isBlockPowered(pos.up());
         boolean flag1 = state.getValue(TRIGGERED);
 

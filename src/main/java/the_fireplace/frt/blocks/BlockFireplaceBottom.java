@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 public class BlockFireplaceBottom extends FRTBlock {
 
     public BlockFireplaceBottom() {
-        super(Material.rock);
+        super(Material.ROCK);
         setUnlocalizedName("fireplace_bottom");
         setHardness(2.0F);
         setResistance(10.0F);

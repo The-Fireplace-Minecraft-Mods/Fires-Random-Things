@@ -18,7 +18,7 @@ import java.util.Random;
 public class BlockChargedCoal extends FRTBlock {
 
     public BlockChargedCoal() {
-        super(Material.rock);
+        super(Material.ROCK);
         setUnlocalizedName("charged_coal_block");
         setTickRandomly(true);
         setHardness(5.0F);

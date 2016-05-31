@@ -99,7 +99,7 @@ public enum EnumAmmo {
 
     public static Item getItem(EnumAmmo ammo) {
         if (ammo == COAL) {
-            return Items.coal;
+            return Items.COAL;
         } else if (ammo == CHARGED_COAL) {
             return FRT.charged_coal;
         } else if (ammo == DESTABILIZED_COAL) {
@@ -109,13 +109,13 @@ public enum EnumAmmo {
         } else if (ammo == REFINED_COAL) {
             return FRT.refined_coal;
         } else {
-            return Items.coal;
+            return Items.COAL;
         }
     }
 
     public Item toItem() {
         if (this == COAL) {
-            return Items.coal;
+            return Items.COAL;
         } else if (this == CHARGED_COAL) {
             return FRT.charged_coal;
         } else if (this == DESTABILIZED_COAL) {
@@ -125,7 +125,7 @@ public enum EnumAmmo {
         } else if (this == REFINED_COAL) {
             return FRT.refined_coal;
         } else {
-            return Items.coal;
+            return Items.COAL;
         }
     }
 
@@ -154,7 +154,7 @@ public enum EnumAmmo {
     }
 
     public static EnumAmmo getAmmoFromItem(Item item) {
-        if (item.equals(Items.coal))
+        if (item.equals(Items.COAL))
             return COAL;
         if (item.equals(FRT.charged_coal))
             return CHARGED_COAL;

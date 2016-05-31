@@ -92,35 +92,35 @@ public class ItemPaxel extends ItemTool {
     @Override
     public boolean canHarvestBlock(IBlockState blockIn, ItemStack stack) {
         Block block = blockIn.getBlock();
-        if (block == Blocks.obsidian) {
+        if (block == Blocks.OBSIDIAN) {
             return toolMaterial.getHarvestLevel() >= 3;
         }
 
-        if (block == Blocks.diamond_block || block == Blocks.diamond_ore) {
+        if (block == Blocks.DIAMOND_BLOCK || block == Blocks.DIAMOND_ORE) {
             return toolMaterial.getHarvestLevel() >= 2;
         }
 
-        if (block == Blocks.gold_block || block == Blocks.gold_ore) {
+        if (block == Blocks.GOLD_BLOCK || block == Blocks.GOLD_ORE) {
             return toolMaterial.getHarvestLevel() >= 2;
         }
 
-        if (block == Blocks.iron_block || block == Blocks.iron_ore) {
+        if (block == Blocks.IRON_BLOCK || block == Blocks.IRON_ORE) {
             return toolMaterial.getHarvestLevel() >= 1;
         }
 
-        if (block == Blocks.lapis_block || block == Blocks.lapis_ore) {
+        if (block == Blocks.LAPIS_BLOCK || block == Blocks.LAPIS_ORE) {
             return toolMaterial.getHarvestLevel() >= 1;
         }
 
-        if (block == Blocks.redstone_ore || block == Blocks.lit_redstone_ore) {
+        if (block == Blocks.REDSTONE_ORE || block == Blocks.LIT_REDSTONE_ORE) {
             return toolMaterial.getHarvestLevel() >= 2;
         }
 
-        if (block == Blocks.anvil) {
+        if (block == Blocks.ANVIL) {
             return toolMaterial.getHarvestLevel() >= 0;
         }
 
-        return block == Blocks.snow || block == Blocks.snow_layer || blockIn.getMaterial() == Material.rock || blockIn.getMaterial() == Material.iron;
+        return block == Blocks.SNOW || block == Blocks.SNOW_LAYER || blockIn.getMaterial() == Material.ROCK || blockIn.getMaterial() == Material.IRON;
 
     }
 
@@ -137,6 +137,6 @@ public class ItemPaxel extends ItemTool {
 
     @Override
     public float getStrVsBlock(ItemStack stack, IBlockState state) {
-        return state != Blocks.bedrock.getDefaultState() ? efficiencyOnProperMaterial : 1.0F;
+        return state != Blocks.BEDROCK.getDefaultState() ? efficiencyOnProperMaterial : 1.0F;
     }
 }

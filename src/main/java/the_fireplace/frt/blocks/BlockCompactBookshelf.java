@@ -11,10 +11,10 @@ import net.minecraft.world.World;
 public class BlockCompactBookshelf extends FRTBlock {
 
     public BlockCompactBookshelf() {
-        super(Material.wood);
+        super(Material.WOOD);
         setUnlocalizedName("compact_bookshelf");
         setHardness(4.5F);
-        setStepSound(SoundType.WOOD);
+        setSoundType(SoundType.WOOD);
     }
 
     @Override

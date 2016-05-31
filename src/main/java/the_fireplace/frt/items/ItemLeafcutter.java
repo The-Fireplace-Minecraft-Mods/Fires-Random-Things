@@ -38,7 +38,7 @@ public class ItemLeafcutter extends Item {
         if ((double) blockIn.getBlockHardness(world, pos) != 0) {
             is.damageItem(1, entity);
         }
-        return blockIn.getMaterial() == Material.leaves || super.onBlockDestroyed(is, world, blockIn, pos, entity);
+        return blockIn.getMaterial() == Material.LEAVES || super.onBlockDestroyed(is, world, blockIn, pos, entity);
     }
 
     @Override

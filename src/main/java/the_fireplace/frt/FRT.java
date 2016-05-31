@@ -86,7 +86,7 @@ public class FRT {
     public int clientCooldownTicks;
 
     public static final Block compact_bookshelf = new BlockCompactBookshelf();
-    public static final Block compact_dirt = new FRTBlock(Material.ground).setSoundType(SoundType.GROUND).setHarvestTool("shovel", 1).setHardness(2.3F).setUnlocalizedName("compact_dirt");
+    public static final Block compact_dirt = new FRTBlock(Material.GROUND).setSoundType(SoundType.GROUND).setHarvestTool("shovel", 1).setHardness(2.3F).setUnlocalizedName("compact_dirt");
     public static final Block fossil = new BlockFossil();
     public static final Block fireplace_bottom = new BlockFireplaceBottom();
     public static final Block charged_coal_block = new BlockChargedCoal();
@@ -113,7 +113,7 @@ public class FRT {
     public static final Block lime_screen = new BlockScreen("lime");
     public static final Block brown_screen = new BlockScreen("brown");
     public static final Block light_orange_screen = new BlockScreen("light_orange");
-    public static final Block polished_stone = new FRTBlock(Material.rock).setHarvestTool("pickaxe", 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("polished_stone");
+    public static final Block polished_stone = new FRTBlock(Material.ROCK).setHarvestTool("pickaxe", 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("polished_stone");
     public static final Block shell_core = new BlockShellCore();
     public static final Block shell = new BlockShell();
     public static final Block pop_furnace = new BlockPopFurnace();
@@ -121,7 +121,7 @@ public class FRT {
     public static final Block insane_dispenser = new BlockInsaneDispenser();
     public static final Block candle = new BlockCandle().setUnlocalizedName("candle");
     public static final Block candle_with_base = new BlockCandle().setUnlocalizedName("candle_with_plate");
-    public static final Block wax_deposit = new FRTBlock(Material.ground).setSoundType(SoundType.GROUND).setUnlocalizedName("wax_deposit").setHardness(3.0F);
+    public static final Block wax_deposit = new FRTBlock(Material.GROUND).setSoundType(SoundType.GROUND).setUnlocalizedName("wax_deposit").setHardness(3.0F);
 
     public static final Item charged_coal = new ItemChargedCoal();
     public static final Item coal_gun_barrel = new Item().setUnlocalizedName("coal_gun_barrel").setCreativeTab(TabFRT);
@@ -145,12 +145,12 @@ public class FRT {
     public static final Item hallucination_goggles = new FRTArmor(ArmorMaterial.LEATHER, EntityEquipmentSlot.HEAD).setUnlocalizedName("hallucination_goggles").setCreativeTab(TabFRT);
 
     public void registerBlock(Block block) {
-        if (!(block.getUnlocalizedName() == null) && !block.getUnlocalizedName().equals("tile.") && !block.getUnlocalizedName().equals("tile.null.name") && !block.getUnlocalizedName().equals("null"))
+        if (!block.getUnlocalizedName().equals("tile.") && !block.getUnlocalizedName().equals("tile.null.name") && !block.getUnlocalizedName().equals("null"))
             GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5));
     }
 
     public void registerItem(Item item) {
-        if (!(item.getUnlocalizedName() == null) && !item.getUnlocalizedName().equals("item.") && !item.getUnlocalizedName().equals("item.null.name") && !item.getUnlocalizedName().equals("null"))
+        if (!item.getUnlocalizedName().equals("item.") && !item.getUnlocalizedName().equals("item.null.name") && !item.getUnlocalizedName().equals("null"))
             GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
     }
 
@@ -257,9 +257,9 @@ public class FRT {
         proxy.registerEntityRenderers();
 
         hallucination = new HallucinationPotion().setPotionName("potion.hallucination");
-        Potion.potionRegistry.register(Potion.potionRegistry.getKeys().size(), new ResourceLocation(MODID, "hallucination"), hallucination);
-        PotionType.potionTypeRegistry.register(PotionType.potionTypeRegistry.getKeys().size(), new ResourceLocation(MODID, "hallucination"), new PotionType(new PotionEffect(hallucination, 3600)));
-        PotionType.potionTypeRegistry.register(PotionType.potionTypeRegistry.getKeys().size(), new ResourceLocation(MODID, "long_hallucination"), new PotionType(new PotionEffect(hallucination, 9600)));
+        Potion.REGISTRY.register(Potion.REGISTRY.getKeys().size(), new ResourceLocation(MODID, "hallucination"), hallucination);
+        PotionType.REGISTRY.register(PotionType.REGISTRY.getKeys().size(), new ResourceLocation(MODID, "hallucination"), new PotionType(new PotionEffect(hallucination, 3600)));
+        PotionType.REGISTRY.register(PotionType.REGISTRY.getKeys().size(), new ResourceLocation(MODID, "long_hallucination"), new PotionType(new PotionEffect(hallucination, 9600)));
     }
 
     @EventHandler
@@ -277,10 +277,10 @@ public class FRT {
         if (ConfigValues.ENABLEFOSSILGEN)
             GameRegistry.registerWorldGenerator(new WorldGeneratorFossil(), 5);
         GameRegistry.registerWorldGenerator(new WorldGeneratorWax(), 6);
-        OreDictionary.registerOre("book", Items.book);
-        OreDictionary.registerOre("book", Items.written_book);
-        OreDictionary.registerOre("book", Items.writable_book);
-        OreDictionary.registerOre("book", Items.enchanted_book);
+        OreDictionary.registerOre("book", Items.BOOK);
+        OreDictionary.registerOre("book", Items.WRITTEN_BOOK);
+        OreDictionary.registerOre("book", Items.WRITABLE_BOOK);
+        OreDictionary.registerOre("book", Items.ENCHANTED_BOOK);
         OreDictionary.registerOre("screen", white_screen);
         OreDictionary.registerOre("screen", black_screen);
         OreDictionary.registerOre("screen", red_screen);
@@ -307,11 +307,11 @@ public class FRT {
         recipes = new DefaultRecipes();
         recipes.registerRecipes();
         VanillaStacks.registerConstantRecipes();
-        BlockDispenser.dispenseBehaviorRegistry.putObject(Items.coal, new DispenseBehaviorCoal());
-        BlockDispenser.dispenseBehaviorRegistry.putObject(charged_coal, new DispenseBehaviorChargedCoal());
-        BlockDispenser.dispenseBehaviorRegistry.putObject(destabilized_coal, new DispenseBehaviorDestabilizedCoal());
-        BlockDispenser.dispenseBehaviorRegistry.putObject(restabilized_coal, new DispenseBehaviorRestabilizedCoal());
-        BlockDispenser.dispenseBehaviorRegistry.putObject(refined_coal, new DispenseBehaviorRefinedCoal());
+        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.COAL, new DispenseBehaviorCoal());
+        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(charged_coal, new DispenseBehaviorChargedCoal());
+        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(destabilized_coal, new DispenseBehaviorDestabilizedCoal());
+        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(restabilized_coal, new DispenseBehaviorRestabilizedCoal());
+        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(refined_coal, new DispenseBehaviorRefinedCoal());
     }
 
     /**

@@ -22,9 +22,9 @@ public class ItemChargedCoal extends Item {
 
     @Override
     public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (world.getBlockState(pos).getBlock() == Blocks.redstone_ore || world.getBlockState(pos).getBlock() == Blocks.lit_redstone_ore) {
+        if (world.getBlockState(pos).getBlock() == Blocks.REDSTONE_ORE || world.getBlockState(pos).getBlock() == Blocks.LIT_REDSTONE_ORE) {
             world.setBlockToAir(pos);
-            world.setBlockState(pos, Blocks.coal_ore.getDefaultState());
+            world.setBlockState(pos, Blocks.COAL_ORE.getDefaultState());
             --stack.stackSize;
             return EnumActionResult.SUCCESS;
         }

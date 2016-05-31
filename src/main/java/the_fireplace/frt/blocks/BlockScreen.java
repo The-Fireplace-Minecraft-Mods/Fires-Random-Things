@@ -12,10 +12,10 @@ import net.minecraft.world.IBlockAccess;
 public class BlockScreen extends FRTBlock {
 
     public BlockScreen(String color) {
-        super(Material.cloth);
+        super(Material.CLOTH);
         setHardness(0.4F);
         setUnlocalizedName(color + "_screen");
-        setStepSound(SoundType.CLOTH);
+        setSoundType(SoundType.CLOTH);
     }
 
     @Override

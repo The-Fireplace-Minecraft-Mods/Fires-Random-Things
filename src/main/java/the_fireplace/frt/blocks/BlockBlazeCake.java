@@ -33,13 +33,13 @@ public class BlockBlazeCake extends FRTBlock {
     protected static final AxisAlignedBB[] CAKE_AABB = new AxisAlignedBB[]{new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.1875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.3125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.4375D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.5625D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.6875D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D), new AxisAlignedBB(0.8125D, 0.0D, 0.0625D, 0.9375D, 0.5D, 0.9375D)};
 
     public BlockBlazeCake() {
-        super(Material.cake);
+        super(Material.CAKE);
         setDefaultState(this.blockState.getBaseState().withProperty(BITES, 0));
         setTickRandomly(true);
         setUnlocalizedName("blaze_cake");
         setHardness(0.5F);
         disableStats();
-        setStepSound(SoundType.SNOW);
+        setSoundType(SoundType.SNOW);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class BlockBlazeCake extends FRTBlock {
             } else {
                 worldIn.setBlockToAir(pos);
             }
-            player.addPotionEffect(new PotionEffect(MobEffects.fireResistance, 1800));
+            player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 1800));
         } else if (player.canEat(true)) {
             player.getFoodStats().addStats(0, -0.1F);
             int i = state.getValue(BITES);
@@ -94,7 +94,7 @@ public class BlockBlazeCake extends FRTBlock {
             } else {
                 worldIn.setBlockToAir(pos);
             }
-            player.addPotionEffect(new PotionEffect(MobEffects.fireResistance, 4800));
+            player.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 4800));
             player.setFire(240);
         }
     }
@@ -105,7 +105,7 @@ public class BlockBlazeCake extends FRTBlock {
     }
 
     @Override
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock) {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock) {
         if (!this.canBlockStay(worldIn, pos)) {
             worldIn.setBlockToAir(pos);
         }
@@ -125,11 +125,11 @@ public class BlockBlazeCake extends FRTBlock {
         if (state == this.getDefaultState()) {
             return Item.getItemFromBlock(FRT.blaze_cake);
         } else if (state == this.blockState.getBaseState().withProperty(BITES, 1) || state == this.blockState.getBaseState().withProperty(BITES, 2)) {
-            return Items.magma_cream;
+            return Items.MAGMA_CREAM;
         } else if (state == this.blockState.getBaseState().withProperty(BITES, 3) || state == this.blockState.getBaseState().withProperty(BITES, 4)) {
-            return Items.slime_ball;
+            return Items.SLIME_BALL;
         } else {
-            return Items.sugar;
+            return Items.SUGAR;
         }
     }
 

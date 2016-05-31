@@ -11,7 +11,7 @@ import java.util.Random;
 public class BlockShell extends Block {
 
     public BlockShell() {
-        super(Material.anvil);
+        super(Material.ANVIL);
         setUnlocalizedName("shell");
         setBlockUnbreakable();
         setResistance(131072);

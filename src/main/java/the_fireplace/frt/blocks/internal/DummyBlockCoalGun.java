@@ -20,7 +20,7 @@ import the_fireplace.frt.entity.tile.TileEntityCoalGun;
  */
 public class DummyBlockCoalGun extends Block implements ITileEntityProvider {
     public DummyBlockCoalGun() {
-        super(Material.clay);
+        super(Material.CLAY);
         setUnlocalizedName("coal_gun");
         setCreativeTab(FRT.TabFRT);
         disableStats();

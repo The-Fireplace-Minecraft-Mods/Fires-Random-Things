@@ -13,7 +13,7 @@ import java.util.Random;
 public class BlockFossil extends FRTBlock {
 
     public BlockFossil() {
-        super(Material.rock);
+        super(Material.ROCK);
         setHardness(1.5F);
         setResistance(5.0F);
         setUnlocalizedName("fossil");
@@ -22,6 +22,6 @@ public class BlockFossil extends FRTBlock {
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        return Items.bone;
+        return Items.BONE;
     }
 }

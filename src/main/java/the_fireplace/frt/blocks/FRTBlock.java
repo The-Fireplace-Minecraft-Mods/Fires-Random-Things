@@ -13,7 +13,7 @@ public class FRTBlock extends Block {
     }
 
     public FRTBlock setSoundType(SoundType sound) {
-        return (FRTBlock) super.setStepSound(sound);
+        return (FRTBlock) super.setSoundType(sound);
     }
 
     public FRTBlock setHarvestTool(String tool, int type) {

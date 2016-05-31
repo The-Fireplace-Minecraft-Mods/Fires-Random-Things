@@ -10,7 +10,7 @@ import net.minecraft.world.IBlockAccess;
  */
 public class BlockRefinedCoal extends FRTBlock {
     public BlockRefinedCoal() {
-        super(Material.rock);
+        super(Material.ROCK);
         setUnlocalizedName("refined_coal_block");
         setHardness(7.0F);
         setResistance(14.0F);

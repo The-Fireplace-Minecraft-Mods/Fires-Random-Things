@@ -13,8 +13,6 @@ import the_fireplace.frt.renderers.RenderCoal;
 
 import java.util.Random;
 
-import static net.minecraft.client.renderer.EntityRenderer.shaderCount;
-
 /**
  * @author The_Fireplace
  */
@@ -66,7 +64,7 @@ public class ClientProxy extends CommonProxy {
 
                 Random rand = new Random();
                 int index = rand.nextInt(shaderResourceLocations.length);
-                if (index != shaderCount) {
+                if (index != shaderResourceLocations.length) {
                     renderer.loadShader(shaderResourceLocations[index]);
                 } else {
                     renderer.stopUseShader();

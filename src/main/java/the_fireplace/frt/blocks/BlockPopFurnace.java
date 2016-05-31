@@ -33,14 +33,14 @@ public class BlockPopFurnace extends BlockContainer {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
     public BlockPopFurnace() {
-        super(Material.iron);
+        super(Material.IRON);
         setUnlocalizedName("pop_furnace");
         setCreativeTab(FRT.TabFRT);
         setHardness(5F);
         setResistance(15F);
         setHarvestLevel("pickaxe", 0);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-        setStepSound(SoundType.METAL);
+        setSoundType(SoundType.METAL);
     }
 
     @Override
@@ -142,7 +142,7 @@ public class BlockPopFurnace extends BlockContainer {
     }
 
     @Override
-    public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock) {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock) {
         if (!worldIn.isRemote)
             if (worldIn.isBlockPowered(pos))
                 popItems(worldIn, pos);

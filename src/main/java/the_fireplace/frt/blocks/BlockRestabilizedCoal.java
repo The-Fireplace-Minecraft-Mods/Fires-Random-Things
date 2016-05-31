@@ -10,7 +10,7 @@ import net.minecraft.world.IBlockAccess;
  */
 public class BlockRestabilizedCoal extends FRTBlock {
     public BlockRestabilizedCoal() {
-        super(Material.rock);
+        super(Material.ROCK);
         setUnlocalizedName("restabilized_coal_block");
         setHardness(5.0F);
         setResistance(10.0F);

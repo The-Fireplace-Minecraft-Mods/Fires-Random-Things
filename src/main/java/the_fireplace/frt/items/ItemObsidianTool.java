@@ -32,7 +32,7 @@ public class ItemObsidianTool extends Item {
         if (block.getBlockHardness(world, pos) != 0.0D) {
             is.damageItem(1, player);
         }
-        if (block.getBlock().equals(Blocks.obsidian)) {
+        if (block.getBlock().equals(Blocks.OBSIDIAN)) {
             block.getBlock().dropBlockAsItem(world, pos, block, 0);
         }
         return true;
@@ -45,7 +45,7 @@ public class ItemObsidianTool extends Item {
 
     @Override
     public float getStrVsBlock(ItemStack stack, IBlockState state) {
-        if (state.getBlock() == Blocks.obsidian) {
+        if (state.getBlock() == Blocks.OBSIDIAN) {
             return 5000;
         }
         return super.getStrVsBlock(stack, state);

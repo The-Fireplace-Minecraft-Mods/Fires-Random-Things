@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -39,11 +38,13 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
     }
 
     @Override
-    public Packet getDescriptionPacket() {
-        NBTTagCompound nbtTagCompound = new NBTTagCompound();
-        writeToNBT(nbtTagCompound);
-        int metadata = getBlockMetadata();
-        return new SPacketUpdateTileEntity(this.pos, metadata, nbtTagCompound);
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        return new SPacketUpdateTileEntity(this.pos, getBlockMetadata(), getUpdateTag());
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag(){
+        return writeToNBT(new NBTTagCompound());
     }
 
     @Override
@@ -152,7 +153,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound) {
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
 
         NBTTagList list = new NBTTagList();
@@ -172,6 +173,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
         compound.setBoolean("IsPopFurnaceActive", isActive);
         compound.setInteger("CountUntilGunpowder", tempItemCounter);
         compound.setTag("ItemsPopFurnace", list);
+        return compound;
     }
 
     @Override
@@ -199,7 +201,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
         storedGunpowder += amount;
         if (this.worldObj.getMinecraftServer() != null)
             for (WorldServer server : this.worldObj.getMinecraftServer().worldServers) {
-                server.getPlayerChunkManager().markBlockForUpdate(getPos());
+                server.getPlayerChunkMap().markBlockForUpdate(getPos());
             }
     }
 
@@ -210,7 +212,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
         }
         if (this.worldObj.getMinecraftServer() != null)
             for (WorldServer server : this.worldObj.getMinecraftServer().worldServers) {
-                server.getPlayerChunkManager().markBlockForUpdate(getPos());
+                server.getPlayerChunkMap().markBlockForUpdate(getPos());
             }
     }
 
@@ -218,7 +220,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
         storedFirestarter += amount;
         if (this.worldObj.getMinecraftServer() != null)
             for (WorldServer server : this.worldObj.getMinecraftServer().worldServers) {
-                server.getPlayerChunkManager().markBlockForUpdate(getPos());
+                server.getPlayerChunkMap().markBlockForUpdate(getPos());
             }
     }
 
@@ -229,7 +231,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
         }
         if (this.worldObj.getMinecraftServer() != null)
             for (WorldServer server : this.worldObj.getMinecraftServer().worldServers) {
-                server.getPlayerChunkManager().markBlockForUpdate(getPos());
+                server.getPlayerChunkMap().markBlockForUpdate(getPos());
             }
     }
 
@@ -300,7 +302,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
         if (!performPop) return true;
 
         if (!this.getWorld().isRemote)
-            this.getWorld().playSound(null, this.pos, SoundEvents.entity_generic_explode, SoundCategory.BLOCKS, 3.5F, (1.0F + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F) * 1.5F);
+            this.getWorld().playSound(null, this.pos, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 3.5F, (1.0F + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F) * 1.5F);
 
         tempItemCounter++;
         if (tempItemCounter >= ConfigValues.ITEMSPERGUNPOWDER) {
