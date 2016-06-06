@@ -26,10 +26,12 @@ public class WorldGeneratorWax implements IWorldGenerator {
         int maxY = 80;
         int minY = 60;
         for (int i = minY; i < maxY; i++) {
-            int Xcoord = BlockX + random.nextInt(16);
-            int Zcoord = BlockZ + random.nextInt(16);
-            int Ycoord = random.nextInt(maxY - minY) + minY;
-            (new WorldGenMinable(FRT.wax_deposit.getDefaultState(), 4, BlockMatcher.forBlock(Blocks.DIRT))).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+            if(random.nextInt(2) <= 1){
+                int Xcoord = BlockX + random.nextInt(16);
+                int Zcoord = BlockZ + random.nextInt(16);
+                int Ycoord = random.nextInt(maxY - minY) + minY;
+                (new WorldGenMinable(FRT.wax_deposit.getDefaultState(), 3, BlockMatcher.forBlock(Blocks.DIRT))).generate(world, random, new BlockPos(Xcoord, Ycoord, Zcoord));
+            }
         }
     }
 }
