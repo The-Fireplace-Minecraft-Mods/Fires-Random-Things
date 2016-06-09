@@ -253,7 +253,7 @@ public class FRT {
         registerItem(kinetic_pearl);
         registerItem(pigder_pearl);
 
-        GameRegistry.registerBlock(bazooka, ItemBlockBazooka.class, "bazooka");
+        GameRegistry.registerBlock(bazooka, ItemBlockBazooka.class, "coal_gun");
 
         int eid = 0;
         EntityRegistry.registerModEntity(EntityCoal.class, "ammo_coal", eid, instance, 64, 10, true);
