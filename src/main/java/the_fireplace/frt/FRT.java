@@ -12,6 +12,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
@@ -145,13 +146,16 @@ public class FRT {
     public static final Item hallucination_goggles = new FRTArmor(ArmorMaterial.LEATHER, EntityEquipmentSlot.HEAD).setUnlocalizedName("hallucination_goggles").setCreativeTab(TabFRT);
 
     public void registerBlock(Block block) {
-        if (!block.getUnlocalizedName().equals("tile.") && !block.getUnlocalizedName().equals("tile.null.name") && !block.getUnlocalizedName().equals("null"))
-            GameRegistry.registerBlock(block, block.getUnlocalizedName().substring(5));
+        if (!block.getUnlocalizedName().equals("tile.") && !block.getUnlocalizedName().equals("tile.null.name") && !block.getUnlocalizedName().equals("null")) {
+            GameRegistry.register(block.setRegistryName(block.getUnlocalizedName().substring(5)));
+            GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+        }
     }
 
     public void registerItem(Item item) {
-        if (!item.getUnlocalizedName().equals("item.") && !item.getUnlocalizedName().equals("item.null.name") && !item.getUnlocalizedName().equals("null"))
-            GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
+        if (!item.getUnlocalizedName().equals("item.") && !item.getUnlocalizedName().equals("item.null.name") && !item.getUnlocalizedName().equals("null")) {
+            GameRegistry.register(item.setRegistryName(item.getUnlocalizedName().substring(5)));
+        }
     }
 
     public void syncConfig() {
