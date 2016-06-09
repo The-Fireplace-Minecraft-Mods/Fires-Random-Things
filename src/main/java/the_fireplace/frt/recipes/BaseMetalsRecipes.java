@@ -27,6 +27,8 @@ public class BaseMetalsRecipes extends VanillaStacks implements IRecipeRegister 
     ItemStack adamantinePaxelStack = new ItemStack(RegisterBaseMetals.adamantine_paxel);
     ItemStack starsteelPaxelStack = new ItemStack(RegisterBaseMetals.star_steel_paxel);
     ItemStack aquariumPaxelStack = new ItemStack(RegisterBaseMetals.aquarium_paxel);
+    ItemStack cupronickelPaxelStack = new ItemStack(RegisterBaseMetals.cupronickel_paxel);
+    ItemStack platinumPaxelStack = new ItemStack(RegisterBaseMetals.platinum_paxel);
 
     @Override
     public void registerRecipes() {
@@ -52,6 +54,8 @@ public class BaseMetalsRecipes extends VanillaStacks implements IRecipeRegister 
         shaped(mithrilPaxelStack, "iii", " i ", " s ", 'i', "ingotMithril", 's', "stickWood");
         shaped(starsteelPaxelStack, "iii", " i ", " s ", 'i', "ingotStarsteel", 's', "stickWood");
         shaped(aquariumPaxelStack, "iii", " i ", " s ", 'i', "ingotAquarium", 's', "stickWood");
+        shaped(cupronickelPaxelStack, "iii", " i ", " s ", 'i', "ingotCupronickel", 's', "stickWood");
+        shaped(platinumPaxelStack, "iii", " i ", " s ", 'i', "ingotPlatinum", 's', "stickWood");
     }
 
 }

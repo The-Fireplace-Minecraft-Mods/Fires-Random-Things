@@ -23,6 +23,8 @@ public class RegisterBaseMetals implements IBaseMetalsRegister {
     public static Item adamantine_paxel = new ItemPaxel(Materials.getToolMaterialFor(Materials.adamantine)).setUnlocalizedName("adamantine_paxel").setCreativeTab(FRT.TabFRT);
     public static Item star_steel_paxel = new ItemPaxel(Materials.getToolMaterialFor(Materials.starsteel)).setUnlocalizedName("star_steel_paxel").setCreativeTab(FRT.TabFRT);
     public static Item aquarium_paxel = new ItemPaxel(Materials.getToolMaterialFor(Materials.aquarium)).setUnlocalizedName("aquarium_paxel").setCreativeTab(FRT.TabFRT);
+    public static Item cupronickel_paxel = new ItemPaxel(Materials.getToolMaterialFor(Materials.cupronickel)).setUnlocalizedName("cupronickel_paxel").setCreativeTab(FRT.TabFRT);
+    public static Item platinum_paxel = new ItemPaxel(Materials.getToolMaterialFor(Materials.platinum)).setUnlocalizedName("platinum_paxel").setCreativeTab(FRT.TabFRT);
 
     @Override
     public void registerItems() {
@@ -41,6 +43,8 @@ public class RegisterBaseMetals implements IBaseMetalsRegister {
         FRT.instance.registerItem(cold_iron_paxel);
         FRT.instance.registerItem(mithril_paxel);
         FRT.instance.registerItem(star_steel_paxel);
+        FRT.instance.registerItem(cupronickel_paxel);
+        FRT.instance.registerItem(platinum_paxel);
     }
 
     @Override
@@ -60,5 +64,7 @@ public class RegisterBaseMetals implements IBaseMetalsRegister {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(star_steel_paxel, 0, new ModelResourceLocation(FRT.MODID + ":star_steel_paxel", "inventory"));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(adamantine_paxel, 0, new ModelResourceLocation(FRT.MODID + ":adamantine_paxel", "inventory"));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(aquarium_paxel, 0, new ModelResourceLocation(FRT.MODID + ":aquarium_paxel", "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(cupronickel_paxel, 0, new ModelResourceLocation(FRT.MODID + ":cupronickel_paxel", "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(platinum_paxel, 0, new ModelResourceLocation(FRT.MODID + ":platinum_paxel", "inventory"));
     }
 }
