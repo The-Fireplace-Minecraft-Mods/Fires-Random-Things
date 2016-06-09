@@ -10,11 +10,9 @@ import the_fireplace.frt.entity.tile.TileEntityShatterer;
  * @author The_Fireplace
  */
 public class CommonProxy {
-    public void registerRenderers() {
-    }//Leave empty on server side
 
     public void registerEntityRenderers() {
-    }//Fired preinit instead of init
+    }
 
     public void registerTileEntities() {
         GameRegistry.registerTileEntity(TileEntityBazooka.class, TileEntityBazooka.publicName);

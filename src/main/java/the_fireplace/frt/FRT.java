@@ -291,7 +291,6 @@ public class FRT {
 
         if (event.getSide().isClient())
             registerItemRenders();
-        proxy.registerRenderers();
         proxy.registerTileEntities();
         if (ConfigValues.ENABLEFOSSILGEN)
             GameRegistry.registerWorldGenerator(new WorldGeneratorFossil(), 5);
