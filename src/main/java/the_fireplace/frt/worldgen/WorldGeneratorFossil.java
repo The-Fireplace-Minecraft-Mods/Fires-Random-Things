@@ -10,6 +10,10 @@ import the_fireplace.frt.FRT;
 
 import java.util.Random;
 
+/**
+ * @deprecated for removal when updating to Minecraft 1.10
+ */
+@Deprecated
 public class WorldGeneratorFossil implements IWorldGenerator {
 
     @Override
