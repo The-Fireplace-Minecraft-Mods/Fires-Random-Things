@@ -9,10 +9,10 @@ import the_fireplace.frt.FRT;
  * @author The_Fireplace
  */
 public class FRTFuelHandler implements IFuelHandler {
-    private static final int charged_coal_rate = 12800;
-    private static final int destabilized_coal_rate = 13000;
-    private static final int restabilized_coal_rate = 13400;
-    private static final int refined_coal_rate = 16000;
+    private static final int charged_coal_rate = 2400;
+    private static final int destabilized_coal_rate = 3200;
+    private static final int restabilized_coal_rate = 4800;
+    private static final int refined_coal_rate = 6400;
     private static final int screen_rate = 240;
     private static final int wood_tool_rate = 120;
 
