@@ -122,7 +122,7 @@ public class FRT {
     public static final Block insane_dispenser = new BlockInsaneDispenser();
     public static final Block candle = new BlockCandle().setUnlocalizedName("candle");
     public static final Block candle_with_base = new BlockCandle().setUnlocalizedName("candle_with_plate");
-    public static final Block wax_deposit = new FRTBlock(Material.GROUND).setSoundType(SoundType.GROUND).setUnlocalizedName("wax_deposit").setHardness(3.0F);
+    public static final Block wax_deposit = new FRTBlock(Material.GROUND).setHarvestTool("pickaxe", 0).setSoundType(SoundType.GROUND).setUnlocalizedName("wax_deposit").setHardness(2.0F);
 
     public static final Item charged_coal = new ItemChargedCoal();
     public static final Item coal_gun_barrel = new Item().setUnlocalizedName("coal_gun_barrel").setCreativeTab(TabFRT);

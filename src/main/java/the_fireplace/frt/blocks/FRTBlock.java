@@ -16,8 +16,8 @@ public class FRTBlock extends Block {
         return (FRTBlock) super.setSoundType(sound);
     }
 
-    public FRTBlock setHarvestTool(String tool, int type) {
-        this.setHarvestLevel(tool, type);
+    public FRTBlock setHarvestTool(String tool, int tier) {
+        this.setHarvestLevel(tool, tier);
         return this;
     }
 }
