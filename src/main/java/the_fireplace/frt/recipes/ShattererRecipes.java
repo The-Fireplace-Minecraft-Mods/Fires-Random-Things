@@ -12,13 +12,13 @@ import java.util.Map.Entry;
 /**
  * @author The_Fireplace
  */
-public class PopFurnaceRecipes {
-    public static final PopFurnaceRecipes pfBase = new PopFurnaceRecipes();
+public class ShattererRecipes {
+    public static final ShattererRecipes pfBase = new ShattererRecipes();
     private final Map poppingList = Maps.newHashMap();
     private ArrayList firestarters = new ArrayList();
     private ArrayList gunpowders = new ArrayList();
 
-    public static PopFurnaceRecipes instance() {
+    public static ShattererRecipes instance() {
         return pfBase;
     }
 

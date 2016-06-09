@@ -3,7 +3,7 @@ package the_fireplace.frt.compat.jei;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.recipe.IStackHelper;
 import net.minecraft.item.ItemStack;
-import the_fireplace.frt.recipes.PopFurnaceRecipes;
+import the_fireplace.frt.recipes.ShattererRecipes;
 
 import javax.annotation.Nonnull;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class PoppingRecipeMaker {
     @Nonnull
     public static List<PopFurnaceRecipe> getPoppingRecipes(IJeiHelpers helpers) {
         IStackHelper stackHelper = helpers.getStackHelper();
-        PopFurnaceRecipes furnaceRecipes = PopFurnaceRecipes.instance();
+        ShattererRecipes furnaceRecipes = ShattererRecipes.instance();
         Map<ItemStack, ItemStack> poppingMap = furnaceRecipes.getPoppingList();
 
         List<PopFurnaceRecipe> recipes = new ArrayList<>();
@@ -37,7 +37,7 @@ public class PoppingRecipeMaker {
     @Nonnull
     public static List<FirestarterRecipe> getFirestarters(IJeiHelpers helpers) {
         IStackHelper stackHelper = helpers.getStackHelper();
-        PopFurnaceRecipes furnaceRecipes = PopFurnaceRecipes.instance();
+        ShattererRecipes furnaceRecipes = ShattererRecipes.instance();
         ArrayList<ItemStack> firestarters = furnaceRecipes.getFirestarters();
 
         List<FirestarterRecipe> recipes = new ArrayList<>();
@@ -54,7 +54,7 @@ public class PoppingRecipeMaker {
     @Nonnull
     public static List<GunpowderRecipe> getGunpowders(IJeiHelpers helpers) {
         IStackHelper stackHelper = helpers.getStackHelper();
-        PopFurnaceRecipes furnaceRecipes = PopFurnaceRecipes.instance();
+        ShattererRecipes furnaceRecipes = ShattererRecipes.instance();
         ArrayList<ItemStack> gunpowders = furnaceRecipes.getGunpowders();
 
         List<GunpowderRecipe> recipes = new ArrayList<>();

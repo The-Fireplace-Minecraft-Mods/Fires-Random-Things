@@ -2,16 +2,16 @@ package the_fireplace.frt.container;
 
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import the_fireplace.frt.entity.tile.TileEntityPopFurnace;
-import the_fireplace.frt.recipes.PopFurnaceRecipes;
+import the_fireplace.frt.entity.tile.TileEntityShatterer;
+import the_fireplace.frt.recipes.ShattererRecipes;
 
 /**
  * @author The_Fireplace
  */
 public class SlotFirestarter extends Slot {
-    TileEntityPopFurnace inv;
+    TileEntityShatterer inv;
 
-    public SlotFirestarter(TileEntityPopFurnace inventoryIn, int index, int xPosition,
+    public SlotFirestarter(TileEntityShatterer inventoryIn, int index, int xPosition,
                            int yPosition) {
         super(inventoryIn, index, xPosition, yPosition);
         inv = inventoryIn;
@@ -19,7 +19,7 @@ public class SlotFirestarter extends Slot {
 
     @Override
     public boolean isItemValid(ItemStack stack) {
-        return PopFurnaceRecipes.instance().isFirestarter(stack);
+        return ShattererRecipes.instance().isFirestarter(stack);
     }
 
     @Override

@@ -15,7 +15,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.WorldServer;
 import the_fireplace.frt.config.ConfigValues;
-import the_fireplace.frt.recipes.PopFurnaceRecipes;
+import the_fireplace.frt.recipes.ShattererRecipes;
 import the_fireplace.frt.tools.MiscTools;
 
 import java.util.Iterator;
@@ -24,7 +24,7 @@ import java.util.Map.Entry;
 /**
  * @author The_Fireplace
  */
-public class TileEntityPopFurnace extends TileEntity implements ISidedInventory {
+public class TileEntityShatterer extends TileEntity implements ISidedInventory {
     private ItemStack[] inventory;
     public static final String PROP_NAME = "TileEntityPopFurnace";
     int storedGunpowder = 0;
@@ -33,7 +33,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
     private boolean isActive = false;
     private int tempItemCounter = 0;
 
-    public TileEntityPopFurnace() {
+    public TileEntityShatterer() {
         inventory = new ItemStack[12];
     }
 
@@ -189,7 +189,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
                 }
             }
         } else {
-            System.out.println("List was null when reading TileEntityPopFurnace NBTTagCompound");
+            System.out.println("List was null when reading TileEntityShatterer NBTTagCompound");
         }
         this.storedFirestarter = compound.getInteger("StoredFirestarter");
         this.storedGunpowder = compound.getInteger("StoredGunpowder");
@@ -272,8 +272,8 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
         ItemStack result = null;
 
         for (int inputSlot = 0; inputSlot < 5; inputSlot++) {
-            if (inventory[inputSlot] != null && PopFurnaceRecipes.instance().getPoppingResult(inventory[inputSlot]) != null) {
-                result = new ItemStack(PopFurnaceRecipes.instance().getPoppingResult(inventory[inputSlot]).getItem(), PopFurnaceRecipes.instance().getResultCount(inventory[inputSlot]), PopFurnaceRecipes.instance().getPoppingResult(inventory[inputSlot]).getMetadata());
+            if (inventory[inputSlot] != null && ShattererRecipes.instance().getPoppingResult(inventory[inputSlot]) != null) {
+                result = new ItemStack(ShattererRecipes.instance().getPoppingResult(inventory[inputSlot]).getItem(), ShattererRecipes.instance().getResultCount(inventory[inputSlot]), ShattererRecipes.instance().getPoppingResult(inventory[inputSlot]).getMetadata());
                 if (result != null) {
                     for (int outputSlot = 5; outputSlot < 10; outputSlot++) {
                         ItemStack outputStack = inventory[outputSlot];
@@ -336,7 +336,7 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
                                  EnumFacing direction) {
         if (stack != null) {
             if (index >= 0 && index < 5) {
-                Iterator iterator = PopFurnaceRecipes.instance().getPoppingList().entrySet().iterator();
+                Iterator iterator = ShattererRecipes.instance().getPoppingList().entrySet().iterator();
                 Entry entry;
                 do {
                     if (!iterator.hasNext()) {
@@ -348,10 +348,10 @@ public class TileEntityPopFurnace extends TileEntity implements ISidedInventory 
                 return true;
             }
             if (index == 10) {
-                return PopFurnaceRecipes.instance().isGunpowder(stack);
+                return ShattererRecipes.instance().isGunpowder(stack);
             }
             if (index == 11) {
-                return PopFurnaceRecipes.instance().isFirestarter(stack);
+                return ShattererRecipes.instance().isFirestarter(stack);
             }
         }
         return false;

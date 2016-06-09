@@ -5,7 +5,7 @@ import net.minecraft.tileentity.TileEntity;
 /**
  * @author The_Fireplace
  */
-public class TileEntityCoalGun extends TileEntity {
+public class TileEntityBazooka extends TileEntity {
     public static final String publicName = "tileEntityCoalGun";
     private String name = "tileEntityCoalGun";
 

@@ -2,7 +2,7 @@ package the_fireplace.frt.recipes;
 
 import cyano.basemetals.init.Items;
 import net.minecraft.item.ItemStack;
-import the_fireplace.frt.api.ShattererRegistry;
+import the_fireplace.frt.api.PopFurnaceRegistry;
 import the_fireplace.frt.compat.basemetals.RegisterBaseMetals;
 
 /**
@@ -32,12 +32,12 @@ public class BaseMetalsRecipes extends VanillaStacks implements IRecipeRegister 
 
     @Override
     public void registerRecipes() {
-        ShattererRegistry.registerPopFurnaceRecipe(goldenAppleStack, goldDustStack, 8);
-        ShattererRegistry.registerPopFurnaceRecipe(glisteringMelonStack, goldDustStack, 1);
-        ShattererRegistry.registerPopFurnaceRecipe(goldenCarrotStack, goldDustStack, 1);
+        PopFurnaceRegistry.registerPopFurnaceRecipe(goldenAppleStack, goldDustStack, 8);
+        PopFurnaceRegistry.registerPopFurnaceRecipe(glisteringMelonStack, goldDustStack, 1);
+        PopFurnaceRegistry.registerPopFurnaceRecipe(goldenCarrotStack, goldDustStack, 1);
         //Mod-only recipes
-        ShattererRegistry.registerPopFurnaceRecipe(goldIngotStack, goldDustStack, 1);
-        ShattererRegistry.registerPopFurnaceRecipe(ironStack, ironDustStack, 1);
+        PopFurnaceRegistry.registerPopFurnaceRecipe(goldIngotStack, goldDustStack, 1);
+        PopFurnaceRegistry.registerPopFurnaceRecipe(ironStack, ironDustStack, 1);
 
         shaped(adamantinePaxelStack, "iii", " i ", " s ", 'i', "ingotAdamantine", 's', "stickWood");
         shaped(copperPaxelStack, "iii", " i ", " s ", 'i', "ingotCopper", 's', "stickWood");

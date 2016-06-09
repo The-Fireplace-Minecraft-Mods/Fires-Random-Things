@@ -18,7 +18,6 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -119,7 +118,7 @@ public class FRT {
     public static final Block polished_stone = new FRTBlock(Material.ROCK).setHarvestTool("pickaxe", 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("polished_stone");
     public static final Block shell_core = new BlockShellCore();
     public static final Block shell = new BlockShell();
-    public static final Block pop_furnace = new BlockPopFurnace();
+    public static final Block pop_furnace = new BlockShatterer();
     public static final Block quad_dispenser = new BlockQuadDispenser();
     public static final Block insane_dispenser = new BlockInsaneDispenser();
     public static final Block candle = new BlockCandle().setUnlocalizedName("candle");
@@ -149,16 +148,20 @@ public class FRT {
     public static final Item hallucination_goggles = new FRTArmor(ArmorMaterial.LEATHER, EntityEquipmentSlot.HEAD).setUnlocalizedName("hallucination_goggles").setCreativeTab(TabFRT);
 
     public void registerBlock(Block block) {
-        if (!block.getUnlocalizedName().equals("tile.") && !block.getUnlocalizedName().equals("tile.null.name") && !block.getUnlocalizedName().equals("null")) {
-            GameRegistry.register(block.setRegistryName(block.getUnlocalizedName().substring(5)));
-            GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
-        }
+        GameRegistry.register(block.setRegistryName(block.getUnlocalizedName().substring(5)));
+        GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+    }
+
+    public void registerBlockNoItem(Block block) {
+        GameRegistry.register(block.setRegistryName(block.getUnlocalizedName().substring(5)));
     }
 
     public void registerItem(Item item) {
-        if (!item.getUnlocalizedName().equals("item.") && !item.getUnlocalizedName().equals("item.null.name") && !item.getUnlocalizedName().equals("null")) {
-            GameRegistry.register(item.setRegistryName(item.getUnlocalizedName().substring(5)));
-        }
+        GameRegistry.register(item.setRegistryName(item.getUnlocalizedName().substring(5)));
+    }
+
+    public void registerItemBlock(ItemBlock itemBlock){
+        GameRegistry.register(itemBlock.setRegistryName(itemBlock.block.getRegistryName()));
     }
 
     public void syncConfig() {
@@ -185,11 +188,11 @@ public class FRT {
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new FRTGuiHandler());
         config = new Configuration(event.getSuggestedConfigurationFile());
         config.load();
-        ENABLESHELL_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ENABLESHELL_NAME, ConfigValues.ENABLESHELL_DEFAULT, I18n.translateToLocal(ConfigValues.ENABLESHELL_NAME + ".tooltip"));
-        ENABLEDAMAGE_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ENABLEDAMAGE_NAME, ConfigValues.ENABLEDAMAGE_DEFAULT, I18n.translateToLocal(ConfigValues.ENABLEDAMAGE_NAME + ".tooltip"));
-        ITEMSPERGUNPOWDER_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ITEMSPERGUNPOWDER_NAME, ConfigValues.ITEMSPERGUNPOWDER_DEFAULT, I18n.translateToLocal(ConfigValues.ITEMSPERGUNPOWDER_NAME + ".tooltip"));
-        ENABLEFOSSILGEN_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ENABLEFOSSILGEN_NAME, ConfigValues.ENABLEFOSSILGEN_DEFAULT, I18n.translateToLocal(ConfigValues.ENABLEFOSSILGEN_NAME + ".tooltip"));
-        POTIONSWITCH_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.POTIONSWITCH_NAME, ConfigValues.POTIONSWITCH_DEFAULT, I18n.translateToLocal(ConfigValues.POTIONSWITCH_NAME + ".tooltip"));
+        ENABLESHELL_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ENABLESHELL_NAME, ConfigValues.ENABLESHELL_DEFAULT, proxy.translateToLocal(ConfigValues.ENABLESHELL_NAME + ".tooltip"));
+        ENABLEDAMAGE_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ENABLEDAMAGE_NAME, ConfigValues.ENABLEDAMAGE_DEFAULT, proxy.translateToLocal(ConfigValues.ENABLEDAMAGE_NAME + ".tooltip"));
+        ITEMSPERGUNPOWDER_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ITEMSPERGUNPOWDER_NAME, ConfigValues.ITEMSPERGUNPOWDER_DEFAULT, proxy.translateToLocal(ConfigValues.ITEMSPERGUNPOWDER_NAME + ".tooltip"));
+        ENABLEFOSSILGEN_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ENABLEFOSSILGEN_NAME, ConfigValues.ENABLEFOSSILGEN_DEFAULT, proxy.translateToLocal(ConfigValues.ENABLEFOSSILGEN_NAME + ".tooltip"));
+        POTIONSWITCH_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.POTIONSWITCH_NAME, ConfigValues.POTIONSWITCH_DEFAULT, proxy.translateToLocal(ConfigValues.POTIONSWITCH_NAME + ".tooltip"));
         POTIONSWITCH_PROPERTY.setMinValue(1);
         POTIONSWITCH_PROPERTY.setMaxValue(10);
         if (event.getSide().isClient())
@@ -253,7 +256,8 @@ public class FRT {
         registerItem(kinetic_pearl);
         registerItem(pigder_pearl);
 
-        GameRegistry.registerBlock(bazooka, ItemBlockBazooka.class, "coal_gun");
+        registerBlockNoItem(bazooka);
+        registerItemBlock(new ItemBlockBazooka(bazooka));
 
         int eid = 0;
         EntityRegistry.registerModEntity(EntityCoal.class, "ammo_coal", eid, instance, 64, 10, true);

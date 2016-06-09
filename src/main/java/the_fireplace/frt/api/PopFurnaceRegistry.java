@@ -1,12 +1,13 @@
 package the_fireplace.frt.api;
 
 import net.minecraft.item.ItemStack;
-import the_fireplace.frt.recipes.PopFurnaceRecipes;
+import the_fireplace.frt.recipes.ShattererRecipes;
 
 /**
+ * Shatterer Registry. Still called Pop Furnace Registry because that was the original name.
  * @author The_Fireplace
  */
-public class ShattererRegistry {
+public class PopFurnaceRegistry {
     /**
      * Adds a recipe to the Shatterer
      *
@@ -15,7 +16,7 @@ public class ShattererRegistry {
      * @param resultCount The number of items to output per input
      */
     public static void registerPopFurnaceRecipe(ItemStack isIn, ItemStack isOut, int resultCount) {
-        PopFurnaceRecipes.instance().addPopFurnaceRecipe(isIn, isOut, resultCount);
+        ShattererRecipes.instance().addPopFurnaceRecipe(isIn, isOut, resultCount);
     }
 
     /**
@@ -34,7 +35,7 @@ public class ShattererRegistry {
      * @param items ItemStack(s) containing the item(s) to be registered
      */
     public static void registerGunpowder(ItemStack... items) {
-        PopFurnaceRecipes.instance().addGunpowders(items);
+        ShattererRecipes.instance().addGunpowders(items);
     }
 
     /**
@@ -43,6 +44,6 @@ public class ShattererRegistry {
      * @param items ItemStack(s) containing the item(s) to be registered
      */
     public static void registerFirestarter(ItemStack... items) {
-        PopFurnaceRecipes.instance().addFirestarters(items);
+        ShattererRecipes.instance().addFirestarters(items);
     }
 }

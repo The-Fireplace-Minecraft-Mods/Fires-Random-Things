@@ -203,18 +203,6 @@ public class BlockInsaneDispenser extends BlockDispenser {
     }
 
     /**
-     * Get the position where the dispenser at the given Coordinates should dispense to.
-     */
-    /*public static IPosition getDispensePosition(IBlockSource coords)
-	{
-		EnumFacing enumfacing = getFacing(coords.getBlockMetadata());
-		double d0 = coords.getX() + 0.7D * (double)enumfacing.getFrontOffsetX();
-		double d1 = coords.getY() + 0.7D * (double)enumfacing.getFrontOffsetY();
-		double d2 = coords.getZ() + 0.7D * (double)enumfacing.getFrontOffsetZ();
-		return new PositionImpl(d0, d1, d2);
-	}*/
-
-    /**
      * Get the facing of a dispenser with the given metadata
      */
     public static EnumFacing getFacing(int meta) {
@@ -230,16 +218,6 @@ public class BlockInsaneDispenser extends BlockDispenser {
     public int getComparatorInputOverride(IBlockState state, World worldIn, BlockPos pos) {
         return Container.calcRedstone(worldIn.getTileEntity(pos));
     }
-
-    /**
-     * Possibly modify the given BlockState before rendering it on an Entity (Minecarts, Endermen, ...)
-     */
-	/*@SideOnly(Side.CLIENT)
-	@Override
-	public IBlockState getStateForEntityRender(IBlockState state)
-	{
-		return this.getDefaultState().withProperty(FACING, EnumFacing.SOUTH);
-	}*/
 
     /**
      * Convert the given metadata into a BlockState for this Block

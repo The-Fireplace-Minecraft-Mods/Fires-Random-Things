@@ -17,19 +17,19 @@ import the_fireplace.frt.FRT;
 /**
  * @author The_Fireplace
  */
-public class RenderCoal extends Render {
+public class RenderAmmo extends Render {
 
     protected final Item itr;
     private final RenderItem ri;
     private ResourceLocation itemTexture;
 
-    public RenderCoal(RenderManager rm, Item ammo) {
+    public RenderAmmo(RenderManager rm, Item ammo) {
         super(rm);
         this.itr = ammo;
         this.ri = Minecraft.getMinecraft().getRenderItem();
     }
 
-    public RenderCoal(RenderManager rm, Item ammo, ResourceLocation texture) {
+    public RenderAmmo(RenderManager rm, Item ammo, ResourceLocation texture) {
         super(rm);
         this.itr = ammo;
         this.ri = Minecraft.getMinecraft().getRenderItem();

@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
-import the_fireplace.frt.entity.tile.TileEntityCoalGun;
+import the_fireplace.frt.entity.tile.TileEntityBazooka;
 
 /**
  * @author The_Fireplace
@@ -49,12 +49,12 @@ public class DummyBlockBazooka extends Block implements ITileEntityProvider {
 
     @Override
     public TileEntity createTileEntity(World world, IBlockState state) {
-        return new TileEntityCoalGun();
+        return new TileEntityBazooka();
     }
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityCoalGun();
+        return new TileEntityBazooka();
     }
 
     @Override

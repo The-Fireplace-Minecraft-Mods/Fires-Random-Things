@@ -3,8 +3,8 @@ package the_fireplace.frt.proxy;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import the_fireplace.frt.entity.tile.TileEntityCoalGun;
-import the_fireplace.frt.entity.tile.TileEntityPopFurnace;
+import the_fireplace.frt.entity.tile.TileEntityBazooka;
+import the_fireplace.frt.entity.tile.TileEntityShatterer;
 
 /**
  * @author The_Fireplace
@@ -17,8 +17,8 @@ public class CommonProxy {
     }//Fired preinit instead of init
 
     public void registerTileEntities() {
-        GameRegistry.registerTileEntity(TileEntityCoalGun.class, TileEntityCoalGun.publicName);
-        GameRegistry.registerTileEntity(TileEntityPopFurnace.class, "pop_furnace");
+        GameRegistry.registerTileEntity(TileEntityBazooka.class, TileEntityBazooka.publicName);
+        GameRegistry.registerTileEntity(TileEntityShatterer.class, "pop_furnace");
     }
 
     public EntityPlayer getPlayerEntity(MessageContext ctx) {
@@ -32,5 +32,9 @@ public class CommonProxy {
     }
 
     public void activateNextShader() {
+    }
+
+    public String translateToLocal(String s){
+        return s;
     }
 }

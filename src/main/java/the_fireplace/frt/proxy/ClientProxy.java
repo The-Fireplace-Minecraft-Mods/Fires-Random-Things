@@ -3,6 +3,7 @@ package the_fireplace.frt.proxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.util.ResourceLocation;
@@ -10,7 +11,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.entity.projectile.*;
-import the_fireplace.frt.renderers.RenderCoal;
+import the_fireplace.frt.renderers.RenderAmmo;
 import the_fireplace.frt.renderers.RenderPigderPearl;
 
 import java.util.Random;
@@ -26,11 +27,11 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerRenderers() {
-        RenderingRegistry.registerEntityRenderingHandler(EntityCoal.class, new RenderCoal(Minecraft.getMinecraft().getRenderManager(), Items.COAL));
-        RenderingRegistry.registerEntityRenderingHandler(EntityChargedCoal.class, new RenderCoal(Minecraft.getMinecraft().getRenderManager(), FRT.charged_coal));
-        RenderingRegistry.registerEntityRenderingHandler(EntityDestabilizedCoal.class, new RenderCoal(Minecraft.getMinecraft().getRenderManager(), FRT.destabilized_coal));
-        RenderingRegistry.registerEntityRenderingHandler(EntityRestabilizedCoal.class, new RenderCoal(Minecraft.getMinecraft().getRenderManager(), FRT.restabilized_coal));
-        RenderingRegistry.registerEntityRenderingHandler(EntityRefinedCoal.class, new RenderCoal(Minecraft.getMinecraft().getRenderManager(), FRT.refined_coal));
+        RenderingRegistry.registerEntityRenderingHandler(EntityCoal.class, new RenderAmmo(Minecraft.getMinecraft().getRenderManager(), Items.COAL));
+        RenderingRegistry.registerEntityRenderingHandler(EntityChargedCoal.class, new RenderAmmo(Minecraft.getMinecraft().getRenderManager(), FRT.charged_coal));
+        RenderingRegistry.registerEntityRenderingHandler(EntityDestabilizedCoal.class, new RenderAmmo(Minecraft.getMinecraft().getRenderManager(), FRT.destabilized_coal));
+        RenderingRegistry.registerEntityRenderingHandler(EntityRestabilizedCoal.class, new RenderAmmo(Minecraft.getMinecraft().getRenderManager(), FRT.restabilized_coal));
+        RenderingRegistry.registerEntityRenderingHandler(EntityRefinedCoal.class, new RenderAmmo(Minecraft.getMinecraft().getRenderManager(), FRT.refined_coal));
         RenderingRegistry.registerEntityRenderingHandler(EntityPigderPearl.class, new RenderPigderPearl(Minecraft.getMinecraft().getRenderManager()));
     }
 
@@ -74,5 +75,10 @@ public class ClientProxy extends CommonProxy {
                 }
             }
         }
+    }
+
+    @Override
+    public String translateToLocal(String s){
+        return I18n.format(s);
     }
 }

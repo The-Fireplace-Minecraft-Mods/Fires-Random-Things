@@ -5,9 +5,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import the_fireplace.frt.container.ContainerPopFurnace;
-import the_fireplace.frt.entity.tile.TileEntityPopFurnace;
-import the_fireplace.frt.gui.GuiPopFurnace;
+import the_fireplace.frt.container.ContainerShatterer;
+import the_fireplace.frt.entity.tile.TileEntityShatterer;
+import the_fireplace.frt.gui.GuiShatterer;
 
 /**
  * @author The_Fireplace
@@ -20,8 +20,8 @@ public class FRTGuiHandler implements IGuiHandler {
         TileEntity entity = world.getTileEntity(new BlockPos(x, y, z));
         switch (ID) {
             case 0:
-                if (entity != null && entity instanceof TileEntityPopFurnace) {
-                    return new ContainerPopFurnace(player.inventory, (TileEntityPopFurnace) entity);
+                if (entity != null && entity instanceof TileEntityShatterer) {
+                    return new ContainerShatterer(player.inventory, (TileEntityShatterer) entity);
                 } else {
                     return null;
                 }
@@ -36,8 +36,8 @@ public class FRTGuiHandler implements IGuiHandler {
         TileEntity entity = world.getTileEntity(new BlockPos(x, y, z));
         switch (ID) {
             case 0:
-                if (entity != null && entity instanceof TileEntityPopFurnace) {
-                    return new GuiPopFurnace(player.inventory, (TileEntityPopFurnace) entity);
+                if (entity != null && entity instanceof TileEntityShatterer) {
+                    return new GuiShatterer(player.inventory, (TileEntityShatterer) entity);
                 } else {
                     return null;
                 }

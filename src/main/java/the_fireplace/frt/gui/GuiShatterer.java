@@ -8,18 +8,18 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 import org.lwjgl.opengl.GL11;
 import the_fireplace.frt.FRT;
-import the_fireplace.frt.container.ContainerPopFurnace;
-import the_fireplace.frt.entity.tile.TileEntityPopFurnace;
+import the_fireplace.frt.container.ContainerShatterer;
+import the_fireplace.frt.entity.tile.TileEntityShatterer;
 
 /**
  * @author The_Fireplace
  */
-public class GuiPopFurnace extends GuiContainer {
+public class GuiShatterer extends GuiContainer {
     public static final ResourceLocation texture = new ResourceLocation(FRT.MODID, "textures/gui/pop_furnace.png");
-    private TileEntityPopFurnace te;
+    private TileEntityShatterer te;
 
-    public GuiPopFurnace(InventoryPlayer invPlayer, TileEntityPopFurnace entity) {
-        super(new ContainerPopFurnace(invPlayer, entity));
+    public GuiShatterer(InventoryPlayer invPlayer, TileEntityShatterer entity) {
+        super(new ContainerShatterer(invPlayer, entity));
         xSize = 176;
         ySize = 143;
         ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());

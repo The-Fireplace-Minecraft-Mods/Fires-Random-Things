@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
-import the_fireplace.frt.entity.tile.TileEntityPopFurnace;
+import the_fireplace.frt.entity.tile.TileEntityShatterer;
 import the_fireplace.frt.tools.MiscTools;
 
 import java.util.Random;
@@ -29,10 +29,10 @@ import java.util.Random;
 /**
  * @author The_Fireplace
  */
-public class BlockPopFurnace extends BlockContainer {
+public class BlockShatterer extends BlockContainer {
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-    public BlockPopFurnace() {
+    public BlockShatterer() {
         super(Material.IRON);
         setUnlocalizedName("pop_furnace");
         setCreativeTab(FRT.TabFRT);
@@ -66,7 +66,7 @@ public class BlockPopFurnace extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta) {
-        return new TileEntityPopFurnace();
+        return new TileEntityShatterer();
     }
 
     @Override
@@ -113,7 +113,7 @@ public class BlockPopFurnace extends BlockContainer {
         else if (!playerIn.isSneaking()) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityPopFurnace) {
+            if (tileentity instanceof TileEntityShatterer) {
                 FMLNetworkHandler.openGui(playerIn, FRT.MODID, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
             }
             return true;
@@ -157,13 +157,13 @@ public class BlockPopFurnace extends BlockContainer {
 
     public void popItems(World worldIn, BlockPos pos) {
         TileEntity te = worldIn.getTileEntity(pos);
-        if (te instanceof TileEntityPopFurnace)
-            ((TileEntityPopFurnace) te).popItems();
+        if (te instanceof TileEntityShatterer)
+            ((TileEntityShatterer) te).popItems();
     }
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-        TileEntityPopFurnace tile = (TileEntityPopFurnace) worldIn.getTileEntity(pos);
+        TileEntityShatterer tile = (TileEntityShatterer) worldIn.getTileEntity(pos);
         int g = tile.getStoredGunpowder();
         int f = tile.getStoredFirestarter();
         int gstacks = 0;
