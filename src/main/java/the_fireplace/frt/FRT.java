@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
@@ -34,10 +35,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+import the_fireplace.frt.api.AmmoRegistry;
 import the_fireplace.frt.armor.FRTArmor;
 import the_fireplace.frt.blocks.*;
 import the_fireplace.frt.blocks.internal.BlockShell;
-import the_fireplace.frt.blocks.internal.DummyBlockCoalGun;
+import the_fireplace.frt.blocks.internal.DummyBlockBazooka;
 import the_fireplace.frt.compat.basemetals.IBaseMetalsRegister;
 import the_fireplace.frt.compat.basemetals.RegisterBaseMetals;
 import the_fireplace.frt.config.ConfigValues;
@@ -125,9 +127,9 @@ public class FRT {
     public static final Block wax_deposit = new FRTBlock(Material.GROUND).setHarvestTool("pickaxe", 0).setSoundType(SoundType.GROUND).setUnlocalizedName("wax_deposit").setHardness(2.0F);
 
     public static final Item charged_coal = new ItemChargedCoal();
-    public static final Item coal_gun_barrel = new Item().setUnlocalizedName("coal_gun_barrel").setCreativeTab(TabFRT);
-    public static final Item coal_gun_stock = new Item().setUnlocalizedName("coal_gun_stock").setCreativeTab(TabFRT);
-    public static final DummyBlockCoalGun coal_gun = new DummyBlockCoalGun();
+    public static final Item bazooka_barrel = new Item().setUnlocalizedName("coal_gun_barrel").setCreativeTab(TabFRT);
+    public static final Item bazooka_stock = new Item().setUnlocalizedName("coal_gun_stock").setCreativeTab(TabFRT);
+    public static final DummyBlockBazooka bazooka = new DummyBlockBazooka();
     public static final Item destabilized_coal = new Item().setUnlocalizedName("destabilized_coal").setCreativeTab(TabFRT);
     public static final Item diamond_paxel = new ItemPaxel(ToolMaterial.DIAMOND).setUnlocalizedName("diamond_paxel").setCreativeTab(FRT.TabFRT);
     public static final Item iron_paxel = new ItemPaxel(ToolMaterial.IRON).setUnlocalizedName("iron_paxel").setCreativeTab(FRT.TabFRT);
@@ -232,8 +234,8 @@ public class FRT {
         registerBlock(wax_deposit);
 
         registerItem(charged_coal);
-        registerItem(coal_gun_barrel);
-        registerItem(coal_gun_stock);
+        registerItem(bazooka_barrel);
+        registerItem(bazooka_stock);
         registerItem(destabilized_coal);
         registerItem(restabilized_coal);
         registerItem(refined_coal);
@@ -251,7 +253,7 @@ public class FRT {
         registerItem(kinetic_pearl);
         registerItem(pigder_pearl);
 
-        GameRegistry.registerBlock(coal_gun, ItemBlockCoalGun.class, "coal_gun");
+        GameRegistry.registerBlock(bazooka, ItemBlockBazooka.class, "bazooka");
 
         int eid = 0;
         EntityRegistry.registerModEntity(EntityCoal.class, "ammo_coal", eid, instance, 64, 10, true);
@@ -267,6 +269,12 @@ public class FRT {
         Potion.REGISTRY.register(Potion.REGISTRY.getKeys().size(), new ResourceLocation(MODID, "hallucination"), hallucination);
         PotionType.REGISTRY.register(PotionType.REGISTRY.getKeys().size(), new ResourceLocation(MODID, "hallucination"), new PotionType(new PotionEffect(hallucination, 3600)));
         PotionType.REGISTRY.register(PotionType.REGISTRY.getKeys().size(), new ResourceLocation(MODID, "long_hallucination"), new PotionType(new PotionEffect(hallucination, 9600)));
+
+        AmmoRegistry.addAmmo(new ItemStack(Items.COAL), EntityCoal.class);
+        AmmoRegistry.addAmmo(new ItemStack(charged_coal), EntityChargedCoal.class);
+        AmmoRegistry.addAmmo(new ItemStack(destabilized_coal), EntityDestabilizedCoal.class);
+        AmmoRegistry.addAmmo(new ItemStack(restabilized_coal), EntityRestabilizedCoal.class);
+        AmmoRegistry.addAmmo(new ItemStack(refined_coal), EntityRefinedCoal.class);
     }
 
     @EventHandler
@@ -364,11 +372,11 @@ public class FRT {
         rmm(candle_with_base);
         rmm(wax_deposit);
 
-        rmm(coal_gun);
+        rmm(bazooka);
 
         rmm(charged_coal);
-        rmm(coal_gun_barrel);
-        rmm(coal_gun_stock);
+        rmm(bazooka_barrel);
+        rmm(bazooka_stock);
         rmm(destabilized_coal);
         rmm(restabilized_coal);
         rmm(refined_coal);

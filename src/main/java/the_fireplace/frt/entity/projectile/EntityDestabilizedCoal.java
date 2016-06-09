@@ -9,7 +9,7 @@ import the_fireplace.frt.config.ConfigValues;
 /**
  * @author The_Fireplace
  */
-public class EntityDestabilizedCoal extends EntityCoalCommon {
+public class EntityDestabilizedCoal extends EntityBazookaAmmo {
     public EntityDestabilizedCoal(World worldIn) {
         super(worldIn);
     }

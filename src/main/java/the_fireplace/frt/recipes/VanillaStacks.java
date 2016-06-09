@@ -122,12 +122,12 @@ public class VanillaStacks {
     static ItemStack whiteScreenStack = new ItemStack(FRT.white_screen);
     static ItemStack yellowScreenStack = new ItemStack(FRT.yellow_screen);
     //Custom Items
+    static ItemStack bazookaStack = new ItemStack(FRT.bazooka);
+    static ItemStack bazookaBarrelStack = new ItemStack(FRT.bazooka_barrel);
+    static ItemStack bazookaStockStack = new ItemStack(FRT.bazooka_stock);
     static ItemStack chargedCoalStack = new ItemStack(FRT.charged_coal);
     static ItemStack chargedCoalStack8 = new ItemStack(FRT.charged_coal, 8);
     static ItemStack chargedCoalStack9 = new ItemStack(FRT.charged_coal, 9);
-    static ItemStack coalGunStack = new ItemStack(FRT.coal_gun);
-    static ItemStack coalGunBarrelStack = new ItemStack(FRT.coal_gun_barrel);
-    static ItemStack coalGunStockStack = new ItemStack(FRT.coal_gun_stock);
     static ItemStack destabilizedCoalStack = new ItemStack(FRT.destabilized_coal);
     static ItemStack destabilizedCoalStack6 = new ItemStack(FRT.destabilized_coal, 6);
     static ItemStack destabilizedCoalStack9 = new ItemStack(FRT.destabilized_coal, 9);
@@ -156,7 +156,7 @@ public class VanillaStacks {
      */
     public static void registerConstantRecipes() {
         shaped(waxBlockStack, "ww", "ww", 'w', waxStack);
-        shaped(coalGunStack, "xxy", 'x', coalGunBarrelStack, 'y', coalGunStockStack);
+        shaped(bazookaStack, "xxy", 'x', bazookaBarrelStack, 'y', bazookaStockStack);
         shaped(polishedStoneStack2, " s ", "s s", " s ", 's', stoneSlabStack);
         shaped(blazeCakeStack, "m", "c", 'm', magmaCreamStack, 'c', cakeStack);
         shaped(blazeCakeStack, "p", "s", "c", 'p', blazePowderStack, 's', "slimeball", 'c', cakeStack);
@@ -294,8 +294,8 @@ public class VanillaStacks {
         ShattererRegistry.registerPopFurnaceRecipe(candleStack, waxStack, 2);
         ShattererRegistry.registerPopFurnaceRecipe(candlePlateStack, waxStack, 2);
         ShattererRegistry.registerPopFurnaceRecipe(fossilStack, boneMealStack, 6);
-        shaped(coalGunBarrelStack, "fff", "   ", "fff", 'f', flintStack);
-        shaped(coalGunStockStack, "fff", "s f", "fff", 'f', flintStack, 's', flintAndSteelStack);
+        shaped(bazookaBarrelStack, "fff", "   ", "fff", 'f', flintStack);
+        shaped(bazookaStockStack, "fff", "s f", "fff", 'f', flintStack, 's', flintAndSteelStack);
         shaped(compactDirtStack, "ddd", "ddd", "ddd", 'd', dirtStack);
         shaped(compactBookshelfStack, "bbb", 'b', bookshelfStack);
         //Recipes that change with certain mods installed, which don't require different classes

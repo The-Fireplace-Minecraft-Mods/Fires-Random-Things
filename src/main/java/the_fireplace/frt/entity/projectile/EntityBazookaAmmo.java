@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * @author The_Fireplace
  */
-public class EntityCoalCommon extends EntityThrowable implements IProjectile {
+public abstract class EntityBazookaAmmo extends EntityThrowable implements IProjectile {
     protected int xTile = -1;
     protected int yTile = -1;
     protected int zTile = -1;
@@ -33,12 +33,12 @@ public class EntityCoalCommon extends EntityThrowable implements IProjectile {
     protected int ticksInGround;
     protected int ticksInAir;
 
-    public EntityCoalCommon(World worldIn) {
+    public EntityBazookaAmmo(World worldIn) {
         super(worldIn);
         this.setSize(0.25F, 0.25F);
     }
 
-    public EntityCoalCommon(World worldIn, EntityLivingBase throwerIn) {
+    public EntityBazookaAmmo(World worldIn, EntityLivingBase throwerIn) {
         super(worldIn);
         this.thrower = throwerIn;
         this.setSize(0.25F, 0.25F);
@@ -54,7 +54,7 @@ public class EntityCoalCommon extends EntityThrowable implements IProjectile {
         this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, this.getVelocity(), 1.0F);
     }
 
-    public EntityCoalCommon(World worldIn, double x, double y, double z) {
+    public EntityBazookaAmmo(World worldIn, double x, double y, double z) {
         super(worldIn, x, y, z);
         this.ticksInGround = 0;
         this.setSize(0.25F, 0.25F);

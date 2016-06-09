@@ -8,39 +8,48 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import the_fireplace.frt.enums.EnumAmmo;
+import the_fireplace.frt.FRT;
 
 /**
  * @author The_Fireplace
  */
 public class RenderCoal extends Render {
 
-    private EnumAmmo ammo;
     protected final Item itr;
     private final RenderItem ri;
+    private ResourceLocation itemTexture;
 
-    public RenderCoal(RenderManager rm, EnumAmmo ammo) {
+    public RenderCoal(RenderManager rm, Item ammo) {
         super(rm);
-        this.ammo = ammo;
-        this.itr = EnumAmmo.getItem(ammo);
+        this.itr = ammo;
         this.ri = Minecraft.getMinecraft().getRenderItem();
+    }
+
+    public RenderCoal(RenderManager rm, Item ammo, ResourceLocation texture) {
+        super(rm);
+        this.itr = ammo;
+        this.ri = Minecraft.getMinecraft().getRenderItem();
+        this.itemTexture = texture;
     }
 
     @Override
     protected ResourceLocation getEntityTexture(Entity entity) {
-        if (this.ammo == EnumAmmo.COAL)
+        if (this.itr == Items.COAL)
             return new ResourceLocation("minecraft:items/coal");
-        else if (this.ammo == EnumAmmo.CHARGED_COAL)
+        else if (this.itr == FRT.charged_coal)
             return new ResourceLocation("frt:items/charged_coal");
-        else if (this.ammo == EnumAmmo.DESTABILIZED_COAL)
+        else if (this.itr == FRT.destabilized_coal)
             return new ResourceLocation("frt:items/destabilized_coal");
-        else if (this.ammo == EnumAmmo.RESTABILIZED_COAL)
+        else if (this.itr == FRT.restabilized_coal)
             return new ResourceLocation("frt:items/semirefined_coal");
-        else if (this.ammo == EnumAmmo.REFINED_COAL)
+        else if (this.itr == FRT.refined_coal)
             return new ResourceLocation("frt:items/refined_coal");
+        else if (this.itemTexture != null)
+            return itemTexture;
         else
             return new ResourceLocation("minecraft:items/coal");
     }
