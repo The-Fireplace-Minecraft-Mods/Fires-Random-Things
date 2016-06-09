@@ -53,7 +53,7 @@ modsIO {
 		artifact = new File(jar.destinationDir, archivesBaseName+"-"+version+".jar")
 		modid = "1205"
 		minecraft = "1.9.4"
-		changelog = file('changelog.txt')
+		changelog = file('changelog.txt').text
 		tag = ""
 		current = true
     }
