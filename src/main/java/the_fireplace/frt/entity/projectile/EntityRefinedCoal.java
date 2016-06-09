@@ -1,4 +1,4 @@
-package the_fireplace.frt.entity.coal;
+package the_fireplace.frt.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
@@ -8,24 +8,23 @@ import net.minecraft.world.World;
 /**
  * @author The_Fireplace
  */
-public class EntityCoal extends EntityCoalCommon {
-
-    public EntityCoal(World worldIn) {
+public class EntityRefinedCoal extends EntityCoalCommon {
+    public EntityRefinedCoal(World worldIn) {
         super(worldIn);
     }
 
-    public EntityCoal(World worldIn, EntityLivingBase throwerIn) {
+    public EntityRefinedCoal(World worldIn, EntityLivingBase throwerIn) {
         super(worldIn, throwerIn);
     }
 
-    public EntityCoal(World worldIn, double x, double y, double z) {
+    public EntityRefinedCoal(World worldIn, double x, double y, double z) {
         super(worldIn, x, y, z);
     }
 
     @Override
     protected void executeImpact(RayTraceResult mop) {
         if (mop.entityHit != null) {
-            mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getPlayerThrower()), 1.0F);
+            mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getPlayerThrower()), 5.5F);
         }
     }
 }

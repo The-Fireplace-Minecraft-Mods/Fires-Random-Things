@@ -66,6 +66,7 @@ item.firestarter_substitute.name=Firestarter Substitute
 item.gunpowder_substitute.name=Gunpowder Substitute
 item.leafcutter.name=Leafcutter
 item.hallucination_goggles.name=Hallucination Goggles
+item.pigder_pearl.name=Pigder Pearl
 itemGroup.frt=Fire's Random Things
 cfg.enable_shell=Enable Shell
 cfg.enable_shell.tooltip=Toggles whether or not making Shell is enabled

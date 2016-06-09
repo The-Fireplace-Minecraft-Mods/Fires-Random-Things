@@ -77,9 +77,11 @@ public class VanillaStacks {
     static ItemStack orangeDyeStack = new ItemStack(Items.DYE, 1, 14);
     static ItemStack paperStack = new ItemStack(Items.PAPER);
     static ItemStack pinkDyeStack = new ItemStack(Items.DYE, 1, 9);
+    static ItemStack porkchopStack = new ItemStack(Items.PORKCHOP);
     static ItemStack redDyeStack = new ItemStack(Items.DYE, 1, 1);
     static ItemStack redMushroomStack = new ItemStack(Blocks.RED_MUSHROOM);
     static ItemStack redstoneStack = new ItemStack(Items.REDSTONE);
+    static ItemStack saddleStack = new ItemStack(Items.SADDLE);
     static ItemStack shearsStack = new ItemStack(Items.SHEARS);
     static ItemStack silverDyeStack = new ItemStack(Items.DYE, 1, 7);
     static ItemStack skyDyeStack = new ItemStack(Items.DYE, 1, 12);
@@ -145,6 +147,7 @@ public class VanillaStacks {
     static ItemStack kineticPearlStack = new ItemStack(FRT.kinetic_pearl);
     static ItemStack leafcutterStack = new ItemStack(FRT.leafcutter);
     static ItemStack obsidianToolStack = new ItemStack(FRT.obsidian_tool);
+    static ItemStack pigderPearlStack = new ItemStack(FRT.pigder_pearl);
     static ItemStack refinedCoalStack = new ItemStack(FRT.refined_coal);
     static ItemStack refinedCoalStack9 = new ItemStack(FRT.refined_coal, 9);
     static ItemStack restabilizedCoalStack = new ItemStack(FRT.restabilized_coal);
@@ -181,6 +184,7 @@ public class VanillaStacks {
         shaped(popFurnaceStack, "bib", "btb", "bib", 'b', "blockIron", 't', ironTrapdoorStack, 'i', "ingotIron");
         shaped(obsidianToolStack, "dpd", "dsd", " s ", 'd', "gemDiamond", 'p', "gemPrismarine", 's', "stickWood");
         shaped(shellCoreStack, "grg", "rer", "grg", 'g', "blockGold", 'r', redstoneBlockStack, 'e', enderPearlStack);
+        shaped(pigderPearlStack, " s ", "pep", 's', saddleStack, 'p', porkchopStack, 'e', enderPearlStack);
         shapeless(waxStack4, waxBlockStack);
         shapeless(dirtStack9, compactDirtStack);
         shapeless(chargedCoalStack9, chargedCoalBlockStack);

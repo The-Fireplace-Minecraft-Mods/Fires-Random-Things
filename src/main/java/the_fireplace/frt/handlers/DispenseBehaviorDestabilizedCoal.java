@@ -5,7 +5,7 @@ import net.minecraft.dispenser.IPosition;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import the_fireplace.frt.entity.coal.EntityDestabilizedCoal;
+import the_fireplace.frt.entity.projectile.EntityDestabilizedCoal;
 
 /**
  * @author The_Fireplace

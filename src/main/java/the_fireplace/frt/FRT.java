@@ -41,7 +41,7 @@ import the_fireplace.frt.blocks.internal.DummyBlockCoalGun;
 import the_fireplace.frt.compat.basemetals.IBaseMetalsRegister;
 import the_fireplace.frt.compat.basemetals.RegisterBaseMetals;
 import the_fireplace.frt.config.ConfigValues;
-import the_fireplace.frt.entity.coal.*;
+import the_fireplace.frt.entity.projectile.*;
 import the_fireplace.frt.events.CommonEvents;
 import the_fireplace.frt.handlers.*;
 import the_fireplace.frt.items.*;
@@ -142,6 +142,7 @@ public class FRT {
     public static final Item leafcutter = new ItemLeafcutter();
     public static final Item wax = new Item().setUnlocalizedName("wax").setCreativeTab(TabFRT);
     public static final Item kinetic_pearl = new ItemKineticPearl();
+    public static final Item pigder_pearl = new ItemPigderPearl();
 
     public static final Item hallucination_goggles = new FRTArmor(ArmorMaterial.LEATHER, EntityEquipmentSlot.HEAD).setUnlocalizedName("hallucination_goggles").setCreativeTab(TabFRT);
 
@@ -248,6 +249,7 @@ public class FRT {
         registerItem(leafcutter);
         registerItem(wax);
         registerItem(kinetic_pearl);
+        registerItem(pigder_pearl);
 
         GameRegistry.registerBlock(coal_gun, ItemBlockCoalGun.class, "coal_gun");
 
@@ -257,6 +259,7 @@ public class FRT {
         EntityRegistry.registerModEntity(EntityDestabilizedCoal.class, "ammo_destabilized_coal", ++eid, instance, 64, 10, true);
         EntityRegistry.registerModEntity(EntityRestabilizedCoal.class, "ammo_restabilized_coal", ++eid, instance, 64, 10, true);
         EntityRegistry.registerModEntity(EntityRefinedCoal.class, "ammo_refined_coal", ++eid, instance, 64, 10, true);
+        EntityRegistry.registerModEntity(EntityPigderPearl.class, "pigder_pearl", ++eid, instance, 64, 10, true);
         GameRegistry.registerFuelHandler(new FRTFuelHandler());
         proxy.registerEntityRenderers();
 
@@ -303,6 +306,7 @@ public class FRT {
         OreDictionary.registerOre("screen", yellow_screen);
         OreDictionary.registerOre("screen", light_tan_screen);
         OreDictionary.registerOre("screen", dark_tan_screen);
+        OreDictionary.registerOre("enderpearl", pigder_pearl);
         IRecipeRegister recipes;
         if (MIDLib.hasBaseMetals()) {
             recipes = new BaseMetalsRecipes();
@@ -380,6 +384,7 @@ public class FRT {
         rmm(hallucination_goggles);
         rmm(wax);
         rmm(kinetic_pearl);
+        rmm(pigder_pearl);
 
         IBaseMetalsRegister bm;
         if (MIDLib.hasBaseMetals()) {

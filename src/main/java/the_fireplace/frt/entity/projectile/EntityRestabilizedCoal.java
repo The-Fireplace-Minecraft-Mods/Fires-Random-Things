@@ -1,4 +1,4 @@
-package the_fireplace.frt.entity.coal;
+package the_fireplace.frt.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;

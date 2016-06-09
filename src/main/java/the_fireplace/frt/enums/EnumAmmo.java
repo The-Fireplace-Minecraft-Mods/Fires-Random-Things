@@ -7,7 +7,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import the_fireplace.frt.FRT;
-import the_fireplace.frt.entity.coal.*;
+import the_fireplace.frt.entity.projectile.*;
 
 /**
  * @author The_Fireplace

@@ -1,4 +1,4 @@
-package the_fireplace.frt.entity.coal;
+package the_fireplace.frt.entity.projectile;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
