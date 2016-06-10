@@ -56,11 +56,6 @@ public class BlockCandle extends FRTBlock {
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return new AxisAlignedBB(0.35F, 0F, 0.35F, 0.65F, 0.5F, 0.65F);
-    }
-
-    @Override
-    public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
-        return NULL_AABB;
+        return new AxisAlignedBB(0.43F, 0F, 0.43F, 0.57F, 0.5F, 0.57F);
     }
 }
