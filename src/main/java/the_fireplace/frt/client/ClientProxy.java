@@ -1,4 +1,4 @@
-package the_fireplace.frt.proxy;
+package the_fireplace.frt.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -11,8 +11,9 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.entity.projectile.*;
-import the_fireplace.frt.renderers.AmmoRenderFactory;
-import the_fireplace.frt.renderers.PigderPearlRenderFactory;
+import the_fireplace.frt.client.renderers.AmmoRenderFactory;
+import the_fireplace.frt.client.renderers.PigderPearlRenderFactory;
+import the_fireplace.frt.CommonProxy;
 
 import java.util.Random;
 

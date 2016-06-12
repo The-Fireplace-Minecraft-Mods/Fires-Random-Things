@@ -1,4 +1,4 @@
-package the_fireplace.frt.renderers;
+package the_fireplace.frt.client.renderers;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -12,11 +12,14 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
 
 /**
  * @author The_Fireplace
  */
+@SideOnly(Side.CLIENT)
 public class RenderAmmo extends Render {
 
     protected final Item itr;

@@ -5,7 +5,7 @@ import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
 import net.minecraft.item.ItemStack;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.container.ContainerShatterer;
-import the_fireplace.frt.gui.GuiShatterer;
+import the_fireplace.frt.client.gui.GuiShatterer;
 
 /**
  * @author The_Fireplace

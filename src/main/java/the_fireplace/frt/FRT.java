@@ -49,7 +49,6 @@ import the_fireplace.frt.items.*;
 import the_fireplace.frt.items.internal.ItemPaxel;
 import the_fireplace.frt.network.PacketDispatcher;
 import the_fireplace.frt.potion.HallucinationPotion;
-import the_fireplace.frt.proxy.CommonProxy;
 import the_fireplace.frt.recipes.BaseMetalsRecipes;
 import the_fireplace.frt.recipes.DefaultRecipes;
 import the_fireplace.frt.recipes.IRecipeRegister;
@@ -61,7 +60,7 @@ import the_fireplace.frt.worldgen.WorldGeneratorWax;
 /**
  * @author The_Fireplace
  */
-@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.config.FRTGuiFactory", updateJSON = "http://caterpillar.bitnamiapp.com/jsons/frt.json")
+@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.client.gui.FRTGuiFactory", updateJSON = "http://caterpillar.bitnamiapp.com/jsons/frt.json")
 public class FRT {
     @Instance(FRT.MODID)
     public static FRT instance;
@@ -78,7 +77,7 @@ public class FRT {
     public static Property ENABLEFOSSILGEN_PROPERTY;
     public static Property POTIONSWITCH_PROPERTY;
 
-    @SidedProxy(clientSide = "the_fireplace.frt.proxy.ClientProxy", serverSide = "the_fireplace.frt.proxy.CommonProxy")
+    @SidedProxy(clientSide = "the_fireplace.frt.client.ClientProxy", serverSide = "the_fireplace.frt.CommonProxy")
     public static CommonProxy proxy;
 
     public static final CreativeTabs TabFRT = new TabFRT();

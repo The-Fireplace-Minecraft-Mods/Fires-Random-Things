@@ -1,15 +1,18 @@
-package the_fireplace.frt.renderers;
+package the_fireplace.frt.client.renderers;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.entity.projectile.EntityBazookaAmmo;
 
 /**
  * @author The_Fireplace
  */
+@SideOnly(Side.CLIENT)
 public class AmmoRenderFactory implements IRenderFactory<EntityBazookaAmmo> {
 
     private Item ammo;

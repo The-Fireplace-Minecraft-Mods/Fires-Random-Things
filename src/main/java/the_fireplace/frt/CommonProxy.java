@@ -1,4 +1,4 @@
-package the_fireplace.frt.proxy;
+package the_fireplace.frt;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
