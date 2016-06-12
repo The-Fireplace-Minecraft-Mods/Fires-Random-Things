@@ -141,6 +141,7 @@ public class VanillaStacks {
     static ItemStack leafcutterStack = new ItemStack(FRT.leafcutter);
     static ItemStack obsidianToolStack = new ItemStack(FRT.obsidian_tool);
     static ItemStack pigderPearlStack = new ItemStack(FRT.pigder_pearl);
+    static ItemStack pigderPearlStack4 = new ItemStack(FRT.pigder_pearl, 4);
     static ItemStack refinedCoalStack = new ItemStack(FRT.refined_coal);
     static ItemStack refinedCoalStack9 = new ItemStack(FRT.refined_coal, 9);
     static ItemStack restabilizedCoalStack = new ItemStack(FRT.restabilized_coal);
@@ -178,6 +179,7 @@ public class VanillaStacks {
         shaped(obsidianToolStack, "dpd", "dsd", " s ", 'd', "gemDiamond", 'p', "gemPrismarine", 's', "stickWood");
         shaped(shellCoreStack, "grg", "rer", "grg", 'g', "blockGold", 'r', "blockRedstone", 'e', "enderpearl");
         shaped(pigderPearlStack, " s ", "pep", 's', saddleStack, 'p', porkchopStack, 'e', enderPearlStack);
+        shaped(pigderPearlStack4, " s ", "pep", "eee", 's', saddleStack, 'p', porkchopStack, 'e', enderPearlStack);
         shapeless(waxStack4, waxBlockStack);
         shapeless(dirtStack9, compactDirtStack);
         shapeless(chargedCoalStack9, chargedCoalBlockStack);
