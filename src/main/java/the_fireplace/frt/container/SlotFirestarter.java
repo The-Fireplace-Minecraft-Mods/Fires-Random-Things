@@ -2,7 +2,7 @@ package the_fireplace.frt.container;
 
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import the_fireplace.frt.entity.tile.TileEntityShatterer;
+import the_fireplace.frt.tileentity.TileEntityShatterer;
 import the_fireplace.frt.recipes.ShattererRecipes;
 
 /**

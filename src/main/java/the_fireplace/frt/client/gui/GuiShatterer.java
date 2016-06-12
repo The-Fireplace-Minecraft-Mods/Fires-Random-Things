@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.container.ContainerShatterer;
-import the_fireplace.frt.entity.tile.TileEntityShatterer;
+import the_fireplace.frt.tileentity.TileEntityShatterer;
 
 /**
  * @author The_Fireplace

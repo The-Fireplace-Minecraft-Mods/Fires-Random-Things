@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
-import the_fireplace.frt.entity.tile.TileEntityBazooka;
+import the_fireplace.frt.tileentity.TileEntityBazooka;
 
 /**
  * @author The_Fireplace

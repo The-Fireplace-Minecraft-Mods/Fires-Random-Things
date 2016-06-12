@@ -5,7 +5,7 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import the_fireplace.frt.entity.tile.TileEntityShatterer;
+import the_fireplace.frt.tileentity.TileEntityShatterer;
 
 /**
  * @author The_Fireplace

@@ -6,7 +6,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import the_fireplace.frt.container.ContainerShatterer;
-import the_fireplace.frt.entity.tile.TileEntityShatterer;
+import the_fireplace.frt.tileentity.TileEntityShatterer;
 import the_fireplace.frt.client.gui.GuiShatterer;
 
 /**

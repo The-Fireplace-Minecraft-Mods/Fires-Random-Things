@@ -3,8 +3,8 @@ package the_fireplace.frt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import the_fireplace.frt.entity.tile.TileEntityBazooka;
-import the_fireplace.frt.entity.tile.TileEntityShatterer;
+import the_fireplace.frt.tileentity.TileEntityBazooka;
+import the_fireplace.frt.tileentity.TileEntityShatterer;
 
 /**
  * @author The_Fireplace

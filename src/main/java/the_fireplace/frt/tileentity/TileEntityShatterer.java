@@ -1,4 +1,4 @@
-package the_fireplace.frt.entity.tile;
+package the_fireplace.frt.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
