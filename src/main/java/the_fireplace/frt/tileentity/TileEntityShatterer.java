@@ -12,8 +12,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.WorldServer;
+import the_fireplace.frt.FRT;
 import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.recipes.ShattererRecipes;
 import the_fireplace.frt.tools.MiscTools;
@@ -54,7 +54,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
 
     @Override
     public String getName() {
-        return I18n.translateToLocal("tile.pop_furnace.name");
+        return FRT.proxy.translateToLocal("tile.pop_furnace.name");
     }
 
     @Override
@@ -332,8 +332,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
     }
 
     @Override
-    public boolean canInsertItem(int index, ItemStack stack,
-                                 EnumFacing direction) {
+    public boolean canInsertItem(int index, ItemStack stack, EnumFacing direction) {
         if (stack != null) {
             if (index >= 0 && index < 5) {
                 Iterator iterator = ShattererRecipes.instance().getPoppingList().entrySet().iterator();
@@ -358,8 +357,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
     }
 
     @Override
-    public boolean canExtractItem(int index, ItemStack stack,
-                                  EnumFacing direction) {
+    public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
         if (stack != null)
             if (index >= 5 && index < 10) {
                 return true;

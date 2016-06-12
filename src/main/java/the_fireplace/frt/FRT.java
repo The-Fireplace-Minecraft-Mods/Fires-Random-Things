@@ -76,6 +76,7 @@ public class FRT {
     public static Property ITEMSPERGUNPOWDER_PROPERTY;
     public static Property ENABLEFOSSILGEN_PROPERTY;
     public static Property POTIONSWITCH_PROPERTY;
+    public static Property TICKSPERREDSTONE_PROPERTY;
 
     @SidedProxy(clientSide = "the_fireplace.frt.client.ClientProxy", serverSide = "the_fireplace.frt.CommonProxy")
     public static CommonProxy proxy;
@@ -169,6 +170,7 @@ public class FRT {
         ConfigValues.ITEMSPERGUNPOWDER = ITEMSPERGUNPOWDER_PROPERTY.getInt();
         ConfigValues.ENABLEFOSSILGEN = ENABLEFOSSILGEN_PROPERTY.getBoolean();
         ConfigValues.POTIONSWITCH = POTIONSWITCH_PROPERTY.getInt();
+        ConfigValues.TICKSPERREDSTONE = TICKSPERREDSTONE_PROPERTY.getInt();
         if (config.hasChanged())
             config.save();
     }
@@ -192,6 +194,7 @@ public class FRT {
         ITEMSPERGUNPOWDER_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ITEMSPERGUNPOWDER_NAME, ConfigValues.ITEMSPERGUNPOWDER_DEFAULT, proxy.translateToLocal(ConfigValues.ITEMSPERGUNPOWDER_NAME + ".tooltip"));
         ENABLEFOSSILGEN_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ENABLEFOSSILGEN_NAME, ConfigValues.ENABLEFOSSILGEN_DEFAULT, proxy.translateToLocal(ConfigValues.ENABLEFOSSILGEN_NAME + ".tooltip"));
         POTIONSWITCH_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.POTIONSWITCH_NAME, ConfigValues.POTIONSWITCH_DEFAULT, proxy.translateToLocal(ConfigValues.POTIONSWITCH_NAME + ".tooltip"));
+        TICKSPERREDSTONE_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.TICKSPERREDSTONE_NAME, ConfigValues.TICKSPERREDSTONE_DEFAULT, proxy.translateToLocal(ConfigValues.TICKSPERREDSTONE_NAME + ".tooltip"));
         POTIONSWITCH_PROPERTY.setMinValue(1);
         POTIONSWITCH_PROPERTY.setMaxValue(10);
         if (event.getSide().isClient())

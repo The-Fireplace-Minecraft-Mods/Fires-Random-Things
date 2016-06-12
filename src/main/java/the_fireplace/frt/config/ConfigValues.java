@@ -16,6 +16,10 @@ public class ConfigValues {
     public static int ITEMSPERGUNPOWDER;
     public static final String ITEMSPERGUNPOWDER_NAME = "cfg.items_per_gunpowder";
 
+    public static final int TICKSPERREDSTONE_DEFAULT = 600;
+    public static int TICKSPERREDSTONE;
+    public static final String TICKSPERREDSTONE_NAME = "cfg.ticks_per_redstone";
+
     public static final boolean ENABLEFOSSILGEN_DEFAULT = true;
     public static boolean ENABLEFOSSILGEN;
     public static final String ENABLEFOSSILGEN_NAME = "cfg.enable_fossil_gen";
