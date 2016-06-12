@@ -33,6 +33,12 @@ public class FRTFuelHandler implements IFuelHandler {
             return refined_coal_rate;
         } else if (ifuel == Item.getItemFromBlock(FRT.charged_coal_block)) {
             return blockMultiplierOf(charged_coal_rate);
+        } else if (ifuel == Item.getItemFromBlock(FRT.destabilized_coal_block)) {
+            return blockMultiplierOf(destabilized_coal_rate);
+        } else if (ifuel == Item.getItemFromBlock(FRT.restabilized_coal_block)) {
+            return blockMultiplierOf(restabilized_coal_rate);
+        } else if (ifuel == Item.getItemFromBlock(FRT.refined_coal_block)) {
+            return blockMultiplierOf(refined_coal_rate);
         } else if (ifuel == Item.getItemFromBlock(FRT.black_screen)) {
             return screen_rate;
         } else if (ifuel == Item.getItemFromBlock(FRT.blue_screen)) {
