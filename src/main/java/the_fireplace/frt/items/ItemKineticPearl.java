@@ -1,5 +1,6 @@
 package the_fireplace.frt.items;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -11,7 +12,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
+
+import java.util.List;
 
 /**
  * @author The_Fireplace
@@ -20,6 +25,14 @@ public class ItemKineticPearl extends Item {
     public ItemKineticPearl() {
         setUnlocalizedName("kinetic_pearl");
         setCreativeTab(FRT.TabFRT);
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    {
+        super.addInformation(stack, playerIn, tooltip, advanced);
+        tooltip.add(I18n.format("kinetic_pearl.tooltip"));
     }
 
     @Override

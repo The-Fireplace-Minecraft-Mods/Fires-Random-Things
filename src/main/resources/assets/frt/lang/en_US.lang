@@ -100,3 +100,5 @@ jei.firestarter=Shatterer Firestarter
 jei.gunpowder=Shatterer Explosive
 tipped_arrow.effect.hallucination=Arrow of Hallucination
 tipped_arrow.effect.long_hallucination=Arrow of Hallucination
+bazooka.tooltip=Uses Coal as ammo. Hold the kind you want to use in your off-hand.
+kinetic_pearl.tooltip=Use near moving projectiles for best results.
