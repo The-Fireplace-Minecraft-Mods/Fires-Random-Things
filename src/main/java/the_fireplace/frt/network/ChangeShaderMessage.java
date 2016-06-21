@@ -38,7 +38,7 @@ public class ChangeShaderMessage implements IMessage {
         public IMessage handleClientMessage(EntityPlayer player, ChangeShaderMessage message, MessageContext ctx) {
             IThreadListener listener = Minecraft.getMinecraft();
             listener.addScheduledTask(() -> FRT.proxy.activateNextShader());
-            FRT.instance.clientCooldownTicks = message.cooldown;
+            listener.addScheduledTask(() -> FRT.instance.clientCooldownTicks = message.cooldown*2);
             return null;
         }
     }
