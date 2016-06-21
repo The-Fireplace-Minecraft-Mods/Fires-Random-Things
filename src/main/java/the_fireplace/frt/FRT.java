@@ -67,8 +67,6 @@ public class FRT {
 
     public static final String MODID = "frt";
     public static final String MODNAME = "Fire's Random Things";
-    public static String VERSION;
-    public static final String curseCode = "244507-fires-random-things";
 
     public static Configuration config;
     public static Property ENABLESHELL_PROPERTY;
@@ -177,12 +175,6 @@ public class FRT {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        String[] version = event.getModMetadata().version.split("\\.");
-        if (version[3].equals("BUILDNUMBER"))//Dev environment
-            VERSION = event.getModMetadata().version.replace("BUILDNUMBER", "9001");
-        else//Released build
-            VERSION = event.getModMetadata().version;
-
         PacketDispatcher.registerPackets();
         MinecraftForge.EVENT_BUS.register(new CommonEvents());
         proxy.registerClient();
