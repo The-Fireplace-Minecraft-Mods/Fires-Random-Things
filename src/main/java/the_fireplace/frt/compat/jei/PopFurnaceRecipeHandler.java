@@ -17,6 +17,12 @@ public class PopFurnaceRecipeHandler implements IRecipeHandler<PopFurnaceRecipe>
 
     @Nonnull
     @Override
+    public String getRecipeCategoryUid(PopFurnaceRecipe recipe) {
+        return "frt.pop_furnace";
+    }
+
+    @Nonnull
+    @Override
     public String getRecipeCategoryUid() {
         return "frt.pop_furnace";
     }

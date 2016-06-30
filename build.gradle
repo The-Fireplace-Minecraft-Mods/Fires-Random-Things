@@ -32,6 +32,8 @@ curseforge {
     id = '244507'
     changelog = file('changelog.txt')
     releaseType = 'release'
+    addGameVersion '1.10.2'
+	addGameVersion '1.10'
 	addGameVersion '1.9.4'
 	addGameVersion 'Java 8'
     mainArtifact (jar){
@@ -45,29 +47,29 @@ curseforge {
 
 version = "!!VERSION!!"
 group= "the_fireplace.frt"
-archivesBaseName = "FiresRandomThings"
+archivesBaseName = "FiresRandomThings-Forge"
 
 modsIO {
     key = project.modsioApiKey
     project{
 		artifact = new File(jar.destinationDir, archivesBaseName+"-"+version+".jar")
 		modid = "1205"
-		minecraft = "1.9.4"
-		changelog = file('changelog.txt').text
+		minecraft = "1.10.2"
+		try{changelog = file('changelog.txt').text}catch(Exception e){changelog=""}
 		tag = ""
 		current = true
     }
 }
 
 minecraft {
-    version = "1.9.4-12.17.0.1909-1.9.4"
+    version = "1.10.2-12.18.0.2004-1.10.0"
     runDir = "run"
     mappings = "snapshot_20160518"
     useDepAts = true
 }
 
 dependencies {
-	deobfCompile group: "mezz.jei", name: "jei_1.9.4", version: "3.4.0.204"
+	deobfCompile group: "mezz.jei", name: "jei_1.10.2", version: "3.7.3.221"
 }
 
 

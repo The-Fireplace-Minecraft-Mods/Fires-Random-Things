@@ -97,7 +97,6 @@ public class VanillaStacks {
     static ItemStack darkTanScreenStack = new ItemStack(FRT.dark_tan_screen);
     static ItemStack destabilizedCoalBlockStack = new ItemStack(FRT.destabilized_coal_block);
     static ItemStack fireplaceBottomStack2 = new ItemStack(FRT.fireplace_bottom, 2);
-    static ItemStack fossilStack = new ItemStack(FRT.fossil);
     static ItemStack greenScreenStack = new ItemStack(FRT.green_screen);
     static ItemStack greyScreenStack = new ItemStack(FRT.grey_screen);
     static ItemStack insaneDispenserStack = new ItemStack(FRT.insane_dispenser);
@@ -295,7 +294,6 @@ public class VanillaStacks {
         PopFurnaceRegistry.registerPopFurnaceRecipe(peonyStack, pinkDyeStack, 3);
         PopFurnaceRegistry.registerPopFurnaceRecipe(candleStack, waxStack, 2);
         PopFurnaceRegistry.registerPopFurnaceRecipe(candlePlateStack, waxStack, 2);
-        PopFurnaceRegistry.registerPopFurnaceRecipe(fossilStack, boneMealStack, 6);
         shaped(bazookaBarrelStack, "fff", "   ", "fff", 'f', flintStack);
         shaped(bazookaStockStack, "fff", "s f", "fff", 'f', flintStack, 's', flintAndSteelStack);
         shaped(compactDirtStack, "ddd", "ddd", "ddd", 'd', dirtStack);

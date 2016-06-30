@@ -23,6 +23,12 @@ public class GunpowderRecipeHandler implements IRecipeHandler<GunpowderRecipe> {
 
     @Nonnull
     @Override
+    public String getRecipeCategoryUid(GunpowderRecipe recipe) {
+        return "frt.pop_furnace.gunpowder";
+    }
+
+    @Nonnull
+    @Override
     public IRecipeWrapper getRecipeWrapper(@Nonnull GunpowderRecipe recipe) {
         return recipe;
     }

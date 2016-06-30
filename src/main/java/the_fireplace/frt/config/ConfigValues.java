@@ -20,10 +20,6 @@ public class ConfigValues {
     public static int TICKSPERREDSTONE;
     public static final String TICKSPERREDSTONE_NAME = "cfg.ticks_per_redstone";
 
-    public static final boolean ENABLEFOSSILGEN_DEFAULT = true;
-    public static boolean ENABLEFOSSILGEN;
-    public static final String ENABLEFOSSILGEN_NAME = "cfg.enable_fossil_gen";
-
     public static final int POTIONSWITCH_DEFAULT = 1;
     public static int POTIONSWITCH;
     public static final String POTIONSWITCH_NAME = "cfg.potion_switch";

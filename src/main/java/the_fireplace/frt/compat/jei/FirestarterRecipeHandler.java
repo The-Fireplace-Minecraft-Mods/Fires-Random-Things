@@ -23,6 +23,12 @@ public class FirestarterRecipeHandler implements IRecipeHandler<FirestarterRecip
 
     @Nonnull
     @Override
+    public String getRecipeCategoryUid(FirestarterRecipe recipe) {
+        return "frt.pop_furnace.firestarter";
+    }
+
+    @Nonnull
+    @Override
     public IRecipeWrapper getRecipeWrapper(@Nonnull FirestarterRecipe recipe) {
         return recipe;
     }

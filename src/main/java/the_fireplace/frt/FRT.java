@@ -54,13 +54,12 @@ import the_fireplace.frt.recipes.DefaultRecipes;
 import the_fireplace.frt.recipes.IRecipeRegister;
 import the_fireplace.frt.recipes.VanillaStacks;
 import the_fireplace.frt.tools.MIDLib;
-import the_fireplace.frt.worldgen.WorldGeneratorFossil;
 import the_fireplace.frt.worldgen.WorldGeneratorWax;
 
 /**
  * @author The_Fireplace
  */
-@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.client.gui.FRTGuiFactory", updateJSON = "http://caterpillar.bitnamiapp.com/jsons/frt.json")
+@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.client.gui.FRTGuiFactory", updateJSON = "http://caterpillar.bitnamiapp.com/jsons/frt.json", acceptedMinecraftVersions = "[1.9.4,1.10.2]")
 public class FRT {
     @Instance(FRT.MODID)
     public static FRT instance;
@@ -72,7 +71,6 @@ public class FRT {
     public static Property ENABLESHELL_PROPERTY;
     public static Property ENABLEDAMAGE_PROPERTY;
     public static Property ITEMSPERGUNPOWDER_PROPERTY;
-    public static Property ENABLEFOSSILGEN_PROPERTY;
     public static Property POTIONSWITCH_PROPERTY;
     public static Property TICKSPERREDSTONE_PROPERTY;
 
@@ -87,7 +85,6 @@ public class FRT {
 
     public static final Block compact_bookshelf = new BlockCompactBookshelf();
     public static final Block compact_dirt = new FRTBlock(Material.GROUND).setSoundType(SoundType.GROUND).setHarvestTool("shovel", 1).setHardness(2.3F).setUnlocalizedName("compact_dirt");
-    public static final Block fossil = new BlockFossil();
     public static final Block fireplace_bottom = new BlockFireplaceBottom();
     public static final Block charged_coal_block = new BlockChargedCoal();
     public static final Block destabilized_coal_block = new BlockDestabilizedCoal();
@@ -166,7 +163,6 @@ public class FRT {
         ConfigValues.ENABLESHELL = ENABLESHELL_PROPERTY.getBoolean();
         ConfigValues.ENABLEDAMAGE = ENABLEDAMAGE_PROPERTY.getBoolean();
         ConfigValues.ITEMSPERGUNPOWDER = ITEMSPERGUNPOWDER_PROPERTY.getInt();
-        ConfigValues.ENABLEFOSSILGEN = ENABLEFOSSILGEN_PROPERTY.getBoolean();
         ConfigValues.POTIONSWITCH = POTIONSWITCH_PROPERTY.getInt();
         ConfigValues.TICKSPERREDSTONE = TICKSPERREDSTONE_PROPERTY.getInt();
         if (config.hasChanged())
@@ -184,7 +180,6 @@ public class FRT {
         ENABLESHELL_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ENABLESHELL_NAME, ConfigValues.ENABLESHELL_DEFAULT, proxy.translateToLocal(ConfigValues.ENABLESHELL_NAME + ".tooltip"));
         ENABLEDAMAGE_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ENABLEDAMAGE_NAME, ConfigValues.ENABLEDAMAGE_DEFAULT, proxy.translateToLocal(ConfigValues.ENABLEDAMAGE_NAME + ".tooltip"));
         ITEMSPERGUNPOWDER_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ITEMSPERGUNPOWDER_NAME, ConfigValues.ITEMSPERGUNPOWDER_DEFAULT, proxy.translateToLocal(ConfigValues.ITEMSPERGUNPOWDER_NAME + ".tooltip"));
-        ENABLEFOSSILGEN_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ENABLEFOSSILGEN_NAME, ConfigValues.ENABLEFOSSILGEN_DEFAULT, proxy.translateToLocal(ConfigValues.ENABLEFOSSILGEN_NAME + ".tooltip"));
         POTIONSWITCH_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.POTIONSWITCH_NAME, ConfigValues.POTIONSWITCH_DEFAULT, proxy.translateToLocal(ConfigValues.POTIONSWITCH_NAME + ".tooltip"));
         TICKSPERREDSTONE_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.TICKSPERREDSTONE_NAME, ConfigValues.TICKSPERREDSTONE_DEFAULT, proxy.translateToLocal(ConfigValues.TICKSPERREDSTONE_NAME + ".tooltip"));
         POTIONSWITCH_PROPERTY.setMinValue(1);
@@ -194,7 +189,6 @@ public class FRT {
         syncConfig();
         registerBlock(polished_stone);
         registerBlock(compact_dirt);
-        registerBlock(fossil);
         registerBlock(fireplace_bottom);
         registerBlock(charged_coal_block);
         registerBlock(destabilized_coal_block);
@@ -286,8 +280,6 @@ public class FRT {
         if (event.getSide().isClient())
             registerItemRenders();
         proxy.registerTileEntities();
-        if (ConfigValues.ENABLEFOSSILGEN)
-            GameRegistry.registerWorldGenerator(new WorldGeneratorFossil(), 5);
         GameRegistry.registerWorldGenerator(new WorldGeneratorWax(), 6);
         OreDictionary.registerOre("book", Items.BOOK);
         OreDictionary.registerOre("book", Items.WRITTEN_BOOK);
@@ -342,7 +334,6 @@ public class FRT {
         rmm(destabilized_coal_block);
         rmm(restabilized_coal_block);
         rmm(refined_coal_block);
-        rmm(fossil);
         rmm(light_tan_screen);
         rmm(dark_tan_screen);
         rmm(white_screen);
