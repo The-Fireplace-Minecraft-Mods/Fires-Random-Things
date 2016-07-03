@@ -168,7 +168,7 @@ public class VanillaStacks {
         shaped(fireplaceBottomStack2, "bbb", "bnb", "bbb", 'b', brickStack, 'n', "netherrack");
         shaped(whiteScreenStack, " p ", "pwp", " p ", 'p', "paper", 'w', woolStack);
         shaped(destabilizedCoalStack6, "ccc", "ggg", "ccc", 'c', chargedCoalStack, 'g', "gunpowder");
-        shaped(restabilizedCoalStack8, "ccc", "csc", "ccc", 'c', destabilizedCoalStack, 's', "slimeball");
+        shaped(restabilizedCoalStack8, "ccc", "csc", "ccc", 'c', destabilizedCoalStack, 's', waxStack);
         shaped(quadDispenserStack, "dd", "dd", 'd', dispenserStack);
         shaped(insaneDispenserStack, "dd", "dd", 'd', quadDispenserStack);
         shaped(bookshelfStack, "www", "bbb", "www", 'w', "plankWood", 'b', "book");
