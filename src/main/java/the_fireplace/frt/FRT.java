@@ -5,6 +5,7 @@ import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -119,6 +120,7 @@ public class FRT {
     public static final Block candle = new BlockCandle().setUnlocalizedName("candle");
     public static final Block candle_with_base = new BlockCandle().setUnlocalizedName("candle_with_plate");
     public static final Block wax_deposit = new FRTBlock(Material.GROUND).setHarvestTool("pickaxe", 0).setSoundType(SoundType.GROUND).setUnlocalizedName("wax_deposit").setHardness(2.0F);
+    public static final Block waxed_planks = new BlockWaxedPlanks();
 
     public static final Item charged_coal = new ItemChargedCoal();
     public static final Item bazooka_barrel = new Item().setUnlocalizedName("coal_gun_barrel").setCreativeTab(TabFRT);
@@ -223,6 +225,8 @@ public class FRT {
         registerBlock(candle);
         registerBlock(candle_with_base);
         registerBlock(wax_deposit);
+        registerBlockNoItem(waxed_planks);
+        registerItemBlock(new ItemWaxedPlanks(waxed_planks));
 
         registerItem(charged_coal);
         registerItem(bazooka_barrel);
@@ -304,6 +308,7 @@ public class FRT {
         OreDictionary.registerOre("screen", light_tan_screen);
         OreDictionary.registerOre("screen", dark_tan_screen);
         OreDictionary.registerOre("enderpearl", pigder_pearl);
+        OreDictionary.registerOre("plankWood", new ItemStack(waxed_planks, 1, OreDictionary.WILDCARD_VALUE));
         IRecipeRegister recipes;
         if (MIDLib.hasBaseMetals()) {
             recipes = new BaseMetalsRecipes();
@@ -359,6 +364,19 @@ public class FRT {
         rmm(candle);
         rmm(candle_with_base);
         rmm(wax_deposit);
+        ModelBakery.registerItemVariants(Item.getItemFromBlock(waxed_planks),
+                new ModelResourceLocation(MODID+":oak_waxed_planks", "inventory"),
+                new ModelResourceLocation(MODID+":spruce_waxed_planks", "inventory"),
+                new ModelResourceLocation(MODID+":birch_waxed_planks", "inventory"),
+                new ModelResourceLocation(MODID+":jungle_waxed_planks", "inventory"),
+                new ModelResourceLocation(MODID+":acacia_waxed_planks", "inventory"),
+                new ModelResourceLocation(MODID+":dark_oak_waxed_planks", "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 0, new ModelResourceLocation(FRT.MODID + ":oak_waxed_planks", "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 1, new ModelResourceLocation(FRT.MODID + ":spruce_waxed_planks", "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 2, new ModelResourceLocation(FRT.MODID + ":birch_waxed_planks", "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 3, new ModelResourceLocation(FRT.MODID + ":jungle_waxed_planks", "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 4, new ModelResourceLocation(FRT.MODID + ":acacia_waxed_planks", "inventory"));
+        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 5, new ModelResourceLocation(FRT.MODID + ":dark_oak_waxed_planks", "inventory"));
 
         rmm(bazooka);
 

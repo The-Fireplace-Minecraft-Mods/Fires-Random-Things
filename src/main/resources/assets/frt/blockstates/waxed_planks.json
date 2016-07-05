@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "variant=acacia": { "model": "frt:acacia_waxed_planks" },
+        "variant=oak": { "model": "frt:oak_waxed_planks" },
+        "variant=birch": { "model": "frt:birch_waxed_planks" },
+        "variant=spruce": { "model": "frt:spruce_waxed_planks" },
+        "variant=jungle": { "model": "frt:jungle_waxed_planks" },
+        "variant=dark_oak": { "model": "frt:dark_oak_waxed_planks" }
+    }
+}

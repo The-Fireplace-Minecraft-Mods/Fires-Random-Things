@@ -1,5 +1,6 @@
 package the_fireplace.frt.recipes;
 
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -187,6 +188,10 @@ public class VanillaStacks {
         shapeless(refinedCoalStack9, refinedCoalBlockStack);
         shapeless(stoneSlabStack2, polishedStoneStack);
         GameRegistry.addSmelting(restabilizedCoalStack, refinedCoalStack, 0.05F);
+        for(BlockPlanks.EnumType meta: BlockPlanks.EnumType.values()) {
+            shapeless(new ItemStack(FRT.waxed_planks, 1, meta.ordinal()), new ItemStack(Blocks.PLANKS, 1, meta.ordinal()), waxStack);
+            shapeless(new ItemStack(Blocks.PLANKS, 1, meta.ordinal()), new ItemStack(FRT.waxed_planks, 1, meta.ordinal()));
+        }
         NBTTagCompound potionS = new NBTTagCompound();
         NBTTagCompound potionL = new NBTTagCompound();
         NBTTagCompound potionA = new NBTTagCompound();
