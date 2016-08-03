@@ -1,7 +1,6 @@
 package the_fireplace.frt.items;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -10,13 +9,10 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.entity.projectile.EntityBazookaAmmo;
 import the_fireplace.frt.recipes.AmmoTypes;
 
 import java.lang.reflect.Constructor;
-import java.util.List;
 
 /**
  * @author The_Fireplace
@@ -27,14 +23,6 @@ public class ItemBlockBazooka extends ItemBlock {
         super(b);
         setMaxStackSize(1);
         setUnlocalizedName("coal_gun");
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
-    {
-        super.addInformation(stack, playerIn, tooltip, advanced);
-        tooltip.add(I18n.format("bazooka.tooltip"));
     }
 
     @Override

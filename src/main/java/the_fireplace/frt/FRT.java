@@ -44,6 +44,7 @@ import the_fireplace.frt.compat.basemetals.IBaseMetalsRegister;
 import the_fireplace.frt.compat.basemetals.RegisterBaseMetals;
 import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.entity.projectile.*;
+import the_fireplace.frt.events.ClientEvents;
 import the_fireplace.frt.events.CommonEvents;
 import the_fireplace.frt.handlers.*;
 import the_fireplace.frt.items.*;
@@ -175,6 +176,8 @@ public class FRT {
     public void preInit(FMLPreInitializationEvent event) {
         PacketDispatcher.registerPackets();
         MinecraftForge.EVENT_BUS.register(new CommonEvents());
+        if(event.getSide().isClient())
+            MinecraftForge.EVENT_BUS.register(new ClientEvents());
         proxy.registerClient();
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new FRTGuiHandler());
         config = new Configuration(event.getSuggestedConfigurationFile());
