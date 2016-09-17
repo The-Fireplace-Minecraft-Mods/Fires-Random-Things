@@ -296,7 +296,8 @@ public class FRT {
             bm.registerItems();
         }
         proxy.registerTileEntities();
-        GameRegistry.registerWorldGenerator(new WorldGeneratorWax(), 6);
+        if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, wax_deposit.getUnlocalizedName().substring(5)))
+            GameRegistry.registerWorldGenerator(new WorldGeneratorWax(), 6);
         OreDictionary.registerOre("book", Items.BOOK);
         OreDictionary.registerOre("book", Items.WRITTEN_BOOK);
         OreDictionary.registerOre("book", Items.WRITABLE_BOOK);
