@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.ArrayUtils;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.tileentity.TileEntityShellCore;
@@ -84,6 +85,8 @@ public class BlockShellCore extends BlockContainer {
 
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+        if(ArrayUtils.contains(ConfigValues.DISABLEDITEMS, FRT.shell.getUnlocalizedName().substring(5)))
+            return;
         TileEntityShellCore tile = (TileEntityShellCore) worldIn.getTileEntity(pos);
         if(tile != null && !worldIn.isRemote) {
             if (ConfigValues.ENABLESHELL) {

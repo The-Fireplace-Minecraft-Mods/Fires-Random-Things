@@ -4,7 +4,9 @@ import cyano.basemetals.init.Materials;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import org.apache.commons.lang3.ArrayUtils;
 import the_fireplace.frt.FRT;
+import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.items.internal.ItemPaxel;
 
 public class RegisterBaseMetals implements IBaseMetalsRegister {
@@ -49,22 +51,27 @@ public class RegisterBaseMetals implements IBaseMetalsRegister {
 
     @Override
     public void registerItemRenders() {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(copper_paxel, 0, new ModelResourceLocation(FRT.MODID + ":copper_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(silver_paxel, 0, new ModelResourceLocation(FRT.MODID + ":silver_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(tin_paxel, 0, new ModelResourceLocation(FRT.MODID + ":tin_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(lead_paxel, 0, new ModelResourceLocation(FRT.MODID + ":lead_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(nickel_paxel, 0, new ModelResourceLocation(FRT.MODID + ":nickel_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(bronze_paxel, 0, new ModelResourceLocation(FRT.MODID + ":bronze_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(brass_paxel, 0, new ModelResourceLocation(FRT.MODID + ":brass_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(steel_paxel, 0, new ModelResourceLocation(FRT.MODID + ":steel_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(invar_paxel, 0, new ModelResourceLocation(FRT.MODID + ":invar_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(electrum_paxel, 0, new ModelResourceLocation(FRT.MODID + ":electrum_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(cold_iron_paxel, 0, new ModelResourceLocation(FRT.MODID + ":cold_iron_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(mithril_paxel, 0, new ModelResourceLocation(FRT.MODID + ":mithril_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(star_steel_paxel, 0, new ModelResourceLocation(FRT.MODID + ":star_steel_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(adamantine_paxel, 0, new ModelResourceLocation(FRT.MODID + ":adamantine_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(aquarium_paxel, 0, new ModelResourceLocation(FRT.MODID + ":aquarium_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(cupronickel_paxel, 0, new ModelResourceLocation(FRT.MODID + ":cupronickel_paxel", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(platinum_paxel, 0, new ModelResourceLocation(FRT.MODID + ":platinum_paxel", "inventory"));
+        addRender(copper_paxel);
+        addRender(silver_paxel);
+        addRender(tin_paxel);
+        addRender(lead_paxel);
+        addRender(nickel_paxel);
+        addRender(bronze_paxel);
+        addRender(brass_paxel);
+        addRender(steel_paxel);
+        addRender(invar_paxel);
+        addRender(electrum_paxel);
+        addRender(cold_iron_paxel);
+        addRender(mithril_paxel);
+        addRender(star_steel_paxel);
+        addRender(adamantine_paxel);
+        addRender(aquarium_paxel);
+        addRender(cupronickel_paxel);
+        addRender(platinum_paxel);
+    }
+    
+    private void addRender(Item i){
+        if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, i.getUnlocalizedName().substring(5)))
+            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(i, 0, new ModelResourceLocation(FRT.MODID + ":" + i.getUnlocalizedName().substring(5), "inventory"));
     }
 }

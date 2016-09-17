@@ -4,8 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -19,6 +17,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -35,6 +34,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+import org.apache.commons.lang3.ArrayUtils;
 import the_fireplace.frt.armor.FRTArmor;
 import the_fireplace.frt.blocks.*;
 import the_fireplace.frt.blocks.internal.BlockShell;
@@ -74,6 +74,7 @@ public class FRT {
     public static Property ITEMSPERGUNPOWDER_PROPERTY;
     public static Property POTIONSWITCH_PROPERTY;
     public static Property TICKSPERREDSTONE_PROPERTY;
+    public static Property DISABLEDITEMS_PROPERTY;
 
     @SidedProxy(clientSide = "the_fireplace.frt.client.ClientProxy", serverSide = "the_fireplace.frt.CommonProxy")
     public static CommonProxy proxy;
@@ -146,20 +147,28 @@ public class FRT {
     public static final Item hallucination_goggles = new FRTArmor(ArmorMaterial.LEATHER, EntityEquipmentSlot.HEAD).setUnlocalizedName("hallucination_goggles").setCreativeTab(TabFRT);
 
     public void registerBlock(Block block) {
+        if(ArrayUtils.contains(ConfigValues.DISABLEDITEMS, block.getUnlocalizedName().substring(5)))
+            return;
         GameRegistry.register(block.setRegistryName(block.getUnlocalizedName().substring(5)));
         GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
     }
 
     public void registerBlockNoItem(Block block) {
+        if(ArrayUtils.contains(ConfigValues.DISABLEDITEMS, block.getUnlocalizedName().substring(5)))
+            return;
         GameRegistry.register(block.setRegistryName(block.getUnlocalizedName().substring(5)));
     }
 
     public void registerItem(Item item) {
+        if(ArrayUtils.contains(ConfigValues.DISABLEDITEMS, item.getUnlocalizedName().substring(5)))
+            return;
         GameRegistry.register(item.setRegistryName(item.getUnlocalizedName().substring(5)));
     }
 
     public void registerItemBlock(ItemBlock itemBlock){
-        GameRegistry.register(itemBlock.setRegistryName(itemBlock.block.getRegistryName()));
+        if(ArrayUtils.contains(ConfigValues.DISABLEDITEMS, itemBlock.block.getUnlocalizedName().substring(5)))
+            return;
+        GameRegistry.register(itemBlock.setRegistryName(itemBlock.block.getUnlocalizedName().substring(5)));
     }
 
     public void syncConfig() {
@@ -168,6 +177,7 @@ public class FRT {
         ConfigValues.ITEMSPERGUNPOWDER = ITEMSPERGUNPOWDER_PROPERTY.getInt();
         ConfigValues.POTIONSWITCH = POTIONSWITCH_PROPERTY.getInt();
         ConfigValues.TICKSPERREDSTONE = TICKSPERREDSTONE_PROPERTY.getInt();
+        ConfigValues.DISABLEDITEMS = DISABLEDITEMS_PROPERTY.getStringList();
         if (config.hasChanged())
             config.save();
     }
@@ -187,6 +197,8 @@ public class FRT {
         ITEMSPERGUNPOWDER_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.ITEMSPERGUNPOWDER_NAME, ConfigValues.ITEMSPERGUNPOWDER_DEFAULT, proxy.translateToLocal(ConfigValues.ITEMSPERGUNPOWDER_NAME + ".tooltip"));
         POTIONSWITCH_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.POTIONSWITCH_NAME, ConfigValues.POTIONSWITCH_DEFAULT, proxy.translateToLocal(ConfigValues.POTIONSWITCH_NAME + ".tooltip"));
         TICKSPERREDSTONE_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.TICKSPERREDSTONE_NAME, ConfigValues.TICKSPERREDSTONE_DEFAULT, proxy.translateToLocal(ConfigValues.TICKSPERREDSTONE_NAME + ".tooltip"));
+        DISABLEDITEMS_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.DISABLEDITEMS_NAME, ConfigValues.DISABLEDITEMS_DEFAULT, proxy.translateToLocal(ConfigValues.DISABLEDITEMS_NAME + ".tooltip"));
+        DISABLEDITEMS_PROPERTY.setRequiresMcRestart(true);
         POTIONSWITCH_PROPERTY.setMinValue(1);
         POTIONSWITCH_PROPERTY.setMaxValue(10);
         if (event.getSide().isClient())
@@ -289,26 +301,26 @@ public class FRT {
         OreDictionary.registerOre("book", Items.WRITTEN_BOOK);
         OreDictionary.registerOre("book", Items.WRITABLE_BOOK);
         OreDictionary.registerOre("book", Items.ENCHANTED_BOOK);
-        OreDictionary.registerOre("screen", white_screen);
-        OreDictionary.registerOre("screen", black_screen);
-        OreDictionary.registerOre("screen", red_screen);
-        OreDictionary.registerOre("screen", blue_screen);
-        OreDictionary.registerOre("screen", green_screen);
-        OreDictionary.registerOre("screen", orange_screen);
-        OreDictionary.registerOre("screen", brown_screen);
-        OreDictionary.registerOre("screen", sky_screen);
-        OreDictionary.registerOre("screen", magenta_screen);
-        OreDictionary.registerOre("screen", pink_screen);
-        OreDictionary.registerOre("screen", cyan_screen);
-        OreDictionary.registerOre("screen", lime_screen);
-        OreDictionary.registerOre("screen", grey_screen);
-        OreDictionary.registerOre("screen", silver_screen);
-        OreDictionary.registerOre("screen", purple_screen);
-        OreDictionary.registerOre("screen", yellow_screen);
-        OreDictionary.registerOre("screen", light_tan_screen);
-        OreDictionary.registerOre("screen", dark_tan_screen);
-        OreDictionary.registerOre("enderpearl", pigder_pearl);
-        OreDictionary.registerOre("plankWood", new ItemStack(waxed_planks, 1, OreDictionary.WILDCARD_VALUE));
+        registerOre("screen", white_screen);
+        registerOre("screen", black_screen);
+        registerOre("screen", red_screen);
+        registerOre("screen", blue_screen);
+        registerOre("screen", green_screen);
+        registerOre("screen", orange_screen);
+        registerOre("screen", brown_screen);
+        registerOre("screen", sky_screen);
+        registerOre("screen", magenta_screen);
+        registerOre("screen", pink_screen);
+        registerOre("screen", cyan_screen);
+        registerOre("screen", lime_screen);
+        registerOre("screen", grey_screen);
+        registerOre("screen", silver_screen);
+        registerOre("screen", purple_screen);
+        registerOre("screen", yellow_screen);
+        registerOre("screen", light_tan_screen);
+        registerOre("screen", dark_tan_screen);
+        registerOre("enderpearl", pigder_pearl);
+        registerOre("plankWood", new ItemStack(waxed_planks, 1, OreDictionary.WILDCARD_VALUE));
         IRecipeRegister recipes;
         if (MIDLib.hasBaseMetals()) {
             recipes = new BaseMetalsRecipes();
@@ -318,10 +330,15 @@ public class FRT {
         recipes.registerRecipes();
         VanillaStacks.registerConstantRecipes();
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.COAL, new DispenseBehaviorCoal());
-        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(charged_coal, new DispenseBehaviorChargedCoal());
-        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(destabilized_coal, new DispenseBehaviorDestabilizedCoal());
-        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(restabilized_coal, new DispenseBehaviorRestabilizedCoal());
-        BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(refined_coal, new DispenseBehaviorRefinedCoal());
+        if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, charged_coal.getUnlocalizedName().substring(5)))
+            BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(charged_coal, new DispenseBehaviorChargedCoal());
+        if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, destabilized_coal.getUnlocalizedName().substring(5)))
+            BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(destabilized_coal, new DispenseBehaviorDestabilizedCoal());
+        if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, restabilized_coal.getUnlocalizedName().substring(5)))
+            BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(restabilized_coal, new DispenseBehaviorRestabilizedCoal());
+        if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, refined_coal.getUnlocalizedName().substring(5)))
+            BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(refined_coal, new DispenseBehaviorRefinedCoal());
+
         if(event.getSide().isClient()){
             if (MIDLib.hasBaseMetals()) {
                 bm = new RegisterBaseMetals();
@@ -371,20 +388,21 @@ public class FRT {
         rmm(candle);
         rmm(candle_with_base);
         rmm(wax_deposit);
-        ModelBakery.registerItemVariants(Item.getItemFromBlock(waxed_planks),
-                new ModelResourceLocation(MODID+":oak_waxed_planks", "inventory"),
-                new ModelResourceLocation(MODID+":spruce_waxed_planks", "inventory"),
-                new ModelResourceLocation(MODID+":birch_waxed_planks", "inventory"),
-                new ModelResourceLocation(MODID+":jungle_waxed_planks", "inventory"),
-                new ModelResourceLocation(MODID+":acacia_waxed_planks", "inventory"),
-                new ModelResourceLocation(MODID+":dark_oak_waxed_planks", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 0, new ModelResourceLocation(FRT.MODID + ":oak_waxed_planks", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 1, new ModelResourceLocation(FRT.MODID + ":spruce_waxed_planks", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 2, new ModelResourceLocation(FRT.MODID + ":birch_waxed_planks", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 3, new ModelResourceLocation(FRT.MODID + ":jungle_waxed_planks", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 4, new ModelResourceLocation(FRT.MODID + ":acacia_waxed_planks", "inventory"));
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 5, new ModelResourceLocation(FRT.MODID + ":dark_oak_waxed_planks", "inventory"));
-
+        if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, waxed_planks.getUnlocalizedName().substring(5))) {
+            ModelLoader.registerItemVariants(Item.getItemFromBlock(waxed_planks),
+                    new ModelResourceLocation(MODID + ":oak_waxed_planks", "inventory"),
+                    new ModelResourceLocation(MODID + ":spruce_waxed_planks", "inventory"),
+                    new ModelResourceLocation(MODID + ":birch_waxed_planks", "inventory"),
+                    new ModelResourceLocation(MODID + ":jungle_waxed_planks", "inventory"),
+                    new ModelResourceLocation(MODID + ":acacia_waxed_planks", "inventory"),
+                    new ModelResourceLocation(MODID + ":dark_oak_waxed_planks", "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(waxed_planks), 0, new ModelResourceLocation(FRT.MODID + ":oak_waxed_planks", "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(waxed_planks), 1, new ModelResourceLocation(FRT.MODID + ":spruce_waxed_planks", "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(waxed_planks), 2, new ModelResourceLocation(FRT.MODID + ":birch_waxed_planks", "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(waxed_planks), 3, new ModelResourceLocation(FRT.MODID + ":jungle_waxed_planks", "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(waxed_planks), 4, new ModelResourceLocation(FRT.MODID + ":acacia_waxed_planks", "inventory"));
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(waxed_planks), 5, new ModelResourceLocation(FRT.MODID + ":dark_oak_waxed_planks", "inventory"));
+        }
         rmm(handheld_dispenser);
         rmm(handheld_quad_dispenser);
         rmm(handheld_insane_dispenser);
@@ -410,11 +428,29 @@ public class FRT {
 
     @SideOnly(Side.CLIENT)
     private void rmm(Block b) {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(b), 0, new ModelResourceLocation(FRT.MODID + ":" + b.getUnlocalizedName().substring(5), "inventory"));
+        if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, b.getUnlocalizedName().substring(5)))
+            ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(b), 0, new ModelResourceLocation(FRT.MODID + ":" + b.getUnlocalizedName().substring(5), "inventory"));
     }
 
     @SideOnly(Side.CLIENT)
     private void rmm(Item i) {
-        Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(i, 0, new ModelResourceLocation(FRT.MODID + ":" + i.getUnlocalizedName().substring(5), "inventory"));
+        if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, i.getUnlocalizedName().substring(5)))
+            ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(FRT.MODID + ":" + i.getUnlocalizedName().substring(5), "inventory"));
+    }
+
+    private void registerOre(String s, Block b){
+        if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, b.getUnlocalizedName().substring(5)))
+            OreDictionary.registerOre(s, b);
+    }
+
+    private void registerOre(String s, Item i){
+        if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, i.getUnlocalizedName().substring(5)))
+            OreDictionary.registerOre(s, i);
+    }
+
+    private void registerOre(String s, ItemStack is){
+        if(is.getItem() != null)
+            if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, is.getItem().getUnlocalizedName().substring(5)))
+                OreDictionary.registerOre(s, is);
     }
 }

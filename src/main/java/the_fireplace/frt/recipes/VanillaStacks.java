@@ -10,8 +10,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import org.apache.commons.lang3.ArrayUtils;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.api.PopFurnaceRegistry;
+import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.tools.MIDLib;
 
 /**
@@ -191,7 +193,7 @@ public class VanillaStacks {
         shapeless(restabilizedCoalStack9, restabilizedCoalBlockStack);
         shapeless(refinedCoalStack9, refinedCoalBlockStack);
         shapeless(stoneSlabStack2, polishedStoneStack);
-        GameRegistry.addSmelting(restabilizedCoalStack, refinedCoalStack, 0.05F);
+        addSmelting(restabilizedCoalStack, refinedCoalStack, 0.05F);
         for(BlockPlanks.EnumType meta: BlockPlanks.EnumType.values()) {
             shapeless(new ItemStack(FRT.waxed_planks, 1, meta.ordinal()), new ItemStack(Blocks.PLANKS, 1, meta.ordinal()), waxStack);
             shapeless(new ItemStack(Blocks.PLANKS, 1, meta.ordinal()), new ItemStack(FRT.waxed_planks, 1, meta.ordinal()));
@@ -319,10 +321,38 @@ public class VanillaStacks {
     }
 
     public static void shapeless(ItemStack is, Object... args) {
+        if(is.getItem() != null) {
+            if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, is.getItem().getUnlocalizedName().substring(5)))
+                return;
+        }else return;
+        for(int i=0;i<args.length;i++){
+            if(args[i] instanceof ItemStack)
+                if(((ItemStack)args[i]).getItem() != null) {
+                    if(ArrayUtils.contains(ConfigValues.DISABLEDITEMS, ((ItemStack)args[i]).getItem().getUnlocalizedName().substring(5)))
+                        return;
+                }else return;
+        }
         GameRegistry.addRecipe(new ShapelessOreRecipe(is, args));
     }
 
     public static void shaped(ItemStack is, Object... args) {
+        if(is.getItem() != null) {
+            if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, is.getItem().getUnlocalizedName().substring(5)))
+                return;
+        }else return;
+        for(int i=0;i<args.length;i++){
+            if(args[i] instanceof ItemStack)
+                if(((ItemStack)args[i]).getItem() != null) {
+                    if(ArrayUtils.contains(ConfigValues.DISABLEDITEMS, ((ItemStack)args[i]).getItem().getUnlocalizedName().substring(5)))
+                        return;
+                }else return;
+        }
         GameRegistry.addRecipe(new ShapedOreRecipe(is, args));
+    }
+
+    public static void addSmelting(ItemStack isIn, ItemStack isOut, float xp){
+        if(isIn.getItem() == null || isOut.getItem() == null || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, isIn.getItem().getUnlocalizedName().substring(5)) || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, isOut.getItem().getUnlocalizedName().substring(5)))
+            return;
+        GameRegistry.addSmelting(isIn, isOut, xp);
     }
 }

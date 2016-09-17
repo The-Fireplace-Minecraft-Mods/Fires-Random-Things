@@ -1,6 +1,8 @@
 package the_fireplace.frt.api;
 
 import net.minecraft.item.ItemStack;
+import org.apache.commons.lang3.ArrayUtils;
+import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.recipes.ShattererRecipes;
 
 /**
@@ -16,6 +18,8 @@ public class PopFurnaceRegistry {
      * @param resultCount The number of items to output per input
      */
     public static void registerPopFurnaceRecipe(ItemStack isIn, ItemStack isOut, int resultCount) {
+        if(isIn.getItem() == null || isOut.getItem() == null || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, isIn.getItem().getUnlocalizedName().substring(5)) || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, isOut.getItem().getUnlocalizedName().substring(5)))
+            return;
         ShattererRecipes.instance().addPopFurnaceRecipe(isIn, isOut, resultCount);
     }
 
@@ -35,6 +39,10 @@ public class PopFurnaceRegistry {
      * @param items ItemStack(s) containing the item(s) to be registered
      */
     public static void registerGunpowder(ItemStack... items) {
+        for(int i=0;i<items.length;i++){
+            if(items[i].getItem() == null || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, items[i].getItem().getUnlocalizedName().substring(5)))
+                return;
+        }
         ShattererRecipes.instance().addGunpowders(items);
     }
 
@@ -44,6 +52,10 @@ public class PopFurnaceRegistry {
      * @param items ItemStack(s) containing the item(s) to be registered
      */
     public static void registerFirestarter(ItemStack... items) {
+        for(int i=0;i<items.length;i++){
+            if(items[i].getItem() == null || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, items[i].getItem().getUnlocalizedName().substring(5)))
+                return;
+        }
         ShattererRecipes.instance().addFirestarters(items);
     }
 }

@@ -23,4 +23,8 @@ public class ConfigValues {
     public static final int POTIONSWITCH_DEFAULT = 1;
     public static int POTIONSWITCH;
     public static final String POTIONSWITCH_NAME = "cfg.potion_switch";
+
+    public static final String[] DISABLEDITEMS_DEFAULT = new String[]{};
+    public static String[] DISABLEDITEMS;
+    public static final String DISABLEDITEMS_NAME = "cfg.disabled_items";
 }

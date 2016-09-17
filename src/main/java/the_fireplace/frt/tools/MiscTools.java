@@ -4,6 +4,8 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.ArrayUtils;
+import the_fireplace.frt.config.ConfigValues;
 
 public class MiscTools {
     public static boolean areItemStacksEqual(ItemStack is1, ItemStack is2) {
@@ -11,6 +13,8 @@ public class MiscTools {
     }
 
     public static void spawnItemAtPos(ItemStack stack, World world, BlockPos pos) {
+        if(ArrayUtils.contains(ConfigValues.DISABLEDITEMS, stack.getItem().getRegistryName()))
+            return;
         EntityItem entityitem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);
         if (!world.isRemote)
             world.spawnEntityInWorld(entityitem);
