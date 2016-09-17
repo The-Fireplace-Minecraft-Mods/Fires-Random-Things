@@ -43,7 +43,7 @@ curseforge {
   }
 }
 
-version = "6.4.X"
+version = "!!VERSION!!"
 group= "the_fireplace.frt"
 archivesBaseName = "FiresRandomThings"
 
