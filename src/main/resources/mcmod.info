@@ -12,7 +12,7 @@
   "logoFile": "",
   "screenshots": [],
   "dependencies": [],
-  "requiredMods": ["Forge@[12.17.0.1909,)"],
+  "requiredMods": ["Forge@[12.18.1.2071,)"],
   "useDependencyInformation": true
 }
 ]

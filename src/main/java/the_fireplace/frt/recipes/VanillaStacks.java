@@ -31,6 +31,7 @@ public class VanillaStacks {
     static ItemStack glassStack = new ItemStack(Blocks.GLASS);
     static ItemStack glowstoneStack = new ItemStack(Blocks.GLOWSTONE);
     static ItemStack ironTrapdoorStack = new ItemStack(Blocks.IRON_TRAPDOOR);
+    static ItemStack leverStack = new ItemStack(Blocks.LEVER);
     static ItemStack lilacStack = new ItemStack(Blocks.DOUBLE_PLANT, 1, 1);
     static ItemStack orangeTulipStack = new ItemStack(Blocks.RED_FLOWER, 1, 5);
     static ItemStack oxeyeDaisyStack = new ItemStack(Blocks.RED_FLOWER, 1, 8);
@@ -59,7 +60,6 @@ public class VanillaStacks {
     static ItemStack dragonBreathStack = new ItemStack(Items.DRAGON_BREATH);
     static ItemStack enderPearlStack = new ItemStack(Items.ENDER_PEARL);
     static ItemStack fireChargeStack = new ItemStack(Items.FIRE_CHARGE);
-    static ItemStack flintStack = new ItemStack(Items.FLINT);
     static ItemStack flintAndSteelStack = new ItemStack(Items.FLINT_AND_STEEL);
     static ItemStack glisteringMelonStack = new ItemStack(Items.SPECKLED_MELON);
     static ItemStack glowstoneDustStack = new ItemStack(Items.GLOWSTONE_DUST);
@@ -97,6 +97,7 @@ public class VanillaStacks {
     static ItemStack cyanScreenStack = new ItemStack(FRT.cyan_screen);
     static ItemStack darkTanScreenStack = new ItemStack(FRT.dark_tan_screen);
     static ItemStack destabilizedCoalBlockStack = new ItemStack(FRT.destabilized_coal_block);
+    static ItemStack enderBookshelfStack = new ItemStack(FRT.ender_bookshelf);
     static ItemStack fireplaceBottomStack2 = new ItemStack(FRT.fireplace_bottom, 2);
     static ItemStack greenScreenStack = new ItemStack(FRT.green_screen);
     static ItemStack greyScreenStack = new ItemStack(FRT.grey_screen);
@@ -122,9 +123,6 @@ public class VanillaStacks {
     static ItemStack whiteScreenStack = new ItemStack(FRT.white_screen);
     static ItemStack yellowScreenStack = new ItemStack(FRT.yellow_screen);
     //Custom Items
-    static ItemStack bazookaStack = new ItemStack(FRT.bazooka);
-    static ItemStack bazookaBarrelStack = new ItemStack(FRT.bazooka_barrel);
-    static ItemStack bazookaStockStack = new ItemStack(FRT.bazooka_stock);
     static ItemStack chargedCoalStack = new ItemStack(FRT.charged_coal);
     static ItemStack chargedCoalStack8 = new ItemStack(FRT.charged_coal, 8);
     static ItemStack chargedCoalStack9 = new ItemStack(FRT.charged_coal, 9);
@@ -136,6 +134,9 @@ public class VanillaStacks {
     static ItemStack goldPaxelStack = new ItemStack(FRT.gold_paxel);
     static ItemStack gunpowderSubstituteStack = new ItemStack(FRT.gunpowder_substitute);
     static ItemStack hallucinationGogglesStack = new ItemStack(FRT.hallucination_goggles);
+    static ItemStack handheldDispenserStack = new ItemStack(FRT.handheld_dispenser);
+    static ItemStack handheldQuadDispenserStack = new ItemStack(FRT.handheld_quad_dispenser);
+    static ItemStack handheldInsaneDispenserStack = new ItemStack(FRT.handheld_insane_dispenser);
     static ItemStack ironPaxelStack = new ItemStack(FRT.iron_paxel);
     static ItemStack kineticPearlStack = new ItemStack(FRT.kinetic_pearl);
     static ItemStack leafcutterStack = new ItemStack(FRT.leafcutter);
@@ -156,8 +157,10 @@ public class VanillaStacks {
      * This is where recipes that, even if additional recipes are added, will not be removed. Call in all {@link IRecipeRegister#registerRecipes()}.
      */
     public static void registerConstantRecipes() {
+        shaped(handheldDispenserStack, " d ", "ili", 'd', dispenserStack, 'i', "ingotIron", 'l', leverStack);
+        shaped(handheldQuadDispenserStack, " d ", "ili", 'd', quadDispenserStack, 'i', "ingotGold", 'l', leverStack);
+        shaped(handheldInsaneDispenserStack, " d ", "ili", 'd', insaneDispenserStack, 'i', "gemDiamond", 'l', leverStack);
         shaped(waxBlockStack, "ww", "ww", 'w', waxStack);
-        shaped(bazookaStack, "xxy", 'x', bazookaBarrelStack, 'y', bazookaStockStack);
         shaped(polishedStoneStack2, " s ", "s s", " s ", 's', stoneSlabStack);
         shaped(blazeCakeStack, "m", "c", 'm', magmaCreamStack, 'c', cakeStack);
         shaped(blazeCakeStack, "p", "s", "c", 'p', blazePowderStack, 's', "slimeball", 'c', cakeStack);
@@ -180,6 +183,7 @@ public class VanillaStacks {
         shaped(shellCoreStack, "grg", "rer", "grg", 'g', "blockGold", 'r', "blockRedstone", 'e', "enderpearl");
         shaped(pigderPearlStack, " s ", "pep", 's', saddleStack, 'p', porkchopStack, 'e', enderPearlStack);
         shaped(pigderPearlStack4, " s ", "pep", "eee", 's', saddleStack, 'p', porkchopStack, 'e', enderPearlStack);
+        shaped(enderBookshelfStack, "ebe", "bbb", "ebe", 'e', "enderpearl", 'b', compactBookshelfStack);
         shapeless(waxStack4, waxBlockStack);
         shapeless(dirtStack9, compactDirtStack);
         shapeless(chargedCoalStack9, chargedCoalBlockStack);
@@ -233,6 +237,9 @@ public class VanillaStacks {
         shaped(diamondPaxelStack, "www", " w ", " s ", 'w', "gemDiamond", 's', "stickWood");
         shaped(leafcutterStack, " s ", "t t", "t t", 's', shearsStack, 't', "stickWood");
         shaped(kineticPearlStack, " g ", "geg", " g ", 'g', "nuggetGold", 'e', "enderpearl");
+        shapeless(dispenserStack, handheldDispenserStack);
+        shapeless(quadDispenserStack, handheldQuadDispenserStack);
+        shapeless(insaneDispenserStack, handheldInsaneDispenserStack);
         shapeless(whiteScreenStack, "screen", "dyeWhite", "dyeWhite");
         shapeless(redScreenStack, "screen", "dyeRed", "dyeRed");
         shapeless(blueScreenStack, "screen", "dyeBlue", "dyeBlue");
@@ -299,15 +306,15 @@ public class VanillaStacks {
         PopFurnaceRegistry.registerPopFurnaceRecipe(peonyStack, pinkDyeStack, 3);
         PopFurnaceRegistry.registerPopFurnaceRecipe(candleStack, waxStack, 2);
         PopFurnaceRegistry.registerPopFurnaceRecipe(candlePlateStack, waxStack, 2);
-        shaped(bazookaBarrelStack, "fff", "   ", "fff", 'f', flintStack);
-        shaped(bazookaStockStack, "fff", "s f", "fff", 'f', flintStack, 's', flintAndSteelStack);
         shaped(compactDirtStack, "ddd", "ddd", "ddd", 'd', dirtStack);
         shaped(compactBookshelfStack, "bbb", 'b', bookshelfStack);
         //Recipes that change with certain mods installed, which don't require different classes
         if (MIDLib.hasRealStoneTools()) {
             shaped(stonePaxelStack, "www", " w ", " s ", 'w', stoneStack, 's', "stickWood");
+            shaped(stonePaxelStack, "www", " w ", " s ", 'w', stoneStack, 's', "rodWood");
         } else {
             shaped(stonePaxelStack, "www", " w ", " s ", 'w', cobbleStack, 's', "stickWood");
+            shaped(stonePaxelStack, "www", " w ", " s ", 'w', cobbleStack, 's', "rodWood");
         }
     }
 

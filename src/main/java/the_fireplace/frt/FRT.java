@@ -35,11 +35,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-import the_fireplace.frt.api.AmmoRegistry;
 import the_fireplace.frt.armor.FRTArmor;
 import the_fireplace.frt.blocks.*;
 import the_fireplace.frt.blocks.internal.BlockShell;
-import the_fireplace.frt.blocks.internal.DummyBlockBazooka;
+import the_fireplace.frt.blocks.internal.DummyBlockHandheldDispenser;
 import the_fireplace.frt.compat.basemetals.IBaseMetalsRegister;
 import the_fireplace.frt.compat.basemetals.RegisterBaseMetals;
 import the_fireplace.frt.config.ConfigValues;
@@ -61,7 +60,7 @@ import the_fireplace.frt.worldgen.WorldGeneratorWax;
 /**
  * @author The_Fireplace
  */
-@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.client.gui.FRTGuiFactory", updateJSON = "http://caterpillar.bitnamiapp.com/jsons/frt.json", acceptedMinecraftVersions = "[1.9.4,1.10.2]")
+@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.client.gui.FRTGuiFactory", updateJSON = "http://thefireplace.bitnamiapp.com/jsons/frt.json", acceptedMinecraftVersions = "[1.10.2]")
 public class FRT {
     @Instance(FRT.MODID)
     public static FRT instance;
@@ -85,6 +84,7 @@ public class FRT {
 
     public int clientCooldownTicks;
 
+    public static final Block ender_bookshelf = new BlockEnderBookshelf();
     public static final Block compact_bookshelf = new BlockCompactBookshelf();
     public static final Block compact_dirt = new FRTBlock(Material.GROUND).setSoundType(SoundType.GROUND).setHarvestTool("shovel", 1).setHardness(2.3F).setUnlocalizedName("compact_dirt");
     public static final Block fireplace_bottom = new BlockFireplaceBottom();
@@ -124,9 +124,9 @@ public class FRT {
     public static final Block waxed_planks = new BlockWaxedPlanks();
 
     public static final Item charged_coal = new ItemChargedCoal();
-    public static final Item bazooka_barrel = new Item().setUnlocalizedName("coal_gun_barrel").setCreativeTab(TabFRT);
-    public static final Item bazooka_stock = new Item().setUnlocalizedName("coal_gun_stock").setCreativeTab(TabFRT);
-    public static final DummyBlockBazooka bazooka = new DummyBlockBazooka();
+    public static final Block handheld_dispenser = new DummyBlockHandheldDispenser().setUnlocalizedName("handheld_dispenser");
+    public static final Block handheld_quad_dispenser = new DummyBlockHandheldDispenser().setUnlocalizedName("handheld_quad_dispenser");
+    public static final Block handheld_insane_dispenser = new DummyBlockHandheldDispenser().setUnlocalizedName("handheld_insane_dispenser");
     public static final Item destabilized_coal = new Item().setUnlocalizedName("destabilized_coal").setCreativeTab(TabFRT);
     public static final Item diamond_paxel = new ItemPaxel(ToolMaterial.DIAMOND).setUnlocalizedName("diamond_paxel").setCreativeTab(FRT.TabFRT);
     public static final Item iron_paxel = new ItemPaxel(ToolMaterial.IRON).setUnlocalizedName("iron_paxel").setCreativeTab(FRT.TabFRT);
@@ -192,6 +192,7 @@ public class FRT {
         if (event.getSide().isClient())
             POTIONSWITCH_PROPERTY.setConfigEntryClass(GuiConfigEntries.NumberSliderEntry.class);
         syncConfig();
+        registerBlock(ender_bookshelf);
         registerBlock(polished_stone);
         registerBlock(compact_dirt);
         registerBlock(fireplace_bottom);
@@ -232,8 +233,6 @@ public class FRT {
         registerItemBlock(new ItemWaxedPlanks(waxed_planks));
 
         registerItem(charged_coal);
-        registerItem(bazooka_barrel);
-        registerItem(bazooka_stock);
         registerItem(destabilized_coal);
         registerItem(restabilized_coal);
         registerItem(refined_coal);
@@ -251,8 +250,12 @@ public class FRT {
         registerItem(kinetic_pearl);
         registerItem(pigder_pearl);
 
-        registerBlockNoItem(bazooka);
-        registerItemBlock(new ItemBlockBazooka(bazooka));
+        registerBlockNoItem(handheld_dispenser);
+        registerBlockNoItem(handheld_quad_dispenser);
+        registerBlockNoItem(handheld_insane_dispenser);
+        registerItemBlock(new ItemHandheldDispenser(handheld_dispenser));
+        registerItemBlock(new ItemHandheldDispenser(handheld_quad_dispenser));
+        registerItemBlock(new ItemHandheldDispenser(handheld_insane_dispenser));
 
         int eid = 0;
         EntityRegistry.registerModEntity(EntityCoal.class, "ammo_coal", eid, instance, 64, 10, true);
@@ -269,23 +272,17 @@ public class FRT {
         PotionType.REGISTRY.register(PotionType.REGISTRY.getKeys().size(), new ResourceLocation(MODID, "hallucination"), new PotionType(new PotionEffect(hallucination, 3600)));
         PotionType.REGISTRY.register(PotionType.REGISTRY.getKeys().size(), new ResourceLocation(MODID, "long_hallucination"), new PotionType(new PotionEffect(hallucination, 9600)));
 
-        AmmoRegistry.addAmmo(new ItemStack(Items.COAL), EntityCoal.class);
-        AmmoRegistry.addAmmo(new ItemStack(charged_coal), EntityChargedCoal.class);
-        AmmoRegistry.addAmmo(new ItemStack(destabilized_coal), EntityDestabilizedCoal.class);
-        AmmoRegistry.addAmmo(new ItemStack(restabilized_coal), EntityRestabilizedCoal.class);
-        AmmoRegistry.addAmmo(new ItemStack(refined_coal), EntityRefinedCoal.class);
+        if (event.getSide().isClient())
+            registerItemRenders();
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
         IBaseMetalsRegister bm;
-        if (MIDLib.hasBaseMetals()) {
+        if(MIDLib.hasBaseMetals()){
             bm = new RegisterBaseMetals();
             bm.registerItems();
         }
-
-        if (event.getSide().isClient())
-            registerItemRenders();
         proxy.registerTileEntities();
         GameRegistry.registerWorldGenerator(new WorldGeneratorWax(), 6);
         OreDictionary.registerOre("book", Items.BOOK);
@@ -325,6 +322,12 @@ public class FRT {
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(destabilized_coal, new DispenseBehaviorDestabilizedCoal());
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(restabilized_coal, new DispenseBehaviorRestabilizedCoal());
         BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(refined_coal, new DispenseBehaviorRefinedCoal());
+        if(event.getSide().isClient()){
+            if (MIDLib.hasBaseMetals()) {
+                bm = new RegisterBaseMetals();
+                bm.registerItemRenders();
+            }
+        }
     }
 
     /**
@@ -334,6 +337,7 @@ public class FRT {
     private void registerItemRenders() {
         rmm(shell_core);
         rmm(polished_stone);
+        rmm(ender_bookshelf);
         rmm(compact_bookshelf);
         rmm(compact_dirt);
         rmm(blaze_cake);
@@ -381,11 +385,11 @@ public class FRT {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 4, new ModelResourceLocation(FRT.MODID + ":acacia_waxed_planks", "inventory"));
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(waxed_planks), 5, new ModelResourceLocation(FRT.MODID + ":dark_oak_waxed_planks", "inventory"));
 
-        rmm(bazooka);
+        rmm(handheld_dispenser);
+        rmm(handheld_quad_dispenser);
+        rmm(handheld_insane_dispenser);
 
         rmm(charged_coal);
-        rmm(bazooka_barrel);
-        rmm(bazooka_stock);
         rmm(destabilized_coal);
         rmm(restabilized_coal);
         rmm(refined_coal);
@@ -402,12 +406,6 @@ public class FRT {
         rmm(wax);
         rmm(kinetic_pearl);
         rmm(pigder_pearl);
-
-        IBaseMetalsRegister bm;
-        if (MIDLib.hasBaseMetals()) {
-            bm = new RegisterBaseMetals();
-            bm.registerItemRenders();
-        }
     }
 
     @SideOnly(Side.CLIENT)

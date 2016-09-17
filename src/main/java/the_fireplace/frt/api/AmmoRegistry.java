@@ -2,11 +2,11 @@ package the_fireplace.frt.api;
 
 import net.minecraft.item.ItemStack;
 import the_fireplace.frt.entity.projectile.EntityBazookaAmmo;
-import the_fireplace.frt.recipes.AmmoTypes;
 
 /**
  * @author The_Fireplace
  */
+@Deprecated
 public class AmmoRegistry {
     /**
      * Adds an ammo type to the Coal Gun
@@ -15,7 +15,8 @@ public class AmmoRegistry {
      * @param ammoClass
      * Your ammo entity's class.
      */
+    @Deprecated
     public static void addAmmo(ItemStack item, Class<? extends EntityBazookaAmmo> ammoClass){
-        AmmoTypes.instance().addAmmo(item, ammoClass);
+        System.out.println("Mod adding "+ammoClass.toString()+" as an ammo needs to update their FRT Compat code");
     }
 }

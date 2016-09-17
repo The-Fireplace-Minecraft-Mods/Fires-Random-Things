@@ -33,8 +33,6 @@ curseforge {
     changelog = file('changelog.txt')
     releaseType = 'release'
     addGameVersion '1.10.2'
-	addGameVersion '1.10'
-	addGameVersion '1.9.4'
 	addGameVersion 'Java 8'
     mainArtifact (jar){
 		relations{
@@ -45,9 +43,9 @@ curseforge {
   }
 }
 
-version = "!!VERSION!!"
+version = "6.4.X"
 group= "the_fireplace.frt"
-archivesBaseName = "FiresRandomThings-Forge"
+archivesBaseName = "FiresRandomThings"
 
 modsIO {
     key = project.modsioApiKey
@@ -62,7 +60,7 @@ modsIO {
 }
 
 minecraft {
-    version = "1.10.2-12.18.0.2004-1.10.0"
+    version = "1.10.2-12.18.1.2071"
     runDir = "run"
     mappings = "snapshot_20160518"
     useDepAts = true
