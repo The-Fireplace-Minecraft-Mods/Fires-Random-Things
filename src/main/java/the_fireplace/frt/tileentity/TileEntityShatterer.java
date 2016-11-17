@@ -13,6 +13,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.recipes.ShattererRecipes;
@@ -363,5 +367,23 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
                 return true;
             }
         return false;
+    }
+
+    IItemHandler handlerTop = new SidedInvWrapper(this, EnumFacing.UP);
+    IItemHandler handlerBottom = new SidedInvWrapper(this, EnumFacing.DOWN);
+    IItemHandler handlerSide = new SidedInvWrapper(this, EnumFacing.WEST);
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+    {
+        if (facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+            if (facing == EnumFacing.DOWN)
+                return (T) handlerBottom;
+            else if (facing == EnumFacing.UP)
+                return (T) handlerTop;
+            else
+                return (T) handlerSide;
+        return super.getCapability(capability, facing);
     }
 }
