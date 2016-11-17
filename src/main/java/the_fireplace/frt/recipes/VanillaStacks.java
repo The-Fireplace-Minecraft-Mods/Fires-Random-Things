@@ -309,7 +309,8 @@ public class VanillaStacks {
         PopFurnaceRegistry.registerPopFurnaceRecipe(candleStack, waxStack, 2);
         PopFurnaceRegistry.registerPopFurnaceRecipe(candlePlateStack, waxStack, 2);
         shaped(compactDirtStack, "ddd", "ddd", "ddd", 'd', dirtStack);
-        shaped(compactBookshelfStack, "bbb", 'b', bookshelfStack);
+        shaped(compactBookshelfStack, "bbb", 'b', "bookshelfWood");
+        shaped(compactBookshelfStack, "bbb", 'b', "bookshelf");
         //Recipes that change with certain mods installed, which don't require different classes
         if (MIDLib.hasRealStoneTools()) {
             shaped(stonePaxelStack, "www", " w ", " s ", 'w', stoneStack, 's', "stickWood");

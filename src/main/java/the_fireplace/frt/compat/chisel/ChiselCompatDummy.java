@@ -1,0 +1,13 @@
+package the_fireplace.frt.compat.chisel;
+
+import net.minecraft.block.state.IBlockState;
+
+/**
+ * @author The_Fireplace
+ */
+public class ChiselCompatDummy implements IChiselCompat {
+    @Override
+    public boolean isObsidian(IBlockState state) {
+        return false;
+    }
+}

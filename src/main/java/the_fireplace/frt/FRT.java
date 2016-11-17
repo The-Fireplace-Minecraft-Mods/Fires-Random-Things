@@ -6,6 +6,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -302,6 +303,8 @@ public class FRT {
         OreDictionary.registerOre("book", Items.WRITTEN_BOOK);
         OreDictionary.registerOre("book", Items.WRITABLE_BOOK);
         OreDictionary.registerOre("book", Items.ENCHANTED_BOOK);
+        OreDictionary.registerOre("bookshelfWood", Blocks.BOOKSHELF);
+        OreDictionary.registerOre("bookshelf", Blocks.BOOKSHELF);
         registerOre("screen", white_screen);
         registerOre("screen", black_screen);
         registerOre("screen", red_screen);
