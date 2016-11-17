@@ -43,7 +43,7 @@ curseforge {
   }
 }
 
-version = "!!VERSION!!"
+version = "6.4.6"
 group= "the_fireplace.frt"
 archivesBaseName = "FiresRandomThings"
 
@@ -60,22 +60,25 @@ modsIO {
 }
 
 minecraft {
-    version = "1.10.2-12.18.1.2071"
+    version = "1.10.2-12.18.2.2114"
     runDir = "run"
     mappings = "snapshot_20160518"
     useDepAts = true
 }
 
 dependencies {
-	deobfCompile group: "mezz.jei", name: "jei_1.10.2", version: "3.7.3.221"
+	deobfCompile group: "mezz.jei", name: "jei_1.10.2", version: "3.9.0.246"
+	deobfProvided group: "team.chisel", name: "Chisel", version: "MC1.9.4-0.0.6.53"
 }
 
 
 repositories {
-	maven {
-			name "progwml6"
-			url "http://dvs1.progwml6.com/files/maven"
-		}
+	maven { //JEI, Natura, Mantle, TiCon
+		url "http://dvs1.progwml6.com/files/maven"
+	}
+	maven { //EnderIO, EnderCore, EnderZoo, The One Probe, Chisel
+		url = "http://maven.tterrag.com"
+	}
 }
 
 processResources
