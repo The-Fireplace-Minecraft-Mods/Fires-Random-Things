@@ -1,5 +1,6 @@
 package the_fireplace.frt.tileentity;
 
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.ISidedInventory;
@@ -28,6 +29,7 @@ import java.util.Map.Entry;
 /**
  * @author The_Fireplace
  */
+@MethodsReturnNonnullByDefault
 public class TileEntityShatterer extends TileEntity implements ISidedInventory {
     private ItemStack[] inventory;
     public static final String PROP_NAME = "TileEntityPopFurnace";
@@ -77,16 +79,27 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
     }
 
     @Override
+    public boolean isEmpty() {
+        for(ItemStack itemStack : inventory)
+            if(!itemStack.isEmpty())
+                return false;
+        return true;
+    }
+
+    @Override
     public ItemStack getStackInSlot(int index) {
-        return inventory[index];
+        if(inventory[index] != null)
+            return inventory[index];
+        else
+            return ItemStack.EMPTY;
     }
 
     @Override
     public ItemStack decrStackSize(int index, int count) {
         ItemStack is = getStackInSlot(index);
-        if (is != null) {
-            if (is.stackSize <= count) {
-                setInventorySlotContents(index, null);
+        if (!is.isEmpty()) {
+            if (is.getCount() <= count) {
+                setInventorySlotContents(index, ItemStack.EMPTY);
             } else {
                 is = is.splitStack(count);
                 markDirty();
@@ -98,7 +111,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
     @Override
     public ItemStack removeStackFromSlot(int index) {
         ItemStack is = getStackInSlot(index);
-        setInventorySlotContents(index, null);
+        setInventorySlotContents(index, ItemStack.EMPTY);
         return is;
     }
 
@@ -106,8 +119,8 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
     public void setInventorySlotContents(int index, ItemStack stack) {
         inventory[index] = stack;
 
-        if (stack != null && stack.stackSize > getInventoryStackLimit()) {
-            stack.stackSize = getInventoryStackLimit();
+        if (!stack.isEmpty() && stack.getCount() > getInventoryStackLimit()) {
+            stack.setCount(getInventoryStackLimit());
         }
         markDirty();
     }
@@ -118,7 +131,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player) {
+    public boolean isUsableByPlayer(EntityPlayer player) {
         return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64;
     }
 
@@ -152,7 +165,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
     @Override
     public void clear() {
         for (int i = 0; i < inventory.length; ++i) {
-            inventory[i] = null;
+            inventory[i] = ItemStack.EMPTY;
         }
     }
 
@@ -163,7 +176,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
         NBTTagList list = new NBTTagList();
         for (int i = 0; i < getSizeInventory(); i++) {
             ItemStack is = getStackInSlot(i);
-            if (is != null) {
+            if (!is.isEmpty()) {
                 NBTTagCompound item = new NBTTagCompound();
 
                 item.setByte("SlotPopFurnace", (byte) i);
@@ -189,7 +202,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
                 NBTTagCompound item = (NBTTagCompound) list.get(i);
                 int slot = item.getByte("SlotPopFurnace");
                 if (slot >= 0 && slot < getSizeInventory()) {
-                    setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
+                    setInventorySlotContents(slot, new ItemStack(item));
                 }
             }
         } else {
@@ -203,8 +216,8 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
 
     public void addToGunpowder(int amount) {
         storedGunpowder += amount;
-        if (this.worldObj.getMinecraftServer() != null)
-            for (WorldServer server : this.worldObj.getMinecraftServer().worldServers) {
+        if (this.world.getMinecraftServer() != null)
+            for (WorldServer server : this.world.getMinecraftServer().worlds) {
                 server.getPlayerChunkMap().markBlockForUpdate(getPos());
             }
     }
@@ -214,16 +227,16 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
         if (storedGunpowder < 0) {
             storedGunpowder = 0;
         }
-        if (this.worldObj.getMinecraftServer() != null)
-            for (WorldServer server : this.worldObj.getMinecraftServer().worldServers) {
+        if (this.world.getMinecraftServer() != null)
+            for (WorldServer server : this.world.getMinecraftServer().worlds) {
                 server.getPlayerChunkMap().markBlockForUpdate(getPos());
             }
     }
 
     public void addToFireStarter(int amount) {
         storedFirestarter += amount;
-        if (this.worldObj.getMinecraftServer() != null)
-            for (WorldServer server : this.worldObj.getMinecraftServer().worldServers) {
+        if (this.world.getMinecraftServer() != null)
+            for (WorldServer server : this.world.getMinecraftServer().worlds) {
                 server.getPlayerChunkMap().markBlockForUpdate(getPos());
             }
     }
@@ -233,8 +246,8 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
         if (storedFirestarter < 0) {
             storedFirestarter = 0;
         }
-        if (this.worldObj.getMinecraftServer() != null)
-            for (WorldServer server : this.worldObj.getMinecraftServer().worldServers) {
+        if (this.world.getMinecraftServer() != null)
+            for (WorldServer server : this.world.getMinecraftServer().worlds) {
                 server.getPlayerChunkMap().markBlockForUpdate(getPos());
             }
     }
@@ -278,7 +291,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
         for (int inputSlot = 0; inputSlot < 5; inputSlot++) {
             if (inventory[inputSlot] != null && ShattererRecipes.instance().getPoppingResult(inventory[inputSlot]) != null) {
                 result = new ItemStack(ShattererRecipes.instance().getPoppingResult(inventory[inputSlot]).getItem(), ShattererRecipes.instance().getResultCount(inventory[inputSlot]), ShattererRecipes.instance().getPoppingResult(inventory[inputSlot]).getMetadata());
-                if (result != null) {
+                if (!result.isEmpty()) {
                     for (int outputSlot = 5; outputSlot < 10; outputSlot++) {
                         ItemStack outputStack = inventory[outputSlot];
                         if (outputStack == null) {
@@ -288,7 +301,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
                         }
 
                         if (outputStack.getItem() == result.getItem() && (!outputStack.getHasSubtypes() || outputStack.getMetadata() == outputStack.getMetadata()) && ItemStack.areItemStackTagsEqual(outputStack, result)) {
-                            int combinedSize = inventory[outputSlot].stackSize + result.stackSize;
+                            int combinedSize = inventory[outputSlot].getCount() + result.getCount();
                             if (combinedSize <= getInventoryStackLimit() && combinedSize <= inventory[outputSlot].getMaxStackSize()) {
                                 firstSuitableInputSlot = inputSlot;
                                 firstSuitableOutputSlot = outputSlot;
@@ -306,19 +319,18 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
         if (!performPop) return true;
 
         if (!this.getWorld().isRemote)
-            this.getWorld().playSound(null, this.pos, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 3.5F, (1.0F + (this.worldObj.rand.nextFloat() - this.worldObj.rand.nextFloat()) * 0.2F) * 1.5F);
+            this.getWorld().playSound(null, this.pos, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 3.5F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 1.5F);
 
         tempItemCounter++;
         if (tempItemCounter >= ConfigValues.ITEMSPERGUNPOWDER) {
             removeFromGunpowder(1);
             tempItemCounter = 0;
         }
-        inventory[firstSuitableInputSlot].stackSize--;
-        if (inventory[firstSuitableInputSlot].stackSize <= 0) inventory[firstSuitableInputSlot] = null;
-        if (inventory[firstSuitableOutputSlot] == null) {
+        inventory[firstSuitableInputSlot].shrink(1);
+        if (inventory[firstSuitableOutputSlot].isEmpty()) {
             inventory[firstSuitableOutputSlot] = result.copy();
         } else {
-            inventory[firstSuitableOutputSlot].stackSize += result.stackSize;
+            inventory[firstSuitableOutputSlot].grow(result.getCount());
         }
         markDirty();
         return true;
@@ -328,16 +340,16 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
     public int[] getSlotsForFace(EnumFacing side) {
         if (side == EnumFacing.EAST || side == EnumFacing.WEST || side == EnumFacing.NORTH || side == EnumFacing.SOUTH || side == EnumFacing.UP) {
             return new int[]{0, 1, 2, 3, 4, 10, 11};
-        }
-        if (side == EnumFacing.DOWN) {
+        }else if (side == EnumFacing.DOWN) {
             return new int[]{5, 6, 7, 8, 9};
+        }else{
+            throw new IllegalArgumentException("Invalid side: " + side);
         }
-        return null;
     }
 
     @Override
     public boolean canInsertItem(int index, ItemStack stack, EnumFacing direction) {
-        if (stack != null) {
+        if (!stack.isEmpty()) {
             if (index >= 0 && index < 5) {
                 Iterator iterator = ShattererRecipes.instance().getPoppingList().entrySet().iterator();
                 Entry entry;
@@ -362,7 +374,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
 
     @Override
     public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
-        if (stack != null)
+        if (!stack.isEmpty())
             if (index >= 5 && index < 10) {
                 return true;
             }

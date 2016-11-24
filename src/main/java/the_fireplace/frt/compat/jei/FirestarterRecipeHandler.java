@@ -17,12 +17,6 @@ public class FirestarterRecipeHandler implements IRecipeHandler<FirestarterRecip
 
     @Nonnull
     @Override
-    public String getRecipeCategoryUid() {
-        return "frt.pop_furnace.firestarter";
-    }
-
-    @Nonnull
-    @Override
     public String getRecipeCategoryUid(FirestarterRecipe recipe) {
         return "frt.pop_furnace.firestarter";
     }
@@ -35,6 +29,6 @@ public class FirestarterRecipeHandler implements IRecipeHandler<FirestarterRecip
 
     @Override
     public boolean isRecipeValid(@Nonnull FirestarterRecipe recipe) {
-        return recipe.getInputs().size() > 0 && recipe.getOutputs().size() == 0;
+        return !recipe.getInputs().isEmpty();
     }
 }

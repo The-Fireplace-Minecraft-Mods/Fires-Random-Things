@@ -5,6 +5,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 /**
  * @author The_Fireplace
  */
@@ -19,7 +21,7 @@ public class BlockFireplaceBottom extends FRTBlock {
     }
 
     @Override
-    public boolean isFireSource(World world, BlockPos pos, EnumFacing side) {
+    public boolean isFireSource(@Nonnull World world, BlockPos pos, EnumFacing side) {
         return true;
     }
 }

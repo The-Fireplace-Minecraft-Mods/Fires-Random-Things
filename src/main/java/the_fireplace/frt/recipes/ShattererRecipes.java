@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import net.minecraft.item.ItemStack;
 import the_fireplace.frt.tools.MiscTools;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Map;
@@ -12,6 +13,7 @@ import java.util.Map.Entry;
 /**
  * @author The_Fireplace
  */
+@ParametersAreNonnullByDefault
 public class ShattererRecipes {
     public static final ShattererRecipes pfBase = new ShattererRecipes();
     private final Map poppingList = Maps.newHashMap();
@@ -68,7 +70,7 @@ public class ShattererRecipes {
             entry = (Entry) iterator.next();
         }
         while (!MiscTools.areItemStacksEqual(new ItemStack(is.getItem(), 1, is.getMetadata()), (ItemStack) entry.getKey()));
-        return ((ItemStack) entry.getValue()).stackSize;
+        return ((ItemStack) entry.getValue()).getCount();
     }
 
     public Map getPoppingList() {

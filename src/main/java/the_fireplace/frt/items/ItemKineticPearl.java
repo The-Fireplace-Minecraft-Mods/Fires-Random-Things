@@ -23,7 +23,8 @@ public class ItemKineticPearl extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+        ItemStack itemStackIn = playerIn.getHeldItem(hand);
         double prevX = playerIn.motionX;
         double prevY = playerIn.motionY;
         double prevZ = playerIn.motionZ;
@@ -34,7 +35,7 @@ public class ItemKineticPearl extends Item {
         });
         if (Math.abs(playerIn.motionX - prevX) > 0.25 || Math.abs(playerIn.motionY - prevY) > 0.25 || Math.abs(playerIn.motionZ - prevZ) > 0.25) {
             if (!playerIn.capabilities.isCreativeMode)
-                itemStackIn.stackSize--;
+                itemStackIn.shrink(1);
             worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.NEUTRAL, 0.3F, 0.5F / (itemRand.nextFloat() * 0.4F + 0.8F));
         }
         return new ActionResult(EnumActionResult.PASS, itemStackIn);

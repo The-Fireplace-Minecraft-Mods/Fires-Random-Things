@@ -10,7 +10,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -23,6 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 /**
@@ -48,12 +48,6 @@ public class BlockBlazeCake extends FRTBlock {
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state) {
-        return worldIn.getSelectedBoundingBox(pos, state);
-    }
-
-    @Override
     public boolean isFullCube(IBlockState state) {
         return false;
     }
@@ -64,7 +58,7 @@ public class BlockBlazeCake extends FRTBlock {
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         this.eatCake(worldIn, pos, state, playerIn);
         return true;
     }
@@ -105,7 +99,7 @@ public class BlockBlazeCake extends FRTBlock {
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock) {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock, BlockPos neighborPos) {
         if (!this.canBlockStay(worldIn, pos)) {
             worldIn.setBlockToAir(pos);
         }
@@ -121,6 +115,7 @@ public class BlockBlazeCake extends FRTBlock {
     }
 
     @Override
+    @Nonnull
     public Item getItemDropped(IBlockState state, Random rand, int fortune) {
         if (state == this.getDefaultState()) {
             return Item.getItemFromBlock(FRT.blaze_cake);
@@ -134,12 +129,14 @@ public class BlockBlazeCake extends FRTBlock {
     }
 
     @Override
+    @Nonnull
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(BITES, meta);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
+    @Nonnull
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT;
     }
@@ -150,6 +147,7 @@ public class BlockBlazeCake extends FRTBlock {
     }
 
     @Override
+    @Nonnull
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, BITES);
     }

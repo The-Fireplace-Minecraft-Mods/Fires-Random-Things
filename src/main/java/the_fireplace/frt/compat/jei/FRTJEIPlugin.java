@@ -1,6 +1,7 @@
 package the_fireplace.frt.compat.jei;
 
 import mezz.jei.api.*;
+import mezz.jei.api.ingredients.IModIngredientRegistration;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
 import net.minecraft.item.ItemStack;
 import the_fireplace.frt.FRT;
@@ -15,6 +16,16 @@ public class FRTJEIPlugin implements IModPlugin {
 
     @Override
     public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
+    }
+
+    @Override
+    public void registerItemSubtypes(ISubtypeRegistry subtypeRegistry) {
+
+    }
+
+    @Override
+    public void registerIngredients(IModIngredientRegistration registry) {
+
     }
 
     @Override

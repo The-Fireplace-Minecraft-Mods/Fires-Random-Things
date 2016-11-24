@@ -23,11 +23,12 @@ public class ItemPigderPearl extends Item {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
+        ItemStack itemStackIn = playerIn.getHeldItem(hand);
         if (!playerIn.capabilities.isCreativeMode)
         {
-            --itemStackIn.stackSize;
+            itemStackIn.shrink(1);
         }
 
         worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERPEARL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
@@ -37,7 +38,7 @@ public class ItemPigderPearl extends Item {
         {
             EntityPigderPearl pigderPearl = new EntityPigderPearl(worldIn, playerIn);
             pigderPearl.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-            worldIn.spawnEntityInWorld(pigderPearl);
+            worldIn.spawnEntity(pigderPearl);
         }
 
         return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);

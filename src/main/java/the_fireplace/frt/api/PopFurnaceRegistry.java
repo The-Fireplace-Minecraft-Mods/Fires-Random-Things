@@ -5,10 +5,13 @@ import org.apache.commons.lang3.ArrayUtils;
 import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.recipes.ShattererRecipes;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 /**
  * Shatterer Registry. Still called Pop Furnace Registry because that was the original name.
  * @author The_Fireplace
  */
+@ParametersAreNonnullByDefault
 public class PopFurnaceRegistry {
     /**
      * Adds a recipe to the Shatterer
@@ -18,7 +21,7 @@ public class PopFurnaceRegistry {
      * @param resultCount The number of items to output per input
      */
     public static void registerPopFurnaceRecipe(ItemStack isIn, ItemStack isOut, int resultCount) {
-        if(isIn.getItem() == null || isOut.getItem() == null || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, isIn.getItem().getUnlocalizedName().substring(5)) || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, isOut.getItem().getUnlocalizedName().substring(5)))
+        if(isIn.isEmpty() || isOut.isEmpty() || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, isIn.getItem().getUnlocalizedName().substring(5)) || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, isOut.getItem().getUnlocalizedName().substring(5)))
             return;
         ShattererRecipes.instance().addPopFurnaceRecipe(isIn, isOut, resultCount);
     }
@@ -30,7 +33,7 @@ public class PopFurnaceRegistry {
      * @param isOut The itemstack of the output, containing the item, metadata, and amount to output
      */
     public static void registerPopFurnaceRecipe(ItemStack isIn, ItemStack isOut) {
-        registerPopFurnaceRecipe(isIn, isOut, isOut.stackSize);
+        registerPopFurnaceRecipe(isIn, isOut, isOut.getCount());
     }
 
     /**
@@ -40,7 +43,7 @@ public class PopFurnaceRegistry {
      */
     public static void registerGunpowder(ItemStack... items) {
         for(int i=0;i<items.length;i++){
-            if(items[i].getItem() == null || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, items[i].getItem().getUnlocalizedName().substring(5)))
+            if(items[i].isEmpty() || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, items[i].getItem().getUnlocalizedName().substring(5)))
                 return;
         }
         ShattererRecipes.instance().addGunpowders(items);
@@ -53,7 +56,7 @@ public class PopFurnaceRegistry {
      */
     public static void registerFirestarter(ItemStack... items) {
         for(int i=0;i<items.length;i++){
-            if(items[i].getItem() == null || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, items[i].getItem().getUnlocalizedName().substring(5)))
+            if(items[i].isEmpty() || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, items[i].getItem().getUnlocalizedName().substring(5)))
                 return;
         }
         ShattererRecipes.instance().addFirestarters(items);

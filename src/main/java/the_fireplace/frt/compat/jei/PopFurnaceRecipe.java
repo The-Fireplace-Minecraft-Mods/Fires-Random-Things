@@ -1,5 +1,6 @@
 package the_fireplace.frt.compat.jei;
 
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
@@ -30,6 +31,12 @@ public class PopFurnaceRecipe extends BlankRecipeWrapper {
     @Nonnull
     public List<ItemStack> getOutputs() {
         return outputs;
+    }
+
+    @Override
+    public void getIngredients(IIngredients ingredients) {
+        ingredients.setInputLists(ItemStack.class, input);
+        ingredients.setOutputLists(ItemStack.class, Collections.singletonList(outputs));
     }
 
     @Override

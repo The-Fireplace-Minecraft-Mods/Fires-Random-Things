@@ -13,6 +13,7 @@ import the_fireplace.frt.entity.projectile.EntityPigderPearl;
 @SideOnly(Side.CLIENT)
 public class PigderPearlRenderFactory implements IRenderFactory<EntityPigderPearl> {
     @Override
+    @SuppressWarnings("unchecked")
     public Render<? super EntityPigderPearl> createRenderFor(RenderManager manager) {
         return new RenderPigderPearl(manager);
     }

@@ -28,7 +28,7 @@ public class HallucinationPotion extends Potion {
 
     @Override
     public void performEffect(EntityLivingBase entityLivingBaseIn, int par2) {
-        if (!(entityLivingBaseIn instanceof EntityPlayer) || entityLivingBaseIn.worldObj.isRemote)
+        if (!(entityLivingBaseIn instanceof EntityPlayer) || entityLivingBaseIn.world.isRemote)
             return;
         if (timer < ConfigValues.POTIONSWITCH * 20) {
             timer++;

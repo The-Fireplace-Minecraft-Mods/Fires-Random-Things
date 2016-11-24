@@ -49,11 +49,6 @@ public class BlockShatterer extends BlockContainer {
     }
 
     @Override
-    public boolean isVisuallyOpaque() {
-        return true;
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.SOLID;
@@ -97,7 +92,7 @@ public class BlockShatterer extends BlockContainer {
     }
 
     @Override
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
     }
 
@@ -107,7 +102,7 @@ public class BlockShatterer extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (worldIn.isRemote)
             return true;
         else if (!playerIn.isSneaking()) {
@@ -142,7 +137,7 @@ public class BlockShatterer extends BlockContainer {
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock) {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock, BlockPos neighborPos) {
         if (!worldIn.isRemote)
             if (worldIn.isBlockPowered(pos))
                 popItems(worldIn, pos);

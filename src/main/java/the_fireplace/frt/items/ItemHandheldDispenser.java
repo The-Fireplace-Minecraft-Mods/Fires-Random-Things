@@ -41,17 +41,18 @@ public class ItemHandheldDispenser extends ItemBlock {
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
-        if (!worldIn.isRemote && playerIn.getItemStackFromSlot(hand == EnumHand.MAIN_HAND ? EntityEquipmentSlot.OFFHAND : EntityEquipmentSlot.MAINHAND) != null) {
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+        ItemStack itemStackIn = playerIn.getHeldItem(hand);
+        if (!worldIn.isRemote && !playerIn.getItemStackFromSlot(hand == EnumHand.MAIN_HAND ? EntityEquipmentSlot.OFFHAND : EntityEquipmentSlot.MAINHAND).isEmpty()) {
             ItemStack ammo = playerIn.getItemStackFromSlot(hand == EnumHand.MAIN_HAND ? EntityEquipmentSlot.OFFHAND : EntityEquipmentSlot.MAINHAND);
             IBehaviorDispenseItem ibehaviordispenseitem = DISPENSE_BEHAVIOR_REGISTRY.getObject(ammo.getItem());
 
             if(ibehaviordispenseitem instanceof BehaviorProjectileDispense){
                 if (ibehaviordispenseitem != IBehaviorDispenseItem.DEFAULT_BEHAVIOR)
                 {
-                    int dispenseCount = multiplier > ammo.stackSize ? ammo.stackSize : multiplier;
+                    int dispenseCount = multiplier > ammo.getCount() ? ammo.getCount() : multiplier;
                     for(int i=0;i<dispenseCount;i++)
-                        if(playerIn.getItemStackFromSlot(hand == EnumHand.MAIN_HAND ? EntityEquipmentSlot.OFFHAND : EntityEquipmentSlot.MAINHAND) != null)
+                        if(!playerIn.getItemStackFromSlot(hand == EnumHand.MAIN_HAND ? EntityEquipmentSlot.OFFHAND : EntityEquipmentSlot.MAINHAND).isEmpty())
                             dispenseStack(new BlockSourceHand(new BlockPos(playerIn.posX, playerIn.posY+playerIn.eyeHeight, playerIn.posZ), worldIn, playerIn.getHorizontalFacing()), playerIn.getItemStackFromSlot(hand == EnumHand.MAIN_HAND ? EntityEquipmentSlot.OFFHAND : EntityEquipmentSlot.MAINHAND), (BehaviorProjectileDispense)ibehaviordispenseitem, playerIn);
                     playerIn.getCooldownTracker().setCooldown(this, 40*multiplier);
                     return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
@@ -61,9 +62,9 @@ public class ItemHandheldDispenser extends ItemBlock {
             }else{
                 if (ibehaviordispenseitem != IBehaviorDispenseItem.DEFAULT_BEHAVIOR)
                 {
-                    int dispenseCount = multiplier > ammo.stackSize ? ammo.stackSize : multiplier;
+                    int dispenseCount = multiplier > ammo.getCount() ? ammo.getCount() : multiplier;
                     for(int i=0;i<dispenseCount;i++)
-                        if(playerIn.getItemStackFromSlot(hand == EnumHand.MAIN_HAND ? EntityEquipmentSlot.OFFHAND : EntityEquipmentSlot.MAINHAND) != null)
+                        if(!playerIn.getItemStackFromSlot(hand == EnumHand.MAIN_HAND ? EntityEquipmentSlot.OFFHAND : EntityEquipmentSlot.MAINHAND).isEmpty())
                             ibehaviordispenseitem.dispense(new BlockSourceHand(new BlockPos(playerIn.posX, playerIn.posY+playerIn.eyeHeight, playerIn.posZ), worldIn, playerIn.getHorizontalFacing()), playerIn.getItemStackFromSlot(hand == EnumHand.MAIN_HAND ? EntityEquipmentSlot.OFFHAND : EntityEquipmentSlot.MAINHAND));
                     playerIn.getCooldownTracker().setCooldown(this, 40*multiplier);
                     return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
@@ -95,13 +96,13 @@ public class ItemHandheldDispenser extends ItemBlock {
             e.printStackTrace();
             return;
         }
-        world.spawnEntityInWorld((Entity)iprojectile);
+        world.spawnEntity((Entity)iprojectile);
         stack.splitStack(1);
     }
 
     public static IPosition getDispensePosition(IBlockSource coords)
     {
-        EnumFacing enumfacing = coords.func_189992_e().getValue(BlockDispenser.FACING);
+        EnumFacing enumfacing = coords.getBlockState().getValue(BlockDispenser.FACING);
         double d0 = coords.getX() + /*0.7D * */(double)enumfacing.getFrontOffsetX();
         double d1 = coords.getY() + /*0.7D * */(double)enumfacing.getFrontOffsetY();
         double d2 = coords.getZ() + /*0.7D * */(double)enumfacing.getFrontOffsetZ();

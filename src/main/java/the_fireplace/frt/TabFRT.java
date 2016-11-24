@@ -1,7 +1,9 @@
 package the_fireplace.frt;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import javax.annotation.Nonnull;
 
 /**
  * @author The_Fireplace
@@ -12,7 +14,8 @@ public class TabFRT extends CreativeTabs {
     }
 
     @Override
-    public Item getTabIconItem() {
-        return Item.getItemFromBlock(FRT.quad_dispenser);
+    @Nonnull
+    public ItemStack getTabIconItem() {
+        return new ItemStack(FRT.quad_dispenser);
     }
 }

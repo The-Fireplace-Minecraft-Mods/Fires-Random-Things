@@ -6,6 +6,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import the_fireplace.frt.tileentity.TileEntityShellCore;
 import the_fireplace.frt.tools.MiscTools;
 
+import javax.annotation.Nonnull;
+
 /**
  * @author The_Fireplace
  */
@@ -31,20 +33,20 @@ public class SlotRedstone extends Slot {
     }
 
     @Override
-    public void putStack(ItemStack stack) {
-        if (stack != null) {
+    public void putStack(@Nonnull ItemStack stack) {
+        if (!stack.isEmpty()) {
             this.inventory.setInventorySlotContents(this.getSlotIndex(), stack);
             for(ItemStack oreDict:OreDictionary.getOres("dustRedstone")){
                 if(MiscTools.areItemStacksEqual(oreDict, stack)) {
-                    inv.addToRedstone(stack.stackSize);
-                    this.inventory.setInventorySlotContents(getSlotIndex(), null);
+                    inv.addToRedstone(stack.getCount());
+                    this.inventory.setInventorySlotContents(getSlotIndex(), ItemStack.EMPTY);
                     return;
                 }
             }
             for(ItemStack oreDict:OreDictionary.getOres("blockRedstone")){
                 if(MiscTools.areItemStacksEqual(oreDict, stack)){
-                    inv.addToRedstone(stack.stackSize*9);
-                    this.inventory.setInventorySlotContents(getSlotIndex(), null);
+                    inv.addToRedstone(stack.getCount()*9);
+                    this.inventory.setInventorySlotContents(getSlotIndex(), ItemStack.EMPTY);
                     return;
                 }
             }

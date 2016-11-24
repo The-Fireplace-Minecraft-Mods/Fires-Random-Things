@@ -21,12 +21,6 @@ public class PopFurnaceRecipeHandler implements IRecipeHandler<PopFurnaceRecipe>
         return "frt.pop_furnace";
     }
 
-    @Nonnull
-    @Override
-    public String getRecipeCategoryUid() {
-        return "frt.pop_furnace";
-    }
-
     @Override
     @Nonnull
     public IRecipeWrapper getRecipeWrapper(@Nonnull PopFurnaceRecipe recipe) {
@@ -35,6 +29,6 @@ public class PopFurnaceRecipeHandler implements IRecipeHandler<PopFurnaceRecipe>
 
     @Override
     public boolean isRecipeValid(@Nonnull PopFurnaceRecipe recipe) {
-        return recipe.getInputs().size() != 0 && recipe.getOutputs().size() > 0;
+        return !recipe.getInputs().isEmpty() && !recipe.getOutputs().isEmpty();
     }
 }

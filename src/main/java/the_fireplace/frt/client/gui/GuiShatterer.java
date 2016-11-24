@@ -18,6 +18,7 @@ import the_fireplace.frt.tileentity.TileEntityShatterer;
  */
 @SideOnly(Side.CLIENT)
 public class GuiShatterer extends GuiContainer {
+    //TODO: Use a dynamic transparent item overlay
     public static final ResourceLocation texture = new ResourceLocation(FRT.MODID, "textures/gui/pop_furnace.png");
     private TileEntityShatterer te;
 

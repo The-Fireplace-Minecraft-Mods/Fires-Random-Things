@@ -4,13 +4,15 @@ import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
+import the_fireplace.frt.FRT;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * @author The_Fireplace
@@ -34,7 +36,7 @@ public class PopFurnaceCategory implements IRecipeCategory {
     @Nonnull
     @Override
     public String getTitle() {
-        return I18n.translateToLocal("jei.pop_furnace");
+        return FRT.proxy.translateToLocal("jei.pop_furnace");
     }
 
     @Nonnull
@@ -43,18 +45,19 @@ public class PopFurnaceCategory implements IRecipeCategory {
         return background;
     }
 
+    @Nullable
+    @Override
+    public IDrawable getIcon() {
+        return null;
+    }
+
     @Override
     public void drawExtras(Minecraft minecraft) {
 
     }
 
     @Override
-    public void drawAnimations(Minecraft minecraft) {
-
-    }
-
-    @Override
-    public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull IRecipeWrapper recipeWrapper) {
+    public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
         IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
 
         int inputSlot = 0;
@@ -63,7 +66,6 @@ public class PopFurnaceCategory implements IRecipeCategory {
         guiItemStacks.init(inputSlot, true, 76, 7);
         guiItemStacks.init(outputSlot, false, 76, 29);
 
-        guiItemStacks.setFromRecipe(inputSlot, recipeWrapper.getInputs());
-        guiItemStacks.setFromRecipe(outputSlot, recipeWrapper.getOutputs());
+        guiItemStacks.set(ingredients);
     }
 }

@@ -45,7 +45,7 @@ public class BlockSourceHand implements IBlockSource {
     }
 
     @Override
-    public IBlockState func_189992_e() {
+    public IBlockState getBlockState() {
         return Blocks.DISPENSER.getDefaultState().withProperty(BlockDispenser.FACING, enumFacing);
     }
 

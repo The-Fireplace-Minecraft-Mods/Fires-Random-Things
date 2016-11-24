@@ -26,7 +26,7 @@ public class CommonEvents {
 
     @SubscribeEvent
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
-        if (!(event.getEntityLiving() instanceof EntityPlayer) || event.getEntityLiving().worldObj.isRemote || !(event.getEntityLiving().isPotionActive(FRT.hallucination))) {
+        if (!(event.getEntityLiving() instanceof EntityPlayer) || event.getEntityLiving().world.isRemote || !(event.getEntityLiving().isPotionActive(FRT.hallucination))) {
             if (event.getEntityLiving() instanceof EntityPlayer && !(event.getEntityLiving().isPotionActive(FRT.hallucination))) {
                 if(FRT.instance.clientCooldownTicks <= 0)
                     FRT.proxy.tryRemoveShader();
@@ -40,7 +40,7 @@ public class CommonEvents {
 
     @SubscribeEvent
     public void itemUseFinish(LivingEntityUseItemEvent.Finish event){
-        if(event.getEntityLiving().worldObj.isRemote)
+        if(event.getEntityLiving().world.isRemote)
             return;
         if(event.getEntityLiving() instanceof EntityPlayer)
             for(PotionEffect effect:PotionUtils.getEffectsFromStack(event.getItem())){

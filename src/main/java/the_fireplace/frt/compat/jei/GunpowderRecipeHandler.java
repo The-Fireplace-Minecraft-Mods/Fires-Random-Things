@@ -17,12 +17,6 @@ public class GunpowderRecipeHandler implements IRecipeHandler<GunpowderRecipe> {
 
     @Nonnull
     @Override
-    public String getRecipeCategoryUid() {
-        return "frt.pop_furnace.gunpowder";
-    }
-
-    @Nonnull
-    @Override
     public String getRecipeCategoryUid(GunpowderRecipe recipe) {
         return "frt.pop_furnace.gunpowder";
     }
@@ -35,6 +29,6 @@ public class GunpowderRecipeHandler implements IRecipeHandler<GunpowderRecipe> {
 
     @Override
     public boolean isRecipeValid(@Nonnull GunpowderRecipe recipe) {
-        return recipe.getInputs().size() > 0 && recipe.getOutputs().size() == 0;
+        return !recipe.getInputs().isEmpty();
     }
 }

@@ -2,7 +2,6 @@ package the_fireplace.frt.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
-import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockSourceImpl;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
@@ -22,6 +21,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import the_fireplace.frt.FRT;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Random;
 
 /**
@@ -78,10 +79,10 @@ public class BlockInsaneDispenser extends BlockDispenser {
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, @Nullable BlockPos pos, IBlockState state, @Nullable EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (worldIn.isRemote) {
             return true;
-        } else {
+        } else if(pos != null && playerIn != null) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
 
             if (tileentity instanceof TileEntityDispenser) {
@@ -89,11 +90,13 @@ public class BlockInsaneDispenser extends BlockDispenser {
             }
 
             return true;
+        } else {
+            return false;
         }
     }
 
     @Override
-    protected void dispense(World worldIn, BlockPos pos) {
+    protected void dispense(@Nonnull World worldIn, @Nonnull BlockPos pos) {
         BlockSourceImpl blocksourceimpl = new BlockSourceImpl(worldIn, pos);
         TileEntityDispenser tileentitydispenser = blocksourceimpl.getBlockTileEntity();
 
@@ -108,22 +111,23 @@ public class BlockInsaneDispenser extends BlockDispenser {
 
                 if (ibehaviordispenseitem != IBehaviorDispenseItem.DEFAULT_BEHAVIOR) {
                     ItemStack itemstack1 = ibehaviordispenseitem.dispense(blocksourceimpl, itemstack);
-                    tileentitydispenser.setInventorySlotContents(i, itemstack1.stackSize <= 0 ? null : itemstack1);
+                    tileentitydispenser.setInventorySlotContents(i, itemstack1.getCount() <= 0 ? ItemStack.EMPTY : itemstack1);
                 }
             }
         }
     }
 
     @Override
+    @Nonnull
     protected IBehaviorDispenseItem getBehavior(ItemStack stack) {
-        return DISPENSE_BEHAVIOR_REGISTRY.getObject(stack == null ? null : stack.getItem());
+        return DISPENSE_BEHAVIOR_REGISTRY.getObject(stack.getItem());
     }
 
     /**
      * Called when a neighboring block changes.
      */
     @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock) {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock, BlockPos neighborPos) {
         boolean flag = worldIn.isBlockPowered(pos) || worldIn.isBlockPowered(pos.up());
         boolean flag1 = state.getValue(TRIGGERED);
 
@@ -170,8 +174,9 @@ public class BlockInsaneDispenser extends BlockDispenser {
      * IBlockstate
      */
     @Override
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        return this.getDefaultState().withProperty(FACING, BlockPistonBase.getFacingFromEntity(pos, placer)).withProperty(TRIGGERED, false);
+    @Nonnull
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+        return this.getDefaultState().withProperty(FACING, EnumFacing.getDirectionFromEntityLiving(pos, placer)).withProperty(TRIGGERED, false);
     }
 
     /**
@@ -179,7 +184,7 @@ public class BlockInsaneDispenser extends BlockDispenser {
      */
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        worldIn.setBlockState(pos, state.withProperty(FACING, BlockPistonBase.getFacingFromEntity(pos, placer)), 2);
+        worldIn.setBlockState(pos, state.withProperty(FACING, EnumFacing.getDirectionFromEntityLiving(pos, placer)), 2);
 
         if (stack.hasDisplayName()) {
             TileEntity tileentity = worldIn.getTileEntity(pos);
@@ -191,7 +196,7 @@ public class BlockInsaneDispenser extends BlockDispenser {
     }
 
     @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+    public void breakBlock(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state) {
         TileEntity tileentity = worldIn.getTileEntity(pos);
 
         if (tileentity instanceof TileEntityDispenser) {
@@ -223,6 +228,7 @@ public class BlockInsaneDispenser extends BlockDispenser {
      * Convert the given metadata into a BlockState for this Block
      */
     @Override
+    @Nonnull
     public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(FACING, getFacing(meta)).withProperty(TRIGGERED, (meta & 8) > 0);
     }
@@ -243,6 +249,7 @@ public class BlockInsaneDispenser extends BlockDispenser {
     }
 
     @Override
+    @Nonnull
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, FACING, TRIGGERED);
     }

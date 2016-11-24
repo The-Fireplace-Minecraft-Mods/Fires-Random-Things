@@ -54,7 +54,7 @@ public class EntityPigderPearl extends EntityThrowable
         if (result.typeOfHit == RayTraceResult.Type.BLOCK)
         {
             BlockPos blockpos = result.getBlockPos();
-            TileEntity tileentity = this.worldObj.getTileEntity(blockpos);
+            TileEntity tileentity = this.world.getTileEntity(blockpos);
 
             if (tileentity instanceof TileEntityEndGateway)
             {
@@ -74,25 +74,25 @@ public class EntityPigderPearl extends EntityThrowable
 
         for (int i = 0; i < 32; ++i)
         {
-            this.worldObj.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, this.posX, this.posY + this.rand.nextDouble() * 2.0D, this.posZ, this.rand.nextGaussian(), 0.0D, this.rand.nextGaussian(), new int[0]);
+            this.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, this.posX, this.posY + this.rand.nextDouble() * 2.0D, this.posZ, this.rand.nextGaussian(), 0.0D, this.rand.nextGaussian(), new int[0]);
         }
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (entitylivingbase instanceof EntityPlayerMP)
             {
                 EntityPlayerMP entityplayermp = (EntityPlayerMP)entitylivingbase;
 
-                if (entityplayermp.connection.getNetworkManager().isChannelOpen() && entityplayermp.worldObj == this.worldObj && !entityplayermp.isPlayerSleeping())
+                if (entityplayermp.connection.getNetworkManager().isChannelOpen() && entityplayermp.world == this.world && !entityplayermp.isPlayerSleeping())
                 {
                     EnderTeleportEvent event = new EnderTeleportEvent(entityplayermp, this.posX, this.posY, this.posZ, 5.0F);
                     if (!net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event))
                     {
                         if (this.rand.nextFloat() < 0.05F)
                         {
-                            EntityPig entityPig = new EntityPig(this.worldObj);
+                            EntityPig entityPig = new EntityPig(this.world);
                             entityPig.setLocationAndAngles(entitylivingbase.posX, entitylivingbase.posY, entitylivingbase.posZ, entitylivingbase.rotationYaw, entitylivingbase.rotationPitch);
-                            this.worldObj.spawnEntityInWorld(entityPig);
+                            this.world.spawnEntity(entityPig);
                         }
 
                         if (entitylivingbase.isRiding())

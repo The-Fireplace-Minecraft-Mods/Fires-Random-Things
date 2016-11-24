@@ -10,11 +10,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
 
-import java.util.List;
+import javax.annotation.Nonnull;
 
 /**
  * @author The_Fireplace
@@ -41,7 +42,7 @@ public class BlockWaxedPlanks extends FRTBlock {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for (BlockPlanks.EnumType type : BlockPlanks.EnumType.values())
         {
@@ -50,12 +51,14 @@ public class BlockWaxedPlanks extends FRTBlock {
     }
 
     @Override
+    @Nonnull
     public IBlockState getStateFromMeta(int meta)
     {
         return this.getDefaultState().withProperty(VARIANT, BlockPlanks.EnumType.byMetadata(meta));
     }
 
     @Override
+    @Nonnull
     public MapColor getMapColor(IBlockState state)
     {
         return (state.getValue(VARIANT)).getMapColor();

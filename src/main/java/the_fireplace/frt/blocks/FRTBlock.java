@@ -5,6 +5,8 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import the_fireplace.frt.FRT;
 
+import javax.annotation.Nonnull;
+
 public class FRTBlock extends Block {
 
     public FRTBlock(Material materialIn) {
@@ -12,7 +14,8 @@ public class FRTBlock extends Block {
         setCreativeTab(FRT.TabFRT);
     }
 
-    public FRTBlock setSoundType(SoundType sound) {
+    @Nonnull
+    public FRTBlock setSoundType(@Nonnull SoundType sound) {
         return (FRTBlock) super.setSoundType(sound);
     }
 

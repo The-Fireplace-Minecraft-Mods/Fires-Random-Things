@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * @author The_Fireplace
  */
-public abstract class EntityBazookaAmmo extends EntityThrowable implements IProjectile {
+public abstract class AbstractEntityCoal extends EntityThrowable implements IProjectile {
     protected int xTile = -1;
     protected int yTile = -1;
     protected int zTile = -1;
@@ -33,12 +33,12 @@ public abstract class EntityBazookaAmmo extends EntityThrowable implements IProj
     protected int ticksInGround;
     protected int ticksInAir;
 
-    public EntityBazookaAmmo(World worldIn) {
+    public AbstractEntityCoal(World worldIn) {
         super(worldIn);
         this.setSize(0.25F, 0.25F);
     }
 
-    public EntityBazookaAmmo(World worldIn, EntityLivingBase throwerIn) {
+    public AbstractEntityCoal(World worldIn, EntityLivingBase throwerIn) {
         super(worldIn);
         this.thrower = throwerIn;
         this.setSize(0.25F, 0.25F);
@@ -54,7 +54,7 @@ public abstract class EntityBazookaAmmo extends EntityThrowable implements IProj
         this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, this.getVelocity(), 1.0F);
     }
 
-    public EntityBazookaAmmo(World worldIn, double x, double y, double z) {
+    public AbstractEntityCoal(World worldIn, double x, double y, double z) {
         super(worldIn, x, y, z);
         this.ticksInGround = 0;
         this.setSize(0.25F, 0.25F);
@@ -81,7 +81,7 @@ public abstract class EntityBazookaAmmo extends EntityThrowable implements IProj
 
     @Override
     protected void onImpact(RayTraceResult mop) {
-        if (!this.worldObj.isRemote) {
+        if (!this.world.isRemote) {
             this.executeImpact(mop);
             this.setDead();
         }
@@ -94,7 +94,7 @@ public abstract class EntityBazookaAmmo extends EntityThrowable implements IProj
     @Override
     public void setThrowableHeading(double x, double y, double z,
                                     float velocity, float inaccuracy) {
-        float f2 = MathHelper.sqrt_double(x * x + y * y + z * z);
+        float f2 = MathHelper.sqrt(x * x + y * y + z * z);
         x /= f2;
         y /= f2;
         z /= f2;
@@ -107,7 +107,7 @@ public abstract class EntityBazookaAmmo extends EntityThrowable implements IProj
         this.motionX = x;
         this.motionY = y;
         this.motionZ = z;
-        float f3 = MathHelper.sqrt_double(x * x + z * z);
+        float f3 = MathHelper.sqrt(x * x + z * z);
         this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(x, z) * 180.0D / Math.PI);
         this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(y, f3) * 180.0D / Math.PI);
         this.ticksInGround = 0;
@@ -121,7 +121,7 @@ public abstract class EntityBazookaAmmo extends EntityThrowable implements IProj
         this.motionZ = z;
 
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F) {
-            float f = MathHelper.sqrt_double(x * x + z * z);
+            float f = MathHelper.sqrt(x * x + z * z);
             this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(x, z) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(y, f) * 180.0D / Math.PI);
         }
@@ -139,7 +139,7 @@ public abstract class EntityBazookaAmmo extends EntityThrowable implements IProj
         }
 
         if (this.inGround) {
-            if (this.worldObj.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile)).getBlock() == this.inTile) {
+            if (this.world.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile)).getBlock() == this.inTile) {
                 ++this.ticksInGround;
 
                 if (this.ticksInGround == 1200) {
@@ -161,7 +161,7 @@ public abstract class EntityBazookaAmmo extends EntityThrowable implements IProj
 
         Vec3d vec3 = new Vec3d(this.posX, this.posY, this.posZ);
         Vec3d vec31 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-        RayTraceResult movingobjectposition = this.worldObj.rayTraceBlocks(vec3, vec31);
+        RayTraceResult movingobjectposition = this.world.rayTraceBlocks(vec3, vec31);
         vec3 = new Vec3d(this.posX, this.posY, this.posZ);
         vec31 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
@@ -169,9 +169,9 @@ public abstract class EntityBazookaAmmo extends EntityThrowable implements IProj
             vec31 = new Vec3d(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
         }
 
-        if (!this.worldObj.isRemote) {
+        if (!this.world.isRemote) {
             Entity entity = null;
-            List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d0 = 0.0D;
             EntityLivingBase entitylivingbase = this.getPlayerThrower();
 
@@ -200,7 +200,7 @@ public abstract class EntityBazookaAmmo extends EntityThrowable implements IProj
         }
 
         if (movingobjectposition != null) {
-            if (movingobjectposition.typeOfHit == RayTraceResult.Type.BLOCK && this.worldObj.getBlockState(movingobjectposition.getBlockPos()).getBlock() == Blocks.PORTAL) {
+            if (movingobjectposition.typeOfHit == RayTraceResult.Type.BLOCK && this.world.getBlockState(movingobjectposition.getBlockPos()).getBlock() == Blocks.PORTAL) {
                 this.inPortal = true;
             } else {
                 this.onImpact(movingobjectposition);
@@ -210,7 +210,7 @@ public abstract class EntityBazookaAmmo extends EntityThrowable implements IProj
         this.posX += this.motionX;
         this.posY += this.motionY;
         this.posZ += this.motionZ;
-        float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+        float f1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
         this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
         while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
@@ -233,14 +233,14 @@ public abstract class EntityBazookaAmmo extends EntityThrowable implements IProj
         if (this.isInWater()) {
             for (int i = 0; i < 4; ++i) {
                 float f4 = 0.25F;
-                this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX - this.motionX * f4, this.posY - this.motionY * f4, this.posZ - this.motionZ * f4, this.motionX, this.motionY, this.motionZ);
+                this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX - this.motionX * f4, this.posY - this.motionY * f4, this.posZ - this.motionZ * f4, this.motionX, this.motionY, this.motionZ);
             }
 
             f2 = 0.8F;
         } else {
             for (int i = 0; i < 4; ++i) {
                 float f4 = 0.25F;
-                this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX - this.motionX * f4, this.posY - this.motionY * f4, this.posZ - this.motionZ * f4, this.motionX, this.motionY, this.motionZ);
+                this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX - this.motionX * f4, this.posY - this.motionY * f4, this.posZ - this.motionZ * f4, this.motionX, this.motionY, this.motionZ);
             }
 
             f2 = 0.99F;
@@ -298,7 +298,7 @@ public abstract class EntityBazookaAmmo extends EntityThrowable implements IProj
 
     public EntityLivingBase getPlayerThrower() {
         if (this.thrower == null && this.throwerName != null && this.throwerName.length() > 0) {
-            this.thrower = this.worldObj.getPlayerEntityByName(this.throwerName);
+            this.thrower = this.world.getPlayerEntityByName(this.throwerName);
         }
 
         return this.thrower;

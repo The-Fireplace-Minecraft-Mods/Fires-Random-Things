@@ -9,7 +9,7 @@ import the_fireplace.frt.config.ConfigValues;
 /**
  * @author The_Fireplace
  */
-public class EntityChargedCoal extends EntityBazookaAmmo {
+public class EntityChargedCoal extends AbstractEntityCoal {
 
     public EntityChargedCoal(World worldIn) {
         super(worldIn);
@@ -27,9 +27,9 @@ public class EntityChargedCoal extends EntityBazookaAmmo {
     protected void executeImpact(RayTraceResult mop) {
         if (mop.entityHit != null) {
             mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getPlayerThrower()), 2.0F);
-            worldObj.createExplosion(this, this.posX, this.posY, this.posZ, 1.0F, ConfigValues.ENABLEDAMAGE);
+            world.createExplosion(this, this.posX, this.posY, this.posZ, 1.0F, ConfigValues.ENABLEDAMAGE);
         } else {
-            worldObj.createExplosion(this, mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ(), 1.0F, ConfigValues.ENABLEDAMAGE);
+            world.createExplosion(this, mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ(), 1.0F, ConfigValues.ENABLEDAMAGE);
         }
     }
 }

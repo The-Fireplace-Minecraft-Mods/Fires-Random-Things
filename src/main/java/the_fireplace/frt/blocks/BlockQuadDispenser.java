@@ -2,7 +2,6 @@ package the_fireplace.frt.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
-import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockSourceImpl;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
@@ -22,6 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import the_fireplace.frt.FRT;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 /**
@@ -78,7 +78,7 @@ public class BlockQuadDispenser extends BlockDispenser {
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (worldIn.isRemote) {
             return true;
         } else {
@@ -108,7 +108,7 @@ public class BlockQuadDispenser extends BlockDispenser {
 
                 if (ibehaviordispenseitem != IBehaviorDispenseItem.DEFAULT_BEHAVIOR) {
                     ItemStack itemstack1 = ibehaviordispenseitem.dispense(blocksourceimpl, itemstack);
-                    tileentitydispenser.setInventorySlotContents(i, itemstack1.stackSize <= 0 ? null : itemstack1);
+                    tileentitydispenser.setInventorySlotContents(i, itemstack1.getCount() <= 0 ? null : itemstack1);
                 }
             }
         }
@@ -123,7 +123,7 @@ public class BlockQuadDispenser extends BlockDispenser {
      * Called when a neighboring block changes.
      */
     @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock) {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock, BlockPos neighborPos) {
         boolean flag = worldIn.isBlockPowered(pos) || worldIn.isBlockPowered(pos.up());
         boolean flag1 = state.getValue(TRIGGERED);
 
@@ -158,8 +158,9 @@ public class BlockQuadDispenser extends BlockDispenser {
      * IBlockstate
      */
     @Override
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        return this.getDefaultState().withProperty(FACING, BlockPistonBase.getFacingFromEntity(pos, placer)).withProperty(TRIGGERED, false);
+    @Nonnull
+    public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+        return this.getDefaultState().withProperty(FACING, EnumFacing.getDirectionFromEntityLiving(pos, placer)).withProperty(TRIGGERED, false);
     }
 
     /**
@@ -167,7 +168,7 @@ public class BlockQuadDispenser extends BlockDispenser {
      */
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-        worldIn.setBlockState(pos, state.withProperty(FACING, BlockPistonBase.getFacingFromEntity(pos, placer)), 2);
+        worldIn.setBlockState(pos, state.withProperty(FACING, EnumFacing.getDirectionFromEntityLiving(pos, placer)), 2);
 
         if (stack.hasDisplayName()) {
             TileEntity tileentity = worldIn.getTileEntity(pos);

@@ -4,6 +4,7 @@ import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
@@ -11,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.translation.I18n;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 /**
  * @author The_Fireplace
@@ -43,23 +45,24 @@ public class FirestarterCategory implements IRecipeCategory {
         return background;
     }
 
+    @Nullable
+    @Override
+    public IDrawable getIcon() {
+        return null;
+    }
+
     @Override
     public void drawExtras(Minecraft minecraft) {
 
     }
 
     @Override
-    public void drawAnimations(Minecraft minecraft) {
-
-    }
-
-    @Override
-    public void setRecipe(@Nonnull IRecipeLayout recipeLayout, @Nonnull IRecipeWrapper recipeWrapper) {
+    public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
         IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
 
         int lighterSlot = 11;
 
         guiItemStacks.init(lighterSlot, true, 4, 29);
-        guiItemStacks.setFromRecipe(lighterSlot, recipeWrapper.getInputs());
+        guiItemStacks.set(ingredients);
     }
 }

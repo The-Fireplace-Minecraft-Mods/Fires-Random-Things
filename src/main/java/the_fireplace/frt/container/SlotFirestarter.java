@@ -5,6 +5,8 @@ import net.minecraft.item.ItemStack;
 import the_fireplace.frt.tileentity.TileEntityShatterer;
 import the_fireplace.frt.recipes.ShattererRecipes;
 
+import javax.annotation.Nonnull;
+
 /**
  * @author The_Fireplace
  */
@@ -23,13 +25,13 @@ public class SlotFirestarter extends Slot {
     }
 
     @Override
-    public void putStack(ItemStack stack) {
-        if (stack != null) {
+    public void putStack(@Nonnull ItemStack stack) {
+        if (!stack.isEmpty()) {
             this.inventory.setInventorySlotContents(this.getSlotIndex(), stack);
             if (stack.getItem().isDamageable())
                 inv.addToFireStarter(stack.getMaxDamage() - stack.getItemDamage());
             else
-                inv.addToFireStarter(stack.stackSize);
+                inv.addToFireStarter(stack.getCount());
             this.inventory.setInventorySlotContents(getSlotIndex(), null);
         }
     }

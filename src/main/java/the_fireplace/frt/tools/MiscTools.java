@@ -17,6 +17,6 @@ public class MiscTools {
             return;
         EntityItem entityitem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);
         if (!world.isRemote)
-            world.spawnEntityInWorld(entityitem);
+            world.spawnEntity(entityitem);
     }
 }

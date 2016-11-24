@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 /**
  * @author The_Fireplace
  */
-public class EntityCoal extends EntityBazookaAmmo {
+public class EntityCoal extends AbstractEntityCoal {
 
     public EntityCoal(World worldIn) {
         super(worldIn);

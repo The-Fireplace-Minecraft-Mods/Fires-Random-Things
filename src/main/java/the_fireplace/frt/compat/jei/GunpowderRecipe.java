@@ -1,5 +1,6 @@
 package the_fireplace.frt.compat.jei;
 
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
@@ -22,19 +23,17 @@ public class GunpowderRecipe extends BlankRecipeWrapper {
         this.inputs = Collections.singletonList(inputList);
     }
 
-    @Nonnull
-    @Override
-    public List<List<ItemStack>> getInputs() {
-        return inputs;
-    }
-
     @Override
     public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 
     }
 
     @Override
-    public void drawAnimations(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight) {
+    public void getIngredients(IIngredients ingredients) {
+        ingredients.setInputLists(ItemStack.class, inputs);
+    }
 
+    public List<List<ItemStack>> getInputs() {
+        return inputs;
     }
 }

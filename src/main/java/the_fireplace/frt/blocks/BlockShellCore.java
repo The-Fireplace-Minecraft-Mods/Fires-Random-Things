@@ -48,11 +48,6 @@ public class BlockShellCore extends BlockContainer {
     }
 
     @Override
-    public boolean isVisuallyOpaque() {
-        return true;
-    }
-
-    @Override
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.SOLID;
@@ -69,7 +64,7 @@ public class BlockShellCore extends BlockContainer {
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack held, EnumFacing side, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
         if (worldIn.isRemote)
             return true;
         else if (!playerIn.isSneaking()) {
@@ -114,7 +109,7 @@ public class BlockShellCore extends BlockContainer {
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock) {
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock, BlockPos neighborPos) {
         TileEntityShellCore tile = (TileEntityShellCore) worldIn.getTileEntity(pos);
         if(tile != null && !worldIn.isRemote) {
             if (ConfigValues.ENABLESHELL) {

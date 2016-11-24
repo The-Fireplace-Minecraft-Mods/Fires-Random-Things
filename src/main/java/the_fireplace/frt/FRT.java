@@ -61,7 +61,7 @@ import the_fireplace.frt.worldgen.WorldGeneratorWax;
 /**
  * @author The_Fireplace
  */
-@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.client.gui.FRTGuiFactory", updateJSON = "http://thefireplace.bitnamiapp.com/jsons/frt.json", acceptedMinecraftVersions = "[1.10.2]")
+@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.client.gui.FRTGuiFactory", updateJSON = "http://thefireplace.bitnamiapp.com/jsons/frt.json", acceptedMinecraftVersions = "[1.11,)")
 public class FRT {
     @Instance(FRT.MODID)
     public static FRT instance;
@@ -271,12 +271,12 @@ public class FRT {
         registerItemBlock(new ItemHandheldDispenser(handheld_insane_dispenser));
 
         int eid = 0;
-        EntityRegistry.registerModEntity(EntityCoal.class, "ammo_coal", eid, instance, 64, 10, true);
-        EntityRegistry.registerModEntity(EntityChargedCoal.class, "ammo_charged_coal", ++eid, instance, 64, 10, true);
-        EntityRegistry.registerModEntity(EntityDestabilizedCoal.class, "ammo_destabilized_coal", ++eid, instance, 64, 10, true);
-        EntityRegistry.registerModEntity(EntityRestabilizedCoal.class, "ammo_restabilized_coal", ++eid, instance, 64, 10, true);
-        EntityRegistry.registerModEntity(EntityRefinedCoal.class, "ammo_refined_coal", ++eid, instance, 64, 10, true);
-        EntityRegistry.registerModEntity(EntityPigderPearl.class, "pigder_pearl", ++eid, instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID+":ammo_coal"), EntityCoal.class, "ammo_coal", eid, instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID+":ammo_charged_coal"), EntityChargedCoal.class, "ammo_charged_coal", ++eid, instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID+":ammo_destabilized_coal"), EntityDestabilizedCoal.class, "ammo_destabilized_coal", ++eid, instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID+":ammo_restabilized_coal"), EntityRestabilizedCoal.class, "ammo_restabilized_coal", ++eid, instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID+":ammo_refined_coal"), EntityRefinedCoal.class, "ammo_refined_coal", ++eid, instance, 64, 10, true);
+        EntityRegistry.registerModEntity(new ResourceLocation(MODID+":pigder_pearl"), EntityPigderPearl.class, "pigder_pearl", ++eid, instance, 64, 10, true);
         GameRegistry.registerFuelHandler(new FRTFuelHandler());
         proxy.registerEntityRenderers();
 

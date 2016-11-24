@@ -10,13 +10,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.ArrayUtils;
 import the_fireplace.frt.config.ConfigValues;
-import the_fireplace.frt.entity.projectile.EntityBazookaAmmo;
+import the_fireplace.frt.entity.projectile.AbstractEntityCoal;
 
 /**
  * @author The_Fireplace
  */
 @SideOnly(Side.CLIENT)
-public class AmmoRenderFactory implements IRenderFactory<EntityBazookaAmmo> {
+public class AmmoRenderFactory implements IRenderFactory<AbstractEntityCoal> {
 
     private Item ammo;
     private ResourceLocation location;
@@ -34,7 +34,8 @@ public class AmmoRenderFactory implements IRenderFactory<EntityBazookaAmmo> {
     }
 
     @Override
-    public Render<? super EntityBazookaAmmo> createRenderFor(RenderManager manager) {
+    @SuppressWarnings("unchecked")
+    public Render<? super AbstractEntityCoal> createRenderFor(RenderManager manager) {
         if(location != null)
             return new RenderAmmo(manager, ammo, location);
         else

@@ -7,6 +7,8 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import the_fireplace.frt.tileentity.TileEntityShellCore;
 
+import javax.annotation.Nonnull;
+
 /**
  * @author The_Fireplace
  */
@@ -31,10 +33,11 @@ public class ContainerShellCore extends Container {
 
     @Override
     public boolean canInteractWith(EntityPlayer playerIn) {
-        return te.isUseableByPlayer(playerIn);
+        return te.isUsableByPlayer(playerIn);
     }
 
     @Override
+    @Nonnull
     public ItemStack transferStackInSlot(EntityPlayer player, int i) {
         Slot slot = getSlot(i);
         if (slot != null && slot.getHasStack()) {
@@ -43,19 +46,19 @@ public class ContainerShellCore extends Container {
 
             if (i >= 36) {
                 if (!mergeItemStack(is, 0, 36, false)) {
-                    return null;
+                    return ItemStack.EMPTY;
                 }
             } else if (!mergeItemStack(is, 36, 36 + te.getSizeInventory(), false)) {
-                return null;
+                return ItemStack.EMPTY;
             }
-            if (is.stackSize == 0) {
-                slot.putStack(null);
+            if (is.getCount() == 0) {
+                slot.putStack(ItemStack.EMPTY);
             } else {
                 slot.onSlotChanged();
             }
-            slot.onPickupFromSlot(player, is);
+            slot.onTake(player, is);
             return result;
         }
-        return null;
+        return ItemStack.EMPTY;
     }
 }
