@@ -73,6 +73,7 @@ public class VanillaStacks {
     static ItemStack ironStack = new ItemStack(Items.IRON_INGOT);
     static ItemStack magentaDyeStack = new ItemStack(Items.DYE, 1, 13);
     static ItemStack magmaCreamStack = new ItemStack(Items.MAGMA_CREAM);
+    static ItemStack mushroomStewStack = new ItemStack(Items.MUSHROOM_STEW);
     static ItemStack orangeDyeStack = new ItemStack(Items.DYE, 1, 14);
     static ItemStack pinkDyeStack = new ItemStack(Items.DYE, 1, 9);
     static ItemStack porkchopStack = new ItemStack(Items.PORKCHOP);
@@ -81,6 +82,7 @@ public class VanillaStacks {
     static ItemStack redstoneStack = new ItemStack(Items.REDSTONE);
     static ItemStack saddleStack = new ItemStack(Items.SADDLE);
     static ItemStack shearsStack = new ItemStack(Items.SHEARS);
+    static ItemStack shulkerShellStack = new ItemStack(Items.SHULKER_SHELL);
     static ItemStack silverDyeStack = new ItemStack(Items.DYE, 1, 7);
     static ItemStack skyDyeStack = new ItemStack(Items.DYE, 1, 12);
     static ItemStack sugarStack = new ItemStack(Items.SUGAR);
@@ -155,6 +157,7 @@ public class VanillaStacks {
     static ItemStack restabilizedCoalStack = new ItemStack(FRT.restabilized_coal);
     static ItemStack restabilizedCoalStack8 = new ItemStack(FRT.restabilized_coal, 8);
     static ItemStack restabilizedCoalStack9 = new ItemStack(FRT.restabilized_coal, 9);
+    static ItemStack shimmeringStewStack = new ItemStack(FRT.shimmering_stew);
     static ItemStack stonePaxelStack = new ItemStack(FRT.stone_paxel);
     static ItemStack waxStack = new ItemStack(FRT.wax);
     static ItemStack waxStack4 = new ItemStack(FRT.wax, 4);
@@ -292,6 +295,12 @@ public class VanillaStacks {
         shapeless(silverScreenStack, whiteScreenStack, "dyeLightGray");
         shapeless(skyScreenStack, whiteScreenStack, "dyeLightBlue");
         shapeless(magentaScreenStack, whiteScreenStack, "dyeMagenta");
+        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackL, shulkerShellStack);
+        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackLL, shulkerShellStack);
+        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackLS, shulkerShellStack);
+        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackS, shulkerShellStack);
+        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackSL, shulkerShellStack);
+        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackSS, shulkerShellStack);
         PopFurnaceRegistry.registerGunpowder(gunpowderStack, gunpowderSubstituteStack);
         PopFurnaceRegistry.registerFirestarter(flintAndSteelStack, fireChargeStack, firestarterSubstituteStack);
         PopFurnaceRegistry.registerPopFurnaceRecipe(glassStack, sandStack, 1);

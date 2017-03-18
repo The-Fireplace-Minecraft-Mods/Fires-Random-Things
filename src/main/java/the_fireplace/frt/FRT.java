@@ -147,6 +147,7 @@ public class FRT {
     public static final Item pigder_pearl = new ItemPigderPearl();
     public static final Item mystery_meat = new ItemMysteryMeat(4, 2, false).setUnlocalizedName("mystery_meat").setCreativeTab(TabFRT);
     public static final Item raw_mystery_meat = new ItemMysteryMeat(2, 0, true).setUnlocalizedName("raw_mystery_meat").setCreativeTab(TabFRT);
+    public static final Item shimmering_stew = new ItemShimmeringStew();
 
     public static final Item hallucination_goggles = new FRTArmor(ArmorMaterial.LEATHER, EntityEquipmentSlot.HEAD).setUnlocalizedName("hallucination_goggles").setCreativeTab(TabFRT);
 
@@ -268,6 +269,7 @@ public class FRT {
         registerItem(pigder_pearl);
         registerItem(mystery_meat);
         registerItem(raw_mystery_meat);
+        registerItem(shimmering_stew);
 
         registerBlockNoItem(handheld_dispenser);
         registerBlockNoItem(handheld_quad_dispenser);
@@ -409,6 +411,7 @@ public class FRT {
         rmm(meat_block);
         rmm(mystery_meat);
         rmm(raw_mystery_meat);
+        rmm(shimmering_stew);
         if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, waxed_planks.getUnlocalizedName().substring(5))) {
             ModelLoader.registerItemVariants(Item.getItemFromBlock(waxed_planks),
                     new ModelResourceLocation(MODID + ":oak_waxed_planks", "inventory"),
