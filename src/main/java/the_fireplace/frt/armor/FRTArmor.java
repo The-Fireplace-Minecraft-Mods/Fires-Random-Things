@@ -9,8 +9,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import the_fireplace.frt.FRT;
 
-import javax.annotation.Nonnull;
-
 /**
  * @author The_Fireplace
  */
@@ -20,7 +18,6 @@ public class FRTArmor extends ItemArmor {
     }
 
     @Override
-    @Nonnull
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
         if (stack.getItem() == FRT.hallucination_goggles)
             return "frt:textures/armor/hallucination_goggles.png";

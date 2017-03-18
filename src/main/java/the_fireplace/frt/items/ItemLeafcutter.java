@@ -29,7 +29,7 @@ public class ItemLeafcutter extends Item {
     @Override
     public boolean hitEntity(ItemStack is, EntityLivingBase entityHit, EntityLivingBase attacker) {
         is.damageItem(2, attacker);
-        entityHit.attackEntityFrom(DamageSource.generic, 2);
+        entityHit.attackEntityFrom(DamageSource.GENERIC, 2);
         return true;
     }
 

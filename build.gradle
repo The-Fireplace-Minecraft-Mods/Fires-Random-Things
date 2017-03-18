@@ -30,19 +30,19 @@ allprojects {
 
 version = "7.0.0"
 group= "the_fireplace.frt"
-archivesBaseName = "FiresRandomThings"
+archivesBaseName = "FiresRandomThings-1.11.2"
 
 minecraft {
-    version = "1.11-13.19.0.2153"
+    version = "1.11.2-13.20.0.2255"
     runDir = "run"
     replace '${version}', project.version
-    mappings = "snapshot_20161119"
+    mappings = "snapshot_20170308"
     useDepAts = true
 }
 
 dependencies {
-	deobfCompile group: "mezz.jei", name: "jei_1.11", version: "4.0.1.193"
-	deobfProvided group: "team.chisel", name: "Chisel", version: "MC1.11-0.0.8.2"
+	deobfCompile group: "mezz.jei", name: "jei_1.11.2", version: "4.2.10.248"
+	deobfProvided group: "team.chisel", name: "Chisel", version: "MC1.11.2-0.0.9.11"
 }
 
 
@@ -105,7 +105,8 @@ curseforge {
   project {
     id = '244507'
     changelog = file('changelog.txt')
-    releaseType = 'beta'
+    releaseType = 'release'
+    addGameVersion '1.11.2'
     addGameVersion '1.11'
 	addGameVersion 'Java 8'
     mainArtifact(jar) {
@@ -132,9 +133,9 @@ modsIO {
     project{
 		artifact = new File(jar.destinationDir, archivesBaseName+"-"+version+".jar")
 		modid = "1205"
-		minecraft = "1.11"
+		minecraft = "1.11.2"
 		try{changelog = file('changelog.txt').text}catch(Exception e){changelog=""}
-		tag = "beta"
+		tag = ""
 		current = true
     }
 }

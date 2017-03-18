@@ -55,8 +55,8 @@ public class GuiShatterer extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        this.fontRendererObj.drawString(String.valueOf(te.getStoredGunpowder()), 8 + 18, 26 - 5, 16777215);
-        this.fontRendererObj.drawString(String.valueOf(te.getStoredFirestarter()), 8 + 18, 48 - 5, 16777215);
-        this.fontRendererObj.drawString(I18n.format("pop_furnace.redstone_tooltip"), 8, 136 - 5, 16409700);
+        this.fontRenderer.drawString(String.valueOf(te.getStoredGunpowder()), 8 + 18, 26 - 5, 16777215);
+        this.fontRenderer.drawString(String.valueOf(te.getStoredFirestarter()), 8 + 18, 48 - 5, 16777215);
+        this.fontRenderer.drawString(I18n.format("pop_furnace.redstone_tooltip"), 8, 136 - 5, 16409700);
     }
 }

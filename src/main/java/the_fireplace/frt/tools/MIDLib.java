@@ -11,6 +11,6 @@ public class MIDLib {
     }
 
     public static boolean hasRealStoneTools() {
-        return Loader.isModLoaded("realstonetools");
+        return Loader.isModLoaded("realstonetools") || Loader.isModLoaded("fst");
     }
 }

@@ -101,7 +101,7 @@ public class EntityPigderPearl extends EntityThrowable
                         }
 
                         entitylivingbase.fallDistance = 0.0F;
-                        entitylivingbase.attackEntityFrom(DamageSource.fall, event.getAttackDamage());
+                        entitylivingbase.attackEntityFrom(DamageSource.FALL, event.getAttackDamage());
                     }
                 }
             }

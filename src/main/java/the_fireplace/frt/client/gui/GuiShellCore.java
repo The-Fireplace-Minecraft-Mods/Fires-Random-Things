@@ -53,6 +53,6 @@ public class GuiShellCore extends GuiContainer {
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        this.fontRendererObj.drawString(String.valueOf(te.getStoredRedstone()), 8 + 18, 26 - 5, 16777215);
+        this.fontRenderer.drawString(String.valueOf(te.getStoredRedstone()), 8 + 18, 26 - 5, 16777215);
     }
 }

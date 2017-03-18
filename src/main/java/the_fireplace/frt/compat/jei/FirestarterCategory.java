@@ -1,5 +1,6 @@
 package the_fireplace.frt.compat.jei;
 
+import com.google.common.collect.Lists;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
@@ -13,6 +14,7 @@ import net.minecraft.util.text.translation.I18n;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * @author The_Fireplace
@@ -64,5 +66,10 @@ public class FirestarterCategory implements IRecipeCategory {
 
         guiItemStacks.init(lighterSlot, true, 4, 29);
         guiItemStacks.set(ingredients);
+    }
+
+    @Override
+    public List<String> getTooltipStrings(int mouseX, int mouseY) {
+        return Lists.newArrayList();
     }
 }
