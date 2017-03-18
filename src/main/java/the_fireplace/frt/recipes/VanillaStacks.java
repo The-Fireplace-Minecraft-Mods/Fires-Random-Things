@@ -108,6 +108,7 @@ public class VanillaStacks {
     static ItemStack lightTanScreenStack = new ItemStack(FRT.light_tan_screen);
     static ItemStack limeScreenStack = new ItemStack(FRT.lime_screen);
     static ItemStack magentaScreenStack = new ItemStack(FRT.magenta_screen);
+    static ItemStack meatBlockStack = new ItemStack(FRT.meat_block);
     static ItemStack orangeScreenStack = new ItemStack(FRT.orange_screen);
     static ItemStack pinkScreenStack = new ItemStack(FRT.pink_screen);
     static ItemStack polishedStoneStack = new ItemStack(FRT.polished_stone);
@@ -142,9 +143,13 @@ public class VanillaStacks {
     static ItemStack ironPaxelStack = new ItemStack(FRT.iron_paxel);
     static ItemStack kineticPearlStack = new ItemStack(FRT.kinetic_pearl);
     static ItemStack leafcutterStack = new ItemStack(FRT.leafcutter);
+    static ItemStack mysteryMeatStack = new ItemStack(FRT.mystery_meat);
+    static ItemStack mysteryMeatStack8 = new ItemStack(FRT.mystery_meat, 8);
     static ItemStack obsidianToolStack = new ItemStack(FRT.obsidian_tool);
     static ItemStack pigderPearlStack = new ItemStack(FRT.pigder_pearl);
     static ItemStack pigderPearlStack4 = new ItemStack(FRT.pigder_pearl, 4);
+    static ItemStack rawMysteryMeatStack = new ItemStack(FRT.raw_mystery_meat);
+    static ItemStack rawMysteryMeatStack8 = new ItemStack(FRT.raw_mystery_meat, 8);
     static ItemStack refinedCoalStack = new ItemStack(FRT.refined_coal);
     static ItemStack refinedCoalStack9 = new ItemStack(FRT.refined_coal, 9);
     static ItemStack restabilizedCoalStack = new ItemStack(FRT.restabilized_coal);
@@ -186,6 +191,7 @@ public class VanillaStacks {
         shaped(pigderPearlStack, " s ", "pep", 's', saddleStack, 'p', porkchopStack, 'e', enderPearlStack);
         shaped(pigderPearlStack4, " s ", "pep", "eee", 's', saddleStack, 'p', porkchopStack, 'e', enderPearlStack);
         shaped(enderBookshelfStack, "ebe", "bbb", "ebe", 'e', "enderpearl", 'b', compactBookshelfStack);
+        shaped(meatBlockStack, "mmm", "m m", "mmm", 'm', "listAllMeatRaw");
         shapeless(waxStack4, waxBlockStack);
         shapeless(dirtStack9, compactDirtStack);
         shapeless(chargedCoalStack9, chargedCoalBlockStack);
@@ -193,7 +199,10 @@ public class VanillaStacks {
         shapeless(restabilizedCoalStack9, restabilizedCoalBlockStack);
         shapeless(refinedCoalStack9, refinedCoalBlockStack);
         shapeless(stoneSlabStack2, polishedStoneStack);
+        shapeless(rawMysteryMeatStack8, meatBlockStack);
         addSmelting(restabilizedCoalStack, refinedCoalStack, 0.05F);
+        addSmelting(meatBlockStack, mysteryMeatStack8, 0);
+        addSmelting(rawMysteryMeatStack, mysteryMeatStack, 0);
         for(BlockPlanks.EnumType meta: BlockPlanks.EnumType.values()) {
             shapeless(new ItemStack(FRT.waxed_planks, 1, meta.ordinal()), new ItemStack(Blocks.PLANKS, 1, meta.ordinal()), waxStack);
             shapeless(new ItemStack(Blocks.PLANKS, 1, meta.ordinal()), new ItemStack(FRT.waxed_planks, 1, meta.ordinal()));
@@ -321,9 +330,9 @@ public class VanillaStacks {
         }
     }
 
-    public static void shapeless(ItemStack is, Object... args) {
-        if(is.getItem() != null) {
-            if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, is.getItem().getUnlocalizedName().substring(5)))
+    public static void shapeless(ItemStack output, Object... args) {
+        if(output.getItem() != null) {
+            if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, output.getItem().getUnlocalizedName().substring(5)))
                 return;
         }else return;
         for(int i=0;i<args.length;i++){
@@ -333,12 +342,12 @@ public class VanillaStacks {
                         return;
                 }else return;
         }
-        GameRegistry.addRecipe(new ShapelessOreRecipe(is, args));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(output, args));
     }
 
-    public static void shaped(ItemStack is, Object... args) {
-        if(is.getItem() != null) {
-            if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, is.getItem().getUnlocalizedName().substring(5)))
+    public static void shaped(ItemStack output, Object... args) {
+        if(output.getItem() != null) {
+            if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, output.getItem().getUnlocalizedName().substring(5)))
                 return;
         }else return;
         for(int i=0;i<args.length;i++){
@@ -348,12 +357,12 @@ public class VanillaStacks {
                         return;
                 }else return;
         }
-        GameRegistry.addRecipe(new ShapedOreRecipe(is, args));
+        GameRegistry.addRecipe(new ShapedOreRecipe(output, args));
     }
 
-    public static void addSmelting(ItemStack isIn, ItemStack isOut, float xp){
-        if(isIn.getItem() == null || isOut.getItem() == null || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, isIn.getItem().getUnlocalizedName().substring(5)) || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, isOut.getItem().getUnlocalizedName().substring(5)))
+    public static void addSmelting(ItemStack input, ItemStack output, float xp){
+        if(input.getItem() == null || output.getItem() == null || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, input.getItem().getUnlocalizedName().substring(5)) || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, output.getItem().getUnlocalizedName().substring(5)))
             return;
-        GameRegistry.addSmelting(isIn, isOut, xp);
+        GameRegistry.addSmelting(input, output, xp);
     }
 }

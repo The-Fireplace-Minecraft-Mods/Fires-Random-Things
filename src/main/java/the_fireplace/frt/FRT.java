@@ -124,6 +124,7 @@ public class FRT {
     public static final Block candle_with_base = new BlockCandle().setUnlocalizedName("candle_with_plate");
     public static final Block wax_deposit = new FRTBlock(Material.GROUND).setHarvestTool("pickaxe", 0).setSoundType(SoundType.GROUND).setUnlocalizedName("wax_deposit").setHardness(2.0F);
     public static final Block waxed_planks = new BlockWaxedPlanks();
+    public static final Block meat_block = new BlockMeat();
 
     public static final Item charged_coal = new ItemChargedCoal();
     public static final Block handheld_dispenser = new DummyBlockHandheldDispenser().setUnlocalizedName("handheld_dispenser");
@@ -144,6 +145,8 @@ public class FRT {
     public static final Item wax = new Item().setUnlocalizedName("wax").setCreativeTab(TabFRT);
     public static final Item kinetic_pearl = new ItemKineticPearl();
     public static final Item pigder_pearl = new ItemPigderPearl();
+    public static final Item mystery_meat = new ItemMysteryMeat(4, 2, false).setUnlocalizedName("mystery_meat").setCreativeTab(TabFRT);
+    public static final Item raw_mystery_meat = new ItemMysteryMeat(2, 0, true).setUnlocalizedName("raw_mystery_meat").setCreativeTab(TabFRT);
 
     public static final Item hallucination_goggles = new FRTArmor(ArmorMaterial.LEATHER, EntityEquipmentSlot.HEAD).setUnlocalizedName("hallucination_goggles").setCreativeTab(TabFRT);
 
@@ -244,6 +247,7 @@ public class FRT {
         registerBlock(wax_deposit);
         registerBlockNoItem(waxed_planks);
         registerItemBlock(new ItemWaxedPlanks(waxed_planks));
+        registerBlock(meat_block);
 
         registerItem(charged_coal);
         registerItem(destabilized_coal);
@@ -262,6 +266,8 @@ public class FRT {
         registerItem(wax);
         registerItem(kinetic_pearl);
         registerItem(pigder_pearl);
+        registerItem(mystery_meat);
+        registerItem(raw_mystery_meat);
 
         registerBlockNoItem(handheld_dispenser);
         registerBlockNoItem(handheld_quad_dispenser);
@@ -305,6 +311,13 @@ public class FRT {
         OreDictionary.registerOre("book", Items.ENCHANTED_BOOK);
         OreDictionary.registerOre("bookshelfWood", Blocks.BOOKSHELF);
         OreDictionary.registerOre("bookshelf", Blocks.BOOKSHELF);
+        OreDictionary.registerOre("listAllMeatRaw", Items.PORKCHOP);
+        OreDictionary.registerOre("listAllMeatRaw", Items.BEEF);
+        OreDictionary.registerOre("listAllMeatRaw", Items.CHICKEN);
+        OreDictionary.registerOre("listAllMeatRaw", Items.MUTTON);
+        OreDictionary.registerOre("listAllMeatRaw", Items.FISH);
+        OreDictionary.registerOre("listAllMeatRaw", new ItemStack(Items.FISH, 1, 1));
+        OreDictionary.registerOre("listAllMeatRaw", new ItemStack(Items.FISH, 1, 2));
         registerOre("screen", white_screen);
         registerOre("screen", black_screen);
         registerOre("screen", red_screen);
@@ -325,6 +338,7 @@ public class FRT {
         registerOre("screen", dark_tan_screen);
         registerOre("enderpearl", pigder_pearl);
         registerOre("plankWood", new ItemStack(waxed_planks, 1, OreDictionary.WILDCARD_VALUE));
+        registerOre("listAllMeatRaw", raw_mystery_meat);
         IRecipeRegister recipes;
         if (MIDLib.hasBaseMetals()) {
             recipes = new BaseMetalsRecipes();
@@ -392,6 +406,9 @@ public class FRT {
         rmm(candle);
         rmm(candle_with_base);
         rmm(wax_deposit);
+        rmm(meat_block);
+        rmm(mystery_meat);
+        rmm(raw_mystery_meat);
         if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, waxed_planks.getUnlocalizedName().substring(5))) {
             ModelLoader.registerItemVariants(Item.getItemFromBlock(waxed_planks),
                     new ModelResourceLocation(MODID + ":oak_waxed_planks", "inventory"),

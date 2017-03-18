@@ -1,0 +1,11 @@
+{
+    "variants": {
+        "squish=0": { "model": "frt:meat_block_base" },
+        "squish=1": { "model": "frt:meat_block_1" },
+        "squish=2": { "model": "frt:meat_block_2" },
+        "squish=3": { "model": "frt:meat_block_3" },
+        "squish=4": { "model": "frt:meat_block_4" },
+        "squish=5": { "model": "frt:meat_block_5" },
+        "squish=6": { "model": "frt:meat_block_6" }
+    }
+}
