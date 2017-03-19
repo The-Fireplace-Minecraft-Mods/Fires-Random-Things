@@ -1,3 +1,4 @@
 Added thhe Meat Block, Mystery Meat, and Shimmering Stew
 Renamed the Shatterer to Implosion Pulverizer
-Changed Shell Texture
+Changed Shell texture
+Changed Shell Core texture
