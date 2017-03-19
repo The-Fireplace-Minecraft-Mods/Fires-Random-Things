@@ -1,5 +1,6 @@
 Added thhe Meat Block, Mystery Meat, and Shimmering Stew
 Renamed the Shatterer to Implosion Pulverizer
+Renamed Shell to Force Field
 Changed Shell texture
 Changed Shell Core texture
 Tweaked Compact Dirt and Wax Deposit textures
