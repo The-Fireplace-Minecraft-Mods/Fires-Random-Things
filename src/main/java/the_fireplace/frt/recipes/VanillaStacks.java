@@ -295,12 +295,12 @@ public class VanillaStacks {
         shapeless(silverScreenStack, whiteScreenStack, "dyeLightGray");
         shapeless(skyScreenStack, whiteScreenStack, "dyeLightBlue");
         shapeless(magentaScreenStack, whiteScreenStack, "dyeMagenta");
-        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackL, shulkerShellStack);
-        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackLL, shulkerShellStack);
-        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackLS, shulkerShellStack);
-        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackS, shulkerShellStack);
-        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackSL, shulkerShellStack);
-        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackSS, shulkerShellStack);
+        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackL, shulkerShellStack, "dustGlowstone");
+        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackLL, shulkerShellStack, "dustGlowstone");
+        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackLS, shulkerShellStack, "dustGlowstone");
+        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackS, shulkerShellStack, "dustGlowstone");
+        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackSL, shulkerShellStack, "dustGlowstone");
+        shapeless(shimmeringStewStack, mushroomStewStack, hallucinationPotionStackSS, shulkerShellStack, "dustGlowstone");
         PopFurnaceRegistry.registerGunpowder(gunpowderStack, gunpowderSubstituteStack);
         PopFurnaceRegistry.registerFirestarter(flintAndSteelStack, fireChargeStack, firestarterSubstituteStack);
         PopFurnaceRegistry.registerPopFurnaceRecipe(glassStack, sandStack, 1);

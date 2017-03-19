@@ -1,1 +1,2 @@
-Updated to 1.11
+Added thhe Meat Block, Mystery Meat, and Shimmering Stew
+Renamed the Shatterer to Implosion Pulverizer
