@@ -29,7 +29,7 @@ deploy:
     paths:
     - $ARTIFACTS
  
- deployMaven:
+deployMaven:
   stage: deploy
   script:
   - ./gradlew clean
