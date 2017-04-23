@@ -1,13 +1,12 @@
 package the_fireplace.frt.items;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.dispenser.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
@@ -26,18 +25,19 @@ import static net.minecraft.block.BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY;
 /**
  * @author The_Fireplace
  */
-public class ItemHandheldDispenser extends ItemBlock {
+public class ItemHandheldDispenser extends Item {
 
-    private int multiplier = 1;
+    private byte multiplier = 1;
 
-    public ItemHandheldDispenser(Block b) {
-        super(b);
+    public ItemHandheldDispenser(String name) {
+        super();
         setMaxStackSize(1);
-        setUnlocalizedName(b.getUnlocalizedName().substring(5));
-        if(b.equals(FRT.handheld_quad_dispenser))
+        setUnlocalizedName(name);
+        if(name.equals("handheld_quad_dispenser"))
             multiplier=4;
-        else if(b.equals(FRT.handheld_insane_dispenser))
+        else if(name.equals("handheld_insane_dispenser"))
             multiplier=16;
+        setCreativeTab(FRT.TabFRT);
     }
 
     @Override
@@ -76,9 +76,9 @@ public class ItemHandheldDispenser extends ItemBlock {
         return new ActionResult(EnumActionResult.PASS, itemStackIn);
     }
 
-    private static final Method projectilemethod = ReflectionHelper.findMethod(BehaviorProjectileDispense.class, null, new String[]{"getProjectileEntity","func_82499_a"}, World.class, IPosition.class, ItemStack.class);
-    private static final Method velocitymethod = ReflectionHelper.findMethod(BehaviorProjectileDispense.class, null, new String[]{"getProjectileVelocity","func_82500_b"});
-    private static final Method inaccuracymethod = ReflectionHelper.findMethod(BehaviorProjectileDispense.class, null, new String[]{"getProjectileInaccuracy","func_82498_a"});
+    private static final Method projectilemethod = ReflectionHelper.findMethod(BehaviorProjectileDispense.class, "getProjectileEntity","func_82499_a", World.class, IPosition.class, ItemStack.class);
+    private static final Method velocitymethod = ReflectionHelper.findMethod(BehaviorProjectileDispense.class, "getProjectileVelocity","func_82500_b");
+    private static final Method inaccuracymethod = ReflectionHelper.findMethod(BehaviorProjectileDispense.class, "getProjectileInaccuracy","func_82498_a");
 
     public void dispenseStack(IBlockSource source, ItemStack stack, BehaviorProjectileDispense behavior, EntityPlayer player)
     {

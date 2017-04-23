@@ -39,7 +39,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import the_fireplace.frt.armor.FRTArmor;
 import the_fireplace.frt.blocks.*;
 import the_fireplace.frt.blocks.internal.BlockShell;
-import the_fireplace.frt.blocks.internal.DummyBlockHandheldDispenser;
 import the_fireplace.frt.compat.basemetals.IBaseMetalsRegister;
 import the_fireplace.frt.compat.basemetals.RegisterBaseMetals;
 import the_fireplace.frt.config.ConfigValues;
@@ -127,9 +126,9 @@ public final class FRT {
     public static final Block meat_block = new BlockMeat();
 
     public static final Item charged_coal = new ItemChargedCoal();
-    public static final Block handheld_dispenser = new DummyBlockHandheldDispenser().setUnlocalizedName("handheld_dispenser");
-    public static final Block handheld_quad_dispenser = new DummyBlockHandheldDispenser().setUnlocalizedName("handheld_quad_dispenser");
-    public static final Block handheld_insane_dispenser = new DummyBlockHandheldDispenser().setUnlocalizedName("handheld_insane_dispenser");
+    public static final Item handheld_dispenser = new ItemHandheldDispenser("handheld_dispenser");
+    public static final Item handheld_quad_dispenser = new ItemHandheldDispenser("handheld_quad_dispenser");
+    public static final Item handheld_insane_dispenser = new ItemHandheldDispenser("handheld_insane_dispenser");
     public static final Item destabilized_coal = new Item().setUnlocalizedName("destabilized_coal").setCreativeTab(TabFRT);
     public static final Item diamond_paxel = new ItemPaxel(ToolMaterial.DIAMOND).setUnlocalizedName("diamond_paxel").setCreativeTab(FRT.TabFRT);
     public static final Item iron_paxel = new ItemPaxel(ToolMaterial.IRON).setUnlocalizedName("iron_paxel").setCreativeTab(FRT.TabFRT);
@@ -270,13 +269,9 @@ public final class FRT {
         registerItem(mystery_meat);
         registerItem(raw_mystery_meat);
         registerItem(shimmering_stew);
-
-        registerBlockNoItem(handheld_dispenser);
-        registerBlockNoItem(handheld_quad_dispenser);
-        registerBlockNoItem(handheld_insane_dispenser);
-        registerItemBlock(new ItemHandheldDispenser(handheld_dispenser));
-        registerItemBlock(new ItemHandheldDispenser(handheld_quad_dispenser));
-        registerItemBlock(new ItemHandheldDispenser(handheld_insane_dispenser));
+        registerItem(handheld_dispenser);
+        registerItem(handheld_quad_dispenser);
+        registerItem(handheld_insane_dispenser);
 
         int eid = 0;
         EntityRegistry.registerModEntity(new ResourceLocation(MODID+":ammo_coal"), EntityCoal.class, "ammo_coal", eid, instance, 64, 10, true);
