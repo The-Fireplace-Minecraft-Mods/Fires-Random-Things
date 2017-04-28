@@ -4,7 +4,6 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.IThreadListener;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import the_fireplace.frt.FRT;
@@ -25,12 +24,12 @@ public class ChangeShaderMessage implements IMessage {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        cooldown = Integer.parseInt(ByteBufUtils.readUTF8String(buf));
+        cooldown = buf.readInt();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        ByteBufUtils.writeUTF8String(buf, String.valueOf(cooldown));
+        buf.writeInt(cooldown);
     }
 
     public static class Handler extends AbstractClientMessageHandler<ChangeShaderMessage> {

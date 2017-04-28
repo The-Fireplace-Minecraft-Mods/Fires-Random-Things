@@ -5,7 +5,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IThreadListener;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import the_fireplace.frt.FRT;
@@ -25,12 +24,12 @@ public class UpdatePotionMessage implements IMessage {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        duration = Integer.parseInt(ByteBufUtils.readUTF8String(buf));
+        duration = buf.readInt();
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        ByteBufUtils.writeUTF8String(buf, String.valueOf(duration));
+        buf.writeInt(duration);
     }
 
     public static class Handler extends AbstractClientMessageHandler<UpdatePotionMessage> {
