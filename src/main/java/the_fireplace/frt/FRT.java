@@ -23,6 +23,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.config.GuiConfigEntries;
+import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -36,6 +37,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.logging.log4j.Level;
 import the_fireplace.frt.armor.FRTArmor;
 import the_fireplace.frt.blocks.*;
 import the_fireplace.frt.blocks.internal.BlockShell;
@@ -472,4 +474,25 @@ public final class FRT {
             if(!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, is.getItem().getUnlocalizedName().substring(5)))
                 OreDictionary.registerOre(s, is);
     }
+
+    public static void logInfo(String log, Object... params){
+        FMLLog.log(MODNAME, Level.INFO,  log, params);
+    }
+
+    public static void logDebug(String log, Object... params){
+        FMLLog.log(MODNAME, Level.DEBUG,  log, params);
+    }
+
+    public static void logError(String log, Object... params){
+        FMLLog.log(MODNAME, Level.ERROR,  log, params);
+    }
+
+    public static void logTrace(String log, Object... params){
+        FMLLog.log(MODNAME, Level.TRACE,  log, params);
+    }
+
+    public static void logWarn(String log, Object... params){
+        FMLLog.log(MODNAME, Level.WARN,  log, params);
+    }
+
 }

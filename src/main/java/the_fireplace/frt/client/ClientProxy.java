@@ -7,13 +7,14 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import the_fireplace.frt.CommonProxy;
 import the_fireplace.frt.FRT;
-import the_fireplace.frt.entity.projectile.*;
 import the_fireplace.frt.client.renderers.AmmoRenderFactory;
 import the_fireplace.frt.client.renderers.PigderPearlRenderFactory;
-import the_fireplace.frt.CommonProxy;
+import the_fireplace.frt.entity.projectile.*;
 
 import java.util.Random;
 
@@ -38,7 +39,7 @@ public class ClientProxy extends CommonProxy {
 
     @Override
     public void registerClient() {
-
+        MinecraftForge.EVENT_BUS.register(new ClientEvents());
     }
 
     @Override

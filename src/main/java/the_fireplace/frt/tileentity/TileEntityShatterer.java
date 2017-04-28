@@ -206,7 +206,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
                 }
             }
         } else {
-            System.out.println("List was null when reading TileEntityShatterer NBTTagCompound");
+            FRT.logError("List was null when reading TileEntityShatterer NBTTagCompound");
         }
         this.storedFirestarter = compound.getInteger("StoredFirestarter");
         this.storedGunpowder = compound.getInteger("StoredGunpowder");
