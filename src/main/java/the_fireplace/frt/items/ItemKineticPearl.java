@@ -28,7 +28,7 @@ public class ItemKineticPearl extends Item {
         double prevX = playerIn.motionX;
         double prevY = playerIn.motionY;
         double prevZ = playerIn.motionZ;
-        AxisAlignedBB bb = playerIn.getEntityBoundingBox().expandXyz(8);
+        AxisAlignedBB bb = playerIn.getEntityBoundingBox().grow(8);
         worldIn.getEntitiesWithinAABB(Entity.class, bb).stream().filter(entity -> entity != playerIn).forEach(entity -> {
             playerIn.addVelocity(entity.motionX, entity.motionY, entity.motionZ);
             entity.addVelocity(-entity.motionX, -entity.motionY, -entity.motionZ);

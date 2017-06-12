@@ -91,7 +91,7 @@ public class ItemHandheldDispenser extends Item {
             iprojectile = (IProjectile)projectilemethod.invoke(behavior, world, iposition, stack);
             velocity = (float)velocitymethod.invoke(behavior);
             inaccuracy = (float)inaccuracymethod.invoke(behavior);
-            iprojectile.setThrowableHeading(player.getLookVec().xCoord, player.getLookVec().yCoord + 0.1F, player.getLookVec().zCoord, velocity*1.1F, inaccuracy*(float)Math.sqrt(multiplier));
+            iprojectile.setThrowableHeading(player.getLookVec().x, player.getLookVec().y + 0.1F, player.getLookVec().z, velocity*1.1F, inaccuracy*(float)Math.sqrt(multiplier));
         }catch(Exception e){
             e.printStackTrace();
             return;

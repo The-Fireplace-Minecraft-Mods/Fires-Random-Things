@@ -166,12 +166,12 @@ public abstract class AbstractEntityCoal extends EntityThrowable implements IPro
         vec31 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
         if (movingobjectposition != null) {
-            vec31 = new Vec3d(movingobjectposition.hitVec.xCoord, movingobjectposition.hitVec.yCoord, movingobjectposition.hitVec.zCoord);
+            vec31 = new Vec3d(movingobjectposition.hitVec.x, movingobjectposition.hitVec.y, movingobjectposition.hitVec.z);
         }
 
         if (!this.world.isRemote) {
             Entity entity = null;
-            List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).grow(1.0D));
             double d0 = 0.0D;
             EntityLivingBase entitylivingbase = this.getPlayerThrower();
 
@@ -180,7 +180,7 @@ public abstract class AbstractEntityCoal extends EntityThrowable implements IPro
 
                 if (entity1.canBeCollidedWith() && (entity1 != entitylivingbase || this.ticksInAir >= 5)) {
                     float f = 0.3F;
-                    AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().expand(f, f, f);
+                    AxisAlignedBB axisalignedbb = entity1.getEntityBoundingBox().grow(f);
                     RayTraceResult movingobjectposition1 = axisalignedbb.calculateIntercept(vec3, vec31);
 
                     if (movingobjectposition1 != null) {
@@ -210,7 +210,6 @@ public abstract class AbstractEntityCoal extends EntityThrowable implements IPro
         this.posX += this.motionX;
         this.posY += this.motionY;
         this.posZ += this.motionZ;
-        float f1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
         this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
         while (this.rotationPitch - this.prevRotationPitch >= 180.0F) {
@@ -227,7 +226,7 @@ public abstract class AbstractEntityCoal extends EntityThrowable implements IPro
 
         this.rotationPitch = this.prevRotationPitch + (this.rotationPitch - this.prevRotationPitch) * 0.2F;
         this.rotationYaw = this.prevRotationYaw + (this.rotationYaw - this.prevRotationYaw) * 0.2F;
-        float f2 = 0.99F;
+        float f2;
         float f3 = this.getGravityVelocity();
 
         if (this.isInWater()) {

@@ -32,8 +32,4 @@ public class GunpowderRecipe extends BlankRecipeWrapper {
     public void getIngredients(IIngredients ingredients) {
         ingredients.setInputLists(ItemStack.class, inputs);
     }
-
-    public List<List<ItemStack>> getInputs() {
-        return inputs;
-    }
 }

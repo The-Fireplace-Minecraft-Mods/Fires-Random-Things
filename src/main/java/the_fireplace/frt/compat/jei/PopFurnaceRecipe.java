@@ -23,24 +23,9 @@ public class PopFurnaceRecipe extends BlankRecipeWrapper {
         this.outputs = Collections.singletonList(output);
     }
 
-    @Nonnull
-    public List<List<ItemStack>> getInputs() {
-        return input;
-    }
-
-    @Nonnull
-    public List<ItemStack> getOutputs() {
-        return outputs;
-    }
-
     @Override
     public void getIngredients(IIngredients ingredients) {
         ingredients.setInputLists(ItemStack.class, input);
         ingredients.setOutputLists(ItemStack.class, Collections.singletonList(outputs));
-    }
-
-    @Override
-    public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-
     }
 }

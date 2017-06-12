@@ -19,6 +19,16 @@ public class FRTGuiFactory implements IModGuiFactory {
     }
 
     @Override
+    public boolean hasConfigGui() {
+        return true;
+    }
+
+    @Override
+    public GuiScreen createConfigGui(GuiScreen parentScreen) {
+        return new FRTConfigGui(parentScreen);
+    }
+
+    @Override
     public Class<? extends GuiScreen> mainConfigGuiClass() {
         return FRTConfigGui.class;
     }

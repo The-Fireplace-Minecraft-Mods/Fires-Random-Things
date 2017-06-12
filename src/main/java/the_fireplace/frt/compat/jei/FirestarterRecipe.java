@@ -32,8 +32,4 @@ public class FirestarterRecipe extends BlankRecipeWrapper {
     public void getIngredients(@Nonnull IIngredients ingredients) {
         ingredients.setInputLists(ItemStack.class, inputs);
     }
-
-    public List<List<ItemStack>> getInputs() {
-        return inputs;
-    }
 }

@@ -1,6 +1,7 @@
 package the_fireplace.frt.compat.jei;
 
 import com.google.common.collect.Lists;
+import mcp.MethodsReturnNonnullByDefault;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
@@ -14,11 +15,14 @@ import the_fireplace.frt.FRT;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 /**
  * @author The_Fireplace
  */
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class PopFurnaceCategory implements IRecipeCategory {
     @Nonnull
     private final IDrawable background;
@@ -29,19 +33,21 @@ public class PopFurnaceCategory implements IRecipeCategory {
         background = guiHelper.createDrawable(location, 3, 15, 169, 53);
     }
 
-    @Nonnull
     @Override
     public String getUid() {
         return "frt.pop_furnace";
     }
 
-    @Nonnull
     @Override
     public String getTitle() {
         return FRT.proxy.translateToLocal("jei.pop_furnace");
     }
 
-    @Nonnull
+    @Override
+    public String getModName() {
+        return FRT.MODNAME;
+    }
+
     @Override
     public IDrawable getBackground() {
         return background;

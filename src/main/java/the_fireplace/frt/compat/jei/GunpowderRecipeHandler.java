@@ -2,33 +2,18 @@ package the_fireplace.frt.compat.jei;
 
 import mezz.jei.api.recipe.IRecipeHandler;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import mezz.jei.api.recipe.IRecipeWrapperFactory;
 
 import javax.annotation.Nonnull;
 
 /**
  * @author The_Fireplace
  */
-public class GunpowderRecipeHandler implements IRecipeHandler<GunpowderRecipe> {
-    @Nonnull
-    @Override
-    public Class<GunpowderRecipe> getRecipeClass() {
-        return GunpowderRecipe.class;
-    }
-
-    @Nonnull
-    @Override
-    public String getRecipeCategoryUid(GunpowderRecipe recipe) {
-        return "frt.pop_furnace.gunpowder";
-    }
+public class GunpowderRecipeHandler implements IRecipeWrapperFactory<GunpowderRecipe> {
 
     @Nonnull
     @Override
     public IRecipeWrapper getRecipeWrapper(@Nonnull GunpowderRecipe recipe) {
         return recipe;
-    }
-
-    @Override
-    public boolean isRecipeValid(@Nonnull GunpowderRecipe recipe) {
-        return !recipe.getInputs().isEmpty();
     }
 }
