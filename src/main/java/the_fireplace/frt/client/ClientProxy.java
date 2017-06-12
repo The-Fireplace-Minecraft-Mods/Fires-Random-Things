@@ -75,7 +75,7 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public String translateToLocal(String s){
-        return I18n.format(s);
+    public String translateToLocal(String s, Object... args){
+        return I18n.format(s, args);
     }
 }

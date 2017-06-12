@@ -1,6 +1,7 @@
 package the_fireplace.frt;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import the_fireplace.frt.tileentity.TileEntityShatterer;
@@ -32,7 +33,7 @@ public class CommonProxy {
     public void activateNextShader() {
     }
 
-    public String translateToLocal(String s){
-        return s;
+    public String translateToLocal(String s, Object... args){
+        return I18n.translateToLocalFormatted(s, args);
     }
 }
