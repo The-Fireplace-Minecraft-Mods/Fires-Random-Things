@@ -14,48 +14,48 @@ import net.minecraft.world.World;
  */
 public class BlockSourceHand implements IBlockSource {
 
-    BlockPos blockPos;
-    World worldIn;
-    EnumFacing enumFacing;
+	BlockPos blockPos;
+	World worldIn;
+	EnumFacing enumFacing;
 
-    public BlockSourceHand(BlockPos pos, World world, EnumFacing facing){
-        blockPos = pos;
-        worldIn = world;
-        enumFacing = facing;
-    }
+	public BlockSourceHand(BlockPos pos, World world, EnumFacing facing) {
+		blockPos = pos;
+		worldIn = world;
+		enumFacing = facing;
+	}
 
-    @Override
-    public double getX() {
-        return blockPos.getX();
-    }
+	@Override
+	public double getX() {
+		return blockPos.getX();
+	}
 
-    @Override
-    public double getY() {
-        return blockPos.getY();
-    }
+	@Override
+	public double getY() {
+		return blockPos.getY();
+	}
 
-    @Override
-    public double getZ() {
-        return blockPos.getZ();
-    }
+	@Override
+	public double getZ() {
+		return blockPos.getZ();
+	}
 
-    @Override
-    public BlockPos getBlockPos() {
-        return blockPos;
-    }
+	@Override
+	public BlockPos getBlockPos() {
+		return blockPos;
+	}
 
-    @Override
-    public IBlockState getBlockState() {
-        return Blocks.DISPENSER.getDefaultState().withProperty(BlockDispenser.FACING, enumFacing);
-    }
+	@Override
+	public IBlockState getBlockState() {
+		return Blocks.DISPENSER.getDefaultState().withProperty(BlockDispenser.FACING, enumFacing);
+	}
 
-    @Override
-    public <T extends TileEntity> T getBlockTileEntity() {
-        return null;
-    }
+	@Override
+	public <T extends TileEntity> T getBlockTileEntity() {
+		return null;
+	}
 
-    @Override
-    public World getWorld() {
-        return worldIn;
-    }
+	@Override
+	public World getWorld() {
+		return worldIn;
+	}
 }

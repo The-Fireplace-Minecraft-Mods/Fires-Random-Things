@@ -12,28 +12,28 @@ import the_fireplace.frt.tileentity.TileEntityShellCore;
  */
 public class CommonProxy {
 
-    public void registerEntityRenderers() {
-    }
+	public void registerEntityRenderers() {
+	}
 
-    public void registerTileEntities() {
-        GameRegistry.registerTileEntity(TileEntityShatterer.class, "pop_furnace");
-        GameRegistry.registerTileEntity(TileEntityShellCore.class, "shell_core");
-    }
+	public void registerTileEntities() {
+		GameRegistry.registerTileEntity(TileEntityShatterer.class, "pop_furnace");
+		GameRegistry.registerTileEntity(TileEntityShellCore.class, "shell_core");
+	}
 
-    public EntityPlayer getPlayerEntity(MessageContext ctx) {
-        return ctx.getServerHandler().player;
-    }
+	public EntityPlayer getPlayerEntity(MessageContext ctx) {
+		return ctx.getServerHandler().player;
+	}
 
-    public void registerClient() {
-    }
+	public void registerClient() {
+	}
 
-    public void tryRemoveShader() {
-    }
+	public void tryRemoveShader() {
+	}
 
-    public void activateNextShader() {
-    }
+	public void activateNextShader() {
+	}
 
-    public String translateToLocal(String s, Object... args){
-        return I18n.translateToLocalFormatted(s, args);
-    }
+	public String translateToLocal(String s, Object... args) {
+		return I18n.translateToLocalFormatted(s, args);
+	}
 }

@@ -1,7 +1,7 @@
 package the_fireplace.frt.compat.basemetals;
 
 public interface IBaseMetalsRegister {
-    void registerItems();
+	void registerItems();
 
-    void registerItemRenders();
+	void registerItemRenders();
 }

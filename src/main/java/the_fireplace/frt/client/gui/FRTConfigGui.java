@@ -14,9 +14,9 @@ import the_fireplace.frt.FRT;
 @SideOnly(Side.CLIENT)
 public class FRTConfigGui extends GuiConfig {
 
-    public FRTConfigGui(GuiScreen parentScreen) {
-        super(parentScreen, new ConfigElement(FRT.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(), FRT.MODID, false,
-                false, GuiConfig.getAbridgedConfigPath(FRT.config.toString()));
-    }
+	public FRTConfigGui(GuiScreen parentScreen) {
+		super(parentScreen, new ConfigElement(FRT.config.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(), FRT.MODID, false,
+				false, GuiConfig.getAbridgedConfigPath(FRT.config.toString()));
+	}
 
 }

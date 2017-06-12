@@ -17,42 +17,42 @@ import the_fireplace.frt.tileentity.TileEntityShellCore;
  */
 @SideOnly(Side.CLIENT)
 public class GuiShellCore extends GuiContainer {
-    public static final ResourceLocation texture = new ResourceLocation(FRT.MODID, "textures/gui/shell_core.png");
-    private TileEntityShellCore te;
+	public static final ResourceLocation texture = new ResourceLocation(FRT.MODID, "textures/gui/shell_core.png");
+	private TileEntityShellCore te;
 
-    public GuiShellCore(InventoryPlayer invPlayer, TileEntityShellCore entity) {
-        super(new ContainerShellCore(invPlayer, entity));
-        xSize = 176;
-        ySize = 143;
-        ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());
-        width = res.getScaledWidth();
-        height = res.getScaledHeight();
-        guiLeft = (width - xSize) / 2;
-        guiTop = (height - ySize) / 2;
-        te = entity;
-    }
+	public GuiShellCore(InventoryPlayer invPlayer, TileEntityShellCore entity) {
+		super(new ContainerShellCore(invPlayer, entity));
+		xSize = 176;
+		ySize = 143;
+		ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());
+		width = res.getScaledWidth();
+		height = res.getScaledHeight();
+		guiLeft = (width - xSize) / 2;
+		guiTop = (height - ySize) / 2;
+		te = entity;
+	}
 
-    @Override
-    public void initGui() {
-        ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());
-        width = res.getScaledWidth();
-        height = res.getScaledHeight();
-        guiLeft = (width - xSize) / 2;
-        guiTop = (height - ySize) / 2;
-        super.initGui();
-    }
+	@Override
+	public void initGui() {
+		ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());
+		width = res.getScaledWidth();
+		height = res.getScaledHeight();
+		guiLeft = (width - xSize) / 2;
+		guiTop = (height - ySize) / 2;
+		super.initGui();
+	}
 
-    @Override
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-        GL11.glColor4f(1F, 1F, 1F, 1F);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
-        int k = (this.width - this.xSize) / 2;
-        int l = (this.height - this.ySize) / 2;
-        this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-    }
+	@Override
+	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+		GL11.glColor4f(1F, 1F, 1F, 1F);
+		Minecraft.getMinecraft().getTextureManager().bindTexture(texture);
+		int k = (this.width - this.xSize) / 2;
+		int l = (this.height - this.ySize) / 2;
+		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+	}
 
-    @Override
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-        this.fontRenderer.drawString(String.valueOf(te.getStoredRedstone()), 8 + 18, 26 - 5, 16777215);
-    }
+	@Override
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		this.fontRenderer.drawString(String.valueOf(te.getStoredRedstone()), 8 + 18, 26 - 5, 16777215);
+	}
 }

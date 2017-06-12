@@ -11,25 +11,25 @@ import the_fireplace.frt.config.ConfigValues;
  */
 public class EntityChargedCoal extends AbstractEntityCoal {
 
-    public EntityChargedCoal(World worldIn) {
-        super(worldIn);
-    }
+	public EntityChargedCoal(World worldIn) {
+		super(worldIn);
+	}
 
-    public EntityChargedCoal(World worldIn, EntityLivingBase throwerIn) {
-        super(worldIn, throwerIn);
-    }
+	public EntityChargedCoal(World worldIn, EntityLivingBase throwerIn) {
+		super(worldIn, throwerIn);
+	}
 
-    public EntityChargedCoal(World worldIn, double x, double y, double z) {
-        super(worldIn, x, y, z);
-    }
+	public EntityChargedCoal(World worldIn, double x, double y, double z) {
+		super(worldIn, x, y, z);
+	}
 
-    @Override
-    protected void executeImpact(RayTraceResult mop) {
-        if (mop.entityHit != null) {
-            mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getPlayerThrower()), 2.0F);
-            world.createExplosion(this, this.posX, this.posY, this.posZ, 1.0F, ConfigValues.ENABLEDAMAGE);
-        } else {
-            world.createExplosion(this, mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ(), 1.0F, ConfigValues.ENABLEDAMAGE);
-        }
-    }
+	@Override
+	protected void executeImpact(RayTraceResult mop) {
+		if (mop.entityHit != null) {
+			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getPlayerThrower()), 2.0F);
+			world.createExplosion(this, this.posX, this.posY, this.posZ, 1.0F, ConfigValues.ENABLEDAMAGE);
+		} else {
+			world.createExplosion(this, mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ(), 1.0F, ConfigValues.ENABLEDAMAGE);
+		}
+	}
 }

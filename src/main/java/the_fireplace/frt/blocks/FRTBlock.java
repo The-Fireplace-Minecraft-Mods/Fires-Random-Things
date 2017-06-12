@@ -9,18 +9,18 @@ import javax.annotation.Nonnull;
 
 public class FRTBlock extends Block {
 
-    public FRTBlock(Material materialIn) {
-        super(materialIn);
-        setCreativeTab(FRT.TabFRT);
-    }
+	public FRTBlock(Material materialIn) {
+		super(materialIn);
+		setCreativeTab(FRT.TabFRT);
+	}
 
-    @Nonnull
-    public FRTBlock setSoundType(@Nonnull SoundType sound) {
-        return (FRTBlock) super.setSoundType(sound);
-    }
+	@Nonnull
+	public FRTBlock setSoundType(@Nonnull SoundType sound) {
+		return (FRTBlock) super.setSoundType(sound);
+	}
 
-    public FRTBlock setHarvestTool(String tool, int tier) {
-        this.setHarvestLevel(tool, tier);
-        return this;
-    }
+	public FRTBlock setHarvestTool(String tool, int tier) {
+		this.setHarvestLevel(tool, tier);
+		return this;
+	}
 }

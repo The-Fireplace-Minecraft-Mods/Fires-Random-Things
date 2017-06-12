@@ -10,15 +10,15 @@ import net.minecraft.world.World;
  */
 public class BlockEnderBookshelf extends FRTBlock {
 
-    public BlockEnderBookshelf() {
-        super(Material.WOOD);
-        setUnlocalizedName("ender_bookshelf");
-        setHardness(10F);
-        setSoundType(SoundType.WOOD);
-    }
+	public BlockEnderBookshelf() {
+		super(Material.WOOD);
+		setUnlocalizedName("ender_bookshelf");
+		setHardness(10F);
+		setSoundType(SoundType.WOOD);
+	}
 
-    @Override
-    public float getEnchantPowerBonus(World world, BlockPos pos) {
-        return 15;
-    }
+	@Override
+	public float getEnchantPowerBonus(World world, BlockPos pos) {
+		return 15;
+	}
 }

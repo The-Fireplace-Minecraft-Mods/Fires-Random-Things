@@ -14,57 +14,57 @@ import java.util.Map;
  * @author The_Fireplace
  */
 public class PoppingRecipeMaker {
-    @Nonnull
-    public static List<PopFurnaceRecipe> getPoppingRecipes(IJeiHelpers helpers) {
-        IStackHelper stackHelper = helpers.getStackHelper();
-        ShattererRecipes furnaceRecipes = ShattererRecipes.instance();
-        Map<ItemStack, ItemStack> poppingMap = furnaceRecipes.getPoppingList();
+	@Nonnull
+	public static List<PopFurnaceRecipe> getPoppingRecipes(IJeiHelpers helpers) {
+		IStackHelper stackHelper = helpers.getStackHelper();
+		ShattererRecipes furnaceRecipes = ShattererRecipes.instance();
+		Map<ItemStack, ItemStack> poppingMap = furnaceRecipes.getPoppingList();
 
-        List<PopFurnaceRecipe> recipes = new ArrayList<>();
+		List<PopFurnaceRecipe> recipes = new ArrayList<>();
 
-        for (Map.Entry<ItemStack, ItemStack> itemStackItemStackEntry : poppingMap.entrySet()) {
-            ItemStack input = itemStackItemStackEntry.getKey();
-            ItemStack output = itemStackItemStackEntry.getValue();
+		for (Map.Entry<ItemStack, ItemStack> itemStackItemStackEntry : poppingMap.entrySet()) {
+			ItemStack input = itemStackItemStackEntry.getKey();
+			ItemStack output = itemStackItemStackEntry.getValue();
 
-            List<ItemStack> inputs = stackHelper.getSubtypes(input);
-            PopFurnaceRecipe recipe = new PopFurnaceRecipe(inputs, output);
-            recipes.add(recipe);
-        }
+			List<ItemStack> inputs = stackHelper.getSubtypes(input);
+			PopFurnaceRecipe recipe = new PopFurnaceRecipe(inputs, output);
+			recipes.add(recipe);
+		}
 
-        return recipes;
-    }
+		return recipes;
+	}
 
-    @Nonnull
-    public static List<FirestarterRecipe> getFirestarters(IJeiHelpers helpers) {
-        IStackHelper stackHelper = helpers.getStackHelper();
-        ShattererRecipes furnaceRecipes = ShattererRecipes.instance();
-        ArrayList<ItemStack> firestarters = furnaceRecipes.getFirestarters();
+	@Nonnull
+	public static List<FirestarterRecipe> getFirestarters(IJeiHelpers helpers) {
+		IStackHelper stackHelper = helpers.getStackHelper();
+		ShattererRecipes furnaceRecipes = ShattererRecipes.instance();
+		ArrayList<ItemStack> firestarters = furnaceRecipes.getFirestarters();
 
-        List<FirestarterRecipe> recipes = new ArrayList<>();
+		List<FirestarterRecipe> recipes = new ArrayList<>();
 
-        for (ItemStack stack : firestarters) {
-            List<ItemStack> inputs = stackHelper.getSubtypes(stack);
-            FirestarterRecipe recipe = new FirestarterRecipe(inputs);
-            recipes.add(recipe);
-        }
+		for (ItemStack stack : firestarters) {
+			List<ItemStack> inputs = stackHelper.getSubtypes(stack);
+			FirestarterRecipe recipe = new FirestarterRecipe(inputs);
+			recipes.add(recipe);
+		}
 
-        return recipes;
-    }
+		return recipes;
+	}
 
-    @Nonnull
-    public static List<GunpowderRecipe> getGunpowders(IJeiHelpers helpers) {
-        IStackHelper stackHelper = helpers.getStackHelper();
-        ShattererRecipes furnaceRecipes = ShattererRecipes.instance();
-        ArrayList<ItemStack> gunpowders = furnaceRecipes.getGunpowders();
+	@Nonnull
+	public static List<GunpowderRecipe> getGunpowders(IJeiHelpers helpers) {
+		IStackHelper stackHelper = helpers.getStackHelper();
+		ShattererRecipes furnaceRecipes = ShattererRecipes.instance();
+		ArrayList<ItemStack> gunpowders = furnaceRecipes.getGunpowders();
 
-        List<GunpowderRecipe> recipes = new ArrayList<>();
+		List<GunpowderRecipe> recipes = new ArrayList<>();
 
-        for (ItemStack stack : gunpowders) {
-            List<ItemStack> inputs = stackHelper.getSubtypes(stack);
-            GunpowderRecipe recipe = new GunpowderRecipe(inputs);
-            recipes.add(recipe);
-        }
+		for (ItemStack stack : gunpowders) {
+			List<ItemStack> inputs = stackHelper.getSubtypes(stack);
+			GunpowderRecipe recipe = new GunpowderRecipe(inputs);
+			recipes.add(recipe);
+		}
 
-        return recipes;
-    }
+		return recipes;
+	}
 }

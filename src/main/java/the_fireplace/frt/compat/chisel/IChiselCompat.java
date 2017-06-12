@@ -6,5 +6,5 @@ import net.minecraft.block.state.IBlockState;
  * @author The_Fireplace
  */
 public interface IChiselCompat {
-    boolean isObsidian(IBlockState state);
+	boolean isObsidian(IBlockState state);
 }

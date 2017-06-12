@@ -17,27 +17,28 @@ import the_fireplace.frt.FRT;
  * @author The_Fireplace
  */
 public class ItemKineticPearl extends Item {
-    public ItemKineticPearl() {
-        setUnlocalizedName("kinetic_pearl");
-        setCreativeTab(FRT.TabFRT);
-    }
+	public ItemKineticPearl() {
+		setUnlocalizedName("kinetic_pearl");
+		setCreativeTab(FRT.TabFRT);
+	}
 
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
-        ItemStack itemStackIn = playerIn.getHeldItem(hand);
-        double prevX = playerIn.motionX;
-        double prevY = playerIn.motionY;
-        double prevZ = playerIn.motionZ;
-        AxisAlignedBB bb = playerIn.getEntityBoundingBox().grow(8);
-        worldIn.getEntitiesWithinAABB(Entity.class, bb).stream().filter(entity -> entity != playerIn).forEach(entity -> {
-            playerIn.addVelocity(entity.motionX, entity.motionY, entity.motionZ);
-            entity.addVelocity(-entity.motionX, -entity.motionY, -entity.motionZ);
-        });
-        if (Math.abs(playerIn.motionX - prevX) > 0.25 || Math.abs(playerIn.motionY - prevY) > 0.25 || Math.abs(playerIn.motionZ - prevZ) > 0.25) {
-            if (!playerIn.capabilities.isCreativeMode)
-                itemStackIn.shrink(1);
-            worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.NEUTRAL, 0.3F, 0.5F / (itemRand.nextFloat() * 0.4F + 0.8F));
-        }
-        return new ActionResult(EnumActionResult.PASS, itemStackIn);
-    }
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+		ItemStack itemStackIn = playerIn.getHeldItem(hand);
+		double prevX = playerIn.motionX;
+		double prevY = playerIn.motionY;
+		double prevZ = playerIn.motionZ;
+		AxisAlignedBB bb = playerIn.getEntityBoundingBox().grow(8);
+		worldIn.getEntitiesWithinAABB(Entity.class, bb).stream().filter(entity -> entity != playerIn).forEach(entity -> {
+			playerIn.addVelocity(entity.motionX, entity.motionY, entity.motionZ);
+			entity.addVelocity(-entity.motionX, -entity.motionY, -entity.motionZ);
+		});
+		if (Math.abs(playerIn.motionX - prevX) > 0.25 || Math.abs(playerIn.motionY - prevY) > 0.25 || Math.abs(playerIn.motionZ - prevZ) > 0.25) {
+			if (!playerIn.capabilities.isCreativeMode)
+				itemStackIn.shrink(1);
+			worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERMEN_TELEPORT, SoundCategory.NEUTRAL, 0.3F, 0.5F / (itemRand.nextFloat() * 0.4F + 0.8F));
+			return new ActionResult(EnumActionResult.SUCCESS, itemStackIn);
+		} else
+			return new ActionResult(EnumActionResult.FAIL, itemStackIn);
+	}
 }

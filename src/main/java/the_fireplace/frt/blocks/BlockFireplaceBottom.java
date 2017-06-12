@@ -12,16 +12,16 @@ import javax.annotation.Nonnull;
  */
 public class BlockFireplaceBottom extends FRTBlock {
 
-    public BlockFireplaceBottom() {
-        super(Material.ROCK);
-        setUnlocalizedName("fireplace_bottom");
-        setHardness(2.0F);
-        setResistance(10.0F);
-        setHarvestLevel("pickaxe", 0);
-    }
+	public BlockFireplaceBottom() {
+		super(Material.ROCK);
+		setUnlocalizedName("fireplace_bottom");
+		setHardness(2.0F);
+		setResistance(10.0F);
+		setHarvestLevel("pickaxe", 0);
+	}
 
-    @Override
-    public boolean isFireSource(@Nonnull World world, BlockPos pos, EnumFacing side) {
-        return true;
-    }
+	@Override
+	public boolean isFireSource(@Nonnull World world, BlockPos pos, EnumFacing side) {
+		return true;
+	}
 }

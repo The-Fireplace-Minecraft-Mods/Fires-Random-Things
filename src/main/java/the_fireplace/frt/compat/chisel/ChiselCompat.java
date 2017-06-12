@@ -7,8 +7,8 @@ import team.chisel.api.carving.CarvingUtils;
  * @author The_Fireplace
  */
 public class ChiselCompat implements IChiselCompat {
-    @Override
-    public boolean isObsidian(IBlockState state) {
-        return CarvingUtils.chisel.getOreName(state) != null && CarvingUtils.chisel.getOreName(state).equals("obsidian");
-    }
+	@Override
+	public boolean isObsidian(IBlockState state) {
+		return CarvingUtils.chisel.getOreName(state) != null && CarvingUtils.chisel.getOreName(state).equals("obsidian");
+	}
 }

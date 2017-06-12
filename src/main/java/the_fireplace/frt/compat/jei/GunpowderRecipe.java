@@ -15,21 +15,21 @@ import java.util.List;
  * @author The_Fireplace
  */
 public class GunpowderRecipe extends BlankRecipeWrapper {
-    @Nonnull
-    private final List<List<ItemStack>> inputs;
+	@Nonnull
+	private final List<List<ItemStack>> inputs;
 
-    public GunpowderRecipe(@Nonnull Collection<ItemStack> input) {
-        List<ItemStack> inputList = new ArrayList<>(input);
-        this.inputs = Collections.singletonList(inputList);
-    }
+	public GunpowderRecipe(@Nonnull Collection<ItemStack> input) {
+		List<ItemStack> inputList = new ArrayList<>(input);
+		this.inputs = Collections.singletonList(inputList);
+	}
 
-    @Override
-    public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
+	@Override
+	public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 
-    }
+	}
 
-    @Override
-    public void getIngredients(IIngredients ingredients) {
-        ingredients.setInputLists(ItemStack.class, inputs);
-    }
+	@Override
+	public void getIngredients(IIngredients ingredients) {
+		ingredients.setInputLists(ItemStack.class, inputs);
+	}
 }

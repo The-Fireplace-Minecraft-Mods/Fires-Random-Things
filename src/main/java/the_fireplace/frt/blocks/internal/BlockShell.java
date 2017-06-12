@@ -10,15 +10,15 @@ import java.util.Random;
  */
 public class BlockShell extends Block {
 
-    public BlockShell() {
-        super(Material.ANVIL);
-        setUnlocalizedName("shell");
-        setBlockUnbreakable();
-        setResistance(131072);
-    }
+	public BlockShell() {
+		super(Material.ANVIL);
+		setUnlocalizedName("shell");
+		setBlockUnbreakable();
+		setResistance(131072);
+	}
 
-    @Override
-    public int quantityDropped(Random random) {
-        return 0;
-    }
+	@Override
+	public int quantityDropped(Random random) {
+		return 0;
+	}
 }

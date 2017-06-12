@@ -11,7 +11,6 @@ import mezz.jei.api.recipe.IRecipeCategory;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.translation.I18n;
 import the_fireplace.frt.FRT;
 
 import javax.annotation.Nonnull;
@@ -25,58 +24,58 @@ import java.util.List;
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public class GunpowderCategory implements IRecipeCategory {
-    @Nonnull
-    private final IDrawable background;
+	@Nonnull
+	private final IDrawable background;
 
-    public GunpowderCategory(IGuiHelper guiHelper) {
-        super();
-        ResourceLocation location = new ResourceLocation("frt", "textures/gui/nei_pop_furnace.png");
-        background = guiHelper.createDrawable(location, 3, 15, 169, 53);
-    }
+	public GunpowderCategory(IGuiHelper guiHelper) {
+		super();
+		ResourceLocation location = new ResourceLocation("frt", "textures/gui/nei_pop_furnace.png");
+		background = guiHelper.createDrawable(location, 3, 15, 169, 53);
+	}
 
-    @Override
-    public String getUid() {
-        return "frt.pop_furnace.gunpowder";
-    }
+	@Override
+	public String getUid() {
+		return "frt.pop_furnace.gunpowder";
+	}
 
-    @Override
-    public String getTitle() {
-        return FRT.proxy.translateToLocal("jei.gunpowder");
-    }
+	@Override
+	public String getTitle() {
+		return FRT.proxy.translateToLocal("jei.gunpowder");
+	}
 
-    @Override
-    public String getModName() {
-        return FRT.MODNAME;
-    }
+	@Override
+	public String getModName() {
+		return FRT.MODNAME;
+	}
 
-    @Override
-    public IDrawable getBackground() {
-        return background;
-    }
+	@Override
+	public IDrawable getBackground() {
+		return background;
+	}
 
-    @Nullable
-    @Override
-    public IDrawable getIcon() {
-        return null;
-    }
+	@Nullable
+	@Override
+	public IDrawable getIcon() {
+		return null;
+	}
 
-    @Override
-    public void drawExtras(Minecraft minecraft) {
+	@Override
+	public void drawExtras(Minecraft minecraft) {
 
-    }
+	}
 
-    @Override
-    public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
-        IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
+	@Override
+	public void setRecipe(IRecipeLayout recipeLayout, IRecipeWrapper recipeWrapper, IIngredients ingredients) {
+		IGuiItemStackGroup guiItemStacks = recipeLayout.getItemStacks();
 
-        int powderSlot = 10;
+		int powderSlot = 10;
 
-        guiItemStacks.init(powderSlot, true, 4, 7);
-        guiItemStacks.set(ingredients);
-    }
+		guiItemStacks.init(powderSlot, true, 4, 7);
+		guiItemStacks.set(ingredients);
+	}
 
-    @Override
-    public List<String> getTooltipStrings(int mouseX, int mouseY) {
-        return Lists.newArrayList();
-    }
+	@Override
+	public List<String> getTooltipStrings(int mouseX, int mouseY) {
+		return Lists.newArrayList();
+	}
 }

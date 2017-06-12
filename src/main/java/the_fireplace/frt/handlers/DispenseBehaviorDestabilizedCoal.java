@@ -11,8 +11,8 @@ import the_fireplace.frt.entity.projectile.EntityDestabilizedCoal;
  * @author The_Fireplace
  */
 public class DispenseBehaviorDestabilizedCoal extends BehaviorProjectileDispense {
-    @Override
-    protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stack) {
-        return new EntityDestabilizedCoal(worldIn, position.getX(), position.getY(), position.getZ());
-    }
+	@Override
+	protected IProjectile getProjectileEntity(World worldIn, IPosition position, ItemStack stack) {
+		return new EntityDestabilizedCoal(worldIn, position.getX(), position.getY(), position.getZ());
+	}
 }

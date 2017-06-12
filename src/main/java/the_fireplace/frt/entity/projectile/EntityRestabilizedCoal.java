@@ -10,25 +10,25 @@ import the_fireplace.frt.config.ConfigValues;
  * @author The_Fireplace
  */
 public class EntityRestabilizedCoal extends AbstractEntityCoal {
-    public EntityRestabilizedCoal(World worldIn) {
-        super(worldIn);
-    }
+	public EntityRestabilizedCoal(World worldIn) {
+		super(worldIn);
+	}
 
-    public EntityRestabilizedCoal(World worldIn, EntityLivingBase throwerIn) {
-        super(worldIn, throwerIn);
-    }
+	public EntityRestabilizedCoal(World worldIn, EntityLivingBase throwerIn) {
+		super(worldIn, throwerIn);
+	}
 
-    public EntityRestabilizedCoal(World worldIn, double x, double y, double z) {
-        super(worldIn, x, y, z);
-    }
+	public EntityRestabilizedCoal(World worldIn, double x, double y, double z) {
+		super(worldIn, x, y, z);
+	}
 
-    @Override
-    protected void executeImpact(RayTraceResult mop) {
-        if (mop.entityHit != null) {
-            mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getPlayerThrower()), 4.0F);
-            world.createExplosion(this, this.posX, this.posY, this.posZ, 0.5F, ConfigValues.ENABLEDAMAGE);
-        } else {
-            world.createExplosion(this, mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ(), 0.5F, ConfigValues.ENABLEDAMAGE);
-        }
-    }
+	@Override
+	protected void executeImpact(RayTraceResult mop) {
+		if (mop.entityHit != null) {
+			mop.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getPlayerThrower()), 4.0F);
+			world.createExplosion(this, this.posX, this.posY, this.posZ, 0.5F, ConfigValues.ENABLEDAMAGE);
+		} else {
+			world.createExplosion(this, mop.getBlockPos().getX(), mop.getBlockPos().getY(), mop.getBlockPos().getZ(), 0.5F, ConfigValues.ENABLEDAMAGE);
+		}
+	}
 }

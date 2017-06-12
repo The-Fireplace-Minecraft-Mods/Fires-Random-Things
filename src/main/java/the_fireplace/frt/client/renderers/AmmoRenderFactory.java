@@ -18,27 +18,27 @@ import the_fireplace.frt.entity.projectile.AbstractEntityCoal;
 @SideOnly(Side.CLIENT)
 public class AmmoRenderFactory implements IRenderFactory<AbstractEntityCoal> {
 
-    private Item ammo;
-    private ResourceLocation location;
+	private Item ammo;
+	private ResourceLocation location;
 
-    public AmmoRenderFactory(Item item){
-        if(ArrayUtils.contains(ConfigValues.DISABLEDITEMS, item.getUnlocalizedName().substring(5)))
-            ammo = Items.COAL;
-        else
-            ammo = item;
-    }
+	public AmmoRenderFactory(Item item) {
+		if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, item.getUnlocalizedName().substring(5)))
+			ammo = Items.COAL;
+		else
+			ammo = item;
+	}
 
-    public AmmoRenderFactory(Item item, ResourceLocation loc){
-        ammo=item;
-        location=loc;
-    }
+	public AmmoRenderFactory(Item item, ResourceLocation loc) {
+		ammo = item;
+		location = loc;
+	}
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public Render<? super AbstractEntityCoal> createRenderFor(RenderManager manager) {
-        if(location != null)
-            return new RenderAmmo(manager, ammo, location);
-        else
-            return new RenderAmmo(manager, ammo);
-    }
+	@Override
+	@SuppressWarnings("unchecked")
+	public Render<? super AbstractEntityCoal> createRenderFor(RenderManager manager) {
+		if (location != null)
+			return new RenderAmmo(manager, ammo, location);
+		else
+			return new RenderAmmo(manager, ammo);
+	}
 }

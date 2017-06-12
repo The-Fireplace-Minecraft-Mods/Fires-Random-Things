@@ -13,32 +13,32 @@ import the_fireplace.frt.FRT;
  */
 public class ChangeShaderMessage implements IMessage {
 
-    public int cooldown = 0;
+	public int cooldown = 0;
 
-    public ChangeShaderMessage() {
-    }
+	public ChangeShaderMessage() {
+	}
 
-    public ChangeShaderMessage(int cooldown){
-        this.cooldown = cooldown;
-    }
+	public ChangeShaderMessage(int cooldown) {
+		this.cooldown = cooldown;
+	}
 
-    @Override
-    public void fromBytes(ByteBuf buf) {
-        cooldown = buf.readInt();
-    }
+	@Override
+	public void fromBytes(ByteBuf buf) {
+		cooldown = buf.readInt();
+	}
 
-    @Override
-    public void toBytes(ByteBuf buf) {
-        buf.writeInt(cooldown);
-    }
+	@Override
+	public void toBytes(ByteBuf buf) {
+		buf.writeInt(cooldown);
+	}
 
-    public static class Handler extends AbstractClientMessageHandler<ChangeShaderMessage> {
-        @Override
-        public IMessage handleClientMessage(EntityPlayer player, ChangeShaderMessage message, MessageContext ctx) {
-            IThreadListener listener = Minecraft.getMinecraft();
-            listener.addScheduledTask(() -> FRT.proxy.activateNextShader());
-            listener.addScheduledTask(() -> FRT.instance.clientCooldownTicks = message.cooldown*2);
-            return null;
-        }
-    }
+	public static class Handler extends AbstractClientMessageHandler<ChangeShaderMessage> {
+		@Override
+		public IMessage handleClientMessage(EntityPlayer player, ChangeShaderMessage message, MessageContext ctx) {
+			IThreadListener listener = Minecraft.getMinecraft();
+			listener.addScheduledTask(() -> FRT.proxy.activateNextShader());
+			listener.addScheduledTask(() -> FRT.instance.clientCooldownTicks = message.cooldown * 2);
+			return null;
+		}
+	}
 }

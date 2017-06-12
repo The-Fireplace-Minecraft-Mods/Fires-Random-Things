@@ -14,20 +14,20 @@ import the_fireplace.frt.FRT;
  * @author The_Fireplace
  */
 public class ItemChargedCoal extends Item {
-    public ItemChargedCoal() {
-        setUnlocalizedName("charged_coal");
-        setCreativeTab(FRT.TabFRT);
-    }
+	public ItemChargedCoal() {
+		setUnlocalizedName("charged_coal");
+		setCreativeTab(FRT.TabFRT);
+	}
 
-    @Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (world.getBlockState(pos).getBlock() == Blocks.REDSTONE_ORE || world.getBlockState(pos).getBlock() == Blocks.LIT_REDSTONE_ORE) {
-            world.setBlockToAir(pos);
-            world.setBlockState(pos, Blocks.COAL_ORE.getDefaultState());
-            if(!playerIn.capabilities.isCreativeMode)
-                playerIn.getHeldItem(hand).shrink(1);
-            return EnumActionResult.SUCCESS;
-        }
-        return EnumActionResult.FAIL;
-    }
+	@Override
+	public EnumActionResult onItemUse(EntityPlayer playerIn, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (world.getBlockState(pos).getBlock() == Blocks.REDSTONE_ORE || world.getBlockState(pos).getBlock() == Blocks.LIT_REDSTONE_ORE) {
+			world.setBlockToAir(pos);
+			world.setBlockState(pos, Blocks.COAL_ORE.getDefaultState());
+			if (!playerIn.capabilities.isCreativeMode)
+				playerIn.getHeldItem(hand).shrink(1);
+			return EnumActionResult.SUCCESS;
+		}
+		return EnumActionResult.FAIL;
+	}
 }

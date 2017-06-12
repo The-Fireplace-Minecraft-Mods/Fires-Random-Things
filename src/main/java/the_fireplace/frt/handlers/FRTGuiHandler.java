@@ -17,46 +17,46 @@ import the_fireplace.frt.tileentity.TileEntityShellCore;
  */
 public class FRTGuiHandler implements IGuiHandler {
 
-    @Override
-    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        TileEntity entity = world.getTileEntity(new BlockPos(x, y, z));
-        switch (ID) {
-            case 0:
-                if (entity != null && entity instanceof TileEntityShatterer) {
-                    return new ContainerShatterer(player.inventory, (TileEntityShatterer) entity);
-                } else {
-                    return null;
-                }
-            case 1:
-                if (entity != null && entity instanceof TileEntityShellCore) {
-                    return new ContainerShellCore(player.inventory, (TileEntityShellCore) entity);
-                } else {
-                    return null;
-                }
-            default:
-                return null;
-        }
-    }
+	@Override
+	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+		TileEntity entity = world.getTileEntity(new BlockPos(x, y, z));
+		switch (ID) {
+			case 0:
+				if (entity != null && entity instanceof TileEntityShatterer) {
+					return new ContainerShatterer(player.inventory, (TileEntityShatterer) entity);
+				} else {
+					return null;
+				}
+			case 1:
+				if (entity != null && entity instanceof TileEntityShellCore) {
+					return new ContainerShellCore(player.inventory, (TileEntityShellCore) entity);
+				} else {
+					return null;
+				}
+			default:
+				return null;
+		}
+	}
 
-    @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-        TileEntity entity = world.getTileEntity(new BlockPos(x, y, z));
-        switch (ID) {
-            case 0:
-                if (entity != null && entity instanceof TileEntityShatterer) {
-                    return new GuiShatterer(player.inventory, (TileEntityShatterer) entity);
-                } else {
-                    return null;
-                }
-            case 1:
-                if (entity != null && entity instanceof TileEntityShellCore) {
-                    return new GuiShellCore(player.inventory, (TileEntityShellCore) entity);
-                } else {
-                    return null;
-                }
-            default:
-                return null;
-        }
-    }
+	@Override
+	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+		TileEntity entity = world.getTileEntity(new BlockPos(x, y, z));
+		switch (ID) {
+			case 0:
+				if (entity != null && entity instanceof TileEntityShatterer) {
+					return new GuiShatterer(player.inventory, (TileEntityShatterer) entity);
+				} else {
+					return null;
+				}
+			case 1:
+				if (entity != null && entity instanceof TileEntityShellCore) {
+					return new GuiShellCore(player.inventory, (TileEntityShellCore) entity);
+				} else {
+					return null;
+				}
+			default:
+				return null;
+		}
+	}
 
 }
