@@ -64,7 +64,7 @@ import the_fireplace.frt.worldgen.WorldGeneratorWax;
 /**
  * @author The_Fireplace
  */
-@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.client.gui.FRTGuiFactory", updateJSON = "http://thefireplace.bitnamiapp.com/jsons/frt.json", acceptedMinecraftVersions = "[1.11,1.11.2]", version = "${version}")
+@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.client.gui.FRTGuiFactory", updateJSON = "https://bitbucket.org/The_Fireplace/minecraft-mod-updates/raw/master/frt.json", acceptedMinecraftVersions = "[1.11,1.11.2]", version = "${version}")
 public final class FRT {
 	@Instance(FRT.MODID)
 	public static FRT instance;
