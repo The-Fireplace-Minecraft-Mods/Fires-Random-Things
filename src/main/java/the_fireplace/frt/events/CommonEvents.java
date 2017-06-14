@@ -38,6 +38,7 @@ import java.util.HashSet;
 @SuppressWarnings("unused")
 public class CommonEvents {
 	public static HashSet<ChunkPos> noobHousesToGen = Sets.newHashSet();
+	public static HashSet<ChunkPos> portalCavesToGen = Sets.newHashSet();
 	@SubscribeEvent
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
 		if (eventArgs.getModID().equals(FRT.MODID))
@@ -72,18 +73,21 @@ public class CommonEvents {
 	@SubscribeEvent
 	public void chunkGen(PopulateChunkEvent.Post event){
 		if(event.getWorld().provider.getDimensionType().equals(DimensionType.OVERWORLD)){
-			ChunkPos pos = getSurroundingChunkOnList(event.getChunkX(), event.getChunkZ(), event.getWorld().getChunkProvider());
+			ChunkPos pos = getSurroundingChunkOnList(event.getChunkX(), event.getChunkZ(), event.getWorld().getChunkProvider(), noobHousesToGen);
 			if(pos != null)
 				FRT.instance.worldGeneratorNoobHouse.generate(event.getWorld().rand, pos.x, pos.z, event.getWorld(), event.getGenerator(), event.getWorld().getChunkProvider());
+			pos = getSurroundingChunkOnList(event.getChunkX(), event.getChunkZ(), event.getWorld().getChunkProvider(), portalCavesToGen);
+			if(pos != null)
+				FRT.instance.worldGeneratorPortalCave.generate(event.getWorld().rand, pos.x, pos.z, event.getWorld(), event.getGenerator(), event.getWorld().getChunkProvider());
 		}
 	}
 
-	private ChunkPos getSurroundingChunkOnList(int chunkX, int chunkZ, IChunkProvider chunkprovider) {
+	private ChunkPos getSurroundingChunkOnList(int chunkX, int chunkZ, IChunkProvider chunkprovider, HashSet list) {
 		for(int x = chunkX - 1; x <= chunkX + 1; x++) {
 			for(int z = chunkZ - 1; z <= chunkZ + 1; z++) {
 				ChunkPos pos = new ChunkPos(x, z);
-				if(noobHousesToGen.contains(pos)) {
-					noobHousesToGen.remove(pos);
+				if(list.contains(pos)) {
+					list.remove(pos);
 					return pos;
 				}
 			}

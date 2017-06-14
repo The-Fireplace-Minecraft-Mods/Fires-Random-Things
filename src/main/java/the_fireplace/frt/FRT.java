@@ -59,6 +59,7 @@ import the_fireplace.frt.recipes.IRecipeRegister;
 import the_fireplace.frt.recipes.VanillaStacks;
 import the_fireplace.frt.tools.MIDLib;
 import the_fireplace.frt.worldgen.WorldGeneratorNoobHouse;
+import the_fireplace.frt.worldgen.WorldGeneratorPortalCave;
 import the_fireplace.frt.worldgen.WorldGeneratorWax;
 
 /**
@@ -89,6 +90,7 @@ public final class FRT {
 
 	public static Potion hallucination;
 	public IWorldGenerator worldGeneratorNoobHouse;
+	public IWorldGenerator worldGeneratorPortalCave;
 
 	private boolean structureGeneratorsRegistered = false;
 
@@ -378,6 +380,14 @@ public final class FRT {
 		}
 	}
 
+	private void addStructures(){
+		if(ConfigValues.GENSTRUCTURES) {
+			GameRegistry.registerWorldGenerator(worldGeneratorNoobHouse = new WorldGeneratorNoobHouse(), 20);
+			GameRegistry.registerWorldGenerator(worldGeneratorPortalCave = new WorldGeneratorPortalCave(), 19);
+			structureGeneratorsRegistered = true;
+		}
+	}
+
 	/**
 	 * Registers the item renders
 	 */
@@ -507,12 +517,5 @@ public final class FRT {
 
 	public static void logWarn(String log, Object... params) {
 		FMLLog.log(MODNAME, Level.WARN, log, params);
-	}
-
-	private void addStructures(){
-		if(ConfigValues.GENSTRUCTURES) {
-			GameRegistry.registerWorldGenerator(worldGeneratorNoobHouse = new WorldGeneratorNoobHouse(), 20);
-			structureGeneratorsRegistered = true;
-		}
 	}
 }
