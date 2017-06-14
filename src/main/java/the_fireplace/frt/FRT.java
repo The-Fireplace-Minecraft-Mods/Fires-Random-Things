@@ -90,9 +90,6 @@ public final class FRT {
 	public static final CreativeTabs TabFRT = new TabFRT();
 
 	public static Potion hallucination;
-	public IWorldGenerator worldGeneratorNoobHouse;
-	public IWorldGenerator worldGeneratorPortalCave;
-	public IWorldGenerator worldGeneratorBosSign;
 
 	private boolean structureGeneratorsRegistered = false;
 
@@ -384,9 +381,9 @@ public final class FRT {
 
 	private void addStructures(){
 		if(ConfigValues.GENSTRUCTURES) {
-			GameRegistry.registerWorldGenerator(worldGeneratorNoobHouse = new WorldGeneratorNoobHouse(), 20);
-			GameRegistry.registerWorldGenerator(worldGeneratorPortalCave = new WorldGeneratorPortalCave(), 19);
-			GameRegistry.registerWorldGenerator(worldGeneratorBosSign = new WorldGeneratorBosSign(), 21);
+			GameRegistry.registerWorldGenerator(new WorldGeneratorNoobHouse(), 20);
+			GameRegistry.registerWorldGenerator(new WorldGeneratorPortalCave(), 19);
+			GameRegistry.registerWorldGenerator(new WorldGeneratorBosSign(), 21);
 			structureGeneratorsRegistered = true;
 		}
 	}

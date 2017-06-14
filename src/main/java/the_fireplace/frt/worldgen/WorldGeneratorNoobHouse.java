@@ -1,5 +1,6 @@
 package the_fireplace.frt.worldgen;
 
+import com.google.common.collect.Maps;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -50,7 +51,8 @@ public class WorldGeneratorNoobHouse implements IWorldGenerator {
 		if(!ConfigValues.GENSTRUCTURES)
 			return;
 		if(!areSurroundingChunksLoaded(chunkX, chunkZ, chunkProvider)) {
-			CommonEvents.noobHousesToGen.add(new ChunkPos(chunkX, chunkZ));
+			CommonEvents.worldgenQueue.computeIfAbsent(world, k -> Maps.newHashMap());
+			CommonEvents.worldgenQueue.get(world).put(new ChunkPos(chunkX, chunkZ), this);
 			return;
 		}
 
