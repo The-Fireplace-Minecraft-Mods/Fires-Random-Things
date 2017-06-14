@@ -39,6 +39,7 @@ import java.util.HashSet;
 public class CommonEvents {
 	public static HashSet<ChunkPos> noobHousesToGen = Sets.newHashSet();
 	public static HashSet<ChunkPos> portalCavesToGen = Sets.newHashSet();
+	public static HashSet<ChunkPos> bosSignsToGen = Sets.newHashSet();
 	@SubscribeEvent
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
 		if (eventArgs.getModID().equals(FRT.MODID))
@@ -79,6 +80,9 @@ public class CommonEvents {
 			pos = getSurroundingChunkOnList(event.getChunkX(), event.getChunkZ(), event.getWorld().getChunkProvider(), portalCavesToGen);
 			if(pos != null)
 				FRT.instance.worldGeneratorPortalCave.generate(event.getWorld().rand, pos.x, pos.z, event.getWorld(), event.getGenerator(), event.getWorld().getChunkProvider());
+			pos = getSurroundingChunkOnList(event.getChunkX(), event.getChunkZ(), event.getWorld().getChunkProvider(), bosSignsToGen);
+			if(pos != null)
+				FRT.instance.worldGeneratorBosSign.generate(event.getWorld().rand, pos.x, pos.z, event.getWorld(), event.getGenerator(), event.getWorld().getChunkProvider());
 		}
 	}
 
