@@ -56,7 +56,7 @@ public class WorldGeneratorNoobHouse implements IWorldGenerator {
 
 		BlockPos basePos = world.getTopSolidOrLiquidBlock(new BlockPos(chunkX*16, 0, chunkZ*16)).down();
 
-		if(random.nextInt(30000) == 0 && world.getWorldType() != WorldType.DEBUG_ALL_BLOCK_STATES && world.getWorldType() != WorldType.FLAT && (world.getBlockState(basePos).getMaterial() == Material.GROUND || world.getBlockState(basePos).getMaterial() == Material.GRASS && world.provider.getDimensionType().equals(DimensionType.OVERWORLD))){
+		if(random.nextInt(30000) == 0 && world.getWorldType() != WorldType.DEBUG_ALL_BLOCK_STATES && world.getWorldType() != WorldType.FLAT && (world.getBlockState(basePos).getMaterial() == Material.GROUND || world.getBlockState(basePos).getMaterial() == Material.GRASS) && world.provider.getDimensionType().equals(DimensionType.OVERWORLD)){
 			Rotation rotation = Rotation.values()[random.nextInt(Rotation.values().length)];
 			Template templateNoobHouse = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), NOOB_HOUSE);
 			PlacementSettings settings = new PlacementSettings().setIntegrity(0.999F).setRotation(rotation);
