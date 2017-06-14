@@ -24,6 +24,7 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.config.GuiConfigEntries;
 import net.minecraftforge.fml.common.FMLLog;
+import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -57,6 +58,7 @@ import the_fireplace.frt.recipes.DefaultRecipes;
 import the_fireplace.frt.recipes.IRecipeRegister;
 import the_fireplace.frt.recipes.VanillaStacks;
 import the_fireplace.frt.tools.MIDLib;
+import the_fireplace.frt.worldgen.WorldGeneratorNoobHouse;
 import the_fireplace.frt.worldgen.WorldGeneratorWax;
 
 /**
@@ -84,6 +86,7 @@ public final class FRT {
 	public static final CreativeTabs TabFRT = new TabFRT();
 
 	public static Potion hallucination;
+	public IWorldGenerator worldGeneratorNoobHouse;
 
 	public int clientCooldownTicks;
 
@@ -304,6 +307,7 @@ public final class FRT {
 		proxy.registerTileEntities();
 		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, wax_deposit.getUnlocalizedName().substring(5)))
 			GameRegistry.registerWorldGenerator(new WorldGeneratorWax(), 6);
+		GameRegistry.registerWorldGenerator(worldGeneratorNoobHouse = new WorldGeneratorNoobHouse(), 20);
 		OreDictionary.registerOre("book", Items.BOOK);
 		OreDictionary.registerOre("book", Items.WRITTEN_BOOK);
 		OreDictionary.registerOre("book", Items.WRITABLE_BOOK);

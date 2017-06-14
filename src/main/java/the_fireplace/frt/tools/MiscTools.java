@@ -2,9 +2,11 @@ package the_fireplace.frt.tools;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.apache.commons.lang3.ArrayUtils;
+import the_fireplace.frt.FRT;
 import the_fireplace.frt.config.ConfigValues;
 
 public class MiscTools {
@@ -18,5 +20,9 @@ public class MiscTools {
 		EntityItem entityitem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);
 		if (!world.isRemote)
 			world.spawnEntity(entityitem);
+	}
+
+	public static NBTTagString getLocalBookPage(String key){
+		return new NBTTagString("\""+ FRT.proxy.translateToLocal(key)+"\"");
 	}
 }
