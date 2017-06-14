@@ -3,8 +3,8 @@
     {
       "name": "Noob House Loot",
       "rolls": {
-        "min": 2,
-        "max": 5
+        "min": 1,
+        "max": 3
       },
       "bonus_rolls": 1.0,
       "entries": [
