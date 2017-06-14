@@ -79,6 +79,8 @@ public final class FRT {
 	public static Property POTIONSWITCH_PROPERTY;
 	public static Property TICKSPERREDSTONE_PROPERTY;
 	public static Property DISABLEDITEMS_PROPERTY;
+	public static Property GENSTRUCTURES_PROPERTY;
+	public static Property GENSTORIES_PROPERTY;
 
 	@SidedProxy(clientSide = "the_fireplace.frt.client.ClientProxy", serverSide = "the_fireplace.frt.CommonProxy")
 	public static CommonProxy proxy;
@@ -87,6 +89,8 @@ public final class FRT {
 
 	public static Potion hallucination;
 	public IWorldGenerator worldGeneratorNoobHouse;
+
+	private boolean structureGeneratorsRegistered = false;
 
 	public int clientCooldownTicks;
 
@@ -187,6 +191,10 @@ public final class FRT {
 		ConfigValues.POTIONSWITCH = POTIONSWITCH_PROPERTY.getInt();
 		ConfigValues.TICKSPERREDSTONE = TICKSPERREDSTONE_PROPERTY.getInt();
 		ConfigValues.DISABLEDITEMS = DISABLEDITEMS_PROPERTY.getStringList();
+		ConfigValues.GENSTRUCTURES = GENSTRUCTURES_PROPERTY.getBoolean();
+		ConfigValues.GENSTORIES = GENSTORIES_PROPERTY.getBoolean();
+		if(!structureGeneratorsRegistered)
+			addStructures();
 		if (config.hasChanged())
 			config.save();
 	}
@@ -207,6 +215,8 @@ public final class FRT {
 		POTIONSWITCH_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.POTIONSWITCH_NAME, ConfigValues.POTIONSWITCH_DEFAULT, proxy.translateToLocal(ConfigValues.POTIONSWITCH_NAME + ".tooltip"));
 		TICKSPERREDSTONE_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.TICKSPERREDSTONE_NAME, ConfigValues.TICKSPERREDSTONE_DEFAULT, proxy.translateToLocal(ConfigValues.TICKSPERREDSTONE_NAME + ".tooltip"));
 		DISABLEDITEMS_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.DISABLEDITEMS_NAME, ConfigValues.DISABLEDITEMS_DEFAULT, proxy.translateToLocal(ConfigValues.DISABLEDITEMS_NAME + ".tooltip"));
+		GENSTRUCTURES_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.GENSTRUCTURES_NAME, ConfigValues.GENSTRUCTURES_DEFAULT, proxy.translateToLocal(ConfigValues.GENSTRUCTURES_NAME+".tooltip"));
+		GENSTORIES_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.GENSTORIES_NAME, ConfigValues.GENSTORIES_DEFAULT, proxy.translateToLocal(ConfigValues.GENSTORIES_NAME+".tooltip"));
 		DISABLEDITEMS_PROPERTY.setRequiresMcRestart(true);
 		POTIONSWITCH_PROPERTY.setMinValue(1);
 		POTIONSWITCH_PROPERTY.setMaxValue(10);
@@ -307,7 +317,7 @@ public final class FRT {
 		proxy.registerTileEntities();
 		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, wax_deposit.getUnlocalizedName().substring(5)))
 			GameRegistry.registerWorldGenerator(new WorldGeneratorWax(), 6);
-		GameRegistry.registerWorldGenerator(worldGeneratorNoobHouse = new WorldGeneratorNoobHouse(), 20);
+		addStructures();
 		OreDictionary.registerOre("book", Items.BOOK);
 		OreDictionary.registerOre("book", Items.WRITTEN_BOOK);
 		OreDictionary.registerOre("book", Items.WRITABLE_BOOK);
@@ -499,4 +509,10 @@ public final class FRT {
 		FMLLog.log(MODNAME, Level.WARN, log, params);
 	}
 
+	private void addStructures(){
+		if(ConfigValues.GENSTRUCTURES) {
+			GameRegistry.registerWorldGenerator(worldGeneratorNoobHouse = new WorldGeneratorNoobHouse(), 20);
+			structureGeneratorsRegistered = true;
+		}
+	}
 }

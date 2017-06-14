@@ -27,4 +27,12 @@ public class ConfigValues {
 	public static final String[] DISABLEDITEMS_DEFAULT = new String[]{};
 	public static String[] DISABLEDITEMS;
 	public static final String DISABLEDITEMS_NAME = "cfg.disabled_items";
+
+	public static final boolean GENSTRUCTURES_DEFAULT = true;
+	public static boolean GENSTRUCTURES;
+	public static final String GENSTRUCTURES_NAME = "cfg.gen_structures";
+
+	public static final boolean GENSTORIES_DEFAULT = true;
+	public static boolean GENSTORIES;
+	public static final String GENSTORIES_NAME = "cfg.gen_stories";
 }

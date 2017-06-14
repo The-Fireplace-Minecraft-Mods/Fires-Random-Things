@@ -22,6 +22,7 @@ import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import the_fireplace.frt.FRT;
+import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.events.CommonEvents;
 import the_fireplace.frt.tools.MiscTools;
 
@@ -46,6 +47,8 @@ public class WorldGeneratorNoobHouse implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
+		if(!ConfigValues.GENSTRUCTURES)
+			return;
 		if(!areSurroundingChunksLoaded(chunkX, chunkZ, chunkProvider)) {
 			CommonEvents.noobHousesToGen.add(new ChunkPos(chunkX, chunkZ));
 			return;
@@ -59,6 +62,10 @@ public class WorldGeneratorNoobHouse implements IWorldGenerator {
 			PlacementSettings settings = new PlacementSettings().setIntegrity(0.999F).setRotation(rotation);
 
 			templateNoobHouse.addBlocksToWorld(world, basePos, settings);
+
+			if(!ConfigValues.GENSTORIES)
+				return;
+
 			boolean addedBook = false;
 
 			BlockPos size = templateNoobHouse.getSize();
