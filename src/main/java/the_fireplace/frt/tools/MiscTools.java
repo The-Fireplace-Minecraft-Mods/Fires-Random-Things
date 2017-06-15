@@ -22,7 +22,7 @@ public class MiscTools {
 			world.spawnEntity(entityitem);
 	}
 
-	public static NBTTagString getLocalBookPage(String key){
-		return new NBTTagString("\""+ FRT.proxy.translateToLocal(key)+"\"");
+	public static NBTTagString getLocalBookPage(String key) {
+		return new NBTTagString("\"" + FRT.proxy.translateToLocal(key) + "\"");
 	}
 }

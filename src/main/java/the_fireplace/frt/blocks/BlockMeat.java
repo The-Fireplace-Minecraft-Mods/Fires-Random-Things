@@ -10,9 +10,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -112,7 +110,7 @@ public class BlockMeat extends BlockFalling {
 
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-		if(!worldIn.isRemote)
+		if (!worldIn.isRemote)
 			if (getMetaFromState(state) > 0 && getEntityCountAt(worldIn, pos) <= 0 && getEntityCountAt(worldIn, pos.up()) <= 0) {
 				worldIn.setBlockState(pos, getStateFromMeta(getMetaFromState(state) - 1));
 				worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));

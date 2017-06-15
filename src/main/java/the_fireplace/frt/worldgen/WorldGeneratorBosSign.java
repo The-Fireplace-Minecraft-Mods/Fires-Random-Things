@@ -1,10 +1,6 @@
 package the_fireplace.frt.worldgen;
 
 import com.google.common.collect.Maps;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
@@ -28,20 +24,20 @@ public class WorldGeneratorBosSign implements IWorldGenerator {
 
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider) {
-		if(!ConfigValues.GENSTRUCTURES)
+		if (!ConfigValues.GENSTRUCTURES)
 			return;
-		if(!areSurroundingChunksLoaded(chunkX, chunkZ, chunkProvider)) {
+		if (!areSurroundingChunksLoaded(chunkX, chunkZ, chunkProvider)) {
 			CommonEvents.worldgenQueue.computeIfAbsent(world, k -> Maps.newHashMap());
 			CommonEvents.worldgenQueue.get(world).put(new ChunkPos(chunkX, chunkZ), this);
 			return;
 		}
 
-		BlockPos basePos = world.getTopSolidOrLiquidBlock(new BlockPos(chunkX*16, 0, chunkZ*16));
-		basePos = basePos.down(random.nextInt(20)-10);
-		if(basePos.getY() <= 0)
-			basePos = basePos.up(10+Math.abs(basePos.getY()));
+		BlockPos basePos = world.getTopSolidOrLiquidBlock(new BlockPos(chunkX * 16, 0, chunkZ * 16));
+		basePos = basePos.down(random.nextInt(20) - 10);
+		if (basePos.getY() <= 0)
+			basePos = basePos.up(10 + Math.abs(basePos.getY()));
 
-		if(random.nextInt(10000) == 0 && world.getWorldType() != WorldType.DEBUG_ALL_BLOCK_STATES && world.getWorldType() != WorldType.FLAT && world.provider.getDimensionType().equals(DimensionType.OVERWORLD)){
+		if (random.nextInt(10000) == 0 && world.getWorldType() != WorldType.DEBUG_ALL_BLOCK_STATES && world.getWorldType() != WorldType.FLAT && world.provider.getDimensionType().equals(DimensionType.OVERWORLD)) {
 			Rotation rotation = Rotation.values()[random.nextInt(Rotation.values().length)];
 			Template templateNoobHouse = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), BOS_SIGN);
 			PlacementSettings settings = new PlacementSettings().setIntegrity(0.5F).setRotation(rotation);
@@ -51,9 +47,9 @@ public class WorldGeneratorBosSign implements IWorldGenerator {
 	}
 
 	private boolean areSurroundingChunksLoaded(int chunkX, int chunkZ, IChunkProvider chunkprovider) {
-		for(int x = chunkX - 1; x <= chunkX + 1; x++) {
-			for(int z = chunkZ - 1; z <= chunkZ + 1; z++) {
-				if(chunkprovider.getLoadedChunk(x, z) == null) {
+		for (int x = chunkX - 1; x <= chunkX + 1; x++) {
+			for (int z = chunkZ - 1; z <= chunkZ + 1; z++) {
+				if (chunkprovider.getLoadedChunk(x, z) == null) {
 					return false;
 				}
 			}

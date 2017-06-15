@@ -24,7 +24,6 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.client.config.GuiConfigEntries;
 import net.minecraftforge.fml.common.FMLLog;
-import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -194,7 +193,7 @@ public final class FRT {
 		ConfigValues.DISABLEDITEMS = DISABLEDITEMS_PROPERTY.getStringList();
 		ConfigValues.GENSTRUCTURES = GENSTRUCTURES_PROPERTY.getBoolean();
 		ConfigValues.GENSTORIES = GENSTORIES_PROPERTY.getBoolean();
-		if(!structureGeneratorsRegistered)
+		if (!structureGeneratorsRegistered)
 			addStructures();
 		if (config.hasChanged())
 			config.save();
@@ -216,8 +215,8 @@ public final class FRT {
 		POTIONSWITCH_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.POTIONSWITCH_NAME, ConfigValues.POTIONSWITCH_DEFAULT, proxy.translateToLocal(ConfigValues.POTIONSWITCH_NAME + ".tooltip"));
 		TICKSPERREDSTONE_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.TICKSPERREDSTONE_NAME, ConfigValues.TICKSPERREDSTONE_DEFAULT, proxy.translateToLocal(ConfigValues.TICKSPERREDSTONE_NAME + ".tooltip"));
 		DISABLEDITEMS_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.DISABLEDITEMS_NAME, ConfigValues.DISABLEDITEMS_DEFAULT, proxy.translateToLocal(ConfigValues.DISABLEDITEMS_NAME + ".tooltip"));
-		GENSTRUCTURES_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.GENSTRUCTURES_NAME, ConfigValues.GENSTRUCTURES_DEFAULT, proxy.translateToLocal(ConfigValues.GENSTRUCTURES_NAME+".tooltip"));
-		GENSTORIES_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.GENSTORIES_NAME, ConfigValues.GENSTORIES_DEFAULT, proxy.translateToLocal(ConfigValues.GENSTORIES_NAME+".tooltip"));
+		GENSTRUCTURES_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.GENSTRUCTURES_NAME, ConfigValues.GENSTRUCTURES_DEFAULT, proxy.translateToLocal(ConfigValues.GENSTRUCTURES_NAME + ".tooltip"));
+		GENSTORIES_PROPERTY = config.get(Configuration.CATEGORY_GENERAL, ConfigValues.GENSTORIES_NAME, ConfigValues.GENSTORIES_DEFAULT, proxy.translateToLocal(ConfigValues.GENSTORIES_NAME + ".tooltip"));
 		DISABLEDITEMS_PROPERTY.setRequiresMcRestart(true);
 		POTIONSWITCH_PROPERTY.setMinValue(1);
 		POTIONSWITCH_PROPERTY.setMaxValue(10);
@@ -379,8 +378,8 @@ public final class FRT {
 		}
 	}
 
-	private void addStructures(){
-		if(ConfigValues.GENSTRUCTURES) {
+	private void addStructures() {
+		if (ConfigValues.GENSTRUCTURES) {
 			GameRegistry.registerWorldGenerator(new WorldGeneratorNoobHouse(), 20);
 			GameRegistry.registerWorldGenerator(new WorldGeneratorPortalCave(), 19);
 			GameRegistry.registerWorldGenerator(new WorldGeneratorBosSign(), 21);
