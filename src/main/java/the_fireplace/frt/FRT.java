@@ -256,7 +256,7 @@ public final class FRT {
 		registerBlock(brown_screen);
 		registerBlock(compact_bookshelf);
 		registerBlock(shell_core);
-		registerBlock(shell);
+		registerBlockNoItem(shell);
 		registerBlock(pop_furnace);
 		registerBlock(quad_dispenser);
 		registerBlock(insane_dispenser);

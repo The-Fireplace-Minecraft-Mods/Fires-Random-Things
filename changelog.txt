@@ -1,1 +1,2 @@
 Added the Straw Bed, which doesn't set home.
+Optimized the Force Field
