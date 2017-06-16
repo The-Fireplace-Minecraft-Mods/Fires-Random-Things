@@ -135,7 +135,7 @@ public final class FRT {
 	public static final Block wax_deposit = new FRTBlock(Material.GROUND).setHarvestTool("pickaxe", 0).setSoundType(SoundType.GROUND).setUnlocalizedName("wax_deposit").setHardness(2.0F);
 	public static final Block waxed_planks = new BlockWaxedPlanks();
 	public static final Block meat_block = new BlockMeat();
-	public static final Block straw_bed_block = new BlockStrawBed().setUnlocalizedName("straw_bed_block").setHardness(0.5F).setSoundType(SoundType.PLANT).setCreativeTab(TabFRT);
+	public static final Block straw_bed_block = new BlockStrawBed().setUnlocalizedName("straw_bed_block").setCreativeTab(TabFRT);
 
 	public static final Item charged_coal = new ItemChargedCoal();
 	public static final Item handheld_dispenser = new ItemHandheldDispenser("handheld_dispenser");

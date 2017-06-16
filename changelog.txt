@@ -1,2 +1,1 @@
-Added the Straw Bed, which doesn't set home.
-Optimized the Force Field
+Fixed a crash caused by either a newer Forge version or another mod.

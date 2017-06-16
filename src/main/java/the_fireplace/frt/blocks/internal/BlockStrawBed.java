@@ -2,6 +2,7 @@ package the_fireplace.frt.blocks.internal;
 
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.BlockBed;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +21,11 @@ import java.util.Random;
 
 @MethodsReturnNonnullByDefault
 public class BlockStrawBed extends BlockBed {
+
+	public BlockStrawBed(){
+		setSoundType(SoundType.PLANT);
+		setHardness(0.5F);
+	}
 
 	@Override
 	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
