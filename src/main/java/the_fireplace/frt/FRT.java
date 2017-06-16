@@ -41,6 +41,7 @@ import org.apache.logging.log4j.Level;
 import the_fireplace.frt.armor.FRTArmor;
 import the_fireplace.frt.blocks.*;
 import the_fireplace.frt.blocks.internal.BlockShell;
+import the_fireplace.frt.blocks.internal.BlockStrawBed;
 import the_fireplace.frt.compat.basemetals.IBaseMetalsRegister;
 import the_fireplace.frt.compat.basemetals.RegisterBaseMetals;
 import the_fireplace.frt.config.ConfigValues;

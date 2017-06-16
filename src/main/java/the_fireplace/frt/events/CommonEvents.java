@@ -18,7 +18,7 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import the_fireplace.frt.FRT;
-import the_fireplace.frt.blocks.BlockStrawBed;
+import the_fireplace.frt.blocks.internal.BlockStrawBed;
 import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.network.PacketDispatcher;
 import the_fireplace.frt.network.UpdatePotionMessage;

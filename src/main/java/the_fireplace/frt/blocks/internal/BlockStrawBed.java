@@ -1,4 +1,4 @@
-package the_fireplace.frt.blocks;
+package the_fireplace.frt.blocks.internal;
 
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.BlockBed;
@@ -6,6 +6,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -15,6 +16,7 @@ import net.minecraft.world.World;
 import the_fireplace.frt.FRT;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 @MethodsReturnNonnullByDefault
 public class BlockStrawBed extends BlockBed {
@@ -29,5 +31,11 @@ public class BlockStrawBed extends BlockBed {
 	public boolean isBed(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable Entity player)
 	{
 		return true;
+	}
+
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
+	{
+		return state.getValue(PART) == BlockBed.EnumPartType.HEAD ? Items.AIR : FRT.straw_bed;
 	}
 }
