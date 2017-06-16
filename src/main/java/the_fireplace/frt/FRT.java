@@ -50,6 +50,7 @@ import the_fireplace.frt.events.CommonEvents;
 import the_fireplace.frt.handlers.*;
 import the_fireplace.frt.items.*;
 import the_fireplace.frt.items.internal.ItemPaxel;
+import the_fireplace.frt.items.internal.ItemStrawBed;
 import the_fireplace.frt.network.PacketDispatcher;
 import the_fireplace.frt.potion.HallucinationPotion;
 import the_fireplace.frt.recipes.BaseMetalsRecipes;
@@ -133,6 +134,7 @@ public final class FRT {
 	public static final Block wax_deposit = new FRTBlock(Material.GROUND).setHarvestTool("pickaxe", 0).setSoundType(SoundType.GROUND).setUnlocalizedName("wax_deposit").setHardness(2.0F);
 	public static final Block waxed_planks = new BlockWaxedPlanks();
 	public static final Block meat_block = new BlockMeat();
+	public static final Block straw_bed_block = new BlockStrawBed().setUnlocalizedName("straw_bed_block").setHardness(0.5F).setSoundType(SoundType.PLANT).setCreativeTab(TabFRT);
 
 	public static final Item charged_coal = new ItemChargedCoal();
 	public static final Item handheld_dispenser = new ItemHandheldDispenser("handheld_dispenser");
@@ -156,6 +158,7 @@ public final class FRT {
 	public static final Item mystery_meat = new ItemMysteryMeat(4, 2, false).setUnlocalizedName("mystery_meat").setCreativeTab(TabFRT);
 	public static final Item raw_mystery_meat = new ItemMysteryMeat(2, 0, true).setUnlocalizedName("raw_mystery_meat").setCreativeTab(TabFRT);
 	public static final Item shimmering_stew = new ItemShimmeringStew();
+	public static final Item straw_bed = new ItemStrawBed().setUnlocalizedName("straw_bed").setCreativeTab(TabFRT);
 
 	public static final Item hallucination_goggles = new FRTArmor(ArmorMaterial.LEATHER, EntityEquipmentSlot.HEAD).setUnlocalizedName("hallucination_goggles").setCreativeTab(TabFRT);
 
@@ -263,6 +266,8 @@ public final class FRT {
 		registerBlockNoItem(waxed_planks);
 		registerItemBlock(new ItemWaxedPlanks(waxed_planks));
 		registerBlock(meat_block);
+		registerBlockNoItem(straw_bed_block);
+		registerItem(straw_bed);
 
 		registerItem(charged_coal);
 		registerItem(destabilized_coal);
@@ -432,6 +437,7 @@ public final class FRT {
 		rmm(mystery_meat);
 		rmm(raw_mystery_meat);
 		rmm(shimmering_stew);
+		rmm(straw_bed);
 		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, waxed_planks.getUnlocalizedName().substring(5))) {
 			ModelLoader.registerItemVariants(Item.getItemFromBlock(waxed_planks),
 					new ModelResourceLocation(MODID + ":oak_waxed_planks", "inventory"),

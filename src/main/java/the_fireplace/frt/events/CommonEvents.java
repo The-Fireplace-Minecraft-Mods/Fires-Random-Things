@@ -1,20 +1,24 @@
 package the_fireplace.frt.events;
 
 import com.google.common.collect.Maps;
+import jeresources.util.ReflectionHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionUtils;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.event.entity.living.LivingEntityUseItemEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import the_fireplace.frt.FRT;
+import the_fireplace.frt.blocks.BlockStrawBed;
 import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.network.PacketDispatcher;
 import the_fireplace.frt.network.UpdatePotionMessage;
@@ -36,6 +40,8 @@ public class CommonEvents {
 			FRT.instance.syncConfig();
 	}
 
+	private HashMap<EntityPlayer, BlockPos> bedLocations = Maps.newHashMap();
+
 	@SubscribeEvent
 	public void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
 		if (!(event.getEntityLiving() instanceof EntityPlayer) || event.getEntityLiving().world.isRemote || !(event.getEntityLiving().isPotionActive(FRT.hallucination))) {
@@ -47,6 +53,16 @@ public class CommonEvents {
 			}
 		} else {
 			FRT.hallucination.performEffect(event.getEntityLiving(), 0);
+		}
+		if(!event.getEntityLiving().getEntityWorld().isRemote){
+			if(!bedLocations.isEmpty()){
+				for(EntityPlayer player:bedLocations.keySet()){
+					if(!player.isPlayerSleeping()) {
+						ReflectionHelper.setPrivateValue(EntityPlayer.class, player, bedLocations.get(player), "spawnChunk", "field_71077_c");
+						bedLocations.remove(player);
+					}
+				}
+			}
 		}
 	}
 
@@ -72,6 +88,14 @@ public class CommonEvents {
 					worldgenQueue.get(event.getWorld()).get(pos).generate(event.getWorld().rand, pos.x, pos.z, event.getWorld(), event.getGenerator(), event.getWorld().getChunkProvider());
 				worldgenQueue.get(event.getWorld()).remove(pos);
 			}
+	}
+
+	@SubscribeEvent
+	public void onPlayerWake(PlayerWakeUpEvent event){
+		if(event.getEntityPlayer().getEntityWorld().getBlockState(event.getEntityPlayer().bedLocation).getBlock() instanceof BlockStrawBed){
+			BlockPos pos = event.getEntityPlayer().getBedLocation();
+			bedLocations.putIfAbsent(event.getEntityPlayer(), pos);
+		}
 	}
 
 	private ChunkPos getSurroundingChunkOnList(int chunkX, int chunkZ, IChunkProvider chunkprovider, Set list) {

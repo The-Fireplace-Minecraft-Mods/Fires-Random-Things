@@ -28,7 +28,7 @@ allprojects {
     targetCompatibility = 1.8
 }
 
-version = "7.2.0"
+version = "7.2.1"
 group= "the_fireplace.frt"
 archivesBaseName = "FiresRandomThings-1.11.2"
 

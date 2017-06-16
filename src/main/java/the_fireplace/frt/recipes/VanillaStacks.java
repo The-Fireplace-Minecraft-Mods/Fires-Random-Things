@@ -32,6 +32,7 @@ public class VanillaStacks {
 	static ItemStack dispenserStack = new ItemStack(Blocks.DISPENSER);
 	static ItemStack glassStack = new ItemStack(Blocks.GLASS);
 	static ItemStack glowstoneStack = new ItemStack(Blocks.GLOWSTONE);
+	static ItemStack hayStack = new ItemStack(Blocks.HAY_BLOCK);
 	static ItemStack ironTrapdoorStack = new ItemStack(Blocks.IRON_TRAPDOOR);
 	static ItemStack leverStack = new ItemStack(Blocks.LEVER);
 	static ItemStack lilacStack = new ItemStack(Blocks.DOUBLE_PLANT, 1, 1);
@@ -159,6 +160,7 @@ public class VanillaStacks {
 	static ItemStack restabilizedCoalStack9 = new ItemStack(FRT.restabilized_coal, 9);
 	static ItemStack shimmeringStewStack = new ItemStack(FRT.shimmering_stew);
 	static ItemStack stonePaxelStack = new ItemStack(FRT.stone_paxel);
+	static ItemStack strawBedStack = new ItemStack(FRT.straw_bed);
 	static ItemStack waxStack = new ItemStack(FRT.wax);
 	static ItemStack waxStack4 = new ItemStack(FRT.wax, 4);
 	static ItemStack woodPaxelStack = new ItemStack(FRT.wood_paxel);
@@ -329,6 +331,8 @@ public class VanillaStacks {
 		shaped(compactDirtStack, "ddd", "ddd", "ddd", 'd', dirtStack);
 		shaped(compactBookshelfStack, "bbb", 'b', "bookshelfWood");
 		shaped(compactBookshelfStack, "bbb", 'b', "bookshelf");
+		shaped(strawBedStack, "hhh", "h  ", 'h', hayStack);
+		shaped(strawBedStack, "hhh", "  h", 'h', hayStack);
 		//Recipes that change with certain mods installed, which don't require different classes
 		if (MIDLib.hasRealStoneTools()) {
 			shaped(stonePaxelStack, "www", " w ", " s ", 'w', stoneStack, 's', "stickWood");
