@@ -51,10 +51,7 @@ import the_fireplace.frt.items.internal.ItemPaxel;
 import the_fireplace.frt.items.internal.ItemStrawBed;
 import the_fireplace.frt.network.PacketDispatcher;
 import the_fireplace.frt.recipes.RecipeHandler;
-import the_fireplace.frt.worldgen.WorldGeneratorBosSign;
-import the_fireplace.frt.worldgen.WorldGeneratorNoobHouse;
-import the_fireplace.frt.worldgen.WorldGeneratorPortalCave;
-import the_fireplace.frt.worldgen.WorldGeneratorWax;
+import the_fireplace.frt.worldgen.*;
 
 /**
  * @author The_Fireplace
@@ -357,6 +354,7 @@ public final class FRT {
 			GameRegistry.registerWorldGenerator(new WorldGeneratorNoobHouse(), 20);
 			GameRegistry.registerWorldGenerator(new WorldGeneratorPortalCave(), 19);
 			GameRegistry.registerWorldGenerator(new WorldGeneratorBosSign(), 21);
+			GameRegistry.registerWorldGenerator(new WorldGeneratorStatue(), 18);
 			structureGeneratorsRegistered = true;
 		}
 	}

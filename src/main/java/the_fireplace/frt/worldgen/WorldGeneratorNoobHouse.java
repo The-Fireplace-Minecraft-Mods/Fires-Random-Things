@@ -64,9 +64,6 @@ public class WorldGeneratorNoobHouse implements IWorldGenerator {
 
 			templateNoobHouse.addBlocksToWorld(world, basePos, settings);
 
-			if (!ConfigValues.GENSTORIES)
-				return;
-
 			boolean addedBook = false;
 
 			BlockPos size = templateNoobHouse.getSize();
@@ -78,7 +75,7 @@ public class WorldGeneratorNoobHouse implements IWorldGenerator {
 						if (checkState.getBlock() == Blocks.CHEST) {
 							TileEntityChest chestTE = (TileEntityChest) world.getTileEntity(checkPos);
 							chestTE.setLootTable(LOOT_TABLE, random.nextLong());
-							if (!addedBook) {
+							if (!addedBook && ConfigValues.GENSTORIES) {
 								chestTE.setInventorySlotContents(random.nextInt(chestTE.getSizeInventory()), noobHouseBook);
 								addedBook = true;
 							}

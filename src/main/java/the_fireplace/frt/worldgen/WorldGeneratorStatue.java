@@ -1,6 +1,9 @@
 package the_fireplace.frt.worldgen;
 
 import com.google.common.collect.Maps;
+import net.minecraft.block.BlockColored;
+import net.minecraft.block.BlockConcretePowder;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -27,30 +30,23 @@ import the_fireplace.frt.tools.MiscTools;
 
 import java.util.Random;
 
-public class WorldGeneratorPortalCave implements IWorldGenerator {
-	public static final ResourceLocation PORTAL_CAVE = new ResourceLocation(FRT.MODID, "cave1");
-	private static final ResourceLocation LOOT_TABLE = new ResourceLocation(FRT.MODID, "portal_cave");
+public class WorldGeneratorStatue implements IWorldGenerator {
+	public static final ResourceLocation STATUE = new ResourceLocation(FRT.MODID, "statue");
+	private static final ResourceLocation LOOT_TABLE = new ResourceLocation(FRT.MODID, "statue");
 
-	public static final ItemStack portalCaveBook = new ItemStack(Items.WRITTEN_BOOK);
-	public static final ItemStack portalCaveBook2 = new ItemStack(Items.WRITTEN_BOOK);
+	public static final ItemStack continentBook = new ItemStack(Items.WRITTEN_BOOK);
 
-	public WorldGeneratorPortalCave() {
-		portalCaveBook.setTagCompound(new NBTTagCompound());
-		portalCaveBook.getTagCompound().setString("author", "The_Fireplace");
-		portalCaveBook.getTagCompound().setString("title", "Expansion");
-		portalCaveBook.getTagCompound().setInteger("generation", 0);
+	public WorldGeneratorStatue() {
+		continentBook.setTagCompound(new NBTTagCompound());
+		continentBook.getTagCompound().setString("author", "The_Fireplace");
+		continentBook.getTagCompound().setString("title", "Continent");
+		continentBook.getTagCompound().setInteger("generation", 0);
 		NBTTagList pages = new NBTTagList();
-		pages.appendTag(MiscTools.getLocalBookPage("frt.portalcavebook.1"));
-		portalCaveBook.getTagCompound().setTag("pages", pages);
-
-		portalCaveBook2.setTagCompound(new NBTTagCompound());
-		portalCaveBook2.getTagCompound().setString("author", "Wolver512");
-		portalCaveBook2.getTagCompound().setString("title", "no more netherrack");
-		portalCaveBook2.getTagCompound().setInteger("generation", 0);
-		pages = new NBTTagList();
-		pages.appendTag(MiscTools.getLocalBookPage("frt.portalcavebook.2"));
-		pages.appendTag(MiscTools.getLocalBookPage("frt.portalcavebook.3"));
-		portalCaveBook2.getTagCompound().setTag("pages", pages);
+		pages.appendTag(MiscTools.getLocalBookPage("frt.continentbook.1"));
+		pages.appendTag(MiscTools.getLocalBookPage("frt.continentbook.2"));
+		pages.appendTag(MiscTools.getLocalBookPage("frt.continentbook.3"));
+		pages.appendTag(MiscTools.getLocalBookPage("frt.continentbook.4"));
+		continentBook.getTagCompound().setTag("pages", pages);
 	}
 
 	@Override
@@ -63,16 +59,18 @@ public class WorldGeneratorPortalCave implements IWorldGenerator {
 			return;
 		}
 
-		BlockPos basePos = new BlockPos(chunkX * 16, 20 + random.nextInt(20), chunkZ * 16);
+		BlockPos basePos = world.getTopSolidOrLiquidBlock(new BlockPos(chunkX * 16, 0, chunkZ * 16)).down(random.nextInt(34));
 
-		if (random.nextInt(1000) == 0 && world.getWorldType() != WorldType.DEBUG_ALL_BLOCK_STATES && world.getWorldType() != WorldType.FLAT && world.getBlockState(basePos).getBlock() == Blocks.STONE && world.provider.getDimensionType().equals(DimensionType.OVERWORLD)) {
+		if (random.nextInt(32000) == 0 && world.getWorldType() != WorldType.DEBUG_ALL_BLOCK_STATES && world.getWorldType() != WorldType.FLAT && world.provider.getDimensionType().equals(DimensionType.OVERWORLD)) {
 			Rotation rotation = Rotation.values()[random.nextInt(Rotation.values().length)];
-			Template templateNoobHouse = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), PORTAL_CAVE);
+			Template templateStatue = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), STATUE);
 			PlacementSettings settings = new PlacementSettings().setRotation(rotation);
 
-			templateNoobHouse.addBlocksToWorld(world, basePos, settings);
+			templateStatue.addBlocksToWorld(world, basePos, settings);
 
-			BlockPos size = templateNoobHouse.getSize();
+			boolean addedBook = false;
+
+			BlockPos size = templateStatue.getSize();
 			for (int x = 0; x < size.getX(); x++)
 				for (int y = 0; y < size.getY(); y++)
 					for (int z = 0; z < size.getZ(); z++) {
@@ -81,10 +79,16 @@ public class WorldGeneratorPortalCave implements IWorldGenerator {
 						if (checkState.getBlock() == Blocks.CHEST) {
 							TileEntityChest chestTE = (TileEntityChest) world.getTileEntity(checkPos);
 							chestTE.setLootTable(LOOT_TABLE, random.nextLong());
-							if(ConfigValues.GENSTORIES) {
-								chestTE.setInventorySlotContents(random.nextInt(chestTE.getSizeInventory()), portalCaveBook);
-								chestTE.setInventorySlotContents(random.nextInt(chestTE.getSizeInventory()), portalCaveBook2);
+							if (!addedBook && ConfigValues.GENSTORIES) {
+								chestTE.setInventorySlotContents(random.nextInt(chestTE.getSizeInventory()), continentBook);
+								addedBook = true;
 							}
+						}else if(checkState.getBlock() == Blocks.CONCRETE && random.nextInt(20) == 2){
+							world.setBlockState(checkPos, Blocks.CONCRETE_POWDER.getDefaultState().withProperty(BlockConcretePowder.COLOR, checkState.getValue(BlockColored.COLOR)));
+						}else if(checkState.getBlock() == Blocks.STAINED_GLASS && random.nextInt(10) == 2){
+							world.setBlockState(checkPos, Blocks.SAND.getDefaultState());
+						}else if(checkState.getMaterial() == Material.WOOD && random.nextInt(15) == 2){
+							world.setBlockToAir(checkPos);
 						}
 					}
 		}
