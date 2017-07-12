@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "frt:shell_core"
+  },
+  "pattern": [
+    "grg",
+    "rer",
+    "grg"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "r": {
+      "item": "#BLOCKREDSTONE"
+    },
+    "e": {
+      "item": "#ENDERPEARL"
+    },
+    "g": {
+      "item": "#BLOCKGOLD"
+    }
+  }
+}

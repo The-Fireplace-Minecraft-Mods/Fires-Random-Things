@@ -1,0 +1,11 @@
+{
+  "result": {
+    "item": "minecraft:dispenser"
+  },
+  "ingredients": [
+    {
+      "item": "frt:handheld_dispenser"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

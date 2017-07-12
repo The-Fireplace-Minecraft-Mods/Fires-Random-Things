@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "frt:candle"
+  },
+  "pattern": [
+    "s",
+    "w",
+    "w"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "s": {
+      "item": "#STRING"
+    },
+    "w": {
+      "item": "frt:wax"
+    }
+  }
+}

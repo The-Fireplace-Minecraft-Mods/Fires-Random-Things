@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "frt:compact_dirt"
+  },
+  "pattern": [
+    "ddd",
+    "ddd",
+    "ddd"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "minecraft:dirt",
+      "data": 0
+    }
+  }
+}

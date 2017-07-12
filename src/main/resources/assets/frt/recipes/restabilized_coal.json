@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "frt:restabilized_coal",
+    "count": 8
+  },
+  "pattern": [
+    "ccc",
+    "csc",
+    "ccc"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "c": {
+      "item": "frt:destabilized_coal"
+    },
+    "s": {
+      "item": "frt:wax"
+    }
+  }
+}

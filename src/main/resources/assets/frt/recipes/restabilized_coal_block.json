@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "frt:restabilized_coal_block"
+  },
+  "pattern": [
+    "ccc",
+    "ccc",
+    "ccc"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "c": {
+      "item": "frt:restabilized_coal"
+    }
+  }
+}

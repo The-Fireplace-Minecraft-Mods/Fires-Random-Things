@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "frt:leafcutter"
+  },
+  "pattern": [
+    " s ",
+    "t t",
+    "t t"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "s": {
+      "item": "minecraft:shears"
+    },
+    "t": {
+      "item": "#STICKWOOD"
+    }
+  }
+}

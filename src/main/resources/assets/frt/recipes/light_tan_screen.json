@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "frt:light_tan_screen"
+  },
+  "ingredients": [
+    {
+      "item": "#SCREEN"
+    },
+    {
+      "item": "#DYEBROWN"
+    },
+    {
+      "item": "#DYEWHITE"
+    },
+    {
+      "item": "#DYEWHITE"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

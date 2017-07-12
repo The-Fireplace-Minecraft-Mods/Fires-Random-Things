@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "frt:blaze_cake"
+  },
+  "pattern": [
+    "m",
+    "c"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "c": {
+      "item": "minecraft:cake"
+    },
+    "m": {
+      "item": "minecraft:magma_cream"
+    }
+  }
+}

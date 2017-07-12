@@ -9,7 +9,7 @@ import org.apache.commons.lang3.ArrayUtils;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.config.ConfigValues;
 
-public class MiscTools {
+public final class MiscTools {
 	public static boolean areItemStacksEqual(ItemStack is1, ItemStack is2) {
 		return is2.getItem() == is1.getItem() && (is2.getMetadata() == 32767 || is2.getMetadata() == is1.getMetadata());
 	}

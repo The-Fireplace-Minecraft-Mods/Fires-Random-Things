@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "frt:yellow_screen"
+  },
+  "ingredients": [
+    {
+      "item": "frt:white_screen"
+    },
+    {
+      "item": "#DYEYELLOW"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

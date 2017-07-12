@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "frt:charged_coal",
+    "count": 8
+  },
+  "pattern": [
+    "ccc",
+    "crc",
+    "ccc"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "r": {
+      "item": "#DUSTREDSTONE"
+    },
+    "c": {
+      "item": "minecraft:coal",
+      "data": 0
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "frt:restabilized_coal",
+    "count": 9
+  },
+  "ingredients": [
+    {
+      "item": "frt:restabilized_coal_block"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

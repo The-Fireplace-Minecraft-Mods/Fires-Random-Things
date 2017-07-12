@@ -1,0 +1,24 @@
+{
+  "result": {
+    "item": "frt:shimmering_stew"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:mushroom_stew"
+    },
+    {
+      "type": "minecraft:item_nbt",
+      "item": "minecraft:splash_potion",
+      "nbt": {
+        "Potion": "frt:long_hallucination"
+      }
+    },
+    {
+      "item": "minecraft:shulker_shell"
+    },
+    {
+      "item": "#DUSTGLOWSTONE"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

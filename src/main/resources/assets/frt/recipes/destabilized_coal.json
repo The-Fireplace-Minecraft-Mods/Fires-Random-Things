@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "frt:destabilized_coal",
+    "count": 6
+  },
+  "pattern": [
+    "ccc",
+    "ggg",
+    "ccc"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "c": {
+      "item": "frt:charged_coal"
+    },
+    "g": {
+      "item": "#GUNPOWDER"
+    }
+  }
+}

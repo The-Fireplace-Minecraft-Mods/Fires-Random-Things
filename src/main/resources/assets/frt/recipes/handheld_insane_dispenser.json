@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "frt:handheld_insane_dispenser"
+  },
+  "pattern": [
+    " d ",
+    "ili"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "d": {
+      "item": "frt:insane_dispenser"
+    },
+    "i": {
+      "item": "#GEMDIAMOND"
+    },
+    "l": {
+      "item": "minecraft:lever"
+    }
+  }
+}

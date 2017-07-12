@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "frt:compact_bookshelf"
+  },
+  "pattern": [
+    "bbb"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "b": {
+      "item": "#BOOKSHELF"
+    }
+  }
+}

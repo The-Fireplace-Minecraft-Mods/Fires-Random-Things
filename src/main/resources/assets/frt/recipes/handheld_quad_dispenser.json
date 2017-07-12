@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "frt:handheld_quad_dispenser"
+  },
+  "pattern": [
+    " d ",
+    "ili"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "d": {
+      "item": "frt:quad_dispenser"
+    },
+    "i": {
+      "item": "#INGOTGOLD"
+    },
+    "l": {
+      "item": "minecraft:lever"
+    }
+  }
+}

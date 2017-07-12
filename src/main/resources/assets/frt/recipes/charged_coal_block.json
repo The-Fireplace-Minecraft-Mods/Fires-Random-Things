@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "frt:charged_coal_block"
+  },
+  "pattern": [
+    "ccc",
+    "ccc",
+    "ccc"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "c": {
+      "item": "frt:charged_coal"
+    }
+  }
+}

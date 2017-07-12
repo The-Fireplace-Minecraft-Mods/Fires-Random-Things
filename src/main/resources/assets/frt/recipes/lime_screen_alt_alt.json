@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "frt:lime_screen"
+  },
+  "ingredients": [
+    {
+      "item": "frt:white_screen"
+    },
+    {
+      "item": "#DYELIME"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

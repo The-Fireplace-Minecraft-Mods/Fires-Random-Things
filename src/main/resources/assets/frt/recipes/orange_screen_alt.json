@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "frt:orange_screen"
+  },
+  "ingredients": [
+    {
+      "item": "#SCREEN"
+    },
+    {
+      "item": "#DYEYELLOW"
+    },
+    {
+      "item": "#DYERED"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

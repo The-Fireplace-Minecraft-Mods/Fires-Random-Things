@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "frt:blaze_cake"
+  },
+  "pattern": [
+    "p",
+    "s",
+    "c"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "p": {
+      "item": "minecraft:blaze_powder"
+    },
+    "s": {
+      "item": "#SLIMEBALL"
+    },
+    "c": {
+      "item": "minecraft:cake"
+    }
+  }
+}

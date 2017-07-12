@@ -1,0 +1,12 @@
+{
+  "result": {
+    "item": "frt:wax",
+    "count": 4
+  },
+  "ingredients": [
+    {
+      "item": "frt:wax_deposit"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "frt:hallucination_goggles"
+  },
+  "pattern": [
+    "l l",
+    "gpg"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "p": {
+      "item": "minecraft:potion"
+    },
+    "g": {
+      "item": "#PANEGLASS"
+    },
+    "l": {
+      "item": "#LEATHER"
+    }
+  }
+}

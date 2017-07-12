@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "frt:ender_bookshelf"
+  },
+  "pattern": [
+    "ebe",
+    "bbb",
+    "ebe"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "b": {
+      "item": "frt:compact_bookshelf"
+    },
+    "e": {
+      "item": "#ENDERPEARL"
+    }
+  }
+}

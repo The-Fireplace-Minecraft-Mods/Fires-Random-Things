@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "frt:iron_paxel"
+  },
+  "pattern": [
+    "www",
+    " w ",
+    " s "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "s": {
+      "item": "#STICKWOOD"
+    },
+    "w": {
+      "item": "#INGOTIRON"
+    }
+  }
+}

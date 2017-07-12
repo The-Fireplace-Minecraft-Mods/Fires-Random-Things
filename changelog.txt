@@ -1,1 +1,2 @@
-Fixed a crash caused by either a newer Forge version or another mod.
+Updated to 1.12
+Removed Base Metals integration

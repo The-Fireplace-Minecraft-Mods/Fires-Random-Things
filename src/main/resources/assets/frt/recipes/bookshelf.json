@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "minecraft:bookshelf"
+  },
+  "pattern": [
+    "www",
+    "bbb",
+    "www"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "b": {
+      "item": "#BOOK"
+    },
+    "w": {
+      "item": "#PLANKWOOD"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "frt:magenta_screen"
+  },
+  "ingredients": [
+    {
+      "item": "frt:white_screen"
+    },
+    {
+      "item": "#DYEMAGENTA"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

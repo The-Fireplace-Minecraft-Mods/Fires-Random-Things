@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "frt:waxed_planks",
+    "data": 5
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:planks",
+      "data": 5
+    },
+    {
+      "item": "frt:wax"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

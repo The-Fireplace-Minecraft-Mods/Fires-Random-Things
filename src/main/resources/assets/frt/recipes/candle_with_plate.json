@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "frt:candle_with_plate"
+  },
+  "pattern": [
+    " c ",
+    "nnn"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "c": {
+      "item": "frt:candle"
+    },
+    "n": {
+      "item": "#NUGGETGOLD"
+    }
+  }
+}

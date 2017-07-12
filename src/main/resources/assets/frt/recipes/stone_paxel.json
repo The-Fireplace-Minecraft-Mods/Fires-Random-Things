@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "frt:stone_paxel"
+  },
+  "pattern": [
+    "www",
+    " w ",
+    " s "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "s": {
+      "item": "#STICKWOOD"
+    },
+    "w": {
+      "item": "minecraft:cobblestone"
+    }
+  }
+}

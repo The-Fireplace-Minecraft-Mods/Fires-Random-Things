@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "frt:pink_screen"
+  },
+  "ingredients": [
+    {
+      "item": "#SCREEN"
+    },
+    {
+      "item": "#DYEPINK"
+    },
+    {
+      "item": "#DYEPINK"
+    }
+  ],
+  "type": "forge:ore_shapeless"
+}

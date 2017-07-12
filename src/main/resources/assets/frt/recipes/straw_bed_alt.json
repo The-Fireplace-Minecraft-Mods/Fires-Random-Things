@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "frt:straw_bed"
+  },
+  "pattern": [
+    "hhh",
+    "  h"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "h": {
+      "item": "minecraft:hay_block"
+    }
+  }
+}

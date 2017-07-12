@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "frt:wax_deposit"
+  },
+  "pattern": [
+    "ww",
+    "ww"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "w": {
+      "item": "frt:wax"
+    }
+  }
+}

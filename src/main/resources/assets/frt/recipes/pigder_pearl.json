@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "frt:pigder_pearl"
+  },
+  "pattern": [
+    " s ",
+    "pep"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "p": {
+      "item": "minecraft:porkchop"
+    },
+    "s": {
+      "item": "minecraft:saddle"
+    },
+    "e": {
+      "item": "minecraft:ender_pearl"
+    }
+  }
+}

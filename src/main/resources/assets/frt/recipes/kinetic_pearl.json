@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "frt:kinetic_pearl"
+  },
+  "pattern": [
+    " g ",
+    "geg",
+    " g "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "e": {
+      "item": "#ENDERPEARL"
+    },
+    "g": {
+      "item": "#NUGGETGOLD"
+    }
+  }
+}

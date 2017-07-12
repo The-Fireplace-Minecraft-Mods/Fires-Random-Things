@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "frt:quad_dispenser"
+  },
+  "pattern": [
+    "dd",
+    "dd"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "d": {
+      "item": "minecraft:dispenser"
+    }
+  }
+}

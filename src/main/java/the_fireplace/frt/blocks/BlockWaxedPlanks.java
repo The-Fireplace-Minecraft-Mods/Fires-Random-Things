@@ -11,6 +11,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
@@ -40,10 +42,9 @@ public class BlockWaxedPlanks extends FRTBlock {
 	}
 
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list) {
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
 		for (BlockPlanks.EnumType type : BlockPlanks.EnumType.values()) {
-			list.add(new ItemStack(itemIn, 1, type.getMetadata()));
+			list.add(new ItemStack(this, 1, type.getMetadata()));
 		}
 	}
 
@@ -55,7 +56,7 @@ public class BlockWaxedPlanks extends FRTBlock {
 
 	@Override
 	@Nonnull
-	public MapColor getMapColor(IBlockState state) {
+	public MapColor getMapColor(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		return (state.getValue(VARIANT)).getMapColor();
 	}
 

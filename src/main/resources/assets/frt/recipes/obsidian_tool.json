@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "frt:obsidian_tool"
+  },
+  "pattern": [
+    "dpd",
+    "dsd",
+    " s "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "p": {
+      "item": "#GEMPRISMARINE"
+    },
+    "s": {
+      "item": "#STICKWOOD"
+    },
+    "d": {
+      "item": "#GEMDIAMOND"
+    }
+  }
+}

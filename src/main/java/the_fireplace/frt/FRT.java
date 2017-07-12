@@ -15,8 +15,6 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.potion.PotionType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -36,14 +34,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.registries.GameData;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.Level;
 import the_fireplace.frt.armor.FRTArmor;
 import the_fireplace.frt.blocks.*;
 import the_fireplace.frt.blocks.internal.BlockShell;
 import the_fireplace.frt.blocks.internal.BlockStrawBed;
-import the_fireplace.frt.compat.basemetals.IBaseMetalsRegister;
-import the_fireplace.frt.compat.basemetals.RegisterBaseMetals;
 import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.entity.projectile.*;
 import the_fireplace.frt.events.ClientEvents;
@@ -53,12 +50,7 @@ import the_fireplace.frt.items.*;
 import the_fireplace.frt.items.internal.ItemPaxel;
 import the_fireplace.frt.items.internal.ItemStrawBed;
 import the_fireplace.frt.network.PacketDispatcher;
-import the_fireplace.frt.potion.HallucinationPotion;
-import the_fireplace.frt.recipes.BaseMetalsRecipes;
-import the_fireplace.frt.recipes.DefaultRecipes;
-import the_fireplace.frt.recipes.IRecipeRegister;
-import the_fireplace.frt.recipes.VanillaStacks;
-import the_fireplace.frt.tools.MIDLib;
+import the_fireplace.frt.recipes.RecipeHandler;
 import the_fireplace.frt.worldgen.WorldGeneratorBosSign;
 import the_fireplace.frt.worldgen.WorldGeneratorNoobHouse;
 import the_fireplace.frt.worldgen.WorldGeneratorPortalCave;
@@ -67,7 +59,7 @@ import the_fireplace.frt.worldgen.WorldGeneratorWax;
 /**
  * @author The_Fireplace
  */
-@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.client.gui.FRTGuiFactory", updateJSON = "https://bitbucket.org/The_Fireplace/minecraft-mod-updates/raw/master/frt.json", acceptedMinecraftVersions = "[1.11,1.11.2]", version = "${version}")
+@Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.client.gui.FRTGuiFactory", updateJSON = "https://bitbucket.org/The_Fireplace/minecraft-mod-updates/raw/master/frt.json", acceptedMinecraftVersions = "[1.12,)", version = "${version}")
 public final class FRT {
 	@Instance(FRT.MODID)
 	public static FRT instance;
@@ -166,26 +158,26 @@ public final class FRT {
 	public void registerBlock(Block block) {
 		if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, block.getUnlocalizedName().substring(5)))
 			return;
-		GameRegistry.register(block.setRegistryName(block.getUnlocalizedName().substring(5)));
-		GameRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+		GameData.register_impl(block.setRegistryName(block.getUnlocalizedName().substring(5)));
+		GameData.register_impl(new ItemBlock(block).setRegistryName(block.getRegistryName()));
 	}
 
 	public void registerBlockNoItem(Block block) {
 		if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, block.getUnlocalizedName().substring(5)))
 			return;
-		GameRegistry.register(block.setRegistryName(block.getUnlocalizedName().substring(5)));
+		GameData.register_impl(block.setRegistryName(block.getUnlocalizedName().substring(5)));
 	}
 
 	public void registerItem(Item item) {
 		if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, item.getUnlocalizedName().substring(5)))
 			return;
-		GameRegistry.register(item.setRegistryName(item.getUnlocalizedName().substring(5)));
+		GameData.register_impl(item.setRegistryName(item.getUnlocalizedName().substring(5)));
 	}
 
 	public void registerItemBlock(ItemBlock itemBlock) {
-		if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, itemBlock.block.getUnlocalizedName().substring(5)))
+		if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, itemBlock.getBlock().getUnlocalizedName().substring(5)))
 			return;
-		GameRegistry.register(itemBlock.setRegistryName(itemBlock.block.getUnlocalizedName().substring(5)));
+		GameData.register_impl(itemBlock.setRegistryName(itemBlock.getBlock().getUnlocalizedName().substring(5)));
 	}
 
 	public void syncConfig() {
@@ -304,22 +296,12 @@ public final class FRT {
 		GameRegistry.registerFuelHandler(new FRTFuelHandler());
 		proxy.registerEntityRenderers();
 
-		hallucination = new HallucinationPotion().setPotionName("potion.hallucination");
-		Potion.REGISTRY.register(Potion.REGISTRY.getKeys().size(), new ResourceLocation(MODID, "hallucination"), hallucination);
-		PotionType.REGISTRY.register(PotionType.REGISTRY.getKeys().size(), new ResourceLocation(MODID, "hallucination"), new PotionType(new PotionEffect(hallucination, 3600)));
-		PotionType.REGISTRY.register(PotionType.REGISTRY.getKeys().size(), new ResourceLocation(MODID, "long_hallucination"), new PotionType(new PotionEffect(hallucination, 9600)));
-
 		if (event.getSide().isClient())
 			registerItemRenders();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		IBaseMetalsRegister bm;
-		if (MIDLib.hasBaseMetals()) {
-			bm = new RegisterBaseMetals();
-			bm.registerItems();
-		}
 		proxy.registerTileEntities();
 		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, wax_deposit.getUnlocalizedName().substring(5)))
 			GameRegistry.registerWorldGenerator(new WorldGeneratorWax(), 6);
@@ -358,14 +340,7 @@ public final class FRT {
 		registerOre("enderpearl", pigder_pearl);
 		registerOre("plankWood", new ItemStack(waxed_planks, 1, OreDictionary.WILDCARD_VALUE));
 		registerOre("listAllMeatRaw", raw_mystery_meat);
-		IRecipeRegister recipes;
-		if (MIDLib.hasBaseMetals()) {
-			recipes = new BaseMetalsRecipes();
-			recipes.registerRecipes();
-		}
-		recipes = new DefaultRecipes();
-		recipes.registerRecipes();
-		VanillaStacks.registerConstantRecipes();
+		RecipeHandler.registerConstantRecipes();
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.COAL, new DispenseBehaviorCoal());
 		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, charged_coal.getUnlocalizedName().substring(5)))
 			BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(charged_coal, new DispenseBehaviorChargedCoal());
@@ -375,13 +350,6 @@ public final class FRT {
 			BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(restabilized_coal, new DispenseBehaviorRestabilizedCoal());
 		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, refined_coal.getUnlocalizedName().substring(5)))
 			BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(refined_coal, new DispenseBehaviorRefinedCoal());
-
-		if (event.getSide().isClient()) {
-			if (MIDLib.hasBaseMetals()) {
-				bm = new RegisterBaseMetals();
-				bm.registerItemRenders();
-			}
-		}
 	}
 
 	private void addStructures() {

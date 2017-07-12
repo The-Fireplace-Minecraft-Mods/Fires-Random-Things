@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "frt:pop_furnace"
+  },
+  "pattern": [
+    "bib",
+    "btb",
+    "bib"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "b": {
+      "item": "#BLOCKIRON"
+    },
+    "t": {
+      "item": "minecraft:iron_trapdoor"
+    },
+    "i": {
+      "item": "#INGOTIRON"
+    }
+  }
+}
