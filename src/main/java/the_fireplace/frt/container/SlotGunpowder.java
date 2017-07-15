@@ -2,8 +2,8 @@ package the_fireplace.frt.container;
 
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import the_fireplace.frt.recipes.ShattererRecipes;
-import the_fireplace.frt.tileentity.TileEntityShatterer;
+import the_fireplace.frt.recipes.ItemExploderRecipeManager;
+import the_fireplace.frt.tileentity.TileEntityItemExploder;
 
 import javax.annotation.Nonnull;
 
@@ -11,9 +11,9 @@ import javax.annotation.Nonnull;
  * @author The_Fireplace
  */
 public class SlotGunpowder extends Slot {
-	TileEntityShatterer inv;
+	TileEntityItemExploder inv;
 
-	public SlotGunpowder(TileEntityShatterer inventoryIn, int index, int xPosition,
+	public SlotGunpowder(TileEntityItemExploder inventoryIn, int index, int xPosition,
 	                     int yPosition) {
 		super(inventoryIn, index, xPosition, yPosition);
 		inv = inventoryIn;
@@ -21,7 +21,7 @@ public class SlotGunpowder extends Slot {
 
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-		return ShattererRecipes.instance().isGunpowder(stack);
+		return ItemExploderRecipeManager.instance().isGunpowder(stack);
 	}
 
 	@Override

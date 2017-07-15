@@ -4,8 +4,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import the_fireplace.frt.tileentity.TileEntityShatterer;
-import the_fireplace.frt.tileentity.TileEntityShellCore;
+import the_fireplace.frt.tileentity.TileEntityItemExploder;
+import the_fireplace.frt.tileentity.TileEntityForceFieldCore;
 
 /**
  * @author The_Fireplace
@@ -16,8 +16,8 @@ public class CommonProxy {
 	}
 
 	public void registerTileEntities() {
-		GameRegistry.registerTileEntity(TileEntityShatterer.class, "pop_furnace");
-		GameRegistry.registerTileEntity(TileEntityShellCore.class, "shell_core");
+		GameRegistry.registerTileEntity(TileEntityItemExploder.class, "pop_furnace");
+		GameRegistry.registerTileEntity(TileEntityForceFieldCore.class, "shell_core");
 	}
 
 	public EntityPlayer getPlayerEntity(MessageContext ctx) {

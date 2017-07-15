@@ -10,20 +10,20 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 import the_fireplace.frt.FRT;
-import the_fireplace.frt.container.ContainerShatterer;
-import the_fireplace.frt.tileentity.TileEntityShatterer;
+import the_fireplace.frt.container.ContainerItemExploder;
+import the_fireplace.frt.tileentity.TileEntityItemExploder;
 
 /**
  * @author The_Fireplace
  */
 @SideOnly(Side.CLIENT)
-public class GuiShatterer extends GuiContainer {
+public class GuiItemExploder extends GuiContainer {
 	//TODO: Use a dynamic transparent item overlay
 	public static final ResourceLocation texture = new ResourceLocation(FRT.MODID, "textures/gui/pop_furnace.png");
-	private TileEntityShatterer te;
+	private TileEntityItemExploder te;
 
-	public GuiShatterer(InventoryPlayer invPlayer, TileEntityShatterer entity) {
-		super(new ContainerShatterer(invPlayer, entity));
+	public GuiItemExploder(InventoryPlayer invPlayer, TileEntityItemExploder entity) {
+		super(new ContainerItemExploder(invPlayer, entity));
 		xSize = 176;
 		ySize = 143;
 		ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());

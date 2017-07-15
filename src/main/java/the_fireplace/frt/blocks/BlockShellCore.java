@@ -22,7 +22,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.ArrayUtils;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.config.ConfigValues;
-import the_fireplace.frt.tileentity.TileEntityShellCore;
+import the_fireplace.frt.tileentity.TileEntityForceFieldCore;
 import the_fireplace.frt.tools.MiscTools;
 
 import java.util.Random;
@@ -60,7 +60,7 @@ public class BlockShellCore extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityShellCore();
+		return new TileEntityForceFieldCore();
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class BlockShellCore extends BlockContainer {
 		else if (!playerIn.isSneaking()) {
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 
-			if (tileentity instanceof TileEntityShellCore) {
+			if (tileentity instanceof TileEntityForceFieldCore) {
 				FMLNetworkHandler.openGui(playerIn, FRT.MODID, 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
 			}
 			return true;
@@ -82,7 +82,7 @@ public class BlockShellCore extends BlockContainer {
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 		if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, FRT.shell.getUnlocalizedName().substring(5)))
 			return;
-		TileEntityShellCore tile = (TileEntityShellCore) worldIn.getTileEntity(pos);
+		TileEntityForceFieldCore tile = (TileEntityForceFieldCore) worldIn.getTileEntity(pos);
 		if (tile != null && !worldIn.isRemote) {
 			if (ConfigValues.ENABLESHELL) {
 				if (worldIn.isBlockPowered(pos)) {
@@ -110,7 +110,7 @@ public class BlockShellCore extends BlockContainer {
 
 	@Override
 	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock, BlockPos neighborPos) {
-		TileEntityShellCore tile = (TileEntityShellCore) worldIn.getTileEntity(pos);
+		TileEntityForceFieldCore tile = (TileEntityForceFieldCore) worldIn.getTileEntity(pos);
 		if (tile != null && !worldIn.isRemote) {
 			if (ConfigValues.ENABLESHELL) {
 				if (worldIn.isBlockPowered(pos)) {
@@ -143,7 +143,7 @@ public class BlockShellCore extends BlockContainer {
 
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-		TileEntityShellCore tile = (TileEntityShellCore) worldIn.getTileEntity(pos);
+		TileEntityForceFieldCore tile = (TileEntityForceFieldCore) worldIn.getTileEntity(pos);
 		if (tile != null) {
 			int r = tile.getStoredRedstone();
 			int rstacks = 0;

@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import org.apache.commons.lang3.ArrayUtils;
 import the_fireplace.frt.FRT;
-import the_fireplace.frt.api.PopFurnaceRegistry;
+import the_fireplace.frt.api.ItemExploderRegistry;
 import the_fireplace.frt.config.ConfigValues;
 
 /**
@@ -114,34 +114,37 @@ public class RecipeHandler {
 		BrewingRecipeRegistry.addRecipe(hallucinationPotionStackLS, redstoneStack, hallucinationPotionStackLL);
 		BrewingRecipeRegistry.addRecipe(awkwardLingeringPotionStack, redMushroomStack, hallucinationPotionStackLS);
 		BrewingRecipeRegistry.addRecipe(awkwardSplashPotionStack, redMushroomStack, hallucinationPotionStackSS);
-		PopFurnaceRegistry.registerGunpowder(gunpowderStack, gunpowderSubstituteStack);
-		PopFurnaceRegistry.registerFirestarter(flintAndSteelStack, fireChargeStack, firestarterSubstituteStack);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(glassStack, sandStack, 1);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(stainedGlassStack, sandStack, 1);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(bottleStack, sandStack, 1);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(sugarCaneStack, sugarStack, 2);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(glowstoneStack, glowstoneDustStack, 4);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(boneStack, boneMealStack, 4);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(blazeRodStack, blazePowderStack, 4);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(dandelionStack, yellowDyeStack, 2);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(poppyStack, redDyeStack, 2);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(blueOrchidStack, skyDyeStack, 2);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(alliumStack, magentaDyeStack, 2);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(azureBluetStack, silverDyeStack, 2);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(redTulipStack, redDyeStack, 2);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(orangeTulipStack, orangeDyeStack, 2);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(whiteTulipStack, silverDyeStack, 2);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(pinkTulipStack, pinkDyeStack, 2);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(oxeyeDaisyStack, silverDyeStack, 2);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(sunflowerStack, yellowDyeStack, 3);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(lilacStack, magentaDyeStack, 3);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(roseBushStack, redDyeStack, 3);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(peonyStack, pinkDyeStack, 3);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(candleStack, waxStack, 2);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(candlePlateStack, waxStack, 2);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(goldenAppleStack, goldIngotStack, 8);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(glisteringMelonStack, goldNuggetStack, 8);
-		PopFurnaceRegistry.registerPopFurnaceRecipe(goldenCarrotStack, goldNuggetStack, 8);
+		ItemExploderRegistry.registerGunpowder(gunpowderStack, gunpowderSubstituteStack);
+		ItemExploderRegistry.registerFirestarter(flintAndSteelStack, fireChargeStack, firestarterSubstituteStack);
+		ItemExploderRegistry.registerExploderRecipe(glassStack, sandStack, 1);
+		ItemExploderRegistry.registerExploderRecipe(stainedGlassStack, sandStack, 1);
+		ItemExploderRegistry.registerExploderRecipe(bottleStack, sandStack, 1);
+		ItemExploderRegistry.registerExploderRecipe(sugarCaneStack, sugarStack, 2);
+		ItemExploderRegistry.registerExploderRecipe(glowstoneStack, glowstoneDustStack, 4);
+		ItemExploderRegistry.registerExploderRecipe(boneStack, boneMealStack, 4);
+		ItemExploderRegistry.registerExploderRecipe(blazeRodStack, blazePowderStack, 4);
+		ItemExploderRegistry.registerExploderRecipe(dandelionStack, yellowDyeStack, 2);
+		ItemExploderRegistry.registerExploderRecipe(poppyStack, redDyeStack, 2);
+		ItemExploderRegistry.registerExploderRecipe(blueOrchidStack, skyDyeStack, 2);
+		ItemExploderRegistry.registerExploderRecipe(alliumStack, magentaDyeStack, 2);
+		ItemExploderRegistry.registerExploderRecipe(azureBluetStack, silverDyeStack, 2);
+		ItemExploderRegistry.registerExploderRecipe(redTulipStack, redDyeStack, 2);
+		ItemExploderRegistry.registerExploderRecipe(orangeTulipStack, orangeDyeStack, 2);
+		ItemExploderRegistry.registerExploderRecipe(whiteTulipStack, silverDyeStack, 2);
+		ItemExploderRegistry.registerExploderRecipe(pinkTulipStack, pinkDyeStack, 2);
+		ItemExploderRegistry.registerExploderRecipe(oxeyeDaisyStack, silverDyeStack, 2);
+		ItemExploderRegistry.registerExploderRecipe(sunflowerStack, yellowDyeStack, 3);
+		ItemExploderRegistry.registerExploderRecipe(lilacStack, magentaDyeStack, 3);
+		ItemExploderRegistry.registerExploderRecipe(roseBushStack, redDyeStack, 3);
+		ItemExploderRegistry.registerExploderRecipe(peonyStack, pinkDyeStack, 3);
+		ItemExploderRegistry.registerExploderRecipe(candleStack, waxStack, 2);
+		ItemExploderRegistry.registerExploderRecipe(candlePlateStack, waxStack, 2);
+		ItemExploderRegistry.registerExploderRecipe(goldenAppleStack, goldIngotStack, 8);
+		ItemExploderRegistry.registerExploderRecipe(glisteringMelonStack, goldNuggetStack, 8);
+		ItemExploderRegistry.registerExploderRecipe(goldenCarrotStack, goldNuggetStack, 8);
+		for(int i=0;i<16;i++){
+			ItemExploderRegistry.registerExploderRecipe(new ItemStack(Blocks.CONCRETE, 1, i), new ItemStack(Blocks.CONCRETE_POWDER, 1, i));
+		}
 	}
 
 	public static void addSmelting(ItemStack input, ItemStack output, float xp) {

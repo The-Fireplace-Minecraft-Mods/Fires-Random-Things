@@ -3,7 +3,7 @@ package the_fireplace.frt.container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import the_fireplace.frt.tileentity.TileEntityShellCore;
+import the_fireplace.frt.tileentity.TileEntityForceFieldCore;
 import the_fireplace.frt.tools.MiscTools;
 
 import javax.annotation.Nonnull;
@@ -12,9 +12,9 @@ import javax.annotation.Nonnull;
  * @author The_Fireplace
  */
 public class SlotRedstone extends Slot {
-	TileEntityShellCore inv;
+	TileEntityForceFieldCore inv;
 
-	public SlotRedstone(TileEntityShellCore inventoryIn, int index, int xPosition, int yPosition) {
+	public SlotRedstone(TileEntityForceFieldCore inventoryIn, int index, int xPosition, int yPosition) {
 		super(inventoryIn, index, xPosition, yPosition);
 		inv = inventoryIn;
 	}

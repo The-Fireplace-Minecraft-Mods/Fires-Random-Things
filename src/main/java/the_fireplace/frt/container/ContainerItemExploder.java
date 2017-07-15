@@ -5,17 +5,17 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import the_fireplace.frt.tileentity.TileEntityShatterer;
+import the_fireplace.frt.tileentity.TileEntityItemExploder;
 
 import javax.annotation.Nonnull;
 
 /**
  * @author The_Fireplace
  */
-public class ContainerShatterer extends Container {
-	private TileEntityShatterer te;
+public class ContainerItemExploder extends Container {
+	private TileEntityItemExploder te;
 
-	public ContainerShatterer(InventoryPlayer invPlayer, TileEntityShatterer entity) {
+	public ContainerItemExploder(InventoryPlayer invPlayer, TileEntityItemExploder entity) {
 		this.te = entity;
 
 		for (int x = 0; x < 9; x++) {
@@ -29,11 +29,11 @@ public class ContainerShatterer extends Container {
 		}
 
 		for (int x = 0; x < 5; x++) {
-			this.addSlotToContainer(new SlotShattererInput(entity, x, 80 + x * 18, 26 - 4 - 6 - 5));//tile entity IDs 0 to 4
+			this.addSlotToContainer(new SlotItemExploderInput(entity, x, 80 + x * 18, 26 - 4 - 6 - 5));//tile entity IDs 0 to 4
 		}
 
 		for (int x = 0; x < 5; x++) {
-			this.addSlotToContainer(new SlotShattererOutput(entity, 5 + x, 80 + x * 18, 26 + 18 + 4 - 4 - 6 - 5));//tile entity IDs 5 to 9
+			this.addSlotToContainer(new SlotItemExploderOutput(entity, 5 + x, 80 + x * 18, 26 + 18 + 4 - 4 - 6 - 5));//tile entity IDs 5 to 9
 		}
 		this.addSlotToContainer(new SlotGunpowder(entity, 10, 8, 26 - 4 - 6 - 5));//tile entity ID 10, gunpowder slot
 		this.addSlotToContainer(new SlotFirestarter(entity, 11, 8, 48 - 4 - 6 - 5));//tile entity ID 11, firestarter slot

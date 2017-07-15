@@ -22,15 +22,15 @@ import java.util.Random;
 /**
  * @author The_Fireplace
  */
-public class TileEntityShellCore extends TileEntity implements ITickable, ISidedInventory {
+public class TileEntityForceFieldCore extends TileEntity implements ITickable, ISidedInventory {
 	private ItemStack[] inventory;
-	public static final String PROP_NAME = "TileEntityShellCore";
+	public static final String PROP_NAME = "TileEntityForceFieldCore";
 	int storedRedstone = 0;
 
 	public boolean isActive = false;
 	public int tempItemCounter = 0;
 
-	public TileEntityShellCore() {
+	public TileEntityForceFieldCore() {
 		inventory = new ItemStack[1];
 	}
 

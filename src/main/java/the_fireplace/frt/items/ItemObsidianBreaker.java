@@ -16,8 +16,8 @@ import the_fireplace.frt.compat.chisel.IChiselCompat;
 /**
  * @author The_Fireplace
  */
-public class ItemObsidianTool extends Item {
-	public ItemObsidianTool() {
+public class ItemObsidianBreaker extends Item {
+	public ItemObsidianBreaker() {
 		setMaxStackSize(1);
 		setUnlocalizedName("obsidian_tool");
 		setCreativeTab(FRT.TabFRT);

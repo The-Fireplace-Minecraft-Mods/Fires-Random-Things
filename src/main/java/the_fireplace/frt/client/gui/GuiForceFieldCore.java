@@ -9,19 +9,19 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 import the_fireplace.frt.FRT;
-import the_fireplace.frt.container.ContainerShellCore;
-import the_fireplace.frt.tileentity.TileEntityShellCore;
+import the_fireplace.frt.container.ContainerForceFieldCore;
+import the_fireplace.frt.tileentity.TileEntityForceFieldCore;
 
 /**
  * @author The_Fireplace
  */
 @SideOnly(Side.CLIENT)
-public class GuiShellCore extends GuiContainer {
+public class GuiForceFieldCore extends GuiContainer {
 	public static final ResourceLocation texture = new ResourceLocation(FRT.MODID, "textures/gui/shell_core.png");
-	private TileEntityShellCore te;
+	private TileEntityForceFieldCore te;
 
-	public GuiShellCore(InventoryPlayer invPlayer, TileEntityShellCore entity) {
-		super(new ContainerShellCore(invPlayer, entity));
+	public GuiForceFieldCore(InventoryPlayer invPlayer, TileEntityForceFieldCore entity) {
+		super(new ContainerForceFieldCore(invPlayer, entity));
 		xSize = 176;
 		ySize = 143;
 		ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());

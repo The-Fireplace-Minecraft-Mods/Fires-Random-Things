@@ -6,8 +6,8 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.transfer.IRecipeTransferRegistry;
 import net.minecraft.item.ItemStack;
 import the_fireplace.frt.FRT;
-import the_fireplace.frt.client.gui.GuiShatterer;
-import the_fireplace.frt.container.ContainerShatterer;
+import the_fireplace.frt.client.gui.GuiItemExploder;
+import the_fireplace.frt.container.ContainerItemExploder;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
@@ -45,15 +45,15 @@ public class FRTJEIPlugin implements IModPlugin {
 		registry.handleRecipes(PopFurnaceRecipe.class, new PopFurnaceRecipeHandler(), "frt.pop_furnace");
 		registry.handleRecipes(GunpowderRecipe.class, new GunpowderRecipeHandler(), "frt.pop_furnace.gunpowder");
 
-		registry.addRecipeClickArea(GuiShatterer.class, 79, 28, 90, 4, "frt.pop_furnace");
-		registry.addRecipeClickArea(GuiShatterer.class, 25, 11, 18, 18, "frt.pop_furnace.gunpowder");
-		registry.addRecipeClickArea(GuiShatterer.class, 25, 33, 18, 18, "frt.pop_furnace.firestarter");
+		registry.addRecipeClickArea(GuiItemExploder.class, 79, 28, 90, 4, "frt.pop_furnace");
+		registry.addRecipeClickArea(GuiItemExploder.class, 25, 11, 18, 18, "frt.pop_furnace.gunpowder");
+		registry.addRecipeClickArea(GuiItemExploder.class, 25, 33, 18, 18, "frt.pop_furnace.firestarter");
 
 		IRecipeTransferRegistry recipeTransferRegistry = registry.getRecipeTransferRegistry();
 
-		recipeTransferRegistry.addRecipeTransferHandler(ContainerShatterer.class, "frt.pop_furnace", 0, 5, 0, 36);
-		recipeTransferRegistry.addRecipeTransferHandler(ContainerShatterer.class, "frt.pop_furnace.gunpowder", 10, 1, 0, 36);
-		recipeTransferRegistry.addRecipeTransferHandler(ContainerShatterer.class, "frt.pop_furnace.firestarter", 11, 1, 0, 36);
+		recipeTransferRegistry.addRecipeTransferHandler(ContainerItemExploder.class, "frt.pop_furnace", 0, 5, 0, 36);
+		recipeTransferRegistry.addRecipeTransferHandler(ContainerItemExploder.class, "frt.pop_furnace.gunpowder", 10, 1, 0, 36);
+		recipeTransferRegistry.addRecipeTransferHandler(ContainerItemExploder.class, "frt.pop_furnace.firestarter", 11, 1, 0, 36);
 
 		registry.addRecipeCatalyst(new ItemStack(FRT.pop_furnace), "frt.pop_furnace", "frt.pop_furnace.gunpowder", "frt.pop_furnace.firestarter");
 

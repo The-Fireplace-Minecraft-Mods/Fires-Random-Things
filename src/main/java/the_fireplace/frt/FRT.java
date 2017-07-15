@@ -20,7 +20,9 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.config.GuiConfigEntries;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -28,13 +30,14 @@ import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.registries.GameData;
+import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.Level;
 import the_fireplace.frt.armor.FRTArmor;
@@ -57,6 +60,7 @@ import the_fireplace.frt.worldgen.*;
  * @author The_Fireplace
  */
 @Mod(modid = FRT.MODID, name = FRT.MODNAME, guiFactory = "the_fireplace.frt.client.gui.FRTGuiFactory", updateJSON = "https://bitbucket.org/The_Fireplace/minecraft-mod-updates/raw/master/frt.json", acceptedMinecraftVersions = "[1.12,)", version = "${version}")
+@Mod.EventBusSubscriber
 public final class FRT {
 	@Instance(FRT.MODID)
 	public static FRT instance;
@@ -138,7 +142,7 @@ public final class FRT {
 	public static final Item wood_paxel = new ItemPaxel(ToolMaterial.WOOD).setUnlocalizedName("wood_paxel").setCreativeTab(FRT.TabFRT);
 	public static final Item restabilized_coal = new Item().setUnlocalizedName("restabilized_coal").setCreativeTab(TabFRT);
 	public static final Item refined_coal = new Item().setUnlocalizedName("refined_coal").setCreativeTab(TabFRT);
-	public static final Item obsidian_tool = new ItemObsidianTool();
+	public static final Item obsidian_tool = new ItemObsidianBreaker();
 	public static final Item gunpowder_substitute = new Item().setUnlocalizedName("gunpowder_substitute").setCreativeTab(TabFRT);
 	public static final Item firestarter_substitute = new Item().setUnlocalizedName("firestarter_substitute").setCreativeTab(TabFRT);
 	public static final Item leafcutter = new ItemLeafcutter();
@@ -151,31 +155,6 @@ public final class FRT {
 	public static final Item straw_bed = new ItemStrawBed().setUnlocalizedName("straw_bed").setCreativeTab(TabFRT);
 
 	public static final Item hallucination_goggles = new FRTArmor(ArmorMaterial.LEATHER, EntityEquipmentSlot.HEAD).setUnlocalizedName("hallucination_goggles").setCreativeTab(TabFRT);
-
-	public void registerBlock(Block block) {
-		if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, block.getUnlocalizedName().substring(5)))
-			return;
-		GameData.register_impl(block.setRegistryName(block.getUnlocalizedName().substring(5)));
-		GameData.register_impl(new ItemBlock(block).setRegistryName(block.getRegistryName()));
-	}
-
-	public void registerBlockNoItem(Block block) {
-		if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, block.getUnlocalizedName().substring(5)))
-			return;
-		GameData.register_impl(block.setRegistryName(block.getUnlocalizedName().substring(5)));
-	}
-
-	public void registerItem(Item item) {
-		if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, item.getUnlocalizedName().substring(5)))
-			return;
-		GameData.register_impl(item.setRegistryName(item.getUnlocalizedName().substring(5)));
-	}
-
-	public void registerItemBlock(ItemBlock itemBlock) {
-		if (ArrayUtils.contains(ConfigValues.DISABLEDITEMS, itemBlock.getBlock().getUnlocalizedName().substring(5)))
-			return;
-		GameData.register_impl(itemBlock.setRegistryName(itemBlock.getBlock().getUnlocalizedName().substring(5)));
-	}
 
 	public void syncConfig() {
 		ConfigValues.ENABLESHELL = ENABLESHELL_PROPERTY.getBoolean();
@@ -216,72 +195,6 @@ public final class FRT {
 		if (event.getSide().isClient())
 			POTIONSWITCH_PROPERTY.setConfigEntryClass(GuiConfigEntries.NumberSliderEntry.class);
 		syncConfig();
-		registerBlock(ender_bookshelf);
-		registerBlock(polished_stone);
-		registerBlock(compact_dirt);
-		registerBlock(fireplace_bottom);
-		registerBlock(charged_coal_block);
-		registerBlock(destabilized_coal_block);
-		registerBlock(restabilized_coal_block);
-		registerBlock(refined_coal_block);
-		registerBlock(blaze_cake);
-		registerBlock(dark_tan_screen);
-		registerBlock(light_tan_screen);
-		registerBlock(white_screen);
-		registerBlock(red_screen);
-		registerBlock(black_screen);
-		registerBlock(blue_screen);
-		registerBlock(cyan_screen);
-		registerBlock(sky_screen);
-		registerBlock(green_screen);
-		registerBlock(orange_screen);
-		registerBlock(light_orange_screen);
-		registerBlock(yellow_screen);
-		registerBlock(pink_screen);
-		registerBlock(grey_screen);
-		registerBlock(silver_screen);
-		registerBlock(magenta_screen);
-		registerBlock(purple_screen);
-		registerBlock(lime_screen);
-		registerBlock(brown_screen);
-		registerBlock(compact_bookshelf);
-		registerBlock(shell_core);
-		registerBlockNoItem(shell);
-		registerBlock(pop_furnace);
-		registerBlock(quad_dispenser);
-		registerBlock(insane_dispenser);
-		registerBlock(candle);
-		registerBlock(candle_with_base);
-		registerBlock(wax_deposit);
-		registerBlockNoItem(waxed_planks);
-		registerItemBlock(new ItemWaxedPlanks(waxed_planks));
-		registerBlock(meat_block);
-		registerBlockNoItem(straw_bed_block);
-		registerItem(straw_bed);
-
-		registerItem(charged_coal);
-		registerItem(destabilized_coal);
-		registerItem(restabilized_coal);
-		registerItem(refined_coal);
-		registerItem(diamond_paxel);
-		registerItem(gold_paxel);
-		registerItem(iron_paxel);
-		registerItem(stone_paxel);
-		registerItem(wood_paxel);
-		registerItem(obsidian_tool);
-		registerItem(hallucination_goggles);
-		registerItem(gunpowder_substitute);
-		registerItem(firestarter_substitute);
-		registerItem(leafcutter);
-		registerItem(wax);
-		registerItem(kinetic_pearl);
-		registerItem(pigder_pearl);
-		registerItem(mystery_meat);
-		registerItem(raw_mystery_meat);
-		registerItem(shimmering_stew);
-		registerItem(handheld_dispenser);
-		registerItem(handheld_quad_dispenser);
-		registerItem(handheld_insane_dispenser);
 
 		int eid = 0;
 		EntityRegistry.registerModEntity(new ResourceLocation(MODID + ":ammo_coal"), EntityCoal.class, "ammo_coal", eid, instance, 64, 10, true);
@@ -292,15 +205,12 @@ public final class FRT {
 		EntityRegistry.registerModEntity(new ResourceLocation(MODID + ":pigder_pearl"), EntityPigderPearl.class, "pigder_pearl", ++eid, instance, 64, 10, true);
 		GameRegistry.registerFuelHandler(new FRTFuelHandler());
 		proxy.registerEntityRenderers();
-
-		if (event.getSide().isClient())
-			registerItemRenders();
 	}
 
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		proxy.registerTileEntities();
-		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, wax_deposit.getUnlocalizedName().substring(5)))
+		if (!isItemDisabled(wax_deposit))
 			GameRegistry.registerWorldGenerator(new WorldGeneratorWax(), 6);
 		addStructures();
 		OreDictionary.registerOre("book", Items.BOOK);
@@ -339,13 +249,13 @@ public final class FRT {
 		registerOre("listAllMeatRaw", raw_mystery_meat);
 		RecipeHandler.registerConstantRecipes();
 		BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(Items.COAL, new DispenseBehaviorCoal());
-		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, charged_coal.getUnlocalizedName().substring(5)))
+		if (!isItemDisabled(charged_coal))
 			BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(charged_coal, new DispenseBehaviorChargedCoal());
-		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, destabilized_coal.getUnlocalizedName().substring(5)))
+		if (!isItemDisabled(destabilized_coal))
 			BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(destabilized_coal, new DispenseBehaviorDestabilizedCoal());
-		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, restabilized_coal.getUnlocalizedName().substring(5)))
+		if (!isItemDisabled(restabilized_coal))
 			BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(restabilized_coal, new DispenseBehaviorRestabilizedCoal());
-		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, refined_coal.getUnlocalizedName().substring(5)))
+		if (!isItemDisabled(refined_coal))
 			BlockDispenser.DISPENSE_BEHAVIOR_REGISTRY.putObject(refined_coal, new DispenseBehaviorRefinedCoal());
 	}
 
@@ -359,11 +269,171 @@ public final class FRT {
 		}
 	}
 
+	private static IForgeRegistry<Block> blockRegistry = null;
+
+	public static void registerBlock(Block block) {
+		if (isItemDisabled(block))
+			return;
+		if(blockRegistry == null){
+			logError("Block registry was null, could not register: "+block.getUnlocalizedName());
+			return;
+		}
+		blockRegistry.register(block.setRegistryName(block.getUnlocalizedName().substring(5)));
+	}
+
+	private static IForgeRegistry<Item> itemRegistry = null;
+
+	public static void registerItem(Item item) {
+		if (isItemDisabled(item))
+			return;
+		if(itemRegistry == null){
+			logError("Item registry was null, could not register: "+item.getUnlocalizedName());
+			return;
+		}
+		itemRegistry.register(item.setRegistryName(item.getUnlocalizedName().substring(5)));
+	}
+
+	public static void registerItemForBlock(Block block) {
+		if (isItemDisabled(block))
+			return;
+		if(itemRegistry == null){
+			logError("Item registry was null, could not register: "+block.getUnlocalizedName());
+			return;
+		}
+		itemRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
+	}
+
+	public static void registerItemBlock(ItemBlock itemBlock) {
+		if (isItemDisabled(itemBlock))
+			return;
+		if(itemRegistry == null){
+			logError("Item registry was null, could not register: "+itemBlock.getUnlocalizedName());
+			return;
+		}
+		itemRegistry.register(itemBlock.setRegistryName(itemBlock.getBlock().getUnlocalizedName().substring(5)));
+	}
+
+	@SubscribeEvent
+	public static void itemRegistry(RegistryEvent.Register<Item> event){
+		itemRegistry = event.getRegistry();
+		registerItem(straw_bed);
+		registerItem(charged_coal);
+		registerItem(destabilized_coal);
+		registerItem(restabilized_coal);
+		registerItem(refined_coal);
+		registerItem(diamond_paxel);
+		registerItem(gold_paxel);
+		registerItem(iron_paxel);
+		registerItem(stone_paxel);
+		registerItem(wood_paxel);
+		registerItem(obsidian_tool);
+		registerItem(hallucination_goggles);
+		registerItem(gunpowder_substitute);
+		registerItem(firestarter_substitute);
+		registerItem(leafcutter);
+		registerItem(wax);
+		registerItem(kinetic_pearl);
+		registerItem(pigder_pearl);
+		registerItem(mystery_meat);
+		registerItem(raw_mystery_meat);
+		registerItem(shimmering_stew);
+		registerItem(handheld_dispenser);
+		registerItem(handheld_quad_dispenser);
+		registerItem(handheld_insane_dispenser);
+		registerItemBlock(new ItemWaxedPlanks(waxed_planks));
+		//Blocks
+		registerItemForBlock(ender_bookshelf);
+		registerItemForBlock(polished_stone);
+		registerItemForBlock(compact_dirt);
+		registerItemForBlock(fireplace_bottom);
+		registerItemForBlock(charged_coal_block);
+		registerItemForBlock(destabilized_coal_block);
+		registerItemForBlock(restabilized_coal_block);
+		registerItemForBlock(refined_coal_block);
+		registerItemForBlock(blaze_cake);
+		registerItemForBlock(dark_tan_screen);
+		registerItemForBlock(light_tan_screen);
+		registerItemForBlock(white_screen);
+		registerItemForBlock(red_screen);
+		registerItemForBlock(black_screen);
+		registerItemForBlock(blue_screen);
+		registerItemForBlock(cyan_screen);
+		registerItemForBlock(sky_screen);
+		registerItemForBlock(green_screen);
+		registerItemForBlock(orange_screen);
+		registerItemForBlock(light_orange_screen);
+		registerItemForBlock(yellow_screen);
+		registerItemForBlock(pink_screen);
+		registerItemForBlock(grey_screen);
+		registerItemForBlock(silver_screen);
+		registerItemForBlock(magenta_screen);
+		registerItemForBlock(purple_screen);
+		registerItemForBlock(lime_screen);
+		registerItemForBlock(brown_screen);
+		registerItemForBlock(compact_bookshelf);
+		registerItemForBlock(shell_core);
+		registerItemForBlock(pop_furnace);
+		registerItemForBlock(quad_dispenser);
+		registerItemForBlock(insane_dispenser);
+		registerItemForBlock(candle);
+		registerItemForBlock(candle_with_base);
+		registerItemForBlock(wax_deposit);
+		registerItemForBlock(meat_block);
+
+		if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
+			registerItemRenders();
+	}
+
+	@SubscribeEvent
+	public static void blockRegistry(RegistryEvent.Register<Block> event){
+		blockRegistry = event.getRegistry();
+		registerBlock(ender_bookshelf);
+		registerBlock(polished_stone);
+		registerBlock(compact_dirt);
+		registerBlock(fireplace_bottom);
+		registerBlock(charged_coal_block);
+		registerBlock(destabilized_coal_block);
+		registerBlock(restabilized_coal_block);
+		registerBlock(refined_coal_block);
+		registerBlock(blaze_cake);
+		registerBlock(dark_tan_screen);
+		registerBlock(light_tan_screen);
+		registerBlock(white_screen);
+		registerBlock(red_screen);
+		registerBlock(black_screen);
+		registerBlock(blue_screen);
+		registerBlock(cyan_screen);
+		registerBlock(sky_screen);
+		registerBlock(green_screen);
+		registerBlock(orange_screen);
+		registerBlock(light_orange_screen);
+		registerBlock(yellow_screen);
+		registerBlock(pink_screen);
+		registerBlock(grey_screen);
+		registerBlock(silver_screen);
+		registerBlock(magenta_screen);
+		registerBlock(purple_screen);
+		registerBlock(lime_screen);
+		registerBlock(brown_screen);
+		registerBlock(compact_bookshelf);
+		registerBlock(shell_core);
+		registerBlock(pop_furnace);
+		registerBlock(quad_dispenser);
+		registerBlock(insane_dispenser);
+		registerBlock(candle);
+		registerBlock(candle_with_base);
+		registerBlock(wax_deposit);
+		registerBlock(meat_block);
+		registerBlock(waxed_planks);
+		registerBlock(shell);
+		registerBlock(straw_bed_block);
+	}
+
 	/**
 	 * Registers the item renders
 	 */
 	@SideOnly(Side.CLIENT)
-	private void registerItemRenders() {
+	private static void registerItemRenders() {
 		rmm(shell_core);
 		rmm(polished_stone);
 		rmm(ender_bookshelf);
@@ -405,7 +475,7 @@ public final class FRT {
 		rmm(raw_mystery_meat);
 		rmm(shimmering_stew);
 		rmm(straw_bed);
-		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, waxed_planks.getUnlocalizedName().substring(5))) {
+		if (!isItemDisabled(waxed_planks)) {
 			ModelLoader.registerItemVariants(Item.getItemFromBlock(waxed_planks),
 					new ModelResourceLocation(MODID + ":oak_waxed_planks", "inventory"),
 					new ModelResourceLocation(MODID + ":spruce_waxed_planks", "inventory"),
@@ -444,30 +514,30 @@ public final class FRT {
 	}
 
 	@SideOnly(Side.CLIENT)
-	private void rmm(Block b) {
-		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, b.getUnlocalizedName().substring(5)))
+	private static void rmm(Block b) {
+		if (!isItemDisabled(b))
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(b), 0, new ModelResourceLocation(FRT.MODID + ":" + b.getUnlocalizedName().substring(5), "inventory"));
 	}
 
 	@SideOnly(Side.CLIENT)
-	private void rmm(Item i) {
-		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, i.getUnlocalizedName().substring(5)))
+	private static void rmm(Item i) {
+		if (!isItemDisabled(i))
 			ModelLoader.setCustomModelResourceLocation(i, 0, new ModelResourceLocation(FRT.MODID + ":" + i.getUnlocalizedName().substring(5), "inventory"));
 	}
 
-	private void registerOre(String s, Block b) {
-		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, b.getUnlocalizedName().substring(5)))
+	private static void registerOre(String s, Block b) {
+		if (!isItemDisabled(b))
 			OreDictionary.registerOre(s, b);
 	}
 
-	private void registerOre(String s, Item i) {
-		if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, i.getUnlocalizedName().substring(5)))
+	private static void registerOre(String s, Item i) {
+		if (!isItemDisabled(i))
 			OreDictionary.registerOre(s, i);
 	}
 
-	private void registerOre(String s, ItemStack is) {
-		if (is.getItem() != null)
-			if (!ArrayUtils.contains(ConfigValues.DISABLEDITEMS, is.getItem().getUnlocalizedName().substring(5)))
+	private static void registerOre(String s, ItemStack is) {
+		if (!is.isEmpty())
+			if (!isItemDisabled(is))
 				OreDictionary.registerOre(s, is);
 	}
 
@@ -489,5 +559,23 @@ public final class FRT {
 
 	public static void logWarn(String log, Object... params) {
 		FMLLog.log(MODNAME, Level.WARN, log, params);
+	}
+
+	/**
+	 * Check if an item is disabled
+	 * @param item
+	 *  The item. Can be an Item, Block, or ItemStack
+	 * @return
+	 *  true if disabled, false if enabled
+	 */
+	public static boolean isItemDisabled(Object item){
+		if(item instanceof Item)
+			return ArrayUtils.contains(ConfigValues.DISABLEDITEMS, ((Item)item).getUnlocalizedName().substring(5));
+		else if(item instanceof Block)
+			return ArrayUtils.contains(ConfigValues.DISABLEDITEMS, ((Block)item).getUnlocalizedName().substring(5));
+		else if(item instanceof ItemStack)
+			return ArrayUtils.contains(ConfigValues.DISABLEDITEMS, ((ItemStack)item).getItem().getUnlocalizedName().substring(5));
+		else
+			throw new IllegalArgumentException("Item being checked must be an Item, Block, or ItemStack!");
 	}
 }

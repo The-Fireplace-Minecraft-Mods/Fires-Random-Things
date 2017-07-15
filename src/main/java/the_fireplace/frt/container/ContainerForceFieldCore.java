@@ -5,17 +5,17 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import the_fireplace.frt.tileentity.TileEntityShellCore;
+import the_fireplace.frt.tileentity.TileEntityForceFieldCore;
 
 import javax.annotation.Nonnull;
 
 /**
  * @author The_Fireplace
  */
-public class ContainerShellCore extends Container {
-	private TileEntityShellCore te;
+public class ContainerForceFieldCore extends Container {
+	private TileEntityForceFieldCore te;
 
-	public ContainerShellCore(InventoryPlayer invPlayer, TileEntityShellCore entity) {
+	public ContainerForceFieldCore(InventoryPlayer invPlayer, TileEntityForceFieldCore entity) {
 		this.te = entity;
 
 		for (int x = 0; x < 9; x++) {

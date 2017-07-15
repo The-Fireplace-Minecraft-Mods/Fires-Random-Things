@@ -7,10 +7,10 @@ import net.minecraft.item.ItemStack;
 /**
  * @author The_Fireplace
  */
-public class SlotShattererOutput extends Slot {
+public class SlotItemExploderOutput extends Slot {
 
-	public SlotShattererOutput(IInventory inventoryIn, int index,
-	                           int xPosition, int yPosition) {
+	public SlotItemExploderOutput(IInventory inventoryIn, int index,
+	                              int xPosition, int yPosition) {
 		super(inventoryIn, index, xPosition, yPosition);
 	}
 

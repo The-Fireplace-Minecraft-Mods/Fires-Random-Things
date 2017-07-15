@@ -20,7 +20,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.config.ConfigValues;
-import the_fireplace.frt.recipes.ShattererRecipes;
+import the_fireplace.frt.recipes.ItemExploderRecipeManager;
 import the_fireplace.frt.tools.MiscTools;
 
 import java.util.Iterator;
@@ -30,7 +30,7 @@ import java.util.Map.Entry;
  * @author The_Fireplace
  */
 @MethodsReturnNonnullByDefault
-public class TileEntityShatterer extends TileEntity implements ISidedInventory {
+public class TileEntityItemExploder extends TileEntity implements ISidedInventory {
 	private ItemStack[] inventory;
 	public static final String PROP_NAME = "TileEntityPopFurnace";
 	int storedGunpowder = 0;
@@ -39,7 +39,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
 	private boolean isActive = false;
 	private int tempItemCounter = 0;
 
-	public TileEntityShatterer() {
+	public TileEntityItemExploder() {
 		inventory = new ItemStack[12];
 	}
 
@@ -206,7 +206,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
 				}
 			}
 		} else {
-			FRT.logError("List was null when reading TileEntityShatterer NBTTagCompound");
+			FRT.logError("List was null when reading TileEntityItemExploder NBTTagCompound");
 		}
 		this.storedFirestarter = compound.getInteger("StoredFirestarter");
 		this.storedGunpowder = compound.getInteger("StoredGunpowder");
@@ -289,8 +289,8 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
 		ItemStack result = null;
 
 		for (int inputSlot = 0; inputSlot < 5; inputSlot++) {
-			if (inventory[inputSlot] != null && ShattererRecipes.instance().getPoppingResult(inventory[inputSlot]) != null) {
-				result = new ItemStack(ShattererRecipes.instance().getPoppingResult(inventory[inputSlot]).getItem(), ShattererRecipes.instance().getResultCount(inventory[inputSlot]), ShattererRecipes.instance().getPoppingResult(inventory[inputSlot]).getMetadata());
+			if (inventory[inputSlot] != null && ItemExploderRecipeManager.instance().getPoppingResult(inventory[inputSlot]) != null) {
+				result = new ItemStack(ItemExploderRecipeManager.instance().getPoppingResult(inventory[inputSlot]).getItem(), ItemExploderRecipeManager.instance().getResultCount(inventory[inputSlot]), ItemExploderRecipeManager.instance().getPoppingResult(inventory[inputSlot]).getMetadata());
 				if (!result.isEmpty()) {
 					for (int outputSlot = 5; outputSlot < 10; outputSlot++) {
 						ItemStack outputStack = inventory[outputSlot];
@@ -351,7 +351,7 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
 	public boolean canInsertItem(int index, ItemStack stack, EnumFacing direction) {
 		if (!stack.isEmpty()) {
 			if (index >= 0 && index < 5) {
-				Iterator iterator = ShattererRecipes.instance().getPoppingList().entrySet().iterator();
+				Iterator iterator = ItemExploderRecipeManager.instance().getPoppingList().entrySet().iterator();
 				Entry entry;
 				do {
 					if (!iterator.hasNext()) {
@@ -363,10 +363,10 @@ public class TileEntityShatterer extends TileEntity implements ISidedInventory {
 				return true;
 			}
 			if (index == 10) {
-				return ShattererRecipes.instance().isGunpowder(stack);
+				return ItemExploderRecipeManager.instance().isGunpowder(stack);
 			}
 			if (index == 11) {
-				return ShattererRecipes.instance().isFirestarter(stack);
+				return ItemExploderRecipeManager.instance().isFirestarter(stack);
 			}
 		}
 		return false;

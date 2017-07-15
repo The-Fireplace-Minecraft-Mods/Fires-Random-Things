@@ -14,18 +14,18 @@ import java.util.Map.Entry;
  * @author The_Fireplace
  */
 @ParametersAreNonnullByDefault
-public class ShattererRecipes {
-	public static final ShattererRecipes pfBase = new ShattererRecipes();
+public class ItemExploderRecipeManager {
+	public static final ItemExploderRecipeManager pfBase = new ItemExploderRecipeManager();
 	private final Map poppingList = Maps.newHashMap();
 	private ArrayList firestarters = new ArrayList();
 	private ArrayList gunpowders = new ArrayList();
 
-	public static ShattererRecipes instance() {
+	public static ItemExploderRecipeManager instance() {
 		return pfBase;
 	}
 
 	/**
-	 * Adds a recipe to the Pop Furnace
+	 * Adds a recipe to the Item Exploder
 	 *
 	 * @param isIn
 	 * 		The itemstack of the input, containing the item and metadata
