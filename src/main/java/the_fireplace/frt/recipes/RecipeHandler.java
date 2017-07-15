@@ -67,19 +67,20 @@ public class RecipeHandler {
 	static ItemStack candlePlateStack = new ItemStack(FRT.candle_with_base);
 	static ItemStack meatBlockStack = new ItemStack(FRT.meat_block);
 	//Custom Items
+	static ItemStack coatedCoalStack = new ItemStack(FRT.restabilized_coal);
 	static ItemStack firestarterSubstituteStack = new ItemStack(FRT.firestarter_substitute);
 	static ItemStack gunpowderSubstituteStack = new ItemStack(FRT.gunpowder_substitute);
 	static ItemStack mysteryMeatStack = new ItemStack(FRT.mystery_meat);
 	static ItemStack mysteryMeatStack8 = new ItemStack(FRT.mystery_meat, 8);
 	static ItemStack rawMysteryMeatStack = new ItemStack(FRT.raw_mystery_meat);
 	static ItemStack refinedCoalStack = new ItemStack(FRT.refined_coal);
-	static ItemStack restabilizedCoalStack = new ItemStack(FRT.restabilized_coal);
+	static ItemStack unstableCoalStack = new ItemStack(FRT.destabilized_coal);
 	static ItemStack waxStack = new ItemStack(FRT.wax);
 
 	public static void registerConstantRecipes() {
-		addSmelting(restabilizedCoalStack, refinedCoalStack, 0.05F);
-		addSmelting(meatBlockStack, mysteryMeatStack8, 0);
-		addSmelting(rawMysteryMeatStack, mysteryMeatStack, 0);
+		addSmelting(coatedCoalStack, refinedCoalStack, 0.05F);
+		addSmelting(meatBlockStack, mysteryMeatStack8, 0.01F);
+		addSmelting(rawMysteryMeatStack, mysteryMeatStack, 0.02F);
 		NBTTagCompound potionS = new NBTTagCompound();
 		NBTTagCompound potionL = new NBTTagCompound();
 		NBTTagCompound potionA = new NBTTagCompound();
@@ -114,7 +115,7 @@ public class RecipeHandler {
 		BrewingRecipeRegistry.addRecipe(hallucinationPotionStackLS, redstoneStack, hallucinationPotionStackLL);
 		BrewingRecipeRegistry.addRecipe(awkwardLingeringPotionStack, redMushroomStack, hallucinationPotionStackLS);
 		BrewingRecipeRegistry.addRecipe(awkwardSplashPotionStack, redMushroomStack, hallucinationPotionStackSS);
-		ItemExploderRegistry.registerGunpowder(gunpowderStack, gunpowderSubstituteStack);
+		ItemExploderRegistry.registerExplosive(gunpowderStack, gunpowderSubstituteStack, unstableCoalStack);
 		ItemExploderRegistry.registerFirestarter(flintAndSteelStack, fireChargeStack, firestarterSubstituteStack);
 		ItemExploderRegistry.registerExploderRecipe(glassStack, sandStack, 1);
 		ItemExploderRegistry.registerExploderRecipe(stainedGlassStack, sandStack, 1);

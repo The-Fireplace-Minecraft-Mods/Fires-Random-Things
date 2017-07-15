@@ -2,7 +2,11 @@ Updated to 1.12
 Removed Base Metals integration
 Added a new structure
 Adjusted the Straw Bed recipes
+Adjusted Kinetic Pearl recipe
 Renamed Fireplace Bottom to Fireplace Burner
 Renamed Obsidian Tool to Obsidian Breaker
 Renamed Implosion Pulverizer to Item Exploder
+Renamed Destabilized Coal to Unstable Coal
+Renamed Restabilized Coal to Coated Coal
 Added a Fireplace Burner recipe using Magma Block instead of Netherrack
+Unstable Coal can now be used as an explosive in the Item Exploder

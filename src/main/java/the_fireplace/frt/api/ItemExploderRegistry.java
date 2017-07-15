@@ -41,12 +41,13 @@ public class ItemExploderRegistry {
 	}
 
 	/**
-	 * Registers items as "gunpowder" for the Item Exploder
+	 * Registers items as "explosive" for the Item Exploder.
+	 * This is intended for small explosives, such as Gunpowder or maybe Dynamite, not larger explosives, such as TNT or Nukes.
 	 *
 	 * @param items
 	 * 		ItemStack(s) containing the item(s) to be registered
 	 */
-	public static void registerGunpowder(ItemStack... items) {
+	public static void registerExplosive(ItemStack... items) {
 		for (int i = 0; i < items.length; i++) {
 			if (items[i].isEmpty() || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, items[i].getItem().getUnlocalizedName().substring(5)))
 				return;
