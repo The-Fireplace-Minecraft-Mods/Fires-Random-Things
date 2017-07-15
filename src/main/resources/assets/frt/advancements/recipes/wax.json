@@ -2,27 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frt:white_screen"
+      "frt:wax"
     ]
   },
   "criteria": {
-    "has_wool": {
+    "has_the_ingredient": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:wool",
-            "data": 32767
-          }
-        ]
-      }
-    },
-    "has_paper": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:paper"
+            "item": "frt:wax_deposit"
           }
         ]
       }
@@ -30,14 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "frt:white_screen"
+        "recipe": "frt:wax"
       }
     }
   },
   "requirements": [
     [
-      "has_wool",
-      "has_paper",
+      "has_the_ingredient",
       "has_the_recipe"
     ]
   ]

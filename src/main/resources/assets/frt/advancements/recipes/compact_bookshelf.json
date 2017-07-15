@@ -1,0 +1,40 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frt:compact_bookshelf",
+      "frt:compact_bookshelf_alt"
+    ]
+  },
+  "criteria": {
+    "has_the_ingredient": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:bookshelf"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frt:compact_bookshelf"
+      }
+    },
+    "has_the_alt_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frt:compact_bookshelf_alt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_ingredient",
+      "has_the_recipe",
+      "has_the_alt_recipe"
+    ]
+  ]
+}

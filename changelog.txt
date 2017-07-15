@@ -1,3 +1,8 @@
 Updated to 1.12
 Removed Base Metals integration
 Added a new structure
+Adjusted the Straw Bed recipes
+Renamed Fireplace Bottom to Fireplace Burner
+Renamed Obsidian Tool to Obsidian Breaker
+Renamed Implosion Pulverizer to Item Exploder
+Added a Fireplace Burner recipe using Magma Block instead of Netherrack

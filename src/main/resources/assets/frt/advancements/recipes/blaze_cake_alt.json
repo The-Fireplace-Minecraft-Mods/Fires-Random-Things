@@ -2,27 +2,36 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frt:white_screen"
+      "frt:blaze_cake_alt"
     ]
   },
   "criteria": {
-    "has_wool": {
+    "has_slime_ball": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:wool",
-            "data": 32767
+            "item": "minecraft:slime_ball"
           }
         ]
       }
     },
-    "has_paper": {
+    "has_blaze_powder": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:paper"
+            "item": "minecraft:blaze_powder"
+          }
+        ]
+      }
+    },
+    "has_cake": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:cake"
           }
         ]
       }
@@ -30,14 +39,15 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "frt:white_screen"
+        "recipe": "frt:blaze_cake_alt"
       }
     }
   },
   "requirements": [
     [
-      "has_wool",
-      "has_paper",
+      "has_slime_ball",
+      "has_cake",
+      "has_blaze_powder",
       "has_the_recipe"
     ]
   ]

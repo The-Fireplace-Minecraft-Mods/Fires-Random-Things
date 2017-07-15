@@ -1,0 +1,46 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frt:candle",
+      "frt:candle_with_plate",
+      "frt:wax_deposit",
+      "frt:waxed_planks_0",
+      "frt:waxed_planks_1",
+      "frt:waxed_planks_2",
+      "frt:waxed_planks_3",
+      "frt:waxed_planks_4",
+      "frt:waxed_planks_5",
+      "frt:planks_0_from_waxed",
+      "frt:planks_1_from_waxed",
+      "frt:planks_2_from_waxed",
+      "frt:planks_3_from_waxed",
+      "frt:planks_4_from_waxed",
+      "frt:planks_5_from_waxed"
+    ]
+  },
+  "criteria": {
+    "has_the_ingredient": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "frt:wax"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frt:candle"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_ingredient",
+      "has_the_recipe"
+    ]
+  ]
+}

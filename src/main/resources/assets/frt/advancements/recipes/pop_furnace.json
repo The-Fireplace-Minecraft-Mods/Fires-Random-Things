@@ -2,27 +2,32 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frt:white_screen"
+      "frt:pop_furnace"
     ]
   },
   "criteria": {
-    "has_wool": {
+    "has_the_gunpowder": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:wool",
-            "data": 32767
+            "item": "minecraft:gunpowder"
           }
         ]
       }
     },
-    "has_paper": {
+    "has_the_ingredients": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:paper"
+            "item": "minecraft:iron_ingot"
+          },
+          {
+            "item": "minecraft:iron_block"
+          },
+          {
+            "item": "minecraft:iron_trapdoor"
           }
         ]
       }
@@ -30,14 +35,14 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "frt:white_screen"
+        "recipe": "frt:pop_furnace"
       }
     }
   },
   "requirements": [
     [
-      "has_wool",
-      "has_paper",
+      "has_the_gunpowder",
+      "has_the_ingredients",
       "has_the_recipe"
     ]
   ]

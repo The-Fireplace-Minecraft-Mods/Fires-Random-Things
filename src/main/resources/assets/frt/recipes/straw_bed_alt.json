@@ -3,8 +3,8 @@
     "item": "frt:straw_bed"
   },
   "pattern": [
-    "hhh",
-    "  h"
+    "  h",
+    "hhh"
   ],
   "type": "minecraft:crafting_shaped",
   "key": {

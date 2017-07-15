@@ -2,27 +2,36 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frt:white_screen"
+      "frt:shell_core"
     ]
   },
   "criteria": {
-    "has_wool": {
+    "has_gold_block": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:wool",
-            "data": 32767
+            "item": "minecraft:gold_block"
           }
         ]
       }
     },
-    "has_paper": {
+    "has_redstone_block": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "minecraft:paper"
+            "item": "minecraft:redstone_block"
+          }
+        ]
+      }
+    },
+    "has_ender_pearl": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:ender_pearl"
           }
         ]
       }
@@ -30,14 +39,15 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "frt:white_screen"
+        "recipe": "frt:shell_core"
       }
     }
   },
   "requirements": [
     [
-      "has_wool",
-      "has_paper",
+      "has_gold_block",
+      "has_redstone_block",
+      "has_ender_pearl",
       "has_the_recipe"
     ]
   ]

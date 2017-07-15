@@ -1,0 +1,76 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frt:meat_block",
+      "frt:raw_mystery_meat"
+    ]
+  },
+  "criteria": {
+    "pig": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "pig"
+        }
+      }
+    },
+    "sheep": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "sheep"
+        }
+      }
+    },
+    "chicken": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "chicken"
+        }
+      }
+    },
+    "cow": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "cow"
+        }
+      }
+    },
+    "mooshroom": {
+      "trigger": "minecraft:player_killed_entity",
+      "conditions": {
+        "entity": {
+          "type": "mooshroom"
+        }
+      }
+    },
+    "fish": {
+      "trigger": "minecraft:item_durability_changed",
+      "conditions": {
+        "item": {
+          "item": "minecraft:fishing_rod"
+        }
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frt:meat_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "pig",
+      "sheep",
+      "cow",
+      "mooshroom",
+      "chicken",
+      "fish",
+      "has_the_recipe"
+    ]
+  ]
+}
