@@ -8,7 +8,7 @@ import the_fireplace.frt.FRT;
 /**
  * @author The_Fireplace
  */
-public class FRTFuelHandler implements IFuelHandler {
+public class FRTFuelHandler {
 	private static final int charged_coal_rate = 2400;
 	private static final int destabilized_coal_rate = 3200;
 	private static final int restabilized_coal_rate = 4800;
@@ -16,12 +16,11 @@ public class FRTFuelHandler implements IFuelHandler {
 	private static final int screen_rate = 240;
 	private static final int wood_tool_rate = 120;
 
-	private int blockMultiplierOf(int i) {
+	private static int blockMultiplierOf(int i) {
 		return 9 * i + i / 10;
 	}
 
-	@Override
-	public int getBurnTime(ItemStack fuel) {
+	public static int getBurnTime(ItemStack fuel) {
 		Item ifuel = fuel.getItem();
 		if (ifuel == FRT.charged_coal) {
 			return charged_coal_rate;

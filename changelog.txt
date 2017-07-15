@@ -1,6 +1,7 @@
 Updated to 1.12
 Removed Base Metals integration
 Added a new structure
+Added splash text
 Adjusted the Straw Bed recipes
 Adjusted Kinetic Pearl recipe
 Renamed Fireplace Bottom to Fireplace Burner

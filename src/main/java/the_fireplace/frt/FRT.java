@@ -15,6 +15,8 @@ import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.potion.PotionType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,7 +24,6 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.config.GuiConfigEntries;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -40,19 +41,20 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.Logger;
 import the_fireplace.frt.armor.FRTArmor;
 import the_fireplace.frt.blocks.*;
 import the_fireplace.frt.blocks.internal.BlockShell;
 import the_fireplace.frt.blocks.internal.BlockStrawBed;
 import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.entity.projectile.*;
-import the_fireplace.frt.events.ClientEvents;
 import the_fireplace.frt.events.CommonEvents;
 import the_fireplace.frt.handlers.*;
 import the_fireplace.frt.items.*;
 import the_fireplace.frt.items.internal.ItemPaxel;
 import the_fireplace.frt.items.internal.ItemStrawBed;
 import the_fireplace.frt.network.PacketDispatcher;
+import the_fireplace.frt.potion.HallucinationPotion;
 import the_fireplace.frt.recipes.RecipeHandler;
 import the_fireplace.frt.worldgen.*;
 
@@ -67,6 +69,8 @@ public final class FRT {
 
 	public static final String MODID = "frt";
 	public static final String MODNAME = "Fire's Random Things";
+
+	private static Logger LOGGER;
 
 	public static Configuration config;
 	public static Property ENABLESHELL_PROPERTY;
@@ -173,10 +177,8 @@ public final class FRT {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		LOGGER = event.getModLog();
 		PacketDispatcher.registerPackets();
-		MinecraftForge.EVENT_BUS.register(new CommonEvents());
-		if (event.getSide().isClient())
-			MinecraftForge.EVENT_BUS.register(new ClientEvents());
 		proxy.registerClient();
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new FRTGuiHandler());
 		config = new Configuration(event.getSuggestedConfigurationFile());
@@ -203,7 +205,6 @@ public final class FRT {
 		EntityRegistry.registerModEntity(new ResourceLocation(MODID + ":ammo_restabilized_coal"), EntityRestabilizedCoal.class, "ammo_restabilized_coal", ++eid, instance, 64, 10, true);
 		EntityRegistry.registerModEntity(new ResourceLocation(MODID + ":ammo_refined_coal"), EntityRefinedCoal.class, "ammo_refined_coal", ++eid, instance, 64, 10, true);
 		EntityRegistry.registerModEntity(new ResourceLocation(MODID + ":pigder_pearl"), EntityPigderPearl.class, "pigder_pearl", ++eid, instance, 64, 10, true);
-		GameRegistry.registerFuelHandler(new FRTFuelHandler());
 		proxy.registerEntityRenderers();
 	}
 
@@ -379,9 +380,6 @@ public final class FRT {
 		registerItemForBlock(candle_with_base);
 		registerItemForBlock(wax_deposit);
 		registerItemForBlock(meat_block);
-
-		if (FMLCommonHandler.instance().getEffectiveSide() == Side.CLIENT)
-			registerItemRenders();
 	}
 
 	@SubscribeEvent
@@ -429,11 +427,24 @@ public final class FRT {
 		registerBlock(straw_bed_block);
 	}
 
+	@SubscribeEvent
+	public static void potionRegister(RegistryEvent.Register<Potion> event){
+		if(hallucination == null)
+			hallucination = new HallucinationPotion().setPotionName("potion.hallucination").setRegistryName(new ResourceLocation(FRT.MODID, "hallucination"));
+		event.getRegistry().register(hallucination);
+	}
+
+	@SubscribeEvent
+	public static void potionTypeRegister(RegistryEvent.Register<PotionType> event){
+		event.getRegistry().register(new PotionType(new PotionEffect(hallucination, 3600)).setRegistryName(new ResourceLocation(FRT.MODID, "hallucination")));
+		event.getRegistry().register(new PotionType(new PotionEffect(hallucination, 9600)).setRegistryName(new ResourceLocation(FRT.MODID, "long_hallucination")));
+	}
+
 	/**
 	 * Registers the item renders
 	 */
 	@SideOnly(Side.CLIENT)
-	private static void registerItemRenders() {
+	public static void registerItemRenders() {
 		rmm(shell_core);
 		rmm(polished_stone);
 		rmm(ender_bookshelf);
@@ -542,23 +553,23 @@ public final class FRT {
 	}
 
 	public static void logInfo(String log, Object... params) {
-		FMLLog.log(MODNAME, Level.INFO, log, params);
+		LOGGER.log(Level.INFO, log, params);
 	}
 
 	public static void logDebug(String log, Object... params) {
-		FMLLog.log(MODNAME, Level.DEBUG, log, params);
+		LOGGER.log(Level.DEBUG, log, params);
 	}
 
 	public static void logError(String log, Object... params) {
-		FMLLog.log(MODNAME, Level.ERROR, log, params);
+		LOGGER.log(Level.ERROR, log, params);
 	}
 
 	public static void logTrace(String log, Object... params) {
-		FMLLog.log(MODNAME, Level.TRACE, log, params);
+		LOGGER.log(Level.TRACE, log, params);
 	}
 
 	public static void logWarn(String log, Object... params) {
-		FMLLog.log(MODNAME, Level.WARN, log, params);
+		LOGGER.log(Level.WARN, log, params);
 	}
 
 	/**
