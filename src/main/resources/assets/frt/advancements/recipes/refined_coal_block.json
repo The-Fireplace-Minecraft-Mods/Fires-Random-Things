@@ -2,7 +2,8 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frt:refined_coal_block"
+      "frt:refined_coal_block",
+      "frt:refined_coal_from_block"
     ]
   },
   "criteria": {

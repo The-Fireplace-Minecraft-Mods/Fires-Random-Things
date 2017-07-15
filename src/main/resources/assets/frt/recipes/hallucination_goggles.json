@@ -9,7 +9,11 @@
   "type": "forge:ore_shaped",
   "key": {
     "p": {
-      "item": "minecraft:potion"
+      "type": "minecraft:item_nbt",
+      "item": "minecraft:potion",
+      "nbt": {
+        "Potion": "frt:hallucination"
+      }
     },
     "g": {
       "item": "#PANEGLASS"

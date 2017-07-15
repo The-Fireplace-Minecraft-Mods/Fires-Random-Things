@@ -2,17 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frt:charged_coal_block",
-      "frt:charged_coal_from_block"
+      "frt:restabilized_coal"
     ]
   },
   "criteria": {
-    "has_charged_coal": {
+    "has_the_ingredient": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "frt:charged_coal"
+            "item": "frt:destabilized_coal"
           }
         ]
       }
@@ -20,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "frt:charged_coal_block"
+        "recipe": "frt:restabilized_coal"
       }
     }
   },
   "requirements": [
     [
-      "has_charged_coal",
+      "has_the_ingredient",
       "has_the_recipe"
     ]
   ]

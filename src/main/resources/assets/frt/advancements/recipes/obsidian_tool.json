@@ -2,17 +2,19 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frt:charged_coal_block",
-      "frt:charged_coal_from_block"
+      "frt:obsidian_tool"
     ]
   },
   "criteria": {
-    "has_charged_coal": {
+    "has_the_ingredient": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "frt:charged_coal"
+            "item": "minecraft:obsidian"
+          },
+          {
+            "item": "minecraft:prismarine_shard"
           }
         ]
       }
@@ -20,13 +22,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "frt:charged_coal_block"
+        "recipe": "frt:obsidian_tool"
       }
     }
   },
   "requirements": [
     [
-      "has_charged_coal",
+      "has_the_ingredient",
       "has_the_recipe"
     ]
   ]

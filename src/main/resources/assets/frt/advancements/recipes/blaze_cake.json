@@ -2,20 +2,11 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frt:blaze_cake"
+      "frt:blaze_cake",
+      "frt:blaze_cake_alt"
     ]
   },
   "criteria": {
-    "has_magma_cream": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "item": "minecraft:magma_cream"
-          }
-        ]
-      }
-    },
     "has_cake": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
@@ -35,7 +26,6 @@
   },
   "requirements": [
     [
-      "has_magma_cream",
       "has_cake",
       "has_the_recipe"
     ]

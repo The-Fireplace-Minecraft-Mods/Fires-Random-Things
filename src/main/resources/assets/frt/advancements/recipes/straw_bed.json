@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frt:charged_coal_block",
-      "frt:charged_coal_from_block"
+      "frt:straw_bed",
+      "frt:straw_bed_alt"
     ]
   },
   "criteria": {
-    "has_charged_coal": {
+    "has_the_ingredient": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "item": "frt:charged_coal"
+            "item": "minecraft:wheat"
           }
         ]
       }
@@ -20,13 +20,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "frt:charged_coal_block"
+        "recipe": "frt:straw_bed"
       }
     }
   },
   "requirements": [
     [
-      "has_charged_coal",
+      "has_the_ingredient",
       "has_the_recipe"
     ]
   ]

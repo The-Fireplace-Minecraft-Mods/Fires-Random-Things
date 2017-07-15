@@ -1,0 +1,51 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frt:hallucination_goggles",
+      "frt:shimmering_stew",
+      "frt:shimmering_stew_alt",
+      "frt:shimmering_stew_alt_alt",
+      "frt:shimmering_stew_alt_alt_alt",
+      "frt:shimmering_stew_alt_alt_alt_alt",
+      "frt:shimmering_stew_alt_alt_alt_alt_alt"
+    ]
+  },
+  "criteria": {
+    "has_the_potion": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:potion",
+            "potion": "frt:hallucination"
+          }
+        ]
+      }
+    },
+    "has_the_extended_potion": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:potion",
+            "potion": "frt:long_hallucination"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frt:hallucination_goggles"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_potion",
+      "has_the_extended_potion",
+      "has_the_recipe"
+    ]
+  ]
+}

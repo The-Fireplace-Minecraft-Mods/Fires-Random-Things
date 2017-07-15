@@ -2,7 +2,8 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frt:polished_stone"
+      "frt:polished_stone",
+      "frt:stone_slab_0"
     ]
   },
   "criteria": {
