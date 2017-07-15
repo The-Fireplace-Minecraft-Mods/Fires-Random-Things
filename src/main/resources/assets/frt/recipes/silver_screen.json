@@ -13,5 +13,6 @@
       "item": "#DYELIGHTGRAY"
     }
   ],
+  "group": "screens",
   "type": "forge:ore_shapeless"
 }

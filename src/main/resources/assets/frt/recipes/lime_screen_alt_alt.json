@@ -10,5 +10,6 @@
       "item": "#DYELIME"
     }
   ],
+  "group": "screens",
   "type": "forge:ore_shapeless"
 }

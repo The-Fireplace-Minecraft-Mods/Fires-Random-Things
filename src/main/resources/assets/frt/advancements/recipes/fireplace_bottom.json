@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frt:fireplace_bottom"
+    ]
+  },
+  "criteria": {
+    "has_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:brick"
+          }
+        ]
+      }
+    },
+    "has_netherrack": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:netherrack"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frt:fireplace_bottom"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_brick",
+      "has_netherrack",
+      "has_the_recipe"
+    ]
+  ]
+}

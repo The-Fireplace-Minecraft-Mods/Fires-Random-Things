@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frt:black_screen",
+      "frt:black_screen_alt",
+      "frt:blue_screen",
+      "frt:blue_screen_alt",
+      "frt:brown_screen",
+      "frt:brown_screen_alt",
+      "frt:green_screen",
+      "frt:green_screen_alt",
+      "frt:grey_screen",
+      "frt:grey_screen_alt",
+      "frt:grey_screen_alt_alt",
+      "frt:light_orange_screen",
+      "frt:light_tan_screen",
+      "frt:lime_screen",
+      "frt:lime_screen_alt",
+      "frt:lime_screen_alt_alt",
+      "frt:magenta_screen",
+      "frt:magenta_screen_alt",
+      "frt:orange_screen",
+      "frt:orange_screen_alt",
+      "frt:orange_screen_alt_alt",
+      "frt:pink_screen",
+      "frt:pink_screen_alt",
+      "frt:pink_screen_alt_alt",
+      "frt:purple_screen",
+      "frt:purple_screen_alt",
+      "frt:purple_screen_alt_alt",
+      "frt:red_screen",
+      "frt:red_screen_alt",
+      "frt:silver_screen",
+      "frt:silver_screen_alt",
+      "frt:sky_screen",
+      "frt:sky_screen_alt",
+      "frt:sky_screen_alt_alt",
+      "frt:white_screen_alt",
+      "frt:yellow_screen",
+      "frt:yellow_screen_alt"
+    ]
+  },
+  "criteria": {
+    "has_white_screen": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "frt:white_screen"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_white_screen"
+    ]
+  ]
+}

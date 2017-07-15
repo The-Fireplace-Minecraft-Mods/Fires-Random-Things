@@ -10,5 +10,6 @@
       "item": "#DYEPURPLE"
     }
   ],
+  "group": "screens",
   "type": "forge:ore_shapeless"
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frt:charged_coal_block"
+    ]
+  },
+  "criteria": {
+    "has_charged_coal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "frt:charged_coal"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frt:charged_coal_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_charged_coal",
+      "has_the_recipe"
+    ]
+  ]
+}

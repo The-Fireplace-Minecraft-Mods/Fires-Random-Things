@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "frt:fireplace_bottom",
+    "count": 2
+  },
+  "pattern": [
+    "bbb",
+    "bnb",
+    "bbb"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "minecraft:brick"
+    },
+    "n": {
+      "item": "minecraft:magma"
+    }
+  }
+}

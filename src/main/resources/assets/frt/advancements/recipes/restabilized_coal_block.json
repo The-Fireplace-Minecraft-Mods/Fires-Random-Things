@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frt:restabilized_coal_block"
+    ]
+  },
+  "criteria": {
+    "has_the_ingredient": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "frt:restabilized_coal"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frt:restabilized_coal_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_the_ingredient",
+      "has_the_recipe"
+    ]
+  ]
+}

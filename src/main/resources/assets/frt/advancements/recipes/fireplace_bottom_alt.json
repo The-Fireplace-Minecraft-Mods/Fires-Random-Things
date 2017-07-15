@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frt:fireplace_bottom_alt"
+    ]
+  },
+  "criteria": {
+    "has_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:brick"
+          }
+        ]
+      }
+    },
+    "has_magma": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:magma"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frt:fireplace_bottom_alt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_brick",
+      "has_magma",
+      "has_the_recipe"
+    ]
+  ]
+}

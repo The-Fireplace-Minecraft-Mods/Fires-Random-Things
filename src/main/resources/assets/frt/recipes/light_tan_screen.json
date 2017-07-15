@@ -16,5 +16,6 @@
       "item": "#DYEWHITE"
     }
   ],
+  "group": "screens",
   "type": "forge:ore_shapeless"
 }

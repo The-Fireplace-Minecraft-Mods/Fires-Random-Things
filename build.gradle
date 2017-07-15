@@ -33,20 +33,20 @@ group= "the_fireplace.frt"
 archivesBaseName = "FiresRandomThings-1.12"
 
 minecraft {
-    version = "1.12-14.21.1.2387"
+    version = "1.12-14.21.1.2413"
     runDir = "run"
     replace '${version}', project.version
     mappings = "snapshot_20170628"
-	useDepAts = true
+	//useDepAts = true
 	
 	clientRunArgs += "-uuid=0b1ec5ad-cb2a-43b7-995d-889320eb2e5b -username=The_Fireplace"
 }
 
 dependencies {
-	deobfCompile group: "mezz.jei", name: "jei_1.12", version: "4.7.0.68"
-	deobfProvided group: "team.chisel", name: "Chisel", version: "MC1.12-0.0.11.7"
+	deobfCompile group: "mezz.jei", name: "jei_1.12", version: "4.7.1.75"
+	deobfProvided group: "team.chisel", name: "Chisel", version: "MC1.12-0.0.13.13"
 
-	compile "lib:JustEnoughResources-1.12-0.7.0.10-deobf"
+	compile "lib:JustEnoughResources-1.12-0.8.1.14-deobf"
 }
 
 

@@ -13,5 +13,6 @@
       "item": "#DYEPINK"
     }
   ],
+  "group": "screens",
   "type": "forge:ore_shapeless"
 }

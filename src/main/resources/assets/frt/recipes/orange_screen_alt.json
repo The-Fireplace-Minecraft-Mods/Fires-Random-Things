@@ -13,5 +13,6 @@
       "item": "#DYERED"
     }
   ],
+  "group": "screens",
   "type": "forge:ore_shapeless"
 }

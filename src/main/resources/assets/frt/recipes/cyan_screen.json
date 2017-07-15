@@ -13,5 +13,6 @@
       "item": "#DYECYAN"
     }
   ],
+  "group": "screens",
   "type": "forge:ore_shapeless"
 }
