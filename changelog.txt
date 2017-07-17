@@ -6,6 +6,8 @@ Added new structures
 Added splash text
 Adjusted the Straw Bed recipes
 Adjusted Kinetic Pearl recipe
+Internal redesign of the structure spawning system
+Structures are much more common
 Renamed Fireplace Bottom to Fireplace Burner
 Renamed Obsidian Tool to Obsidian Breaker
 Renamed Implosion Pulverizer to Item Exploder
