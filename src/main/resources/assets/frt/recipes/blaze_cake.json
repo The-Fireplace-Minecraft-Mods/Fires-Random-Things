@@ -6,6 +6,7 @@
     "m",
     "c"
   ],
+  "group": "blaze_cake",
   "type": "minecraft:crafting_shaped",
   "key": {
     "c": {

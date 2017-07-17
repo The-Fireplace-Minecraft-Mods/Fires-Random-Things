@@ -7,5 +7,6 @@
       "item": "frt:handheld_quad_dispenser"
     }
   ],
+  "group": "quad_dispenser",
   "type": "minecraft:crafting_shapeless"
 }

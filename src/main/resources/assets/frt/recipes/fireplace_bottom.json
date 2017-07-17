@@ -8,6 +8,7 @@
     "bnb",
     "bbb"
   ],
+  "group": "fireplace_bottom",
   "type": "forge:ore_shaped",
   "key": {
     "b": {

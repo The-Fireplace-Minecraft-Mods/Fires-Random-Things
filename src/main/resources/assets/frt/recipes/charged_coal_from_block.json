@@ -3,6 +3,7 @@
     "item": "frt:charged_coal",
     "count": 9
   },
+  "group": "charged_coal",
   "ingredients": [
     {
       "item": "frt:charged_coal_block"

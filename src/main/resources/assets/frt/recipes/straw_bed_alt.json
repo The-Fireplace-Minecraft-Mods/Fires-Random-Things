@@ -6,6 +6,7 @@
     "  h",
     "hhh"
   ],
+  "group": "straw_bed",
   "type": "minecraft:crafting_shaped",
   "key": {
     "h": {

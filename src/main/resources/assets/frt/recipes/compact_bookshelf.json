@@ -5,6 +5,7 @@
   "pattern": [
     "bbb"
   ],
+  "group": "compact_bookshelf",
   "type": "forge:ore_shaped",
   "key": {
     "b": {

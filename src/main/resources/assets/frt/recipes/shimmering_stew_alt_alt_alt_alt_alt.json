@@ -20,5 +20,6 @@
       "item": "#DUSTGLOWSTONE"
     }
   ],
+  "group": "shimmering_stew",
   "type": "forge:ore_shapeless"
 }

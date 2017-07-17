@@ -9,5 +9,6 @@
       "data": 5
     }
   ],
+  "group": "planks",
   "type": "minecraft:crafting_shapeless"
 }

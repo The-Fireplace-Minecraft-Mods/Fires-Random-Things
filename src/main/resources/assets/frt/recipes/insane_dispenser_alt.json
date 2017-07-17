@@ -7,5 +7,6 @@
       "item": "frt:handheld_insane_dispenser"
     }
   ],
+  "group": "insane_dispenser",
   "type": "minecraft:crafting_shapeless"
 }

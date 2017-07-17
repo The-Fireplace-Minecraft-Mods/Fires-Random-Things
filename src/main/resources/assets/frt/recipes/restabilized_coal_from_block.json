@@ -8,5 +8,6 @@
       "item": "frt:restabilized_coal_block"
     }
   ],
+  "group": "restabilized_coal",
   "type": "minecraft:crafting_shapeless"
 }

@@ -8,6 +8,7 @@
     "csc",
     "ccc"
   ],
+  "group": "restabilized_coal",
   "type": "minecraft:crafting_shaped",
   "key": {
     "c": {

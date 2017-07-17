@@ -6,6 +6,7 @@
     "dd",
     "dd"
   ],
+  "group": "insane_dispenser",
   "type": "minecraft:crafting_shaped",
   "key": {
     "d": {

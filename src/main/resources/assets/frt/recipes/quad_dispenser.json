@@ -6,6 +6,7 @@
     "dd",
     "dd"
   ],
+  "group": "quad_dispenser",
   "type": "minecraft:crafting_shaped",
   "key": {
     "d": {

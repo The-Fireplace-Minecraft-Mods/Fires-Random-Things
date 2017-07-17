@@ -12,5 +12,6 @@
       "item": "frt:wax"
     }
   ],
+  "group": "waxed_planks",
   "type": "minecraft:crafting_shapeless"
 }

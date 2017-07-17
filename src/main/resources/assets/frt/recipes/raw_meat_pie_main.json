@@ -6,6 +6,7 @@
     "mmm",
     "m m"
   ],
+  "group": "raw_meat_pie",
   "type": "minecraft:crafting_shaped",
   "key": {
     "m": {

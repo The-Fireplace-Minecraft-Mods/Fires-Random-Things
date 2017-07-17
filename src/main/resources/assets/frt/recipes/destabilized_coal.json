@@ -8,6 +8,7 @@
     "ggg",
     "ccc"
   ],
+  "group": "destabilized_coal",
   "type": "forge:ore_shaped",
   "key": {
     "c": {

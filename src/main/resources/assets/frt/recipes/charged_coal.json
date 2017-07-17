@@ -8,6 +8,7 @@
     "crc",
     "ccc"
   ],
+  "group": "charged_coal",
   "type": "forge:ore_shaped",
   "key": {
     "r": {

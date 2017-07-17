@@ -8,6 +8,7 @@
     "bnb",
     "bbb"
   ],
+  "group": "fireplace_bottom",
   "type": "minecraft:crafting_shaped",
   "key": {
     "b": {

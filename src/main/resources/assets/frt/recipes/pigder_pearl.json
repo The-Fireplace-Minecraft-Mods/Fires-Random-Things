@@ -6,6 +6,7 @@
     " s ",
     "pep"
   ],
+  "group": "pigder_pearl",
   "type": "minecraft:crafting_shaped",
   "key": {
     "p": {
