@@ -1,4 +1,4 @@
-package the_fireplace.frt.events;
+package the_fireplace.frt.handlers;
 
 import com.google.common.collect.Maps;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,7 +35,6 @@ import java.util.Set;
 @SuppressWarnings("unused")
 @Mod.EventBusSubscriber
 public final class CommonEvents {
-	public static HashMap<World, HashMap<ChunkPos, IWorldGenerator>> worldgenQueue = Maps.newHashMap();
 
 	@SubscribeEvent
 	public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
@@ -81,19 +80,6 @@ public final class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void chunkGen(PopulateChunkEvent.Post event) {
-		if (ConfigValues.GENSTRUCTURES)
-			if (worldgenQueue.containsKey(event.getWorld())) {
-				if (worldgenQueue.get(event.getWorld()).isEmpty())
-					return;
-				ChunkPos pos = getSurroundingChunkOnList(event.getChunkX(), event.getChunkZ(), event.getWorld().getChunkProvider(), worldgenQueue.get(event.getWorld()).keySet());
-				if (pos != null)
-					worldgenQueue.get(event.getWorld()).get(pos).generate(event.getWorld().rand, pos.x, pos.z, event.getWorld(), event.getGenerator(), event.getWorld().getChunkProvider());
-				worldgenQueue.get(event.getWorld()).remove(pos);
-			}
-	}
-
-	@SubscribeEvent
 	public static void onPlayerWake(PlayerWakeUpEvent event){
 		if(event.getEntityPlayer().getEntityWorld().getBlockState(event.getEntityPlayer().bedLocation).getBlock() instanceof BlockStrawBed){
 			BlockPos pos = event.getEntityPlayer().getBedLocation();
@@ -105,17 +91,5 @@ public final class CommonEvents {
 	public static void furnaceBurn(FurnaceFuelBurnTimeEvent event){
 		if(FRTFuelHandler.getBurnTime(event.getItemStack()) != 0)
 			event.setBurnTime(FRTFuelHandler.getBurnTime(event.getItemStack()));
-	}
-
-	private static ChunkPos getSurroundingChunkOnList(int chunkX, int chunkZ, IChunkProvider chunkprovider, Set list) {
-		for (int x = chunkX - 1; x <= chunkX + 1; x++) {
-			for (int z = chunkZ - 1; z <= chunkZ + 1; z++) {
-				ChunkPos pos = new ChunkPos(x, z);
-				if (list.contains(pos)) {
-					return pos;
-				}
-			}
-		}
-		return null;
 	}
 }

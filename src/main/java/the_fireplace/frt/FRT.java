@@ -15,7 +15,6 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
@@ -38,7 +37,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.Level;
@@ -56,7 +54,6 @@ import the_fireplace.frt.items.internal.ItemStrawBed;
 import the_fireplace.frt.network.FRTGuiHandler;
 import the_fireplace.frt.network.PacketDispatcher;
 import the_fireplace.frt.potion.HallucinationPotion;
-import the_fireplace.frt.recipes.CombinePotionRecipe;
 import the_fireplace.frt.recipes.RecipeHandler;
 import the_fireplace.frt.worldgen.*;
 
@@ -268,10 +265,10 @@ public final class FRT {
 
 	private void addStructures() {
 		if (ConfigValues.GENSTRUCTURES) {
-			GameRegistry.registerWorldGenerator(new WorldGeneratorNoobHouse(), 20);
-			GameRegistry.registerWorldGenerator(new WorldGeneratorPortalCave(), 19);
-			GameRegistry.registerWorldGenerator(new WorldGeneratorBosSign(), 21);
-			GameRegistry.registerWorldGenerator(new WorldGeneratorStatue(), 18);
+			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("noobhouse"), 20);
+			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("portalcave"), 19);
+			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("bossign"), 21);
+			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("statue"), 18);
 			structureGeneratorsRegistered = true;
 		}
 	}
