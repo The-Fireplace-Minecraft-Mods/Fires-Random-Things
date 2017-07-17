@@ -13,21 +13,21 @@ import java.util.Map;
 /**
  * @author The_Fireplace
  */
-public class PoppingRecipeMaker {
+public class ExplodingRecipeMaker {
 	@Nonnull
-	public static List<PopFurnaceRecipe> getPoppingRecipes(IJeiHelpers helpers) {
+	public static List<ItemExploderRecipe> getPoppingRecipes(IJeiHelpers helpers) {
 		IStackHelper stackHelper = helpers.getStackHelper();
 		ItemExploderRecipeManager furnaceRecipes = ItemExploderRecipeManager.instance();
 		Map<ItemStack, ItemStack> poppingMap = furnaceRecipes.getPoppingList();
 
-		List<PopFurnaceRecipe> recipes = new ArrayList<>();
+		List<ItemExploderRecipe> recipes = new ArrayList<>();
 
 		for (Map.Entry<ItemStack, ItemStack> itemStackItemStackEntry : poppingMap.entrySet()) {
 			ItemStack input = itemStackItemStackEntry.getKey();
 			ItemStack output = itemStackItemStackEntry.getValue();
 
 			List<ItemStack> inputs = stackHelper.getSubtypes(input);
-			PopFurnaceRecipe recipe = new PopFurnaceRecipe(inputs, output);
+			ItemExploderRecipe recipe = new ItemExploderRecipe(inputs, output);
 			recipes.add(recipe);
 		}
 

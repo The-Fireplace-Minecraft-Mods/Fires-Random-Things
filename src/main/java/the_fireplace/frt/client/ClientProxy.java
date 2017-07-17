@@ -47,7 +47,7 @@ public class ClientProxy extends CommonProxy {
 		try {
 			Minecraft.getMinecraft().entityRenderer.stopUseShader();
 		} catch (RuntimeException e) {
-
+			e.printStackTrace();
 		}
 	}
 

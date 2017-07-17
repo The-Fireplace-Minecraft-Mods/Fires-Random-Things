@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "frt:ir_furnace"
+  },
+  "pattern": [
+    "bbb",
+    "btb",
+    "bbb"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "b": {
+      "item": "minecraft:cobblestone"
+    },
+    "t": {
+      "item": "minecraft:iron_bars"
+    }
+  }
+}

@@ -1,7 +1,6 @@
 package the_fireplace.frt.events;
 
 import com.google.common.collect.Maps;
-import jeresources.util.ReflectionHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.potion.PotionEffect;
@@ -62,7 +61,7 @@ public final class CommonEvents {
 			if(!bedLocations.isEmpty()){
 				for(EntityPlayer player:bedLocations.keySet()){
 					if(!player.isPlayerSleeping()) {
-						ReflectionHelper.setPrivateValue(EntityPlayer.class, player, bedLocations.get(player), "spawnChunk", "field_71077_c");
+						net.minecraftforge.fml.relauncher.ReflectionHelper.setPrivateValue(EntityPlayer.class, player, bedLocations.get(player), "spawnChunk", "field_71077_c");
 						bedLocations.remove(player);
 					}
 				}

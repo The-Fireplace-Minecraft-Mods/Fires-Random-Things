@@ -48,7 +48,7 @@ public class BlockInsaneDispenser extends BlockDispenser {
 	}
 
 	@Override
-	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
+	public void onBlockAdded(World worldIn, @Nullable BlockPos pos, @Nullable IBlockState state) {
 		super.onBlockAdded(worldIn, pos, state);
 		this.setDefaultDirection(worldIn, pos, state);
 	}
@@ -127,7 +127,7 @@ public class BlockInsaneDispenser extends BlockDispenser {
 	 * Called when a neighboring block changes.
 	 */
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block neighborBlock, BlockPos neighborPos) {
+	public void neighborChanged(IBlockState state, World worldIn, @Nullable BlockPos pos, Block neighborBlock, BlockPos neighborPos) {
 		boolean flag = worldIn.isBlockPowered(pos) || worldIn.isBlockPowered(pos.up());
 		boolean flag1 = state.getValue(TRIGGERED);
 
@@ -140,7 +140,7 @@ public class BlockInsaneDispenser extends BlockDispenser {
 	}
 
 	@Override
-	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+	public void updateTick(World worldIn, @Nullable BlockPos pos, IBlockState state, Random rand) {
 		if (!worldIn.isRemote) {
 			this.dispense(worldIn, pos);
 			this.dispense(worldIn, pos);
@@ -220,7 +220,7 @@ public class BlockInsaneDispenser extends BlockDispenser {
 	}
 
 	@Override
-	public int getComparatorInputOverride(IBlockState state, World worldIn, BlockPos pos) {
+	public int getComparatorInputOverride(IBlockState state, World worldIn, @Nullable BlockPos pos) {
 		return Container.calcRedstone(worldIn.getTileEntity(pos));
 	}
 

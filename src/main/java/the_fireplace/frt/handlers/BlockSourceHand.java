@@ -1,5 +1,6 @@
 package the_fireplace.frt.handlers;
 
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.dispenser.IBlockSource;
@@ -9,9 +10,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 /**
  * @author The_Fireplace
  */
+@MethodsReturnNonnullByDefault
 public class BlockSourceHand implements IBlockSource {
 
 	BlockPos blockPos;

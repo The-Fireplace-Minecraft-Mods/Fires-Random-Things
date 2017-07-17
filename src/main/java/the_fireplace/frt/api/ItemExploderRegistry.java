@@ -48,8 +48,8 @@ public class ItemExploderRegistry {
 	 * 		ItemStack(s) containing the item(s) to be registered
 	 */
 	public static void registerExplosive(ItemStack... items) {
-		for (int i = 0; i < items.length; i++) {
-			if (items[i].isEmpty() || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, items[i].getItem().getUnlocalizedName().substring(5)))
+		for (ItemStack item : items) {
+			if (item.isEmpty() || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, item.getItem().getUnlocalizedName().substring(5)))
 				return;
 		}
 		ItemExploderRecipeManager.instance().addGunpowders(items);
@@ -62,8 +62,8 @@ public class ItemExploderRegistry {
 	 * 		ItemStack(s) containing the item(s) to be registered
 	 */
 	public static void registerFirestarter(ItemStack... items) {
-		for (int i = 0; i < items.length; i++) {
-			if (items[i].isEmpty() || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, items[i].getItem().getUnlocalizedName().substring(5)))
+		for (ItemStack item : items) {
+			if (item.isEmpty() || ArrayUtils.contains(ConfigValues.DISABLEDITEMS, item.getItem().getUnlocalizedName().substring(5)))
 				return;
 		}
 		ItemExploderRecipeManager.instance().addFirestarters(items);

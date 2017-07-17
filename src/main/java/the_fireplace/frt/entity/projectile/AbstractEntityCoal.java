@@ -15,11 +15,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 /**
  * @author The_Fireplace
  */
+@ParametersAreNonnullByDefault
 public abstract class AbstractEntityCoal extends EntityThrowable implements IProjectile {
 	protected int xTile = -1;
 	protected int yTile = -1;

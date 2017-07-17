@@ -35,14 +35,14 @@ public class FRTJEIPlugin implements IModPlugin {
 	@Override
 	public void registerCategories(IRecipeCategoryRegistration registry) {
 		IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
-		registry.addRecipeCategories(new PopFurnaceCategory(guiHelper), new GunpowderCategory(guiHelper), new FirestarterCategory(guiHelper));
+		registry.addRecipeCategories(new ItemExploderCategory(guiHelper), new GunpowderCategory(guiHelper), new FirestarterCategory(guiHelper));
 	}
 
 	@Override
 	public void register(IModRegistry registry) {
 		IJeiHelpers helpers = registry.getJeiHelpers();
 		registry.handleRecipes(FirestarterRecipe.class, new FirestarterRecipeHandler(), "frt.pop_furnace.firestarter");
-		registry.handleRecipes(PopFurnaceRecipe.class, new PopFurnaceRecipeHandler(), "frt.pop_furnace");
+		registry.handleRecipes(ItemExploderRecipe.class, new ItemExploderRecipeHandler(), "frt.pop_furnace");
 		registry.handleRecipes(GunpowderRecipe.class, new GunpowderRecipeHandler(), "frt.pop_furnace.gunpowder");
 
 		registry.addRecipeClickArea(GuiItemExploder.class, 79, 28, 90, 4, "frt.pop_furnace");
@@ -55,10 +55,10 @@ public class FRTJEIPlugin implements IModPlugin {
 		recipeTransferRegistry.addRecipeTransferHandler(ContainerItemExploder.class, "frt.pop_furnace.gunpowder", 10, 1, 0, 36);
 		recipeTransferRegistry.addRecipeTransferHandler(ContainerItemExploder.class, "frt.pop_furnace.firestarter", 11, 1, 0, 36);
 
-		registry.addRecipeCatalyst(new ItemStack(FRT.pop_furnace), "frt.pop_furnace", "frt.pop_furnace.gunpowder", "frt.pop_furnace.firestarter");
+		registry.addRecipeCatalyst(new ItemStack(FRT.item_exploder), "frt.pop_furnace", "frt.pop_furnace.gunpowder", "frt.pop_furnace.firestarter");
 
-		registry.addRecipes(PoppingRecipeMaker.getPoppingRecipes(helpers), "frt.pop_furnace");
-		registry.addRecipes(PoppingRecipeMaker.getGunpowders(helpers), "frt.pop_furnace.gunpowder");
-		registry.addRecipes(PoppingRecipeMaker.getFirestarters(helpers), "frt.pop_furnace.firestarter");
+		registry.addRecipes(ExplodingRecipeMaker.getPoppingRecipes(helpers), "frt.pop_furnace");
+		registry.addRecipes(ExplodingRecipeMaker.getGunpowders(helpers), "frt.pop_furnace.gunpowder");
+		registry.addRecipes(ExplodingRecipeMaker.getFirestarters(helpers), "frt.pop_furnace.firestarter");
 	}
 }

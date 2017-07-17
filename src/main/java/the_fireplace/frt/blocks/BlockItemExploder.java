@@ -1,5 +1,6 @@
 package the_fireplace.frt.blocks;
 
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
@@ -24,15 +25,18 @@ import the_fireplace.frt.FRT;
 import the_fireplace.frt.tileentity.TileEntityItemExploder;
 import the_fireplace.frt.tools.MiscTools;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 /**
  * @author The_Fireplace
  */
-public class BlockShatterer extends BlockContainer {
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
+public class BlockItemExploder extends BlockContainer {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-	public BlockShatterer() {
+	public BlockItemExploder() {
 		super(Material.IRON);
 		setUnlocalizedName("pop_furnace");
 		setCreativeTab(FRT.TabFRT);

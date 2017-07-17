@@ -8,10 +8,12 @@ import net.minecraft.item.ItemStack;
 import the_fireplace.frt.tileentity.TileEntityForceFieldCore;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * @author The_Fireplace
  */
+@ParametersAreNonnullByDefault
 public class ContainerForceFieldCore extends Container {
 	private TileEntityForceFieldCore te;
 

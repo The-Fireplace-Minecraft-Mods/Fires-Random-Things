@@ -1,5 +1,6 @@
 package the_fireplace.frt.blocks;
 
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
@@ -20,11 +21,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 /**
  * @author The_Fireplace
  */
+@MethodsReturnNonnullByDefault
 public class BlockMeat extends BlockFalling {
 	public static final PropertyInteger SQUISH = PropertyInteger.create("squish", 0, 6);
 	protected static final AxisAlignedBB[] MEAT_AABB = new AxisAlignedBB[]{Block.FULL_BLOCK_AABB, new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 14D / 16D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 12.5D / 16D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 11D / 16D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 9.5D / 16D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 8D / 16D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 7D / 16D, 1.0D)};

@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "frt:raw_meat_pie"
+  },
+  "ingredients": [
+    {
+      "item": "frt:raw_meat_pie"
+    },
+    {
+      "item": "minecraft:potion",
+      "data": 32767
+    }
+  ],
+  "type": "combine_potion"
+}

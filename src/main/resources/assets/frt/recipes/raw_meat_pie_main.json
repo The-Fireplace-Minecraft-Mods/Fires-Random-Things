@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "frt:raw_meat_pie"
+  },
+  "pattern": [
+    "mmm",
+    "m m"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "m": {
+      "item": "frt:mystery_meat"
+    }
+  }
+}

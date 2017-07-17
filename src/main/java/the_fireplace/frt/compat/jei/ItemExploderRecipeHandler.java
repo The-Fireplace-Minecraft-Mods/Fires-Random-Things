@@ -8,11 +8,11 @@ import javax.annotation.Nonnull;
 /**
  * @author The_Fireplace
  */
-public class PopFurnaceRecipeHandler implements IRecipeWrapperFactory<PopFurnaceRecipe> {
+public class ItemExploderRecipeHandler implements IRecipeWrapperFactory<ItemExploderRecipe> {
 
 	@Override
 	@Nonnull
-	public IRecipeWrapper getRecipeWrapper(@Nonnull PopFurnaceRecipe recipe) {
+	public IRecipeWrapper getRecipeWrapper(@Nonnull ItemExploderRecipe recipe) {
 		return recipe;
 	}
 }

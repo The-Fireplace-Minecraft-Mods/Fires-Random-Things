@@ -1,5 +1,6 @@
 package the_fireplace.frt.container;
 
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -8,10 +9,12 @@ import net.minecraft.item.ItemStack;
 import the_fireplace.frt.tileentity.TileEntityItemExploder;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 /**
  * @author The_Fireplace
  */
+@ParametersAreNonnullByDefault
 public class ContainerItemExploder extends Container {
 	private TileEntityItemExploder te;
 

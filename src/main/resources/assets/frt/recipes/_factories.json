@@ -1,0 +1,5 @@
+{
+  "recipes": {
+    "combine_potion": "the_fireplace.frt.recipes.CombinePotionRecipe$Factory"
+  }
+}

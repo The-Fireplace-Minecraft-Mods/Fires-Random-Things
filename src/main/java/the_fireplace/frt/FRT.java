@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
@@ -14,17 +15,16 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.potion.PotionType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.client.config.GuiConfigEntries;
-import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -38,6 +38,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.RecipeSorter;
 import net.minecraftforge.registries.IForgeRegistry;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.logging.log4j.Level;
@@ -48,13 +49,14 @@ import the_fireplace.frt.blocks.internal.BlockShell;
 import the_fireplace.frt.blocks.internal.BlockStrawBed;
 import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.entity.projectile.*;
-import the_fireplace.frt.events.CommonEvents;
 import the_fireplace.frt.handlers.*;
 import the_fireplace.frt.items.*;
 import the_fireplace.frt.items.internal.ItemPaxel;
 import the_fireplace.frt.items.internal.ItemStrawBed;
+import the_fireplace.frt.network.FRTGuiHandler;
 import the_fireplace.frt.network.PacketDispatcher;
 import the_fireplace.frt.potion.HallucinationPotion;
+import the_fireplace.frt.recipes.CombinePotionRecipe;
 import the_fireplace.frt.recipes.RecipeHandler;
 import the_fireplace.frt.worldgen.*;
 
@@ -124,7 +126,7 @@ public final class FRT {
 	public static final Block polished_stone = new FRTBlock(Material.ROCK).setHarvestTool("pickaxe", 0).setHardness(1.5F).setResistance(10.0F).setUnlocalizedName("polished_stone");
 	public static final Block shell_core = new BlockShellCore();
 	public static final Block shell = new BlockShell();
-	public static final Block pop_furnace = new BlockShatterer();
+	public static final Block item_exploder = new BlockItemExploder();
 	public static final Block quad_dispenser = new BlockQuadDispenser();
 	public static final Block insane_dispenser = new BlockInsaneDispenser();
 	public static final Block candle = new BlockCandle().setUnlocalizedName("candle");
@@ -133,6 +135,8 @@ public final class FRT {
 	public static final Block waxed_planks = new BlockWaxedPlanks();
 	public static final Block meat_block = new BlockMeat();
 	public static final Block straw_bed_block = new BlockStrawBed().setUnlocalizedName("straw_bed_block").setCreativeTab(TabFRT);
+	public static final Block ir_furnace = new BlockIRFurnace(false).setUnlocalizedName("ir_furnace").setCreativeTab(TabFRT);
+	public static final Block lit_ir_furnace = new BlockIRFurnace(true).setUnlocalizedName("lit_ir_furnace").setCreativeTab(TabFRT);
 
 	public static final Item charged_coal = new ItemChargedCoal();
 	public static final Item handheld_dispenser = new ItemHandheldDispenser("handheld_dispenser");
@@ -155,6 +159,8 @@ public final class FRT {
 	public static final Item pigder_pearl = new ItemPigderPearl();
 	public static final Item mystery_meat = new ItemMysteryMeat(4, 2, false).setUnlocalizedName("mystery_meat").setCreativeTab(TabFRT);
 	public static final Item raw_mystery_meat = new ItemMysteryMeat(2, 0, true).setUnlocalizedName("raw_mystery_meat").setCreativeTab(TabFRT);
+	public static final Item raw_meat_pie = new ItemMeatPie(4, 4, true).setUnlocalizedName("raw_meat_pie").setCreativeTab(TabFRT);
+	public static final Item meat_pie = new ItemMeatPie(10, 10, false).setAlwaysEdible().setUnlocalizedName("meat_pie").setCreativeTab(TabFRT);
 	public static final Item shimmering_stew = new ItemShimmeringStew();
 	public static final Item straw_bed = new ItemStrawBed().setUnlocalizedName("straw_bed").setCreativeTab(TabFRT);
 
@@ -341,6 +347,8 @@ public final class FRT {
 		registerItem(handheld_dispenser);
 		registerItem(handheld_quad_dispenser);
 		registerItem(handheld_insane_dispenser);
+		registerItem(raw_meat_pie);
+		registerItem(meat_pie);
 		registerItemBlock(new ItemWaxedPlanks(waxed_planks));
 		//Blocks
 		registerItemForBlock(ender_bookshelf);
@@ -373,13 +381,14 @@ public final class FRT {
 		registerItemForBlock(brown_screen);
 		registerItemForBlock(compact_bookshelf);
 		registerItemForBlock(shell_core);
-		registerItemForBlock(pop_furnace);
+		registerItemForBlock(item_exploder);
 		registerItemForBlock(quad_dispenser);
 		registerItemForBlock(insane_dispenser);
 		registerItemForBlock(candle);
 		registerItemForBlock(candle_with_base);
 		registerItemForBlock(wax_deposit);
 		registerItemForBlock(meat_block);
+		registerItemForBlock(ir_furnace);
 	}
 
 	@SubscribeEvent
@@ -415,7 +424,7 @@ public final class FRT {
 		registerBlock(brown_screen);
 		registerBlock(compact_bookshelf);
 		registerBlock(shell_core);
-		registerBlock(pop_furnace);
+		registerBlock(item_exploder);
 		registerBlock(quad_dispenser);
 		registerBlock(insane_dispenser);
 		registerBlock(candle);
@@ -425,6 +434,8 @@ public final class FRT {
 		registerBlock(waxed_planks);
 		registerBlock(shell);
 		registerBlock(straw_bed_block);
+		registerBlock(ir_furnace);
+		registerBlock(lit_ir_furnace);
 	}
 
 	@SubscribeEvent
@@ -475,19 +486,22 @@ public final class FRT {
 		rmm(cyan_screen);
 		rmm(purple_screen);
 		rmm(magenta_screen);
-		rmm(pop_furnace);
+		rmm(item_exploder);
 		rmm(quad_dispenser);
 		rmm(insane_dispenser);
 		rmm(candle);
 		rmm(candle_with_base);
 		rmm(wax_deposit);
 		rmm(meat_block);
+		rmm(ir_furnace);
 		rmm(mystery_meat);
 		rmm(raw_mystery_meat);
+		rmm(meat_pie);
+		rmm(raw_meat_pie);
 		rmm(shimmering_stew);
 		rmm(straw_bed);
 		if (!isItemDisabled(waxed_planks)) {
-			ModelLoader.registerItemVariants(Item.getItemFromBlock(waxed_planks),
+			ModelBakery.registerItemVariants(Item.getItemFromBlock(waxed_planks),
 					new ModelResourceLocation(MODID + ":oak_waxed_planks", "inventory"),
 					new ModelResourceLocation(MODID + ":spruce_waxed_planks", "inventory"),
 					new ModelResourceLocation(MODID + ":birch_waxed_planks", "inventory"),

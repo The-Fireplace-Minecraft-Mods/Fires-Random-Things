@@ -2,7 +2,6 @@ package the_fireplace.frt.handlers;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.IFuelHandler;
 import the_fireplace.frt.FRT;
 
 /**

@@ -2,6 +2,7 @@ package the_fireplace.frt.compat.jei;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
+import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * @author The_Fireplace
  */
-public class FirestarterRecipe extends BlankRecipeWrapper {
+public class FirestarterRecipe implements IRecipeWrapper {
 	@Nonnull
 	private final List<List<ItemStack>> inputs;
 

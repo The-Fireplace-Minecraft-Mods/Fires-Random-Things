@@ -23,11 +23,11 @@ import java.util.List;
  */
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class PopFurnaceCategory implements IRecipeCategory {
+public class ItemExploderCategory implements IRecipeCategory {
 	@Nonnull
 	private final IDrawable background;
 
-	public PopFurnaceCategory(IGuiHelper guiHelper) {
+	public ItemExploderCategory(IGuiHelper guiHelper) {
 		super();
 		ResourceLocation location = new ResourceLocation("frt", "textures/gui/nei_pop_furnace.png");
 		background = guiHelper.createDrawable(location, 3, 15, 169, 53);

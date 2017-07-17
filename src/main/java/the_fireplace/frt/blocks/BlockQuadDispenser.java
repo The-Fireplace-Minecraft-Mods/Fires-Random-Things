@@ -1,5 +1,6 @@
 package the_fireplace.frt.blocks;
 
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.BlockSourceImpl;
@@ -22,11 +23,14 @@ import net.minecraft.world.World;
 import the_fireplace.frt.FRT;
 
 import javax.annotation.Nonnull;
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 /**
  * @author The_Fireplace
  */
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class BlockQuadDispenser extends BlockDispenser {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing");
 	public static final PropertyBool TRIGGERED = PropertyBool.create("triggered");

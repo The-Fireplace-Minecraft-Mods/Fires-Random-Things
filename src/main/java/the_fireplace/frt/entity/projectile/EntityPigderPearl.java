@@ -14,9 +14,12 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.living.EnderTeleportEvent;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
 /**
  * @author The_Fireplace
  */
+@ParametersAreNonnullByDefault
 public class EntityPigderPearl extends EntityThrowable {
 	private EntityLivingBase thrower;
 
@@ -64,7 +67,7 @@ public class EntityPigderPearl extends EntityThrowable {
 		}
 
 		for (int i = 0; i < 32; ++i) {
-			this.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, this.posX, this.posY + this.rand.nextDouble() * 2.0D, this.posZ, this.rand.nextGaussian(), 0.0D, this.rand.nextGaussian(), new int[0]);
+			this.world.spawnParticle(EnumParticleTypes.FIREWORKS_SPARK, this.posX, this.posY + this.rand.nextDouble() * 2.0D, this.posZ, this.rand.nextGaussian(), 0.0D, this.rand.nextGaussian());
 		}
 
 		if (!this.world.isRemote) {

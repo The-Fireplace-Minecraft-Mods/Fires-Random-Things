@@ -1,5 +1,6 @@
 package the_fireplace.frt.blocks;
 
+import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.SoundType;
@@ -25,11 +26,14 @@ import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.tileentity.TileEntityForceFieldCore;
 import the_fireplace.frt.tools.MiscTools;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 /**
  * @author The_Fireplace
  */
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class BlockShellCore extends BlockContainer {
 
 	public BlockShellCore() {
