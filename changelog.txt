@@ -2,7 +2,7 @@ Updated to 1.12
 Removed Base Metals integration
 Added the IR Furnace, a new way to cook food. It uses Redstone as fuel.
 Added the Meat Pie
-Added a new structure
+Added new structures
 Added splash text
 Adjusted the Straw Bed recipes
 Adjusted Kinetic Pearl recipe
