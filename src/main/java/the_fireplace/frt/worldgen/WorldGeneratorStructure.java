@@ -26,6 +26,7 @@ import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.handlers.CommonEvents;
 import the_fireplace.frt.handlers.StructurePlacementManager;
 import the_fireplace.frt.tools.MiscTools;
+import the_fireplace.frt.worldgen.structure.IStructure;
 
 import java.util.Random;
 
@@ -34,6 +35,11 @@ public class WorldGeneratorStructure implements IWorldGenerator {
 
 	public WorldGeneratorStructure(String id){
 		this.id = id;
+	}
+
+	public WorldGeneratorStructure register(IStructure structure){
+		StructureGenerator.registerStructure(id, structure);
+		return this;
 	}
 
 	@Override

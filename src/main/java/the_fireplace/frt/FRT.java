@@ -56,6 +56,10 @@ import the_fireplace.frt.network.PacketDispatcher;
 import the_fireplace.frt.potion.HallucinationPotion;
 import the_fireplace.frt.recipes.RecipeHandler;
 import the_fireplace.frt.worldgen.*;
+import the_fireplace.frt.worldgen.structure.BosSign;
+import the_fireplace.frt.worldgen.structure.NoobHouse;
+import the_fireplace.frt.worldgen.structure.PortalCave;
+import the_fireplace.frt.worldgen.structure.Statue;
 
 /**
  * @author The_Fireplace
@@ -265,10 +269,10 @@ public final class FRT {
 
 	private void addStructures() {
 		if (ConfigValues.GENSTRUCTURES) {
-			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("noobhouse"), 20);
-			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("portalcave"), 19);
-			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("bossign"), 21);
-			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("statue"), 18);
+			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("statue").register(new Statue()), 18);
+			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("noobhouse").register(new NoobHouse()), 19);
+			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("portalcave").register(new PortalCave()), 19);
+			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("bossign").register(new BosSign()), 20);
 			structureGeneratorsRegistered = true;
 		}
 	}
