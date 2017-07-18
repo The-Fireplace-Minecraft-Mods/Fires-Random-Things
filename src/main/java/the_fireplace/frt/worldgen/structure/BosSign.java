@@ -25,6 +25,8 @@ import java.util.Random;
 public class BosSign implements IStructure {
 	public static final ResourceLocation STRUCTURE_LOC = new ResourceLocation(FRT.MODID, "bossign");
 
+	private static boolean toggle = false;
+
 	@Override
 	public boolean canSpawn(BlockPos basePos, Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkProvider) {
 		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 800 : 400) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
@@ -45,7 +47,8 @@ public class BosSign implements IStructure {
 
 	@Override
 	public float getIntegrity() {
-		return 0.75f;
+		toggle = !toggle;
+		return toggle ? 0 : 0.75f;
 	}
 
 	@Override

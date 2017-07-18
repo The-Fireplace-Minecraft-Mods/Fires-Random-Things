@@ -62,7 +62,7 @@ public abstract class StructureGenerator {
 			Template template = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), templates.get(id).getStructure());
 			PlacementSettings settings = new PlacementSettings().setIntegrity(templates.get(id).getIntegrity()).setRotation(rotation);
 
-			FRT.logInfo("Spawning "+id+" at chunk "+chunkX+", "+chunkZ);
+			FRT.logDebug("Spawning "+id+" at chunk "+chunkX+", "+chunkZ);
 			template.addBlocksToWorld(world, basePos, settings);
 
 			boolean addedBook = false;
