@@ -1,7 +1,7 @@
 {
   "pools": [
     {
-      "name": "Noob House Loot",
+      "name": "Prewar Outpost Loot",
       "rolls": {
         "min": 1,
         "max": 3

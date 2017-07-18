@@ -1,10 +1,8 @@
 package the_fireplace.frt.worldgen.structure;
 
-import com.google.common.collect.Lists;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,56 +12,56 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import the_fireplace.frt.FRT;
+import the_fireplace.frt.config.ConfigValues;
 import the_fireplace.frt.tools.MiscTools;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.List;
 import java.util.Random;
 
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-public class PrewarOutpost implements IStructure {
-	public static final ResourceLocation STRUCTURE_LOC = new ResourceLocation(FRT.MODID, "outpost_prewar");
-	public static final ResourceLocation STRUCTURE_LOOT = new ResourceLocation(FRT.MODID, "outpost_prewar");
-
-	public static final List<Biome> forbiddenBiomes = Lists.newArrayList(Biomes.OCEAN, Biomes.DEEP_OCEAN, Biomes.FROZEN_OCEAN, Biomes.RIVER, Biomes.FROZEN_RIVER, Biomes.BEACH, Biomes.SWAMPLAND, Biomes.MUTATED_SWAMPLAND, Biomes.MUSHROOM_ISLAND, Biomes.MUSHROOM_ISLAND_SHORE, Biomes.COLD_BEACH, Biomes.STONE_BEACH);
+public class WarzoneOutpost implements IStructure {
+	public static final ResourceLocation STRUCTURE_LOC = new ResourceLocation(FRT.MODID, "outpost_warzone");
+	public static final ResourceLocation STRUCTURE_LOOT = new ResourceLocation(FRT.MODID, "outpost_warzone");
 
 	public static final ItemStack BOOK = new ItemStack(Items.WRITTEN_BOOK);
 
 	static{
 		BOOK.setTagCompound(new NBTTagCompound());
 		BOOK.getTagCompound().setString("author", "The_Fireplace");
-		BOOK.getTagCompound().setString("title", "Outpost");
+		BOOK.getTagCompound().setString("title", "Battle for the City");
 		BOOK.getTagCompound().setInteger("generation", 0);
 		NBTTagList pages = new NBTTagList();
-		pages.appendTag(MiscTools.getLocalBookPage("frt.outpostbook.1"));
-		pages.appendTag(MiscTools.getLocalBookPage("frt.outpostbook.2"));
+		pages.appendTag(MiscTools.getLocalBookPage("frt.outpostbook.3"));
+		pages.appendTag(MiscTools.getLocalBookPage("frt.outpostbook.4"));
 		BOOK.getTagCompound().setTag("pages", pages);
 	}
 
 	@Override
 	public boolean canSpawn(BlockPos basePos, Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkProvider) {
-		boolean hasCorrectVariations = false;
-		float biomeHeight = world.getBiome(basePos).getBaseHeight();
+		if(!ConfigValues.GENSTORIES) {
+			boolean hasCorrectVariations = false;
+			float biomeHeight = world.getBiome(basePos).getBaseHeight();
 
-		for(int x=-1;x<2;x++){
-			for(int z=-1;z<2;z++){
-				if(world.getBiome(new BlockPos(basePos.getX()+20*x, basePos.getY(), basePos.getZ()+20*z)).getBaseHeight() - biomeHeight > .03){
-					hasCorrectVariations = true;
-					break;
+			for (int x = -1; x < 2; x++) {
+				for (int z = -1; z < 2; z++) {
+					if (world.getBiome(new BlockPos(basePos.getX() + 20 * x, basePos.getY(), basePos.getZ() + 20 * z)).getBaseHeight() - biomeHeight > .03) {
+						hasCorrectVariations = true;
+						break;
+					}
 				}
 			}
-		}
 
-		return !forbiddenBiomes.contains(world.getBiome(basePos)) && random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 600 : 60) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD) && hasCorrectVariations;
+			return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 800 : 80) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD) && hasCorrectVariations;
+		}else
+			return world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
 	}
 
 	@Override
 	public BlockPos getBase(Random random, int chunkX, int chunkZ, World world) {
-		return world.getTopSolidOrLiquidBlock(new BlockPos(chunkX * 16, 0, chunkZ * 16)).down();
+		return world.getTopSolidOrLiquidBlock(new BlockPos(chunkX * 16, 0, chunkZ * 16));
 	}
 
 	@Override
@@ -73,7 +71,7 @@ public class PrewarOutpost implements IStructure {
 
 	@Override
 	public float getIntegrity() {
-		return 0.998f;
+		return (float)Math.abs(Math.sin(new Random().nextInt(16)*0.863f));
 	}
 
 	@Override
@@ -88,6 +86,10 @@ public class PrewarOutpost implements IStructure {
 
 	@Override
 	public void doCustomDestruction(World world, IBlockState state, BlockPos pos, Random random) {
-
+		if(state.getMaterial() == Material.LAVA) {
+			Random sameRand = new Random(world.getSeed());
+			if (sameRand.nextDouble() < Math.abs(Math.sin(world.getWorldTime() / 20d)))
+				world.setBlockToAir(pos);
+		}
 	}
 }

@@ -44,7 +44,7 @@ public abstract class StructureGenerator {
 	 *
 	 */
 	public static void generate(String id, Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkProvider) {
-		if (!ConfigValues.GENSTRUCTURES)
+		if (!ConfigValues.GENSTRUCTURES || world.isRemote)
 			return;
 		if (!StructurePlacementManager.canGenerateStructure(chunkX, chunkZ, chunkProvider)) {
 			StructurePlacementManager.queueGeneration(world, new ChunkPos(chunkX, chunkZ), id);
@@ -62,6 +62,7 @@ public abstract class StructureGenerator {
 			Template template = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), templates.get(id).getStructure());
 			PlacementSettings settings = new PlacementSettings().setIntegrity(templates.get(id).getIntegrity()).setRotation(rotation);
 
+			FRT.logInfo("Spawning "+id+" at chunk "+chunkX+", "+chunkZ);
 			template.addBlocksToWorld(world, basePos, settings);
 
 			boolean addedBook = false;

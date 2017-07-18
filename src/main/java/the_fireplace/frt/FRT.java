@@ -267,10 +267,15 @@ public final class FRT {
 	private void addStructures() {
 		if (ConfigValues.GENSTRUCTURES) {
 			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("statue").register(new Statue()), 18);
+			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("nether_base").register(new NetherBase()), 18);
 			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("noobhouse").register(new NoobHouse()), 19);
 			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("portalcave").register(new PortalCave()), 19);
 			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("prewar_outpost").register(new PrewarOutpost()), 19);
 			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("bossign").register(new BosSign()), 20);
+			if(ConfigValues.GENSTORIES)
+				StructureGenerator.registerStructure("outpost_warzone", new WarzoneOutpost());
+			else
+				GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("outpost_warzone").register(new WarzoneOutpost()), 18);
 			structureGeneratorsRegistered = true;
 		}
 	}

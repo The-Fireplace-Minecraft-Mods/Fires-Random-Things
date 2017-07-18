@@ -16,9 +16,11 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
+import net.minecraftforge.event.world.ChunkEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.config.ConfigValues;
@@ -95,17 +97,20 @@ public final class StructurePlacementManager extends WorldSavedData {
 		}
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void chunkGen(PopulateChunkEvent.Post event) {
-		if (ConfigValues.GENSTRUCTURES)
+		if(instances.get(event.getWorld()) != this)
+			return;
+		if (ConfigValues.GENSTRUCTURES) {
 			if (worldgenQueue.isEmpty())
 				return;
-		ChunkPos pos = getSurroundingChunkFromList(event.getChunkX(), event.getChunkZ(), worldgenQueue.keySet());
-		if (pos != null && event.getWorld().getChunkProvider().getLoadedChunk(pos.x, pos.z) != null) {
-			for(String s: Lists.newArrayList(worldgenQueue.get(pos))) {
-				StructureGenerator.generate(s, event.getWorld().rand, pos.x, pos.z, event.getWorld(), event.getWorld().getChunkProvider());
-				worldgenQueue.remove(pos, s);
-				markDirty();
+			ChunkPos pos = getSurroundingChunkFromList(event.getChunkX(), event.getChunkZ(), worldgenQueue.keySet());
+			if (pos != null && event.getWorld().getChunkProvider().getLoadedChunk(pos.x, pos.z) != null) {
+				for (String s : Lists.newArrayList(worldgenQueue.get(pos))) {
+					worldgenQueue.remove(pos, s);
+					markDirty();
+					StructureGenerator.generate(s, event.getWorld().rand, pos.x, pos.z, event.getWorld(), event.getWorld().getChunkProvider());
+				}
 			}
 		}
 	}
@@ -121,14 +126,6 @@ public final class StructurePlacementManager extends WorldSavedData {
 			instances.put(event.getWorld(), manager);
 			event.getWorld().setData("frt:structure_management", instances.get(event.getWorld()));
 			FRT.logTrace("Structure Placement Manager for "+event.getWorld().provider.getDimensionType().getName()+" is set to "+manager.toString());
-		}
-	}
-
-	@SubscribeEvent
-	public void worldUnload(WorldEvent.Unload event){
-		if(!event.getWorld().isRemote && instances.get(event.getWorld()) == this){
-			FRT.logTrace("Structure Placement Manager for "+event.getWorld().provider.getDimensionType().getName()+" un-registering.");
-			MinecraftForge.EVENT_BUS.unregister(this);
 		}
 	}
 

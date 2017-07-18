@@ -163,11 +163,19 @@ frt.shiftforinfo=<Shift for info>
 frt.noobhousebook.1=This was my first Minecraft house. Built on a server that has long since died, with people that I ended up playing the game with for multiple years, across multiple servers.
 frt.noobhousebook.2=There is a long and somewhat complicated storyline that developed, a tale of a long rivalry resulting in multiple large-scale battles. Maybe you'll find some of the remains scattered throughout the world. Maybe you already have.
 
-frt.outpostbook.1=This is the outpost. A corner of our faction's territory. About 32 blocks away from the rest of the city, near the edge of the mountain range. It is just decorative. We haven't had any real use for it. Wolver512, our leader, has avoided getting us involved in any faction wars.
+frt.outpostbook.1=This is the outpost. A corner of our faction's territory. About 32 blocks away from the rest of the city, near the edge of the mountain range. It is just decorative. We haven't had any real use for it. Wolver512, our leader, has avoided getting us involved in any
+frt.outpostbook.2=faction wars.
+
+frt.outpostbook.3=I got Wolver back on after finding his city, and he wasn't too happy about it being claimed. What's worse, CrAzYpOnYbOy, the server owner, refuses to grant him leadership of his faction because of how long he was gone. Wolver has joined up with me, so we can fight his
+frt.outpostbook.4=former faction. I have converted this outpost in to an ugly abomination, just to annoy the enemy. They were already mad that I was allowed to claim this. It's only a matter of time now before they get tired of being under attack and give back the city... or destroy it.
 
 frt.portalcavebook.1=Hey Wolver, I've made an unused section of your tunnels in to my basement. Hope you don't mind. Got any more obsidian and eyes of ender? I broke the last ender chest you gave me.
 frt.portalcavebook.2=Fire, I'm ok with you using that section of cave. I replaced the ender chest, but this is the last time. You're not getting any more of my obsidian.
 frt.portalcavebook.3=Also, I know I told you that netherrack stuff is rare, but no more of it on this house next to my castle. Go to the other side of the mountain range to build with it, away from the faction home. It doesn't match.
+
+frt.netherbook.1=It has been 4 months since the plugins reset. The world is intact, but structures were all up for grabs. At this time, very few people knew where their bases were. Most people started fresh, as I did. A few searched the land for old bases to claim as their own.
+frt.netherbook.2=After much time spent in the Nether, I managed to locate the old faction home. Most of it was claimed by one of the old faction's members, who re-created the faction under the same name. However, he left the outpost unclaimed. I quickly claimed this area of the nether, and the
+frt.netherbook.3=outpost. Afterwards, I made a path from my faction's nether portal to this base, both so I can access it, and as an escape route, should we ever need it.
 
 frt.continentbook.1=The Tekkit Lite server died, and no revival is planned, this time. I've found a good FTB Ultimate server, and am trying to gather the people here. This island is large enough to house everyone comfortably, considering that it has 4 biomes.
 frt.continentbook.2=I've claimed the plains for public property and decorative builds, people can use the forest, extreme hills, and glacier for their houses. I've set mine up in one of the extreme hills, and tcb1005 has one in the forest.
