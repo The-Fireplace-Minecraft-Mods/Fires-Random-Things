@@ -7,10 +7,10 @@
     "btb",
     "bbb"
   ],
-  "type": "minecraft:crafting_shaped",
+  "type": "forge:ore_shaped",
   "key": {
     "b": {
-      "item": "minecraft:cobblestone"
+      "item": "#INGOTIRON"
     },
     "t": {
       "item": "minecraft:iron_bars"

@@ -15,3 +15,10 @@ Renamed Destabilized Coal to Unstable Coal
 Renamed Restabilized Coal to Coated Coal
 Added a Fireplace Burner recipe using Magma Block instead of Netherrack
 Unstable Coal can now be used as an explosive in the Item Exploder
+Updated the textures for FRT's Coal Blocks
+Updated/added the following textures thanks to Decay(https://www.planetminecraft.com/member/l0rd_decay/):
+-Compact Dirt
+-Hallucination Goggles
+-Raw Mystery Meat
+-Meat Pie
+-IR Furnace
