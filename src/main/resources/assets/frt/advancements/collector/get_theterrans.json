@@ -1,0 +1,55 @@
+{
+    "display": {
+        "icon": {
+            "item": "minecraft:skull",
+            "data": 3,
+            "nbt": "{tag:{Series:\"TheTerrans\",SkullOwner:\"D3nya\"}}"
+        },
+        "title": {
+            "translate": "advancements.collector.get_theterrans.title"
+        },
+        "description": {
+            "translate": "advancements.collector.get_theterrans.description"
+        }
+    },
+    "parent": "frt:collector/root",
+    "criteria": {
+        "fireplace_skull": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:skull",
+                        "data": 3,
+                        "nbt": "{tag:{Series:\"TheTerrans\",SkullOwner:\"The_Fireplace\"}}"
+                    },
+                    {
+                        "item": "minecraft:skull",
+                        "data": 3,
+                        "nbt": "{tag:{Series:\"TheTerrans\",SkullOwner:\"D3nya\"}}"
+                    },
+                    {
+                        "item": "minecraft:skull",
+                        "data": 3,
+                        "nbt": "{tag:{Series:\"TheTerrans\",SkullOwner:\"TheMoonPanda_\"}}"
+                    },
+                    {
+                        "item": "minecraft:skull",
+                        "data": 3,
+                        "nbt": "{tag:{Series:\"TheTerrans\",SkullOwner:\"Wee_dood\"}}"
+                    },
+                    {
+                        "item": "minecraft:skull",
+                        "data": 3,
+                        "nbt": "{tag:{Series:\"TheTerrans\",SkullOwner:\"nathankemp\"}}"
+                    },
+                    {
+                        "item": "minecraft:skull",
+                        "data": 3,
+                        "nbt": "{tag:{Series:\"TheTerrans\",SkullOwner:\"harrispop\"}}"
+                    }
+                ]
+            }
+        }
+    }
+}

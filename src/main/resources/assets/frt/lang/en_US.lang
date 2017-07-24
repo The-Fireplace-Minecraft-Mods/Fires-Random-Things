@@ -113,6 +113,7 @@ item.shimmering_stew.name=Shimmering Stew
 item.shimmering_stew.tooltip=Can bring you sky high
 item.straw_bed.name=Straw Bed
 item.straw_bed.tooltip=This doesn't look comfortable. (Won't set home)
+item.gift_box.name=Box Of Heads
 itemGroup.frt=Fire's Random Things
 cfg.enable_shell=Enable Force Field
 cfg.enable_shell.tooltip=Toggles whether or not making Force Field is enabled
@@ -159,9 +160,21 @@ jei.gunpowder=Item Exploder Explosive
 tipped_arrow.effect.hallucination=Arrow of Hallucination
 tipped_arrow.effect.long_hallucination=Arrow of Hallucination
 frt.shiftforinfo=<Shift for info>
+series=§2Series: %s
 
-frt.noobhousebook.1=This was my first Minecraft house. Built on a server that has long since died, with people that I ended up playing the game with for multiple years, across multiple servers.
+advancements.collector.root.title=Head Hunter
+advancements.collector.root.description=Collect heads from the past.
+
+advancements.collector.get_theterrans.title=Obtain TheTerrans
+advancements.collector.get_theterrans.description=Obtain the heads of the original faction TheTerrans.
+
+advancements.collector.get_thecorruptv3.title=Obtain TheCorrupt, Volume 3
+advancements.collector.get_thecorruptv3.description=Obtain the heads from the third version of TheCorrupt.
+
+frt.noobhousebook.1=This was my first Minecraft house. Built on a server that has long since died, with people that I ended up playing the game with for multiple years, across multiple servers. These servers all had factions, allowing us to easily form sides.
 frt.noobhousebook.2=There is a long and somewhat complicated storyline that developed, a tale of a long rivalry resulting in multiple large-scale battles. Maybe you'll find some of the remains scattered throughout the world. Maybe you already have.
+frt.noobhousebook.3=The story started here, when my friend, Wolver512, gave me a small plot of land next to his castle and some materials. I was new to Minecraft, and just beginning to learn how everything worked. His faction, TheTerrans, had a town.
+frt.noobhousebook.4=Everything in the town was built around the center path, which extended out from the castle. Altogether, the town was about the size of two large villages.
 
 frt.outpostbook.1=This is the outpost. A corner of our faction's territory. About 32 blocks away from the rest of the city, near the edge of the mountain range. It is just decorative. We haven't had any real use for it. Wolver512, our leader, has avoided getting us involved in any
 frt.outpostbook.2=faction wars.

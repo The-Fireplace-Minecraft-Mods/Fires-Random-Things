@@ -82,9 +82,15 @@
         },
         {
           "type": "item",
-          "name": "minecraft:emerald",
-          "weight": 1,
-          "quality": 10
+          "name": "frt:gift_box",
+          "functions": [
+            {
+              "function": "set_nbt",
+              "tag": "{GiftId:\"TheTerrans\"}"
+            }
+          ],
+          "weight": 10,
+          "quality": 30
         }
       ]
     }

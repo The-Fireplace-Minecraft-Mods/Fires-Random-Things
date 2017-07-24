@@ -1,7 +1,9 @@
 package the_fireplace.frt.tools;
 
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -24,5 +26,21 @@ public final class MiscTools {
 
 	public static NBTTagString getLocalBookPage(String key) {
 		return new NBTTagString("\"" + FRT.proxy.translateToLocal(key) + "\"");
+	}
+
+	public static ItemStack createHead(String name){
+		ItemStack stack = new ItemStack(Items.SKULL, 1, 3);
+		NBTTagCompound compound = new NBTTagCompound();
+		compound.setTag("SkullOwner", new NBTTagString(name));
+		stack.setTagCompound(compound);
+		return stack;
+	}
+
+	public static ItemStack createGiftBox(String group){
+		ItemStack stack = new ItemStack(FRT.gift_box);
+		NBTTagCompound compound = new NBTTagCompound();
+		compound.setTag("GiftId", new NBTTagString(group));
+		stack.setTagCompound(compound);
+		return stack;
 	}
 }

@@ -1,0 +1,60 @@
+{
+    "display": {
+        "icon": {
+            "item": "minecraft:skull",
+            "data": 3,
+            "nbt": "{tag:{Series:\"TheTerrans\",SkullOwner:\"The_Fireplace\"}}"
+        },
+        "title": {
+            "translate": "advancements.collector.get_thecorruptv3.title"
+        },
+        "description": {
+            "translate": "advancements.collector.get_thecorruptv3.description"
+        }
+    },
+    "parent": "frt:collector/root",
+    "criteria": {
+        "fireplace_skull": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "minecraft:skull",
+                        "data": 3,
+                        "nbt": "{tag:{Series:\"TheCorruptV3\",SkullOwner:\"The_Fireplace\",display:{Name:\"§6The_Fireplace's Head\"}}}"
+                    },
+                    {
+                        "item": "minecraft:skull",
+                        "data": 3,
+                        "nbt": "{tag:{Series:\"TheCorruptV3\",SkullOwner:\"tcb1005\"}}"
+                    },
+                    {
+                        "item": "minecraft:skull",
+                        "data": 3,
+                        "nbt": "{tag:{Series:\"TheCorruptV3\",SkullOwner:\"7thfleet\"}}"
+                    },
+                    {
+                        "item": "minecraft:skull",
+                        "data": 3,
+                        "nbt": "{tag:{Series:\"TheCorruptV3\",SkullOwner:\"MrPonyboy\",display:{Name:\"§rCrAzYpOnYbOy's Head\"}}}"
+                    },
+                    {
+                        "item": "minecraft:skull",
+                        "data": 3,
+                        "nbt": "{tag:{Series:\"TheCorruptV3\",SkullOwner:\"ix3Cookie\"}}"
+                    },
+                    {
+                        "item": "minecraft:skull",
+                        "data": 3,
+                        "nbt": "{tag:{Series:\"TheCorruptV3\",SkullOwner:\"LucemDivinus\",display:{Name:\"§3zexalpowa1999's Head\"}}}"
+                    },
+                    {
+                        "item": "minecraft:skull",
+                        "data": 3,
+                        "nbt": "{tag:{Series:\"TheCorruptV3\",SkullOwner:\"tnert\",display:{Name:\"§3tman11233's Head\"}}}"
+                    }
+                ]
+            }
+        }
+    }
+}

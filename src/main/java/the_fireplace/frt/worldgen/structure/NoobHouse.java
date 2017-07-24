@@ -24,7 +24,7 @@ import java.util.Random;
 @MethodsReturnNonnullByDefault
 public class NoobHouse implements IStructure {
 	public static final ResourceLocation STRUCTURE_LOC = new ResourceLocation(FRT.MODID, "noobhouse");
-	private static final ResourceLocation STRUCTURE_LOOT = new ResourceLocation(FRT.MODID, "noob_house");
+	public static final ResourceLocation STRUCTURE_LOOT = new ResourceLocation(FRT.MODID, "noob_house");
 
 	public static final ItemStack BOOK = new ItemStack(Items.WRITTEN_BOOK);
 
@@ -36,6 +36,8 @@ public class NoobHouse implements IStructure {
 		NBTTagList pages = new NBTTagList();
 		pages.appendTag(MiscTools.getLocalBookPage("frt.noobhousebook.1"));
 		pages.appendTag(MiscTools.getLocalBookPage("frt.noobhousebook.2"));
+		pages.appendTag(MiscTools.getLocalBookPage("frt.noobhousebook.3"));
+		pages.appendTag(MiscTools.getLocalBookPage("frt.noobhousebook.4"));
 		BOOK.getTagCompound().setTag("pages", pages);
 	}
 

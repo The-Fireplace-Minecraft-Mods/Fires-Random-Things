@@ -5,6 +5,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.resources.IResource;
+import net.minecraft.init.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -113,7 +114,14 @@ public final class ClientEvents {
 	public static void onTooltip(ItemTooltipEvent e) {
 		try {
 			if (!e.getItemStack().getItem().getCreativeTab().equals(FRT.TabFRT))
-				return;
+				if(e.getItemStack().getItem() == Items.SKULL && e.getItemStack().getTagCompound().getString("Series") != null) {
+					e.getToolTip().add(proxy.translateToLocal("series", e.getItemStack().getTagCompound().getString("Series")));
+					return;
+				}else if(e.getItemStack().getItem() == FRT.gift_box){
+					e.getToolTip().add(proxy.translateToLocal("series", e.getItemStack().getTagCompound().getString("GiftId")));
+					return;
+				}else
+					return;
 		} catch (NullPointerException ex) {
 			return;
 		}

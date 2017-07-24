@@ -161,6 +161,7 @@ public final class FRT {
 	public static final Item meat_pie = new ItemMeatPie(10, 10, false).setAlwaysEdible().setUnlocalizedName("meat_pie").setCreativeTab(TabFRT);
 	public static final Item shimmering_stew = new ItemShimmeringStew();
 	public static final Item straw_bed = new ItemStrawBed().setUnlocalizedName("straw_bed").setCreativeTab(TabFRT);
+	public static final Item gift_box = new ItemGiftBox();
 
 	public static final Item hallucination_goggles = new FRTArmor(ArmorMaterial.LEATHER, EntityEquipmentSlot.HEAD).setUnlocalizedName("hallucination_goggles").setCreativeTab(TabFRT);
 
@@ -353,6 +354,7 @@ public final class FRT {
 		registerItem(handheld_insane_dispenser);
 		registerItem(raw_meat_pie);
 		registerItem(meat_pie);
+		registerItem(gift_box);
 		registerItemBlock(new ItemWaxedPlanks(waxed_planks));
 		//Blocks
 		registerItemForBlock(ender_bookshelf);
@@ -504,6 +506,7 @@ public final class FRT {
 		rmm(raw_meat_pie);
 		rmm(shimmering_stew);
 		rmm(straw_bed);
+		rmm(gift_box);
 		if (!isItemDisabled(waxed_planks)) {
 			ModelBakery.registerItemVariants(Item.getItemFromBlock(waxed_planks),
 					new ModelResourceLocation(MODID + ":oak_waxed_planks", "inventory"),

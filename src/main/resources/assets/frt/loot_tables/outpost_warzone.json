@@ -84,6 +84,30 @@
           "type": "item",
           "name": "minecraft:magma",
           "weight": 1
+        },
+        {
+          "type": "item",
+          "name": "frt:gift_box",
+          "functions": [
+            {
+              "function": "set_nbt",
+              "tag": "{GiftId:\"TheCorruptV1\"}"
+            }
+          ],
+          "weight": 10,
+          "quality": 30
+        },
+        {
+          "type": "item",
+          "name": "frt:gift_box",
+          "functions": [
+            {
+              "function": "set_nbt",
+              "tag": "{GiftId:\"TheTerransV2\"}"
+            }
+          ],
+          "weight": 20,
+          "quality": 10
         }
       ]
     }

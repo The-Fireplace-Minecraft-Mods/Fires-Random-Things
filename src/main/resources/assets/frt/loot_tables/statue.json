@@ -74,6 +74,18 @@
             }
           ],
           "weight": 100
+        },
+        {
+          "type": "item",
+          "name": "frt:gift_box",
+          "functions": [
+            {
+              "function": "set_nbt",
+              "tag": "{GiftId:\"TheCorruptV3\"}"
+            }
+          ],
+          "weight": 10,
+          "quality": 30
         }
       ]
     }
