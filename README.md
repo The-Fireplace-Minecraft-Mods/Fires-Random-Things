@@ -1,4 +1,4 @@
-[Fire's Survival Tweaks](https://minecraft.curseforge.com/projects/fires-random-things)
+[Fire's Random Things](https://minecraft.curseforge.com/projects/fires-random-things)
 ============================================================================
 
 [![Curse Forge](http://cf.way2muchnoise.eu/short_250836_downloads.svg)](https://minecraft.curseforge.com/projects/fires-random-things)
