@@ -117,10 +117,10 @@ public final class ClientEvents {
 				if(e.getItemStack().getItem() == Items.SKULL && e.getItemStack().getTagCompound().getString("Series") != null) {
 					e.getToolTip().add(proxy.translateToLocal("series", e.getItemStack().getTagCompound().getString("Series")));
 					return;
-				}else if(e.getItemStack().getItem() == FRT.gift_box){
+				}/*else if(e.getItemStack().getItem() == FRT.gift_box){
 					e.getToolTip().add(proxy.translateToLocal("series", e.getItemStack().getTagCompound().getString("GiftId")));
 					return;
-				}else
+				}*/else
 					return;
 		} catch (NullPointerException ex) {
 			return;

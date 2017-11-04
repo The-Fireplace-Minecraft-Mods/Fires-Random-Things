@@ -36,11 +36,11 @@ public final class MiscTools {
 		return stack;
 	}
 
-	public static ItemStack createGiftBox(String group){
+	/*public static ItemStack createGiftBox(String group){
 		ItemStack stack = new ItemStack(FRT.gift_box);
 		NBTTagCompound compound = new NBTTagCompound();
 		compound.setTag("GiftId", new NBTTagString(group));
 		stack.setTagCompound(compound);
 		return stack;
-	}
+	}*/
 }

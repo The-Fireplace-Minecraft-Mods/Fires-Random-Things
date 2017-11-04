@@ -161,7 +161,8 @@ public final class FRT {
 	public static final Item meat_pie = new ItemMeatPie(10, 10, false).setAlwaysEdible().setUnlocalizedName("meat_pie").setCreativeTab(TabFRT);
 	public static final Item shimmering_stew = new ItemShimmeringStew();
 	public static final Item straw_bed = new ItemStrawBed().setUnlocalizedName("straw_bed").setCreativeTab(TabFRT);
-	public static final Item gift_box = new ItemGiftBox();
+	//public static final Item gift_box = new ItemGiftBox();
+	//public static final Item trading_card = new ItemTradingCard();
 
 	public static final Item hallucination_goggles = new FRTArmor(ArmorMaterial.LEATHER, EntityEquipmentSlot.HEAD).setUnlocalizedName("hallucination_goggles").setCreativeTab(TabFRT);
 
@@ -290,7 +291,9 @@ public final class FRT {
 			logError("Block registry was null, could not register: "+block.getUnlocalizedName());
 			return;
 		}
-		blockRegistry.register(block.setRegistryName(block.getUnlocalizedName().substring(5)));
+		if(block.getRegistryName() == null)
+			block.setRegistryName(block.getUnlocalizedName().substring(5));
+		blockRegistry.register(block);
 	}
 
 	private static IForgeRegistry<Item> itemRegistry = null;
@@ -302,7 +305,9 @@ public final class FRT {
 			logError("Item registry was null, could not register: "+item.getUnlocalizedName());
 			return;
 		}
-		itemRegistry.register(item.setRegistryName(item.getUnlocalizedName().substring(5)));
+		if(item.getRegistryName() == null)
+			item.setRegistryName(item.getUnlocalizedName().substring(5));
+		itemRegistry.register(item);
 	}
 
 	public static void registerItemForBlock(Block block) {
@@ -322,7 +327,9 @@ public final class FRT {
 			logError("Item registry was null, could not register: "+itemBlock.getUnlocalizedName());
 			return;
 		}
-		itemRegistry.register(itemBlock.setRegistryName(itemBlock.getBlock().getUnlocalizedName().substring(5)));
+		if(itemBlock.getRegistryName() == null)
+			itemBlock.setRegistryName(itemBlock.getUnlocalizedName().substring(5));
+		itemRegistry.register(itemBlock);
 	}
 
 	@SubscribeEvent
@@ -354,7 +361,8 @@ public final class FRT {
 		registerItem(handheld_insane_dispenser);
 		registerItem(raw_meat_pie);
 		registerItem(meat_pie);
-		registerItem(gift_box);
+		//registerItem(gift_box);
+		//registerItem(trading_card);
 		registerItemBlock(new ItemWaxedPlanks(waxed_planks));
 		//Blocks
 		registerItemForBlock(ender_bookshelf);
@@ -506,7 +514,7 @@ public final class FRT {
 		rmm(raw_meat_pie);
 		rmm(shimmering_stew);
 		rmm(straw_bed);
-		rmm(gift_box);
+		//rmm(gift_box);
 		if (!isItemDisabled(waxed_planks)) {
 			ModelBakery.registerItemVariants(Item.getItemFromBlock(waxed_planks),
 					new ModelResourceLocation(MODID + ":oak_waxed_planks", "inventory"),
