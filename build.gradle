@@ -30,7 +30,7 @@ allprojects {
 
 version = "7.3.0"
 group= "the_fireplace.frt"
-archivesBaseName = "FiresRandomThings-1.12.1"
+archivesBaseName = "FiresRandomThings-1.12.2"
 
 minecraft {
     version = "1.12.1-14.22.0.2456"
@@ -112,6 +112,7 @@ curseforge {
     id = '244507'
     changelog = file('changelog.txt')
     releaseType = 'release'
+    addGameVersion '1.12.2'
     addGameVersion '1.12.1'
     addGameVersion '1.12'
 	addGameVersion 'Java 8'
@@ -138,7 +139,7 @@ modsIO {
     project{
 		artifact = new File(jar.destinationDir, archivesBaseName+"-"+version+".jar")
 		modid = "1205"
-		minecraft = "1.12.1"
+		minecraft = "1.12.2"
 		try{changelog = file('changelog.txt').text}catch(Exception e){changelog=""}
 		tag = ""
 		current = true
