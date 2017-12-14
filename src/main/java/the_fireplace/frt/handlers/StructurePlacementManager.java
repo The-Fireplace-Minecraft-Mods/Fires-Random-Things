@@ -92,6 +92,8 @@ public final class StructurePlacementManager extends WorldSavedData {
 	 */
 	public static void queueGeneration(World world, ChunkPos chunk, String strid){
 		if(!world.isRemote) {
+			if(instances.get(world) == null)
+				loadWorldData(world);
 			instances.get(world).worldgenQueue.put(chunk, strid);
 			instances.get(world).markDirty();
 		}
@@ -117,16 +119,21 @@ public final class StructurePlacementManager extends WorldSavedData {
 
 	@SubscribeEvent
 	public static void worldLoad(WorldEvent.Load event){
-		if(!event.getWorld().isRemote){
-			StructurePlacementManager manager = (StructurePlacementManager) event.getWorld().loadData(StructurePlacementManager.class, "frt:structure_management");
-			if(manager == null){
-				FRT.logDebug("Creating a new Structure Placement Manager for "+event.getWorld().provider.getDimensionType().getName());
-				manager = new StructurePlacementManager("frt:structure_management");
-			}
-			instances.put(event.getWorld(), manager);
-			event.getWorld().setData("frt:structure_management", instances.get(event.getWorld()));
-			FRT.logTrace("Structure Placement Manager for "+event.getWorld().provider.getDimensionType().getName()+" is set to "+manager.toString());
+		if(!event.getWorld().isRemote)
+			loadWorldData(event.getWorld());
+	}
+	
+	private static void loadWorldData(World world){
+		if(world.isRemote)
+			return;
+		StructurePlacementManager manager = (StructurePlacementManager) world.loadData(StructurePlacementManager.class, "frt:structure_management");
+		if(manager == null){
+			FRT.logDebug("Creating a new Structure Placement Manager for "+world.provider.getDimensionType().getName());
+			manager = new StructurePlacementManager("frt:structure_management");
 		}
+		instances.put(world, manager);
+		world.setData("frt:structure_management", instances.get(world));
+		FRT.logTrace("Structure Placement Manager for "+world.provider.getDimensionType().getName()+" is set to "+manager.toString());
 	}
 
 	private static ChunkPos getSurroundingChunkFromList(int chunkX, int chunkZ, Set list) {
