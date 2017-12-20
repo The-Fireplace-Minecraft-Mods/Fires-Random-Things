@@ -119,7 +119,7 @@ curseforge {
     mainArtifact(jar) {
         displayName = jar.archiveName.replace(".jar", "")
         relations{
-			optionalLibrary 'just-enough-items-jei'
+			optionalLibrary 'jei'
 			optionalLibrary 'chisel'
 		}
     }
