@@ -5,7 +5,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import mcp.MethodsReturnNonnullByDefault;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
@@ -17,7 +16,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IRecipeFactory;
 import net.minecraftforge.common.crafting.JsonContext;
-import the_fireplace.frt.FRT;
 import the_fireplace.frt.items.ItemMeatPie;
 
 @MethodsReturnNonnullByDefault

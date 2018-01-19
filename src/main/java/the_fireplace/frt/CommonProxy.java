@@ -4,9 +4,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import the_fireplace.frt.tileentity.TileEntityForceFieldCore;
 import the_fireplace.frt.tileentity.TileEntityIRFurnace;
 import the_fireplace.frt.tileentity.TileEntityItemExploder;
-import the_fireplace.frt.tileentity.TileEntityForceFieldCore;
 
 /**
  * @author The_Fireplace

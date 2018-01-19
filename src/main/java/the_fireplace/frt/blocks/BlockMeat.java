@@ -21,7 +21,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import the_fireplace.frt.FRT;
 
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
 
 /**

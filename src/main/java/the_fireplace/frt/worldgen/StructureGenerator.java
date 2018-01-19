@@ -55,12 +55,13 @@ public abstract class StructureGenerator {
 			return;
 		}
 
-		BlockPos basePos = templates.get(id).getBase(random, chunkX, chunkZ, world);
+		IStructure structure = templates.get(id);
+		BlockPos basePos = structure.getBase(random, chunkX, chunkZ, world);
 
-		if (isWorldAcceptable(world) && templates.get(id).canSpawn(basePos, random, chunkX, chunkZ, world, chunkProvider)) {
+		if (isWorldAcceptable(world) && structure.canSpawn(basePos, random, chunkX, chunkZ, world, chunkProvider)) {
 			Rotation rotation = Rotation.values()[random.nextInt(Rotation.values().length)];
-			Template template = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), templates.get(id).getStructure());
-			PlacementSettings settings = new PlacementSettings().setIntegrity(templates.get(id).getIntegrity()).setRotation(rotation);
+			Template template = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), structure.getStructure());
+			PlacementSettings settings = new PlacementSettings().setIntegrity(structure.getIntegrity()).setRotation(rotation);
 
 			FRT.logDebug("Spawning "+id+" at chunk "+chunkX+", "+chunkZ);
 			template.addBlocksToWorld(world, basePos, settings);
@@ -76,16 +77,16 @@ public abstract class StructureGenerator {
 						if (checkState.getBlock() == Blocks.CHEST) {
 							TileEntityChest chestTE = (TileEntityChest) world.getTileEntity(checkPos);
 							if (chestTE != null) {
-								ResourceLocation loot = templates.get(id).getLootTable();
+								ResourceLocation loot = structure.getLootTable();
 								if (loot != null)
 									chestTE.setLootTable(loot, random.nextLong());
 								if (!addedBook && ConfigValues.GENSTORIES) {
-									templates.get(id).addBooks(chestTE, random);
+									structure.addBooks(chestTE, random);
 									addedBook = true;
 								}
 							}
 						}
-						templates.get(id).doCustomDestruction(world, checkState, checkPos, random);
+						structure.doCustomDestruction(world, checkState, checkPos, random);
 					}
 		}
 	}

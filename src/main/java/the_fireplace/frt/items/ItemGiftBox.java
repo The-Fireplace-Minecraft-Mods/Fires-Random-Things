@@ -1,17 +1,12 @@
 package the_fireplace.frt.items;
 
 import com.google.common.collect.Maps;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import the_fireplace.frt.FRT;
 import the_fireplace.frt.tools.MiscTools;
 
 import java.util.HashMap;

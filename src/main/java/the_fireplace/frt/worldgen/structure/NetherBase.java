@@ -1,7 +1,6 @@
 package the_fireplace.frt.worldgen.structure;
 
 import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -17,7 +16,6 @@ import net.minecraft.world.chunk.IChunkProvider;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.handlers.StructurePlacementManager;
 import the_fireplace.frt.tools.MiscTools;
-import the_fireplace.frt.worldgen.StructureGenerator;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Random;
