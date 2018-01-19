@@ -84,7 +84,7 @@
           "type": "item",
           "name": "minecraft:magma",
           "weight": 1
-        },
+        }/*,
         {
           "type": "item",
           "name": "frt:gift_box",
@@ -108,7 +108,7 @@
           ],
           "weight": 20,
           "quality": 10
-        }
+        }*/
       ]
     }
   ]

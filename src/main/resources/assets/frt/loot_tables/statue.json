@@ -74,7 +74,7 @@
             }
           ],
           "weight": 100
-        },
+        }/*,
         {
           "type": "item",
           "name": "frt:gift_box",
@@ -86,7 +86,7 @@
           ],
           "weight": 10,
           "quality": 30
-        }
+        }*/
       ]
     }
   ]

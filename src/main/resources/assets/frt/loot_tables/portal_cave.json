@@ -82,7 +82,7 @@
           "type": "item",
           "name": "minecraft:iron_pickaxe",
           "weight": 1
-        },
+        }/*,
         {
           "type": "item",
           "name": "frt:gift_box",
@@ -94,7 +94,7 @@
           ],
           "weight": 10,
           "quality": 30
-        }
+        }*/
       ]
     }
   ]

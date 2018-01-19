@@ -85,7 +85,7 @@
           "name": "minecraft:emerald",
           "weight": 1,
           "quality": 10
-        },
+        }/*,
         {
           "type": "item",
           "name": "frt:gift_box",
@@ -97,7 +97,7 @@
           ],
           "weight": 10,
           "quality": 30
-        }
+        }*/
       ]
     }
   ]
