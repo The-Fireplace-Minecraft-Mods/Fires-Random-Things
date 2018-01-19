@@ -28,12 +28,12 @@ allprojects {
     targetCompatibility = 1.8
 }
 
-version = "7.3.1"
+version = "7.3.2"
 group= "the_fireplace.frt"
 archivesBaseName = "FiresRandomThings-1.12.2"
 
 minecraft {
-    version = "1.12.1-14.22.0.2456"
+    version = "1.12.2-14.23.1.2555"
     runDir = "run"
     replace '${version}', project.version
     mappings = "snapshot_20170815"
@@ -42,10 +42,10 @@ minecraft {
 }
 
 dependencies {
-	deobfCompile group: "mezz.jei", name: "jei_1.12", version: "4.7.1.75"
-	deobfProvided group: "team.chisel", name: "Chisel", version: "MC1.12-0.0.13.15"
+	deobfCompile group: "mezz.jei", name: "jei_1.12.2", version: "4.8.5.146"
+	deobfProvided group: "team.chisel", name: "Chisel", version: "MC1.12-0.1.1.26"
 
-	compile "lib:JustEnoughResources-1.12-0.8.1.14-deobf"
+	compile "lib:JustEnoughResources-1.12.2-0.8.5.27-deobf"
 }
 
 
