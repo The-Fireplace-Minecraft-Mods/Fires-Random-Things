@@ -1,7 +1,6 @@
 package the_fireplace.frt.worldgen.structure;
 
 import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -50,7 +49,8 @@ public class PortalCave implements IStructure {
 
 	@Override
 	public boolean canSpawn(BlockPos basePos, Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkProvider) {
-		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 3000 : 1500) == 0 && world.getBlockState(basePos).getBlock() == Blocks.STONE && world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
+		BlockPos maxPos = basePos.add(8, 12, 8);//Not perfect, but it'll work
+		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 3000 : 1500) == 0 && world.getBlockState(basePos).getBlock() == Blocks.STONE && world.getBlockState(maxPos).getBlock() == Blocks.STONE && world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
 	}
 
 	@Override

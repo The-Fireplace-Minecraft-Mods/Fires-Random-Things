@@ -1,20 +1,16 @@
 package the_fireplace.frt.worldgen.structure;
 
 import mcp.MethodsReturnNonnullByDefault;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.fluids.BlockFluidBase;
+import net.minecraftforge.fluids.IFluidBlock;
 import the_fireplace.frt.FRT;
-import the_fireplace.frt.tools.MiscTools;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
@@ -29,7 +25,7 @@ public class BosSign implements IStructure {
 
 	@Override
 	public boolean canSpawn(BlockPos basePos, Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkProvider) {
-		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 4000 : 2000) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
+		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 4000 : 2000) == 0 && !(world.getBlockState(basePos).getBlock() instanceof IFluidBlock) && world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
 	}
 
 	@Override
