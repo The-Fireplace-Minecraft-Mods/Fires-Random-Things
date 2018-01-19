@@ -58,7 +58,7 @@ public class PrewarOutpost implements IStructure {
 			}
 		}
 
-		return !forbiddenBiomes.contains(world.getBiome(basePos)) && random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 3000 : 300) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD) && hasCorrectVariations;
+		return !forbiddenBiomes.contains(world.getBiome(basePos)) && random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 6000 : 1200) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD) && hasCorrectVariations;
 	}
 
 	@Override

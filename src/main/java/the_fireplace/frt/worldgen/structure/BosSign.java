@@ -29,7 +29,7 @@ public class BosSign implements IStructure {
 
 	@Override
 	public boolean canSpawn(BlockPos basePos, Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkProvider) {
-		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 800 : 400) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
+		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 4000 : 2000) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
 	}
 
 	@Override

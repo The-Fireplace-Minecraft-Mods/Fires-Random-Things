@@ -54,7 +54,7 @@ public class WarzoneOutpost implements IStructure {
 				}
 			}
 
-			return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 800 : 80) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD) && hasCorrectVariations;
+			return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 8000 : 800) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD) && hasCorrectVariations;
 		}else
 			return world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
 	}

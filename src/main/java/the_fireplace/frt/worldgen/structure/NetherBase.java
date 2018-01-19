@@ -44,7 +44,7 @@ public class NetherBase implements IStructure {
 
 	@Override
 	public boolean canSpawn(BlockPos basePos, Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkProvider) {
-		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 1000 : 100) == 0 && (world.getBlockState(basePos).isFullBlock()) && world.provider.getDimensionType().equals(DimensionType.NETHER);
+		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 2000 : 200) == 0 && (world.getBlockState(basePos).isFullBlock()) && world.provider.getDimensionType().equals(DimensionType.NETHER);
 	}
 
 	@Override

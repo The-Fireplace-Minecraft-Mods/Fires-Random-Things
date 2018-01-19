@@ -43,7 +43,7 @@ public class NoobHouse implements IStructure {
 
 	@Override
 	public boolean canSpawn(BlockPos basePos, Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkProvider) {
-		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 2000 : 1000) == 0 && (world.getBlockState(basePos).getMaterial() == Material.GROUND || world.getBlockState(basePos).getMaterial() == Material.GRASS) && world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
+		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 4000 : 2000) == 0 && (world.getBlockState(basePos).getMaterial() == Material.GROUND || world.getBlockState(basePos).getMaterial() == Material.GRASS) && world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
 	}
 
 	@Override

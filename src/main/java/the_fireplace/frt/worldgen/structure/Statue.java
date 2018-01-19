@@ -45,7 +45,7 @@ public class Statue implements IStructure {
 
 	@Override
 	public boolean canSpawn(BlockPos basePos, Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkProvider) {
-		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 32000 : 6000) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
+		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 48000 : 12000) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
 	}
 
 	@Override
