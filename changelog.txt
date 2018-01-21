@@ -1,3 +1,3 @@
 Made FRT structures rarer
 Improved the locations FRT structures can generate at
-Optimizations
+Major performance enhancements
