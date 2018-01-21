@@ -88,9 +88,4 @@ public final class CommonEvents {
 		if (FRTFuelHandler.getBurnTime(event.getItemStack()) != 0)
 			event.setBurnTime(FRTFuelHandler.getBurnTime(event.getItemStack()));
 	}
-
-	@SubscribeEvent
-	public static void rightClick(PlayerInteractEvent.RightClickEmpty event) {
-		System.out.println(event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getTagCompound());
-	}
 }

@@ -29,7 +29,6 @@ public class ItemMeatPie extends ItemFood {
 	protected void onFoodEaten(ItemStack stack, World worldIn, EntityPlayer player) {
 		if (!worldIn.isRemote && stack.hasTagCompound() && !isMeatRaw) {
 			NBTTagList effects = stack.getTagCompound().getTagList("Effects", 10);
-			System.out.println(effects);
 			List<PotionEffect> potionEffects = Lists.newArrayList();
 			for (NBTBase element : effects) {
 				if (element instanceof NBTTagCompound) {

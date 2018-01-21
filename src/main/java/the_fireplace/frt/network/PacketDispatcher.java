@@ -22,7 +22,7 @@ public class PacketDispatcher {
 		PacketDispatcher.registerMessage(UpdatePotionMessage.Handler.class, UpdatePotionMessage.class, Side.CLIENT);
 	}
 
-	private static final void registerMessage(Class handlerClass, Class messageClass, Side side) {
+	private static void registerMessage(Class handlerClass, Class messageClass, Side side) {
 		PacketDispatcher.dispatcher.registerMessage(handlerClass, messageClass, packetId++, side);
 	}
 

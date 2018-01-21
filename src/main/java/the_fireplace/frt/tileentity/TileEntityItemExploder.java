@@ -338,12 +338,17 @@ public class TileEntityItemExploder extends TileEntity implements ISidedInventor
 
 	@Override
 	public int[] getSlotsForFace(EnumFacing side) {
-		if (side == EnumFacing.EAST || side == EnumFacing.WEST || side == EnumFacing.NORTH || side == EnumFacing.SOUTH || side == EnumFacing.UP) {
-			return new int[]{0, 1, 2, 3, 4, 10, 11};
-		} else if (side == EnumFacing.DOWN) {
-			return new int[]{5, 6, 7, 8, 9};
-		} else {
-			throw new IllegalArgumentException("Invalid side: " + side);
+		switch (side) {
+			case EAST:
+			case WEST:
+			case NORTH:
+			case SOUTH:
+			case UP:
+				return new int[]{0, 1, 2, 3, 4, 10, 11};
+			case DOWN:
+				return new int[]{5, 6, 7, 8, 9};
+			default:
+				throw new IllegalArgumentException("Invalid side: " + side);
 		}
 	}
 
@@ -374,11 +379,7 @@ public class TileEntityItemExploder extends TileEntity implements ISidedInventor
 
 	@Override
 	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
-		if (!stack.isEmpty())
-			if (index >= 5 && index < 10) {
-				return true;
-			}
-		return false;
+		return !stack.isEmpty() && index >= 5 && index < 10;
 	}
 
 	IItemHandler handlerTop = new SidedInvWrapper(this, EnumFacing.UP);

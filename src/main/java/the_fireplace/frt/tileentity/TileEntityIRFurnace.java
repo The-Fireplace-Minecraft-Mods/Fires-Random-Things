@@ -211,10 +211,8 @@ public class TileEntityIRFurnace extends TileEntityLockable implements ITickable
 
 				if (itemstack1.isEmpty()) {
 					return true;
-				} else if (!itemstack1.isItemEqual(itemstack)) {
-					return false;
 				} else
-					return itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize() || itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize();
+					return itemstack1.isItemEqual(itemstack) && (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize() || itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize());
 			}
 		}
 	}
@@ -250,11 +248,7 @@ public class TileEntityIRFurnace extends TileEntityLockable implements ITickable
 
 	@Override
 	public boolean isUsableByPlayer(EntityPlayer player) {
-		if (this.world.getTileEntity(this.pos) != this) {
-			return false;
-		} else {
-			return player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
-		}
+		return this.world.getTileEntity(this.pos) == this && player.getDistanceSq((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D) <= 64.0D;
 	}
 
 	@Override
@@ -267,10 +261,7 @@ public class TileEntityIRFurnace extends TileEntityLockable implements ITickable
 
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		if (index == 2) {
-			return false;
-		} else
-			return index != 1 || isItemFuel(stack);
+		return index != 2 && (index != 1 || isItemFuel(stack));
 	}
 
 	@Override
@@ -292,9 +283,7 @@ public class TileEntityIRFurnace extends TileEntityLockable implements ITickable
 		if (direction == EnumFacing.DOWN && index == 1) {
 			Item item = stack.getItem();
 
-			if (item != Items.WATER_BUCKET && item != Items.BUCKET) {
-				return false;
-			}
+			return item == Items.WATER_BUCKET || item == Items.BUCKET;
 		}
 
 		return true;

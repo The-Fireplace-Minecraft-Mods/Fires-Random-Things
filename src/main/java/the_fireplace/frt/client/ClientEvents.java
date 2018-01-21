@@ -37,7 +37,7 @@ import static the_fireplace.frt.FRT.proxy;
 public final class ClientEvents {
 	private static Random rand = new Random();
 	private static final ResourceLocation SPLASH_TEXTS = new ResourceLocation("texts/splashes.txt");
-	public static int splashOffsetCount = 0;
+	public static int splashOffsetCount;
 	public static final int finalSplashOffsetCount;
 	private static final List<String> mySplashes = Lists.newArrayList(
 			"Give me the " + proxy.translateToLocal("item.hoeGold.name") + "!",
