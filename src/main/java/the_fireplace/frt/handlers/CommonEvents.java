@@ -43,14 +43,15 @@ public final class CommonEvents {
 	@SubscribeEvent
 	public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
 		if(event.getEntityLiving() instanceof EntityPlayer) {
-			if (event.getEntityLiving().getEntityWorld().isRemote && !(event.getEntityLiving().isPotionActive(FRT.hallucination))) {
+			boolean remote = event.getEntityLiving().getEntityWorld().isRemote;
+			boolean potionActive = event.getEntityLiving().isPotionActive(FRT.hallucination);
+			if (remote && !potionActive) {
 				if (FRT.instance.clientCooldownTicks == 0) {
 					FRT.proxy.tryRemoveShader();
 					FRT.instance.clientCooldownTicks = -1;
 				}else if(FRT.instance.clientCooldownTicks > 0)
 					FRT.instance.clientCooldownTicks--;
-			}
-			if (!event.getEntityLiving().world.isRemote && event.getEntityLiving().isPotionActive(FRT.hallucination))
+			} else if (!remote && potionActive)
 				FRT.hallucination.performEffect(event.getEntityLiving(), 0);
 		}
 	}

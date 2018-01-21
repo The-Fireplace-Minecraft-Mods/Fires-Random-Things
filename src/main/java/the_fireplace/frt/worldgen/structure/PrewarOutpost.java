@@ -47,22 +47,11 @@ public class PrewarOutpost implements IStructure {
 
 	@Override
 	public boolean canSpawn(BlockPos basePos, Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkProvider) {
-		BlockPos maxPos = basePos.add(new BlockPos(18, 0, 22));//not perfect, but it'll do.
+		BlockPos maxPos = basePos.add(18, 0, 22);//not perfect, but it'll do.
 		if(!(world.getBlockState(basePos).getBlock() instanceof BlockGrass || world.getBlockState(basePos).getBlock() instanceof BlockDirt) || !(world.getBlockState(maxPos).getBlock() instanceof BlockGrass || world.getBlockState(maxPos).getBlock() instanceof BlockDirt))
 			return false;
-		boolean hasCorrectVariations = false;
-		float biomeHeight = world.getBiome(basePos).getBaseHeight();
 
-		for(int x=-1;x<2;x++){
-			for(int z=-1;z<2;z++){
-				if(world.getBiome(new BlockPos(basePos.getX()+40*x, basePos.getY(), basePos.getZ()+40*z)).getBaseHeight() - biomeHeight > .04){
-					hasCorrectVariations = true;
-					break;
-				}
-			}
-		}
-
-		return !forbiddenBiomes.contains(world.getBiome(basePos)) && random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 6000 : 600) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD) && hasCorrectVariations;
+		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 6000 : 600) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD) && !forbiddenBiomes.contains(world.getBiome(basePos));
 	}
 
 	@Override
