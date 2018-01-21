@@ -44,11 +44,13 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void tryRemoveShader() {
-		try {
+		if (OpenGlHelper.shadersSupported)
 			Minecraft.getMinecraft().entityRenderer.stopUseShader();
+		/*try {
+
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 	private static final ResourceLocation[] shaderResourceLocations = new ResourceLocation[]{new ResourceLocation("shaders/post/notch.json"), new ResourceLocation("shaders/post/fxaa.json"), new ResourceLocation("shaders/post/art.json"), new ResourceLocation("shaders/post/bumpy.json"), new ResourceLocation("shaders/post/blobs2.json"), new ResourceLocation("shaders/post/pencil.json"), new ResourceLocation("shaders/post/color_convolve.json"), new ResourceLocation("shaders/post/deconverge.json"), new ResourceLocation("shaders/post/flip.json"), new ResourceLocation("shaders/post/invert.json"), new ResourceLocation("shaders/post/ntsc.json"), new ResourceLocation("shaders/post/outline.json"), new ResourceLocation("shaders/post/phosphor.json"), new ResourceLocation("shaders/post/scan_pincushion.json"), new ResourceLocation("shaders/post/sobel.json"), new ResourceLocation("shaders/post/bits.json"), new ResourceLocation("shaders/post/desaturate.json"), new ResourceLocation("shaders/post/green.json"), new ResourceLocation("shaders/post/blur.json"), new ResourceLocation("shaders/post/wobble.json"), new ResourceLocation("shaders/post/blobs.json"), new ResourceLocation("shaders/post/antialias.json"), new ResourceLocation("shaders/post/creeper.json"), new ResourceLocation("shaders/post/spider.json")};
@@ -59,9 +61,8 @@ public class ClientProxy extends CommonProxy {
 			EntityRenderer renderer = Minecraft.getMinecraft().entityRenderer;
 
 			if (Minecraft.getMinecraft().getRenderViewEntity() instanceof EntityPlayer) {
-				if (renderer.getShaderGroup() != null) {
+				if (renderer.getShaderGroup() != null)
 					renderer.getShaderGroup().deleteShaderGroup();
-				}
 
 				Random rand = new Random();
 				int index = rand.nextInt(shaderResourceLocations.length);

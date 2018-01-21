@@ -15,6 +15,8 @@ import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import the_fireplace.frt.FRT;
 import the_fireplace.frt.blocks.internal.BlockStrawBed;
 import the_fireplace.frt.network.PacketDispatcher;
@@ -40,37 +42,36 @@ public final class CommonEvents {
 
 	@SubscribeEvent
 	public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
-		if (!(event.getEntityLiving() instanceof EntityPlayer) || event.getEntityLiving().world.isRemote || !(event.getEntityLiving().isPotionActive(FRT.hallucination))) {
-			if (event.getEntityLiving() instanceof EntityPlayer && !(event.getEntityLiving().isPotionActive(FRT.hallucination))) {
-				if (FRT.instance.clientCooldownTicks <= 0)
+		if(event.getEntityLiving() instanceof EntityPlayer) {
+			if (event.getEntityLiving().getEntityWorld().isRemote && !(event.getEntityLiving().isPotionActive(FRT.hallucination))) {
+				if (FRT.instance.clientCooldownTicks == 0) {
 					FRT.proxy.tryRemoveShader();
-				else
+					FRT.instance.clientCooldownTicks = -1;
+				}else if(FRT.instance.clientCooldownTicks > 0)
 					FRT.instance.clientCooldownTicks--;
 			}
-		} else {
-			FRT.hallucination.performEffect(event.getEntityLiving(), 0);
-		}
-		if(!event.getEntityLiving().getEntityWorld().isRemote){
-			if(!bedLocations.isEmpty()){
-				for(EntityPlayer player:bedLocations.keySet()){
-					if(!player.isPlayerSleeping()) {
-						net.minecraftforge.fml.relauncher.ReflectionHelper.setPrivateValue(EntityPlayer.class, player, bedLocations.get(player), "spawnChunk", "field_71077_c");
-						bedLocations.remove(player);
-					}
-				}
-			}
+			if (!event.getEntityLiving().world.isRemote && event.getEntityLiving().isPotionActive(FRT.hallucination))
+				FRT.hallucination.performEffect(event.getEntityLiving(), 0);
 		}
 	}
 
 	@SubscribeEvent
+	public static void tickEvent(TickEvent.WorldTickEvent event){
+		if(!event.world.isRemote && event.world.getTotalWorldTime() % 20 == 0 && !bedLocations.isEmpty())
+			for(EntityPlayer player:bedLocations.keySet()){
+				if(!player.isPlayerSleeping()) {
+					ReflectionHelper.setPrivateValue(EntityPlayer.class, player, bedLocations.get(player), "spawnChunk", "field_71077_c");
+					bedLocations.remove(player);
+				}
+			}
+	}
+
+	@SubscribeEvent
 	public static void itemUseFinish(LivingEntityUseItemEvent.Finish event) {
-		if (event.getEntityLiving().world.isRemote)
-			return;
-		if (event.getEntityLiving() instanceof EntityPlayer)
-			for (PotionEffect effect : PotionUtils.getEffectsFromStack(event.getItem())) {
+		if (!event.getEntityLiving().world.isRemote && event.getEntityLiving() instanceof EntityPlayer)
+			for (PotionEffect effect : PotionUtils.getEffectsFromStack(event.getItem()))
 				if (effect.getPotion() instanceof HallucinationPotion)
 					PacketDispatcher.sendTo(new UpdatePotionMessage(effect.getDuration()), (EntityPlayerMP) event.getEntityLiving());
-			}
 	}
 
 	@SubscribeEvent
