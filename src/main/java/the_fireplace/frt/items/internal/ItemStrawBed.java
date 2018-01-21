@@ -20,41 +20,32 @@ import the_fireplace.frt.FRT;
 @MethodsReturnNonnullByDefault
 public class ItemStrawBed extends Item {
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		if (worldIn.isRemote)
-		{
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (worldIn.isRemote) {
 			return EnumActionResult.SUCCESS;
-		}
-		else if (facing != EnumFacing.UP)
-		{
+		} else if (facing != EnumFacing.UP) {
 			return EnumActionResult.FAIL;
-		}
-		else
-		{
+		} else {
 			IBlockState iblockstate = worldIn.getBlockState(pos);
 			Block block = iblockstate.getBlock();
 			boolean flag = block.isReplaceable(worldIn, pos);
 
-			if (!flag)
-			{
+			if (!flag) {
 				pos = pos.up();
 			}
 
-			int i = MathHelper.floor((double)(player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+			int i = MathHelper.floor((double) (player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
 			EnumFacing enumfacing = EnumFacing.getHorizontal(i);
 			BlockPos blockpos = pos.offset(enumfacing);
 			ItemStack itemstack = player.getHeldItem(hand);
 
-			if (player.canPlayerEdit(pos, facing, itemstack) && player.canPlayerEdit(blockpos, facing, itemstack))
-			{
+			if (player.canPlayerEdit(pos, facing, itemstack) && player.canPlayerEdit(blockpos, facing, itemstack)) {
 				IBlockState iblockstate1 = worldIn.getBlockState(blockpos);
 				boolean flag1 = iblockstate1.getBlock().isReplaceable(worldIn, blockpos);
 				boolean flag2 = flag || worldIn.isAirBlock(pos);
 				boolean flag3 = flag1 || worldIn.isAirBlock(blockpos);
 
-				if (flag2 && flag3 && worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos.down(), EnumFacing.UP) && worldIn.getBlockState(blockpos.down()).isSideSolid(worldIn, pos.down(), EnumFacing.UP))
-				{
+				if (flag2 && flag3 && worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos.down(), EnumFacing.UP) && worldIn.getBlockState(blockpos.down()).isSideSolid(worldIn, pos.down(), EnumFacing.UP)) {
 					IBlockState iblockstate2 = FRT.straw_bed_block.getDefaultState().withProperty(BlockBed.OCCUPIED, Boolean.FALSE).withProperty(BlockBed.FACING, enumfacing).withProperty(BlockBed.PART, BlockBed.EnumPartType.FOOT);
 					worldIn.setBlockState(pos, iblockstate2, 10);
 					worldIn.setBlockState(blockpos, iblockstate2.withProperty(BlockBed.PART, BlockBed.EnumPartType.HEAD), 10);
@@ -64,14 +55,10 @@ public class ItemStrawBed extends Item {
 					worldIn.playSound(null, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
 					itemstack.shrink(1);
 					return EnumActionResult.SUCCESS;
-				}
-				else
-				{
+				} else {
 					return EnumActionResult.FAIL;
 				}
-			}
-			else
-			{
+			} else {
 				return EnumActionResult.FAIL;
 			}
 		}

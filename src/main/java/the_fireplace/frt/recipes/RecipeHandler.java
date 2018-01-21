@@ -143,7 +143,7 @@ public class RecipeHandler {
 		ItemExploderRegistry.registerExploderRecipe(goldenAppleStack, goldIngotStack, 8);
 		ItemExploderRegistry.registerExploderRecipe(glisteringMelonStack, goldNuggetStack, 8);
 		ItemExploderRegistry.registerExploderRecipe(goldenCarrotStack, goldNuggetStack, 8);
-		for(int i=0;i<16;i++)
+		for (int i = 0; i < 16; i++)
 			ItemExploderRegistry.registerExploderRecipe(new ItemStack(Blocks.CONCRETE, 1, i), new ItemStack(Blocks.CONCRETE_POWDER, 1, i));
 		addSmelting(new ItemStack(FRT.raw_meat_pie), new ItemStack(FRT.meat_pie), 5.0f);
 	}

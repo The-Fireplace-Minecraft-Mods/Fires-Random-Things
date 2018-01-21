@@ -31,14 +31,14 @@ public class ItemMeatPie extends ItemFood {
 			NBTTagList effects = stack.getTagCompound().getTagList("Effects", 10);
 			System.out.println(effects);
 			List<PotionEffect> potionEffects = Lists.newArrayList();
-			for(NBTBase element : effects){
-				if(element instanceof NBTTagCompound) {
-					ItemStack potion = new ItemStack((NBTTagCompound)element);
+			for (NBTBase element : effects) {
+				if (element instanceof NBTTagCompound) {
+					ItemStack potion = new ItemStack((NBTTagCompound) element);
 					potionEffects.addAll(PotionUtils.getEffectsFromStack(potion));
 				}
 			}
-			for(PotionEffect e:potionEffects){
-				player.addPotionEffect(new PotionEffect(e.getPotion(), e.getDuration()/4, e.getAmplifier(), e.getIsAmbient(), e.doesShowParticles()));
+			for (PotionEffect e : potionEffects) {
+				player.addPotionEffect(new PotionEffect(e.getPotion(), e.getDuration() / 4, e.getAmplifier(), e.getIsAmbient(), e.doesShowParticles()));
 			}
 		}
 		super.onFoodEaten(stack, worldIn, player);

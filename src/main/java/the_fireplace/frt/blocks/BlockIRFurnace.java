@@ -25,109 +25,91 @@ import java.util.Random;
 
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
-public class BlockIRFurnace extends BlockFurnace
-{
-    private final boolean isBurning;
-    private static boolean keepInventory;
+public class BlockIRFurnace extends BlockFurnace {
+	private final boolean isBurning;
+	private static boolean keepInventory;
 
-    public BlockIRFurnace(boolean isBurning)
-    {
-        super(isBurning);
-        this.isBurning = isBurning;
-        setHardness(1.5F);
-        setResistance(10.0F);
-        setHarvestLevel("pickaxe", 0);
-    }
+	public BlockIRFurnace(boolean isBurning) {
+		super(isBurning);
+		this.isBurning = isBurning;
+		setHardness(1.5F);
+		setResistance(10.0F);
+		setHarvestLevel("pickaxe", 0);
+	}
 
-    @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-        return Item.getItemFromBlock(FRT.ir_furnace);
-    }
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		return Item.getItemFromBlock(FRT.ir_furnace);
+	}
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand){}
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+	}
 
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        if (worldIn.isRemote)
-        {
-            return true;
-        }
-        else
-        {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (worldIn.isRemote) {
+			return true;
+		} else {
+			TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityIRFurnace)
-            {
-                FMLNetworkHandler.openGui(playerIn, FRT.MODID, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
-                playerIn.addStat(StatList.FURNACE_INTERACTION);
-            }
+			if (tileentity instanceof TileEntityIRFurnace) {
+				FMLNetworkHandler.openGui(playerIn, FRT.MODID, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
+				playerIn.addStat(StatList.FURNACE_INTERACTION);
+			}
 
-            return true;
-        }
-    }
+			return true;
+		}
+	}
 
-    public static void setState(boolean active, World worldIn, BlockPos pos)
-    {
-        IBlockState iblockstate = worldIn.getBlockState(pos);
-        TileEntity tileentity = worldIn.getTileEntity(pos);
-        keepInventory = true;
+	public static void setState(boolean active, World worldIn, BlockPos pos) {
+		IBlockState iblockstate = worldIn.getBlockState(pos);
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+		keepInventory = true;
 
-        if (active)
-        {
-            worldIn.setBlockState(pos, FRT.lit_ir_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, FRT.lit_ir_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-        }
-        else
-        {
-            worldIn.setBlockState(pos, FRT.ir_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-            worldIn.setBlockState(pos, FRT.ir_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-        }
+		if (active) {
+			worldIn.setBlockState(pos, FRT.lit_ir_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+			worldIn.setBlockState(pos, FRT.lit_ir_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+		} else {
+			worldIn.setBlockState(pos, FRT.ir_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+			worldIn.setBlockState(pos, FRT.ir_furnace.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+		}
 
-        keepInventory = false;
+		keepInventory = false;
 
-        if (tileentity != null)
-        {
-            tileentity.validate();
-            worldIn.setTileEntity(pos, tileentity);
-        }
-    }
+		if (tileentity != null) {
+			tileentity.validate();
+			worldIn.setTileEntity(pos, tileentity);
+		}
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
-        return new TileEntityIRFurnace();
-    }
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta) {
+		return new TileEntityIRFurnace();
+	}
 
-    @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-    {
-        worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
-    }
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()), 2);
+	}
 
-    @Override
-    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-    {
-        if (!keepInventory)
-        {
-            TileEntity tileentity = worldIn.getTileEntity(pos);
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		if (!keepInventory) {
+			TileEntity tileentity = worldIn.getTileEntity(pos);
 
-            if (tileentity instanceof TileEntityIRFurnace)
-            {
-                InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityIRFurnace)tileentity);
-                worldIn.updateComparatorOutputLevel(pos, this);
-            }
-        }
+			if (tileentity instanceof TileEntityIRFurnace) {
+				InventoryHelper.dropInventoryItems(worldIn, pos, (TileEntityIRFurnace) tileentity);
+				worldIn.updateComparatorOutputLevel(pos, this);
+			}
+		}
 
-        super.breakBlock(worldIn, pos, state);
-    }
+		super.breakBlock(worldIn, pos, state);
+	}
 
-    @Override
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-    {
-        return new ItemStack(FRT.ir_furnace);
-    }
+	@Override
+	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
+		return new ItemStack(FRT.ir_furnace);
+	}
 }

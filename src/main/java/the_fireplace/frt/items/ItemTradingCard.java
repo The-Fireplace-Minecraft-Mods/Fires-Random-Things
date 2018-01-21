@@ -14,7 +14,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 @ParametersAreNonnullByDefault
 public class ItemTradingCard extends Item {
 
-	public ItemTradingCard(){
+	public ItemTradingCard() {
 		setHasSubtypes(true);
 		setCreativeTab(FRT.TabFRT);
 		setUnlocalizedName("trading_card");
@@ -22,8 +22,8 @@ public class ItemTradingCard extends Item {
 	}
 
 	@Override
-	public EnumRarity getRarity(ItemStack stack){
-		switch(stack.getMetadata()){
+	public EnumRarity getRarity(ItemStack stack) {
+		switch (stack.getMetadata()) {
 			case 1:
 				return EnumRarity.UNCOMMON;
 			case 2:
@@ -36,10 +36,8 @@ public class ItemTradingCard extends Item {
 	}
 
 	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
-	{
-		if (this.isInCreativeTab(tab))
-		{
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
+		if (this.isInCreativeTab(tab)) {
 			items.add(new ItemStack(this));
 			items.add(new ItemStack(this, 1, 1));
 			items.add(new ItemStack(this, 1, 2));

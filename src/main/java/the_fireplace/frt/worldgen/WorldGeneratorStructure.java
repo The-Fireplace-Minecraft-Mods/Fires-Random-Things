@@ -11,11 +11,11 @@ import java.util.Random;
 public class WorldGeneratorStructure implements IWorldGenerator {
 	private final String id;
 
-	public WorldGeneratorStructure(String id){
+	public WorldGeneratorStructure(String id) {
 		this.id = id;
 	}
 
-	public WorldGeneratorStructure register(IStructure structure){
+	public WorldGeneratorStructure register(IStructure structure) {
 		StructureGenerator.registerStructure(id, structure);
 		return this;
 	}

@@ -52,16 +52,16 @@ public final class ClientEvents {
 		splashOffsetCount += mySplashes.size();
 
 		//Using this system allows other mods using the system to know how many mod-added splashes there are. Not perfect, but Forge doesn't have a system in place, so this will have to do.
-		try{
+		try {
 			File file = new File(".splashes");
-			if(file.exists()) {
+			if (file.exists()) {
 				byte[] encoded = Files.readAllBytes(file.toPath());
 				try {
 					splashOffsetCount += Integer.parseInt(new String(encoded, "UTF-8"));
 				} catch (NumberFormatException e) {
 					e.printStackTrace();
 				}
-				if(!file.delete())
+				if (!file.delete())
 					FRT.logWarn("Splashes file could not be deleted");
 			}
 			file.createNewFile();
@@ -69,7 +69,7 @@ public final class ClientEvents {
 			FileWriter fw = new FileWriter(file);
 			fw.write(String.valueOf(splashOffsetCount));
 			fw.close();
-		}catch(IOException e){
+		} catch (IOException e) {
 			FRT.logWarn(e.getLocalizedMessage());
 		}
 		finalSplashOffsetCount = splashOffsetCount;
@@ -95,8 +95,8 @@ public final class ClientEvents {
 
 				int splashNum = rand.nextInt(defaultSplashes.size() + finalSplashOffsetCount);
 
-				if (splashNum >= defaultSplashes.size()+finalSplashOffsetCount-mySplashes.size())
-					ReflectionHelper.setPrivateValue(GuiMainMenu.class, (GuiMainMenu) event.getGui(), mySplashes.get(splashNum - (defaultSplashes.size()+finalSplashOffsetCount-mySplashes.size())), "splashText", "field_73975_c");
+				if (splashNum >= defaultSplashes.size() + finalSplashOffsetCount - mySplashes.size())
+					ReflectionHelper.setPrivateValue(GuiMainMenu.class, (GuiMainMenu) event.getGui(), mySplashes.get(splashNum - (defaultSplashes.size() + finalSplashOffsetCount - mySplashes.size())), "splashText", "field_73975_c");
 			} catch (IOException e) {
 				FRT.logWarn(e.getLocalizedMessage());
 			} finally {
@@ -106,7 +106,7 @@ public final class ClientEvents {
 	}
 
 	@SubscribeEvent
-	public static void modelRegister(ModelRegistryEvent event){
+	public static void modelRegister(ModelRegistryEvent event) {
 		FRT.registerItemRenders();
 	}
 
@@ -114,13 +114,13 @@ public final class ClientEvents {
 	public static void onTooltip(ItemTooltipEvent e) {
 		try {
 			if (!e.getItemStack().getItem().getCreativeTab().equals(FRT.TabFRT))
-				if(e.getItemStack().getItem() == Items.SKULL && e.getItemStack().getTagCompound().getString("Series") != null) {
+				if (e.getItemStack().getItem() == Items.SKULL && e.getItemStack().getTagCompound().getString("Series") != null) {
 					e.getToolTip().add(proxy.translateToLocal("series", e.getItemStack().getTagCompound().getString("Series")));
 					return;
 				}/*else if(e.getItemStack().getItem() == FRT.gift_box){
 					e.getToolTip().add(proxy.translateToLocal("series", e.getItemStack().getTagCompound().getString("GiftId")));
 					return;
-				}*/else
+				}*/ else
 					return;
 		} catch (NullPointerException ex) {
 			return;

@@ -30,7 +30,7 @@ public class Statue implements IStructure {
 
 	public static final ItemStack BOOK = new ItemStack(Items.WRITTEN_BOOK);
 
-	static{
+	static {
 		BOOK.setTagCompound(new NBTTagCompound());
 		BOOK.getTagCompound().setString("author", "The_Fireplace");
 		BOOK.getTagCompound().setString("title", "Continent");
@@ -75,11 +75,11 @@ public class Statue implements IStructure {
 
 	@Override
 	public void doCustomDestruction(World world, IBlockState state, BlockPos pos, Random random) {
-		if(state.getBlock() == Blocks.CONCRETE && random.nextInt(20) == 2){
+		if (state.getBlock() == Blocks.CONCRETE && random.nextInt(20) == 2) {
 			world.setBlockState(pos, Blocks.CONCRETE_POWDER.getDefaultState().withProperty(BlockConcretePowder.COLOR, state.getValue(BlockColored.COLOR)));
-		}else if(state.getBlock() == Blocks.STAINED_GLASS && random.nextInt(10) == 2){
+		} else if (state.getBlock() == Blocks.STAINED_GLASS && random.nextInt(10) == 2) {
 			world.setBlockState(pos, Blocks.SAND.getDefaultState());
-		}else if(state.getMaterial() == Material.WOOD && random.nextInt(15) == 2){
+		} else if (state.getMaterial() == Material.WOOD && random.nextInt(15) == 2) {
 			world.setBlockToAir(pos);
 		}
 	}

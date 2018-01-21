@@ -16,6 +16,7 @@ import java.util.HashMap;
  */
 public class ItemGiftBox extends Item {
 	public static final HashMap<String, NonNullList<ItemStack>> gifts = Maps.newHashMap();
+
 	public ItemGiftBox() {
 		setUnlocalizedName("gift_box");
 		setMaxStackSize(1);
@@ -91,7 +92,7 @@ public class ItemGiftBox extends Item {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		ItemStack itemStackIn = playerIn.getHeldItem(hand);
-		if(worldIn.isRemote)
+		if (worldIn.isRemote)
 			return new ActionResult(EnumActionResult.PASS, itemStackIn);
 		String giftId = itemStackIn.getTagCompound().getString("GiftId");
 
@@ -99,7 +100,7 @@ public class ItemGiftBox extends Item {
 			if (!playerIn.capabilities.isCreativeMode)
 				itemStackIn.shrink(1);
 			worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_FIREWORK_BLAST, SoundCategory.PLAYERS, 0.3F, 0.5F / (itemRand.nextFloat() * 0.4F + 0.8F));
-			for(ItemStack stack:gifts.get(giftId)) {
+			for (ItemStack stack : gifts.get(giftId)) {
 				stack.getTagCompound().setString("Series", giftId);
 				if (!playerIn.addItemStackToInventory(stack))
 					playerIn.dropItem(stack, false);
@@ -108,6 +109,5 @@ public class ItemGiftBox extends Item {
 		} else
 			return new ActionResult(EnumActionResult.FAIL, itemStackIn);
 	}
-
 
 }

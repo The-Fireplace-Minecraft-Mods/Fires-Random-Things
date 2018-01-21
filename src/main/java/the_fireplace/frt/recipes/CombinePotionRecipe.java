@@ -25,8 +25,7 @@ public class CombinePotionRecipe extends ShapelessRecipes {
 	}
 
 	@Override
-	public String getGroup()
-	{
+	public String getGroup() {
 		return "all";
 	}
 
@@ -36,20 +35,19 @@ public class CombinePotionRecipe extends ShapelessRecipes {
 	}
 
 	@Override
-	public ItemStack getCraftingResult(InventoryCrafting inv)
-	{
+	public ItemStack getCraftingResult(InventoryCrafting inv) {
 		ItemStack out = this.getRecipeOutput().copy();
-		for(int i=0;i<inv.getSizeInventory();i++) {
+		for (int i = 0; i < inv.getSizeInventory(); i++) {
 			if (inv.getStackInSlot(i).hasTagCompound() && inv.getStackInSlot(i).getItem() instanceof ItemMeatPie) {
 				out.setTagCompound(inv.getStackInSlot(i).getTagCompound());
 				break;
 			}
 		}
-		if(!out.hasTagCompound())
+		if (!out.hasTagCompound())
 			out.setTagCompound(new NBTTagCompound());
-		for(int i=0;i<inv.getSizeInventory();i++) {
+		for (int i = 0; i < inv.getSizeInventory(); i++) {
 			if (inv.getStackInSlot(i).hasTagCompound() && inv.getStackInSlot(i).getTagCompound().hasKey("Potion")) {
-				if(!out.getTagCompound().hasKey("Effects"))
+				if (!out.getTagCompound().hasKey("Effects"))
 					out.getTagCompound().setTag("Effects", new NBTTagList());
 				out.getTagCompound().getTagList("Effects", 10).appendTag(inv.getStackInSlot(i).writeToNBT(new NBTTagCompound()));
 			}

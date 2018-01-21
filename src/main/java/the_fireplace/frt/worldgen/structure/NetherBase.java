@@ -28,7 +28,7 @@ public class NetherBase implements IStructure {
 
 	public static final ItemStack BOOK = new ItemStack(Items.WRITTEN_BOOK);
 
-	static{
+	static {
 		BOOK.setTagCompound(new NBTTagCompound());
 		BOOK.getTagCompound().setString("author", "The_Fireplace");
 		BOOK.getTagCompound().setString("title", "The Nether Base");
@@ -47,7 +47,7 @@ public class NetherBase implements IStructure {
 
 	@Override
 	public BlockPos getBase(Random random, int chunkX, int chunkZ, World world) {
-		return new BlockPos(chunkX * 16, random.nextInt(110)+2, chunkZ * 16);
+		return new BlockPos(chunkX * 16, random.nextInt(110) + 2, chunkZ * 16);
 	}
 
 	@Override
@@ -69,9 +69,9 @@ public class NetherBase implements IStructure {
 	public void addBooks(TileEntityChest chest, Random random) {
 		chest.setInventorySlotContents(random.nextInt(chest.getSizeInventory()), BOOK);
 		//Hacky, but it works. It will only be done when the story is enabled, which is what we want. It will also only be done once per structure. Also what we want.
-		if(chest.getWorld().getMinecraftServer() != null) {
-			ChunkPos owChunk = new ChunkPos(new BlockPos(chest.getPos().getX()*8, chest.getPos().getY(), chest.getPos().getZ()*8));
-			FRT.logDebug("Queueing generation of Warzone Outpost at chunk "+owChunk.toString()+" in world "+chest.getWorld().getMinecraftServer().getWorld(0));
+		if (chest.getWorld().getMinecraftServer() != null) {
+			ChunkPos owChunk = new ChunkPos(new BlockPos(chest.getPos().getX() * 8, chest.getPos().getY(), chest.getPos().getZ() * 8));
+			FRT.logDebug("Queueing generation of Warzone Outpost at chunk " + owChunk.toString() + " in world " + chest.getWorld().getMinecraftServer().getWorld(0));
 			StructurePlacementManager.queueGeneration(chest.getWorld().getMinecraftServer().getWorld(0), owChunk, "outpost_warzone");
 		}
 	}

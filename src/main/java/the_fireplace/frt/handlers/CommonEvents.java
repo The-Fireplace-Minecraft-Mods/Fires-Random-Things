@@ -42,14 +42,14 @@ public final class CommonEvents {
 
 	@SubscribeEvent
 	public static void onLivingUpdate(LivingEvent.LivingUpdateEvent event) {
-		if(event.getEntityLiving() instanceof EntityPlayer) {
+		if (event.getEntityLiving() instanceof EntityPlayer) {
 			boolean remote = event.getEntityLiving().getEntityWorld().isRemote;
 			boolean potionActive = event.getEntityLiving().isPotionActive(FRT.hallucination);
 			if (remote && !potionActive) {
 				if (FRT.instance.clientCooldownTicks == 0) {
 					FRT.proxy.tryRemoveShader();
 					FRT.instance.clientCooldownTicks = -1;
-				}else if(FRT.instance.clientCooldownTicks > 0)
+				} else if (FRT.instance.clientCooldownTicks > 0)
 					FRT.instance.clientCooldownTicks--;
 			} else if (!remote && potionActive)
 				FRT.hallucination.performEffect(event.getEntityLiving(), 0);
@@ -57,10 +57,10 @@ public final class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void tickEvent(TickEvent.WorldTickEvent event){
-		if(!event.world.isRemote && event.world.getTotalWorldTime() % 20 == 0 && !bedLocations.isEmpty())
-			for(EntityPlayer player:bedLocations.keySet()){
-				if(!player.isPlayerSleeping()) {
+	public static void tickEvent(TickEvent.WorldTickEvent event) {
+		if (!event.world.isRemote && event.world.getTotalWorldTime() % 20 == 0 && !bedLocations.isEmpty())
+			for (EntityPlayer player : bedLocations.keySet()) {
+				if (!player.isPlayerSleeping()) {
 					ReflectionHelper.setPrivateValue(EntityPlayer.class, player, bedLocations.get(player), "spawnChunk", "field_71077_c");
 					bedLocations.remove(player);
 				}
@@ -76,21 +76,21 @@ public final class CommonEvents {
 	}
 
 	@SubscribeEvent
-	public static void onPlayerWake(PlayerWakeUpEvent event){
-		if(event.getEntityPlayer().getEntityWorld().getBlockState(event.getEntityPlayer().bedLocation).getBlock() instanceof BlockStrawBed){
+	public static void onPlayerWake(PlayerWakeUpEvent event) {
+		if (event.getEntityPlayer().getEntityWorld().getBlockState(event.getEntityPlayer().bedLocation).getBlock() instanceof BlockStrawBed) {
 			BlockPos pos = event.getEntityPlayer().getBedLocation();
 			bedLocations.putIfAbsent(event.getEntityPlayer(), pos);
 		}
 	}
 
 	@SubscribeEvent
-	public static void furnaceBurn(FurnaceFuelBurnTimeEvent event){
-		if(FRTFuelHandler.getBurnTime(event.getItemStack()) != 0)
+	public static void furnaceBurn(FurnaceFuelBurnTimeEvent event) {
+		if (FRTFuelHandler.getBurnTime(event.getItemStack()) != 0)
 			event.setBurnTime(FRTFuelHandler.getBurnTime(event.getItemStack()));
 	}
 
 	@SubscribeEvent
-	public static void rightClick(PlayerInteractEvent.RightClickEmpty event){
+	public static void rightClick(PlayerInteractEvent.RightClickEmpty event) {
 		System.out.println(event.getEntityPlayer().getHeldItem(EnumHand.MAIN_HAND).getTagCompound());
 	}
 }

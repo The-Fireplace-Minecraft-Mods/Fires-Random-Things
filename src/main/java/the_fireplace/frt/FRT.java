@@ -55,7 +55,9 @@ import the_fireplace.frt.network.FRTGuiHandler;
 import the_fireplace.frt.network.PacketDispatcher;
 import the_fireplace.frt.potion.HallucinationPotion;
 import the_fireplace.frt.recipes.RecipeHandler;
-import the_fireplace.frt.worldgen.*;
+import the_fireplace.frt.worldgen.StructureGenerator;
+import the_fireplace.frt.worldgen.WorldGeneratorStructure;
+import the_fireplace.frt.worldgen.WorldGeneratorWax;
 import the_fireplace.frt.worldgen.structure.*;
 
 /**
@@ -274,7 +276,7 @@ public final class FRT {
 			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("portalcave").register(new PortalCave()), 19);
 			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("prewar_outpost").register(new PrewarOutpost()), 19);
 			GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("bossign").register(new BosSign()), 20);
-			if(ConfigValues.GENSTORIES)
+			if (ConfigValues.GENSTORIES)
 				StructureGenerator.registerStructure("outpost_warzone", new WarzoneOutpost());
 			else
 				GameRegistry.registerWorldGenerator(new WorldGeneratorStructure("outpost_warzone").register(new WarzoneOutpost()), 18);
@@ -287,11 +289,11 @@ public final class FRT {
 	public static void registerBlock(Block block) {
 		if (isItemDisabled(block))
 			return;
-		if(blockRegistry == null){
-			logError("Block registry was null, could not register: "+block.getUnlocalizedName());
+		if (blockRegistry == null) {
+			logError("Block registry was null, could not register: " + block.getUnlocalizedName());
 			return;
 		}
-		if(block.getRegistryName() == null)
+		if (block.getRegistryName() == null)
 			block.setRegistryName(block.getUnlocalizedName().substring(5));
 		blockRegistry.register(block);
 	}
@@ -301,11 +303,11 @@ public final class FRT {
 	public static void registerItem(Item item) {
 		if (isItemDisabled(item))
 			return;
-		if(itemRegistry == null){
-			logError("Item registry was null, could not register: "+item.getUnlocalizedName());
+		if (itemRegistry == null) {
+			logError("Item registry was null, could not register: " + item.getUnlocalizedName());
 			return;
 		}
-		if(item.getRegistryName() == null)
+		if (item.getRegistryName() == null)
 			item.setRegistryName(item.getUnlocalizedName().substring(5));
 		itemRegistry.register(item);
 	}
@@ -313,8 +315,8 @@ public final class FRT {
 	public static void registerItemForBlock(Block block) {
 		if (isItemDisabled(block))
 			return;
-		if(itemRegistry == null){
-			logError("Item registry was null, could not register: "+block.getUnlocalizedName());
+		if (itemRegistry == null) {
+			logError("Item registry was null, could not register: " + block.getUnlocalizedName());
 			return;
 		}
 		itemRegistry.register(new ItemBlock(block).setRegistryName(block.getRegistryName()));
@@ -323,17 +325,17 @@ public final class FRT {
 	public static void registerItemBlock(ItemBlock itemBlock) {
 		if (isItemDisabled(itemBlock))
 			return;
-		if(itemRegistry == null){
-			logError("Item registry was null, could not register: "+itemBlock.getUnlocalizedName());
+		if (itemRegistry == null) {
+			logError("Item registry was null, could not register: " + itemBlock.getUnlocalizedName());
 			return;
 		}
-		if(itemBlock.getRegistryName() == null)
+		if (itemBlock.getRegistryName() == null)
 			itemBlock.setRegistryName(itemBlock.getUnlocalizedName().substring(5));
 		itemRegistry.register(itemBlock);
 	}
 
 	@SubscribeEvent
-	public static void itemRegistry(RegistryEvent.Register<Item> event){
+	public static void itemRegistry(RegistryEvent.Register<Item> event) {
 		itemRegistry = event.getRegistry();
 		registerItem(straw_bed);
 		registerItem(charged_coal);
@@ -406,7 +408,7 @@ public final class FRT {
 	}
 
 	@SubscribeEvent
-	public static void blockRegistry(RegistryEvent.Register<Block> event){
+	public static void blockRegistry(RegistryEvent.Register<Block> event) {
 		blockRegistry = event.getRegistry();
 		registerBlock(ender_bookshelf);
 		registerBlock(polished_stone);
@@ -453,14 +455,14 @@ public final class FRT {
 	}
 
 	@SubscribeEvent
-	public static void potionRegister(RegistryEvent.Register<Potion> event){
-		if(hallucination == null)
+	public static void potionRegister(RegistryEvent.Register<Potion> event) {
+		if (hallucination == null)
 			hallucination = new HallucinationPotion().setPotionName("potion.hallucination").setRegistryName(new ResourceLocation(FRT.MODID, "hallucination"));
 		event.getRegistry().register(hallucination);
 	}
 
 	@SubscribeEvent
-	public static void potionTypeRegister(RegistryEvent.Register<PotionType> event){
+	public static void potionTypeRegister(RegistryEvent.Register<PotionType> event) {
 		event.getRegistry().register(new PotionType(new PotionEffect(hallucination, 3600)).setRegistryName(new ResourceLocation(FRT.MODID, "hallucination")));
 		event.getRegistry().register(new PotionType(new PotionEffect(hallucination, 9600)).setRegistryName(new ResourceLocation(FRT.MODID, "long_hallucination")));
 	}
@@ -603,18 +605,18 @@ public final class FRT {
 
 	/**
 	 * Check if an item is disabled
+	 *
 	 * @param item
-	 *  The item. Can be an Item, Block, or ItemStack
-	 * @return
-	 *  true if disabled, false if enabled
+	 * 		The item. Can be an Item, Block, or ItemStack
+	 * @return true if disabled, false if enabled
 	 */
-	public static boolean isItemDisabled(Object item){
-		if(item instanceof Item)
-			return ArrayUtils.contains(ConfigValues.DISABLEDITEMS, ((Item)item).getUnlocalizedName().substring(5));
-		else if(item instanceof Block)
-			return ArrayUtils.contains(ConfigValues.DISABLEDITEMS, ((Block)item).getUnlocalizedName().substring(5));
-		else if(item instanceof ItemStack)
-			return ArrayUtils.contains(ConfigValues.DISABLEDITEMS, ((ItemStack)item).getItem().getUnlocalizedName().substring(5));
+	public static boolean isItemDisabled(Object item) {
+		if (item instanceof Item)
+			return ArrayUtils.contains(ConfigValues.DISABLEDITEMS, ((Item) item).getUnlocalizedName().substring(5));
+		else if (item instanceof Block)
+			return ArrayUtils.contains(ConfigValues.DISABLEDITEMS, ((Block) item).getUnlocalizedName().substring(5));
+		else if (item instanceof ItemStack)
+			return ArrayUtils.contains(ConfigValues.DISABLEDITEMS, ((ItemStack) item).getItem().getUnlocalizedName().substring(5));
 		else
 			throw new IllegalArgumentException("Item being checked must be an Item, Block, or ItemStack!");
 	}

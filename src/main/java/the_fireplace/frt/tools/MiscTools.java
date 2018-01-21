@@ -28,7 +28,7 @@ public final class MiscTools {
 		return new NBTTagString("\"" + FRT.proxy.translateToLocal(key) + "\"");
 	}
 
-	public static ItemStack createHead(String name){
+	public static ItemStack createHead(String name) {
 		ItemStack stack = new ItemStack(Items.SKULL, 1, 3);
 		NBTTagCompound compound = new NBTTagCompound();
 		compound.setTag("SkullOwner", new NBTTagString(name));

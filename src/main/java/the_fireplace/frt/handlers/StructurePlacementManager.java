@@ -41,8 +41,8 @@ public final class StructurePlacementManager extends WorldSavedData {
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
-		for(NBTBase tag:nbt.getTagList("worldgenQueue", 8)) {
-			String[] tagData = ((NBTTagString)tag).getString().split(sep);
+		for (NBTBase tag : nbt.getTagList("worldgenQueue", 8)) {
+			String[] tagData = ((NBTTagString) tag).getString().split(sep);
 			worldgenQueue.put(new ChunkPos(Integer.parseInt(tagData[0]), Integer.parseInt(tagData[1])), tagData[2]);
 		}
 	}
@@ -50,21 +50,21 @@ public final class StructurePlacementManager extends WorldSavedData {
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
 		compound.setTag("worldgenQueue", new NBTTagList());
-		for(Map.Entry<ChunkPos, String> entry : worldgenQueue.entries())
-			compound.getTagList("worldGenQueue", 8).appendTag(new NBTTagString(entry.getKey().x+sep+entry.getKey().z+sep+entry.getValue()));
+		for (Map.Entry<ChunkPos, String> entry : worldgenQueue.entries())
+			compound.getTagList("worldGenQueue", 8).appendTag(new NBTTagString(entry.getKey().x + sep + entry.getKey().z + sep + entry.getValue()));
 		return compound;
 	}
 
 	/**
 	 * Checks if a structure can be generated at the given chunk coordinates.
+	 *
 	 * @param chunkX
-	 *  The chunk's x-coord
+	 * 		The chunk's x-coord
 	 * @param chunkZ
-	 *  The chunk's z-coord
+	 * 		The chunk's z-coord
 	 * @param chunkprovider
-	 *  The chunk provider
-	 * @return
-	 *  true if the structure can generate, false if it cannot.
+	 * 		The chunk provider
+	 * @return true if the structure can generate, false if it cannot.
 	 */
 	public static boolean canGenerateStructure(int chunkX, int chunkZ, IChunkProvider chunkprovider) {
 		for (int x = chunkX - 1; x <= chunkX + 1; x++) {
@@ -79,16 +79,17 @@ public final class StructurePlacementManager extends WorldSavedData {
 
 	/**
 	 * Queues a structure for generation. When it can safely load without causing cascading worldgen lag, it will.
+	 *
 	 * @param world
-	 *  The world the chunk is in
+	 * 		The world the chunk is in
 	 * @param chunk
-	 *  The chunk the structure will generate in
+	 * 		The chunk the structure will generate in
 	 * @param strid
-	 *  The structure id for the structure
+	 * 		The structure id for the structure
 	 */
-	public static void queueGeneration(World world, ChunkPos chunk, String strid){
-		if(!world.isRemote) {
-			if(instances.get(world) == null)
+	public static void queueGeneration(World world, ChunkPos chunk, String strid) {
+		if (!world.isRemote) {
+			if (instances.get(world) == null)
 				loadWorldData(world);
 			instances.get(world).worldgenQueue.put(chunk, strid);
 			instances.get(world).markDirty();
@@ -97,7 +98,7 @@ public final class StructurePlacementManager extends WorldSavedData {
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void chunkGen(PopulateChunkEvent.Post event) {
-		if(instances.get(event.getWorld()) != this)
+		if (instances.get(event.getWorld()) != this)
 			return;
 		if (ConfigValues.GENSTRUCTURES) {
 			if (worldgenQueue.isEmpty())
@@ -114,22 +115,22 @@ public final class StructurePlacementManager extends WorldSavedData {
 	}
 
 	@SubscribeEvent
-	public static void worldLoad(WorldEvent.Load event){
-		if(!event.getWorld().isRemote)
+	public static void worldLoad(WorldEvent.Load event) {
+		if (!event.getWorld().isRemote)
 			loadWorldData(event.getWorld());
 	}
-	
-	private static void loadWorldData(World world){
-		if(world.isRemote)
+
+	private static void loadWorldData(World world) {
+		if (world.isRemote)
 			return;
 		StructurePlacementManager manager = (StructurePlacementManager) world.loadData(StructurePlacementManager.class, "frt:structure_management");
-		if(manager == null){
-			FRT.logDebug("Creating a new Structure Placement Manager for "+world.provider.getDimensionType().getName());
+		if (manager == null) {
+			FRT.logDebug("Creating a new Structure Placement Manager for " + world.provider.getDimensionType().getName());
 			manager = new StructurePlacementManager("frt:structure_management");
 		}
 		instances.put(world, manager);
 		world.setData("frt:structure_management", instances.get(world));
-		FRT.logTrace("Structure Placement Manager for "+world.provider.getDimensionType().getName()+" is set to "+manager.toString());
+		FRT.logTrace("Structure Placement Manager for " + world.provider.getDimensionType().getName() + " is set to " + manager.toString());
 	}
 
 	private static ChunkPos getSurroundingChunkFromList(int chunkX, int chunkZ, Set list) {

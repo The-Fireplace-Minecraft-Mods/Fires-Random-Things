@@ -25,23 +25,27 @@ public abstract class StructureGenerator {
 
 	private static final Map<String, IStructure> templates = Maps.newHashMap();
 
-	public static void registerStructure(String id, IStructure structure){
+	public static void registerStructure(String id, IStructure structure) {
 		templates.put(id, structure);
 	}
 
-	public static boolean isWorldAcceptable(World world){
+	public static boolean isWorldAcceptable(World world) {
 		return world.getWorldType() != WorldType.DEBUG_ALL_BLOCK_STATES && world.getWorldType() != WorldType.FLAT;
 	}
 
 	/**
 	 * Generate a structure
 	 *
-	 * @param random the chunk specific {@link Random}.
-	 * @param chunkX the chunk X coordinate of this chunk.
-	 * @param chunkZ the chunk Z coordinate of this chunk.
-	 * @param world : additionalData[0] The minecraft {@link World} we're generating for.
-	 * @param chunkProvider : additionalData[2] {@link IChunkProvider} that is requesting the world generation.
-	 *
+	 * @param random
+	 * 		the chunk specific {@link Random}.
+	 * @param chunkX
+	 * 		the chunk X coordinate of this chunk.
+	 * @param chunkZ
+	 * 		the chunk Z coordinate of this chunk.
+	 * @param world
+	 * 		: additionalData[0] The minecraft {@link World} we're generating for.
+	 * @param chunkProvider
+	 * 		: additionalData[2] {@link IChunkProvider} that is requesting the world generation.
 	 */
 	public static void generate(String id, Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkProvider) {
 		if (!ConfigValues.GENSTRUCTURES || world.isRemote)
@@ -63,7 +67,7 @@ public abstract class StructureGenerator {
 			Template template = world.getSaveHandler().getStructureTemplateManager().getTemplate(world.getMinecraftServer(), structure.getStructure());
 			PlacementSettings settings = new PlacementSettings().setIntegrity(structure.getIntegrity()).setRotation(rotation);
 
-			FRT.logDebug("Spawning "+id+" at chunk "+chunkX+", "+chunkZ);
+			FRT.logDebug("Spawning " + id + " at chunk " + chunkX + ", " + chunkZ);
 			template.addBlocksToWorld(world, basePos, settings);
 
 			boolean addedBook = false;

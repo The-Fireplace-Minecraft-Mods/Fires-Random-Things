@@ -34,7 +34,7 @@ public class PrewarOutpost implements IStructure {
 
 	public static final ItemStack BOOK = new ItemStack(Items.WRITTEN_BOOK);
 
-	static{
+	static {
 		BOOK.setTagCompound(new NBTTagCompound());
 		BOOK.getTagCompound().setString("author", "The_Fireplace");
 		BOOK.getTagCompound().setString("title", "Outpost");
@@ -48,7 +48,7 @@ public class PrewarOutpost implements IStructure {
 	@Override
 	public boolean canSpawn(BlockPos basePos, Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkProvider) {
 		BlockPos maxPos = basePos.add(18, 0, 22);//not perfect, but it'll do.
-		if(!(world.getBlockState(basePos).getBlock() instanceof BlockGrass || world.getBlockState(basePos).getBlock() instanceof BlockDirt) || !(world.getBlockState(maxPos).getBlock() instanceof BlockGrass || world.getBlockState(maxPos).getBlock() instanceof BlockDirt))
+		if (!(world.getBlockState(basePos).getBlock() instanceof BlockGrass || world.getBlockState(basePos).getBlock() instanceof BlockDirt) || !(world.getBlockState(maxPos).getBlock() instanceof BlockGrass || world.getBlockState(maxPos).getBlock() instanceof BlockDirt))
 			return false;
 
 		return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 6000 : 600) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD) && !forbiddenBiomes.contains(world.getBiome(basePos));

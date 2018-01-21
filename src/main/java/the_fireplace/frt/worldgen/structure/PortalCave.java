@@ -28,7 +28,7 @@ public class PortalCave implements IStructure {
 	public static final ItemStack BOOK = new ItemStack(Items.WRITTEN_BOOK);
 	public static final ItemStack BOOK2 = new ItemStack(Items.WRITTEN_BOOK);
 
-	static{
+	static {
 		BOOK.setTagCompound(new NBTTagCompound());
 		BOOK.getTagCompound().setString("author", "The_Fireplace");
 		BOOK.getTagCompound().setString("title", "Expansion");

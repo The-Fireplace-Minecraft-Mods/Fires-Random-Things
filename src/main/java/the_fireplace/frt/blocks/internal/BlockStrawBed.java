@@ -19,26 +19,23 @@ import java.util.Random;
 @MethodsReturnNonnullByDefault
 public class BlockStrawBed extends BlockBed {
 
-	public BlockStrawBed(){
+	public BlockStrawBed() {
 		setSoundType(SoundType.PLANT);
 		setHardness(0.5F);
 	}
 
 	@Override
-	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-	{
+	public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
 		return new ItemStack(FRT.straw_bed);
 	}
 
 	@Override
-	public boolean isBed(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable Entity player)
-	{
+	public boolean isBed(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable Entity player) {
 		return true;
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		return state.getValue(PART) == BlockBed.EnumPartType.HEAD ? Items.AIR : FRT.straw_bed;
 	}
 }

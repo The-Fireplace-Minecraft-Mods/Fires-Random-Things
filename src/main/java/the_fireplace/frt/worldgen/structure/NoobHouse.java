@@ -27,7 +27,7 @@ public class NoobHouse implements IStructure {
 
 	public static final ItemStack BOOK = new ItemStack(Items.WRITTEN_BOOK);
 
-	static{
+	static {
 		BOOK.setTagCompound(new NBTTagCompound());
 		BOOK.getTagCompound().setString("author", "The_Fireplace");
 		BOOK.getTagCompound().setString("title", "About this house");

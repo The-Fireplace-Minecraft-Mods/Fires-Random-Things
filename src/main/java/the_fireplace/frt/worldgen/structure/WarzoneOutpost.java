@@ -30,7 +30,7 @@ public class WarzoneOutpost implements IStructure {
 
 	public static final ItemStack BOOK = new ItemStack(Items.WRITTEN_BOOK);
 
-	static{
+	static {
 		BOOK.setTagCompound(new NBTTagCompound());
 		BOOK.getTagCompound().setString("author", "The_Fireplace");
 		BOOK.getTagCompound().setString("title", "Battle for the City");
@@ -43,13 +43,13 @@ public class WarzoneOutpost implements IStructure {
 
 	@Override
 	public boolean canSpawn(BlockPos basePos, Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkProvider) {
-		if(!ConfigValues.GENSTORIES) {
+		if (!ConfigValues.GENSTORIES) {
 			BlockPos maxPos = basePos.add(18, 0, 22);//not perfect, but it'll do.
-			if(!(world.getBlockState(basePos).getBlock() instanceof BlockGrass || world.getBlockState(basePos).getBlock() instanceof BlockDirt) || !(world.getBlockState(maxPos).getBlock() instanceof BlockGrass || world.getBlockState(maxPos).getBlock() instanceof BlockDirt))
+			if (!(world.getBlockState(basePos).getBlock() instanceof BlockGrass || world.getBlockState(basePos).getBlock() instanceof BlockDirt) || !(world.getBlockState(maxPos).getBlock() instanceof BlockGrass || world.getBlockState(maxPos).getBlock() instanceof BlockDirt))
 				return false;
 
 			return random.nextInt((world.getMinecraftServer() != null && world.getMinecraftServer().isDedicatedServer()) ? 8000 : 800) == 0 && world.provider.getDimensionType().equals(DimensionType.OVERWORLD) && !PrewarOutpost.forbiddenBiomes.contains(world.getBiome(basePos));
-		}else
+		} else
 			return world.provider.getDimensionType().equals(DimensionType.OVERWORLD);
 	}
 
@@ -65,7 +65,7 @@ public class WarzoneOutpost implements IStructure {
 
 	@Override
 	public float getIntegrity() {
-		return (float)Math.abs(Math.sin(new Random().nextInt(16)*0.863f));
+		return (float) Math.abs(Math.sin(new Random().nextInt(16) * 0.863f));
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class WarzoneOutpost implements IStructure {
 
 	@Override
 	public void doCustomDestruction(World world, IBlockState state, BlockPos pos, Random random) {
-		if(state.getMaterial() == Material.LAVA) {
+		if (state.getMaterial() == Material.LAVA) {
 			Random sameRand = new Random(world.getSeed());
 			if (sameRand.nextDouble() < Math.abs(Math.sin(world.getWorldTime() / 20d)))
 				world.setBlockToAir(pos);
