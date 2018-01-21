@@ -33,7 +33,7 @@ group= "the_fireplace.frt"
 archivesBaseName = "FiresRandomThings-1.12.2"
 
 minecraft {
-    version = "1.12.2-14.23.1.2555"
+    version = "1.12.2-14.23.1.2590"
     runDir = "run"
     replace '${version}', project.version
     mappings = "snapshot_20170815"
