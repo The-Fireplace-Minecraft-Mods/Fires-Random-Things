@@ -29,6 +29,7 @@ import java.util.Random;
 /**
  * @author The_Fireplace
  */
+@SuppressWarnings("Duplicates")
 @MethodsReturnNonnullByDefault
 @ParametersAreNonnullByDefault
 public class BlockQuadDispenser extends BlockDispenser {
@@ -112,7 +113,7 @@ public class BlockQuadDispenser extends BlockDispenser {
 
 				if (ibehaviordispenseitem != IBehaviorDispenseItem.DEFAULT_BEHAVIOR) {
 					ItemStack itemstack1 = ibehaviordispenseitem.dispense(blocksourceimpl, itemstack);
-					tileentitydispenser.setInventorySlotContents(i, itemstack1.getCount() <= 0 ? null : itemstack1);
+					tileentitydispenser.setInventorySlotContents(i, itemstack1.getCount() <= 0 ? ItemStack.EMPTY : itemstack1);
 				}
 			}
 		}
@@ -120,7 +121,7 @@ public class BlockQuadDispenser extends BlockDispenser {
 
 	@Override
 	protected IBehaviorDispenseItem getBehavior(ItemStack stack) {
-		return DISPENSE_BEHAVIOR_REGISTRY.getObject(stack == null ? null : stack.getItem());
+		return DISPENSE_BEHAVIOR_REGISTRY.getObject((stack == null || stack.isEmpty()) ? null : stack.getItem());
 	}
 
 	/**
@@ -141,12 +142,9 @@ public class BlockQuadDispenser extends BlockDispenser {
 
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-		if (!worldIn.isRemote) {
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-		}
+		if (!worldIn.isRemote)
+			for(int i=0;i<4;i++)
+				this.dispense(worldIn, pos);
 	}
 
 	/**
