@@ -28,6 +28,7 @@ import java.util.Random;
 /**
  * @author The_Fireplace
  */
+@SuppressWarnings("Duplicates")
 public class BlockInsaneDispenser extends BlockDispenser {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing");
 	public static final PropertyBool TRIGGERED = PropertyBool.create("triggered");
@@ -141,24 +142,9 @@ public class BlockInsaneDispenser extends BlockDispenser {
 
 	@Override
 	public void updateTick(World worldIn, @Nullable BlockPos pos, IBlockState state, Random rand) {
-		if (!worldIn.isRemote) {
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-			this.dispense(worldIn, pos);
-		}
+		if (!worldIn.isRemote)
+			for(int i=0;i<16;i++)
+				this.dispense(worldIn, pos);
 	}
 
 	/**
